@@ -128,6 +128,10 @@ $_LANG['lab_picture_url'] = 'Merchandise picture external URL';
 $_LANG['lab_thumb_url'] = 'External merchandise Thumbnail URL';
 
 $_LANG['lab_front_cover'] = 'Front cover:';
+$_LANG['lab_layer'] = 'Commodity level:';
+$_LANG['lab_underwear'] = 'Underwear';
+$_LANG['lab_trousers'] = 'Trousers';
+$_LANG['lab_coat'] = 'Coat';
 
 $_LANG['lab_goods_weight'] ='Weight:';
 $_LANG['unit_g'] ='Gram';

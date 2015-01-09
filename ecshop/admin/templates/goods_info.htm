@@ -63,6 +63,7 @@
                {$lang.require_field}
             </td>
           </tr>
+
           <tr>
             <td class="label">{$lang.lab_other_cat}</td>
             <td>
@@ -70,6 +71,19 @@
               {foreach from=$goods.other_cat item=cat_id}
               <select name="other_cat[]"><option value="0">{$lang.select_please}</option>{$other_cat_list.$cat_id}</select>
               {/foreach}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">{$lang.lab_layer}</td>
+            <td>
+
+
+              <select name="layer_type" id="layer_type">
+                <option value="underwear-10" {if $goods.layer_type eq 'underwear'}  selected="selected" {/if} >{$lang.lab_underwear}</option>
+                <option value="trousers-50"  {if $goods.layer_type eq 'trousers'}  selected="selected" {/if} >{$lang.lab_trousers}</option>
+                <option value="coat-100"     {if $goods.layer_type eq 'coat'}  selected="selected" {/if} >{$lang.lab_coat}</option>
+              </select>  
             </td>
           </tr>
           <tr>

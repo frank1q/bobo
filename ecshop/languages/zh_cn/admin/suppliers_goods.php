@@ -123,6 +123,10 @@ $_LANG['lab_picture_url'] = '商品图片外部URL';
 $_LANG['lab_thumb_url'] = '商品缩略图外部URL';
 
 $_LANG['lab_front_cover'] = '封面图：';
+$_LANG['lab_layer'] = '商品层次：';
+$_LANG['lab_underwear'] = '内衣';
+$_LANG['lab_trousers'] = '裤子';
+$_LANG['lab_coat'] = '外套';
 
 
 $_LANG['lab_goods_weight'] = '商品重量：';
