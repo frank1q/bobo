@@ -143,6 +143,7 @@ $_LANG['13_backup'] = '数据库管理';
 $_LANG['14_sms'] = '短信管理';
 $_LANG['15_rec'] = '推荐管理';
 $_LANG['16_email_manage'] = '邮件群发管理';
+$_LANG['17_model_management']='模特管理';
 
 /* 商品管理 */
 $_LANG['01_goods_list'] = '商品列表';
@@ -173,7 +174,6 @@ $_LANG['52_virtual_card_change'] = '更改加密串';
 $_LANG['goods_auto'] = '商品自动上下架';
 $_LANG['article_auto'] = '文章自动发布';
 $_LANG['navigator'] = '自定义导航栏';
-$_LANG['goods_model']='模特管理';
 
 /* 促销管理 */
 $_LANG['02_snatch_list'] = '夺宝奇兵';

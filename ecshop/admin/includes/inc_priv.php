@@ -36,7 +36,6 @@ if (!defined('IN_ECS'))
     $purview['51_virtual_card_add']  = 'virualcard';
     $purview['52_virtual_card_change'] = 'virualcard';
     $purview['goods_auto']           = 'goods_auto';
-    $purview['goods_model']           = 'goods_model';
 
 //促销管理权限
     $purview['02_snatch_list']       = 'snatch_manage';
@@ -150,5 +149,8 @@ if (!defined('IN_ECS'))
     $purview['email_list']           = 'email_list';
     $purview['magazine_list']        = 'magazine_list';
     $purview['view_sendlist']        = 'view_sendlist';
+
+//模特管理
+    $purview['model_management']           = 'model_management';
 
 ?>

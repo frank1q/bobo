@@ -143,6 +143,7 @@ $_LANG['13_backup'] = 'Database';
 $_LANG['14_sms'] = 'Short Message';
 $_LANG['15_rec'] = 'Recommend management';
 $_LANG['16_email_manage'] = 'Mass-mailing management';
+$_LANG['17_model_management']='Model Management';
 
 /* Product management */
 $_LANG['01_goods_list'] = 'Product List';
