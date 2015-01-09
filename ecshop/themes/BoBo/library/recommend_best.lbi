@@ -1,0 +1,50 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="slidera mt" id="slidera">
+  <ul class="sliderboxa">
+    <!--{foreach from=$best_goods item=goods}-->
+      <li>
+        <img src="{$goods.front_cover}" alt="test1" class="img-responsive"> 
+      </li>
+    <!--{/foreach}-->
+  </ul>
+  <ul class="slidertexta">
+    <!--{foreach from=$best_goods key=cat_key item=goods}-->
+        <!-- {if $cat_key eq 0} --> 
+          <li style="display: list-item;">
+        <!-- {else} -->
+          <li style="display: none;">
+        <!-- {/if} -->
+            <div class="picture_main">
+              <div class="picture">
+                <div class="picturerightimg">
+                  <img src="./images/picture-right_2.png" alt="" class="img-responsive">
+                </div>
+              </div>
+              <div class="picture_c">
+                <div class="picture_cpa">
+                  <a href="{$goods.url}">
+                    <h3>
+                      {$goods.name}
+                    </h3>
+                  </a>
+                  <div class="picture_cpl">
+                    <p>
+                      <a href="{$goods.url}">
+                        {$goods.brief}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a href="{$goods.url}">
+                <div class="picture_f">
+                  <h3>DISCOVER ALL</h3>
+                </div>
+              </a>
+            </div>
+          </li>
+    <!--{/foreach}-->
+  </ul>
+  <div class="preva"></div>
+  <div class="nexta"></div>
+</div>
