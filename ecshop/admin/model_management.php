@@ -10,14 +10,15 @@
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
  * ============================================================================
  * $Author: liuhui $
- * $Id: goods_model.php 17063 2010-03-25 06:35:46Z liuhui $
+ * $Id: model_management.php 17063 2010-03-25 06:35:46Z liuhui $
 */
 
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
 
-$exc = new exchange($ecs->table("goods_model"), $db, 'cat_id', 'cat_name');
+$exc = new exchange($ecs->table("model_management"), $db, 'cat_id', 'cat_name');
+
 
 /*------------------------------------------------------ */
 //-- 管理界面
@@ -26,17 +27,17 @@ if ($_REQUEST['act'] == 'manage')
 {
     assign_query_info();
 
-    $smarty->assign('ur_here',          $_LANG['08_goods_model']);
+    $smarty->assign('ur_here',          $_LANG['08_model_management']);
     $smarty->assign('full_page',        1);
 
     $good_type_list = get_goodstype();
-    $good_in_type = '';
 
-    $smarty->assign('goods_model_arr',   $good_type_list['type']);
+    $good_in_type = '';
+    $smarty->assign('model_management_arr',   $good_type_list['type']);
     $smarty->assign('filter',       $good_type_list['filter']);
     $smarty->assign('record_count', $good_type_list['record_count']);
     $smarty->assign('page_count',   $good_type_list['page_count']);
-
+    
     $query = $db->query("SELECT a.cat_id FROM " . $ecs->table('attribute') . " AS a RIGHT JOIN " . $ecs->table('goods_attr') . " AS g ON g.attr_id = a.attr_id GROUP BY a.cat_id");
      while ($row = $db->fetchRow($query))
     {
@@ -44,9 +45,9 @@ if ($_REQUEST['act'] == 'manage')
     }
     $smarty->assign('good_in_type', $good_in_type);
 
-    $smarty->assign('action_link',      array('text' => $_LANG['new_goods_model'], 'href' => 'goods_model.php?act=add'));
+    $smarty->assign('action_link',      array('text' => $_LANG['new_model_management'], 'href' => 'model_management.php?act=add'));
 
-    $smarty->display('goods_model.htm');
+    $smarty->display('model_management.htm');
 }
 
 /*------------------------------------------------------ */
@@ -57,12 +58,12 @@ elseif ($_REQUEST['act'] == 'query')
 {
     $good_type_list = get_goodstype();
 
-    $smarty->assign('goods_model_arr',   $good_type_list['type']);
+    $smarty->assign('model_management_arr',   $good_type_list['type']);
     $smarty->assign('filter',       $good_type_list['filter']);
     $smarty->assign('record_count', $good_type_list['record_count']);
     $smarty->assign('page_count',   $good_type_list['page_count']);
 
-    make_json_result($smarty->fetch('goods_model.htm'), '',
+    make_json_result($smarty->fetch('model_management.htm'), '',
         array('filter' => $good_type_list['filter'], 'page_count' => $good_type_list['page_count']));
 }
 
@@ -71,7 +72,7 @@ elseif ($_REQUEST['act'] == 'query')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'edit_type_name')
 {
-    check_authz_json('goods_model');
+    check_authz_json('model_management');
 
     $type_id   = !empty($_POST['id'])  ? intval($_POST['id']) : 0;
     $type_name = !empty($_POST['val']) ? json_str_iconv(trim($_POST['val']))  : '';
@@ -83,7 +84,7 @@ elseif ($_REQUEST['act'] == 'edit_type_name')
     {
         $exc->edit("cat_name='$type_name'", $type_id);
 
-        admin_log($type_name, 'edit', 'goods_model');
+        admin_log($type_name, 'edit', 'model_management');
 
         make_json_result(stripslashes($type_name));
     }
@@ -99,7 +100,7 @@ elseif ($_REQUEST['act'] == 'edit_type_name')
 
 elseif ($_REQUEST['act'] == 'toggle_enabled')
 {
-    check_authz_json('goods_model');
+    check_authz_json('model_management');
 
     $id     = intval($_POST['id']);
     $val    = intval($_POST['val']);
@@ -115,29 +116,69 @@ elseif ($_REQUEST['act'] == 'toggle_enabled')
 
 elseif ($_REQUEST['act'] == 'add')
 {
-    admin_priv('goods_model');
+    admin_priv('model_management');
 
-    $smarty->assign('ur_here',     $_LANG['new_goods_model']);
-    $smarty->assign('action_link', array('href'=>'goods_model.php?act=manage', 'text' => $_LANG['goods_model_list']));
+    $model_id = '';
+    $smarty->assign('model_high',     get_model_high($model_id));
+    $smarty->assign('ur_here',     $_LANG['new_model_management']);
+    $smarty->assign('action_link', array('href'=>'model_management.php?act=manage', 'text' => $_LANG['model_management_list']));
     $smarty->assign('action',      'add');
     $smarty->assign('form_act',    'insert');
-    $smarty->assign('goods_model',  array('enabled' => 1));
+    $smarty->assign('model_management',  array('enabled' => 1));
 
     assign_query_info();
-    $smarty->display('goods_model_info.htm');
+
+    $smarty->display('model_management_info.htm');
 }
 
 elseif ($_REQUEST['act'] == 'insert')
 {
-    //$goods_model['cat_name']   = trim_right(sub_str($_POST['cat_name'], 60));
-    //$goods_model['attr_group'] = trim_right(sub_str($_POST['attr_group'], 255));
-    $goods_model['cat_name']   = sub_str($_POST['cat_name'], 60);
-    $goods_model['attr_group'] = sub_str($_POST['attr_group'], 255);
-    $goods_model['enabled']    = intval($_POST['enabled']);
+/*
+性别(sex)     X2
+身材(figure)  X3
+身高(high)    X4
+肤色(complexion) X4
+模特(images)  X1
+*/
+    $model = array();
+    $start = microtime();
+    $sArr = explode(' ', $start);
+    $stime = $sArr[1]+$sArr[0];
+    
+    for ($i=1;$i<=2;$i++){ 
+        for($a=1;$a<=3;$a++) {
+            for($b=1;$b<=4;$b++) {
+                for($c=1;$c<=4;$c++) {
+                    // $model['model_sex']        = $i;
+                    // $model['model_figure']     = $a;
+                    // $model['model_high_id']       = $b;
+                    // $model['model_complexion'] = $c;
+                    // $model['model_images']     = 'img/x/x.png';
+                    // $model['model_add_time']     = $_SERVER['REQUEST_TIME'];
+                    $valuesStr[] = '("'.$i.'","'.$a.'","'.$b.'","'.$c.'","",'.$_SERVER['REQUEST_TIME'].')';
+                }
+            }
+        }
 
-    if ($db->autoExecute($ecs->table('goods_model'), $goods_model) !== false)
+    }
+    $str = implode(',', $valuesStr);
+    $sql = 'insert into '.$GLOBALS['ecs']->table('model_management').' (model_sex,model_figure,model_high_id,model_complexion,model_images,model_add_time) values '.$str;
+    $db->query($sql);
+
+    $end = microtime();
+    $eArr = explode(' ', $end);
+    $etime = $eArr[1]+$eArr[0];
+    var_dump($etime-$stime);
+    exit();
+    //$model_management['cat_name']   = trim_right(sub_str($_POST['cat_name'], 60));
+    //$model_management['attr_group'] = trim_right(sub_str($_POST['attr_group'], 255));
+    $model_management['cat_name']   = sub_str($_POST['cat_name'], 60);
+    $model_management['attr_group'] = sub_str($_POST['attr_group'], 255);
+    $model_management['enabled']    = intval($_POST['enabled']);
+
+    if ($db->autoExecute($ecs->table('model_management'), $model_management) !== false)
     {
-        $links = array(array('href' => 'goods_model.php?act=manage', 'text' => $_LANG['back_list']));
+        $links = array(array('href' => 'model_management.php?act=manage', 'text' => $_LANG['back_list']));
         sys_msg($_LANG['add_goodstype_success'], 0, $links);
     }
     else
@@ -152,37 +193,37 @@ elseif ($_REQUEST['act'] == 'insert')
 
 elseif ($_REQUEST['act'] == 'edit')
 {
-    $goods_model = get_goodstype_info(intval($_GET['cat_id']));
+    $model_management = get_goodstype_info(intval($_GET['cat_id']));
 
-    if (empty($goods_model))
+    if (empty($model_management))
     {
         sys_msg($_LANG['cannot_found_goodstype'], 1);
     }
 
-    admin_priv('goods_model');
+    admin_priv('model_management');
 
-    $smarty->assign('ur_here',     $_LANG['edit_goods_model']);
-    $smarty->assign('action_link', array('href'=>'goods_model.php?act=manage', 'text' => $_LANG['goods_model_list']));
+    $smarty->assign('ur_here',     $_LANG['edit_model_management']);
+    $smarty->assign('action_link', array('href'=>'model_management.php?act=manage', 'text' => $_LANG['model_management_list']));
     $smarty->assign('action',      'add');
     $smarty->assign('form_act',    'update');
-    $smarty->assign('goods_model',  $goods_model);
+    $smarty->assign('model_management',  $model_management);
 
     assign_query_info();
-    $smarty->display('goods_model_info.htm');
+    $smarty->display('model_management_info.htm');
 }
 
 elseif ($_REQUEST['act'] == 'update')
 {
-    $goods_model['cat_name']   = sub_str($_POST['cat_name'], 60);
-    $goods_model['attr_group'] = sub_str($_POST['attr_group'], 255);
-    $goods_model['enabled']    = intval($_POST['enabled']);
+    $model_management['cat_name']   = sub_str($_POST['cat_name'], 60);
+    $model_management['attr_group'] = sub_str($_POST['attr_group'], 255);
+    $model_management['enabled']    = intval($_POST['enabled']);
     $cat_id                   = intval($_POST['cat_id']);
     $old_groups               = get_attr_groups($cat_id);
 
-    if ($db->autoExecute($ecs->table('goods_model'), $goods_model, 'UPDATE', "cat_id='$cat_id'") !== false)
+    if ($db->autoExecute($ecs->table('model_management'), $model_management, 'UPDATE', "cat_id='$cat_id'") !== false)
     {
         /* 对比原来的分组 */
-        $new_groups = explode("\n", str_replace("\r", '', $goods_model['attr_group']));  // 新的分组
+        $new_groups = explode("\n", str_replace("\r", '', $model_management['attr_group']));  // 新的分组
 
         foreach ($old_groups AS $key=>$val)
         {
@@ -203,7 +244,7 @@ elseif ($_REQUEST['act'] == 'update')
             }
         }
 
-        $links = array(array('href' => 'goods_model.php?act=manage', 'text' => $_LANG['back_list']));
+        $links = array(array('href' => 'model_management.php?act=manage', 'text' => $_LANG['back_list']));
         sys_msg($_LANG['edit_goodstype_success'], 0, $links);
     }
     else
@@ -218,7 +259,7 @@ elseif ($_REQUEST['act'] == 'update')
 
 elseif ($_REQUEST['act'] == 'remove')
 {
-    check_authz_json('goods_model');
+    check_authz_json('model_management');
 
     $id = intval($_GET['id']);
 
@@ -226,7 +267,7 @@ elseif ($_REQUEST['act'] == 'remove')
 
     if ($exc->drop($id))
     {
-        admin_log(addslashes($name), 'remove', 'goods_model');
+        admin_log(addslashes($name), 'remove', 'model_management');
 
         /* 清除该类型下的所有属性 */
         $sql = "SELECT attr_id FROM " .$ecs->table('attribute'). " WHERE cat_id = '$id'";
@@ -235,7 +276,7 @@ elseif ($_REQUEST['act'] == 'remove')
         $GLOBALS['db']->query("DELETE FROM " .$ecs->table('attribute'). " WHERE attr_id " . db_create_in($arr));
         $GLOBALS['db']->query("DELETE FROM " .$ecs->table('goods_attr'). " WHERE attr_id " . db_create_in($arr));
 
-        $url = 'goods_model.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
+        $url = 'model_management.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
         ecs_header("Location: $url\n");
         exit;
@@ -255,23 +296,33 @@ elseif ($_REQUEST['act'] == 'remove')
 function get_goodstype()
 {
     $result = get_filter();
+
+
     if ($result === false)
     {
+
         /* 分页大小 */
         $filter = array();
 
         /* 记录总数以及页数 */
-        $sql = "SELECT COUNT(*) FROM ".$GLOBALS['ecs']->table('goods_model');
+        $sql = "SELECT COUNT(*) FROM ".$GLOBALS['ecs']->table('model_management');
         $filter['record_count'] = $GLOBALS['db']->getOne($sql);
 
         $filter = page_and_size($filter);
 
         /* 查询记录 */
-        $sql = "SELECT t.*, COUNT(a.cat_id) AS attr_count ".
-               "FROM ". $GLOBALS['ecs']->table('goods_model'). " AS t ".
-               "LEFT JOIN ". $GLOBALS['ecs']->table('attribute'). " AS a ON a.cat_id=t.cat_id ".
-               "GROUP BY t.cat_id " .
+        // $sql = "SELECT * 
+        // FROM  ". $GLOBALS['ecs']->table('model_management')."
+        // LIMIT ". $filter['start'] . ',' . $filter['page_size']."" ;
+
+        $sql = "SELECT *"."FROM ". $GLOBALS['ecs']->table('model_management'). " ".
                'LIMIT ' . $filter['start'] . ',' . $filter['page_size'];
+        // $sql = "SELECT t.*, COUNT(a.cat_id) AS attr_count ".
+        //        "FROM ". $GLOBALS['ecs']->table('model_management'). " AS t ".
+        //        "LEFT JOIN ". $GLOBALS['ecs']->table('attribute'). " AS a ON a.cat_id=t.cat_id ".
+        //        "GROUP BY t.cat_id " .
+        //        'LIMIT ' . $filter['start'] . ',' . $filter['page_size'];
+
         set_filter($filter, $sql);
     }
     else
@@ -286,7 +337,6 @@ function get_goodstype()
     {
         $all[$key]['attr_group'] = strtr($val['attr_group'], array("\r" => '', "\n" => ", "));
     }
-
     return array('type' => $all, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 }
 
@@ -299,7 +349,8 @@ function get_goodstype()
  */
 function get_goodstype_info($cat_id)
 {
-    $sql = "SELECT * FROM " .$GLOBALS['ecs']->table('goods_model'). " WHERE cat_id='$cat_id'";
+
+    $sql = "SELECT * FROM " .$GLOBALS['ecs']->table('model_management'). " WHERE cat_id='$cat_id'";
 
     return $GLOBALS['db']->getRow($sql);
 }
@@ -319,5 +370,17 @@ function update_attribute_group($cat_id, $old_group, $new_group)
             " SET attr_group='$new_group' WHERE cat_id='$cat_id' AND attr_group='$old_group'";
     $GLOBALS['db']->query($sql);
 }
+function get_model_high($model_id)
+{
+    if (isset($model_id)) {
+        $where = 'WHERE $model_id = '.$model_id;
+    }else{
+        $where = '';
+    }
+    
+    $sql = "SELECT * FROM " .$GLOBALS['ecs']->table('model_height_management'). "";
+    return $GLOBALS['db']->getRow($sql);
+}
+
 
 ?>

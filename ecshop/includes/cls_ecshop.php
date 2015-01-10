@@ -51,6 +51,7 @@ class ECS
      */
     function table($str)
     {
+        
         return '`' . $this->db_name . '`.`' . $this->prefix . $str . '`';
     }
 
