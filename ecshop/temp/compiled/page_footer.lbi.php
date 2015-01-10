@@ -1,17 +1,6 @@
 <div class="content_right">
           <div class="model">
-            <div class="modelimg z-index1">
-              <img src="images/model/m-160-l.png" class="img-responsive" />
-            </div>
-            <div class="trousers z-index50">
-              <img src="images/model/m-160-l-legging.png" class="img-responsive" />
-            </div>
-            <div class="coat z-index100">
-              <img src="images/model/m-160-l-coat.png" class="img-responsive" />
-            </div>
-            <div class="underwear z-index10">
-              <img src="images/model/m-160-l-wear.png" class="img-responsive" />
-            </div>
+            <img src="themes/BoBo/images/model.png" class="img-responsive" />
           </div>
         </div>
       </div>
@@ -20,7 +9,7 @@
   <div class="sidebar">
     <div class="sidebar_b">
       <div class="lcon_03">
-        <img src="./images/lcon_03.png" class="img-responsive"/>
+        <img src="themes/BoBo/images/lcon_03.png" class="img-responsive"/>
       </div>
       <div class="color">
         BASKET &
@@ -29,17 +18,22 @@
     <div class="sidebar_c">
       <div class="titlea">
         <div class="lcon_04">
-          <img src="./images/lcon_04.png" class="img-responsive" />
+          <img src="themes/BoBo/images/lcon_04.png" class="img-responsive" />
         </div>
         <div class="sidebar_title">
           SOCIAL NETWORK &
           <br>SHARE TOUR LOOK</div>
       </div>
-      {insert name='member_info'}
+      <?php 
+$k = array (
+  'name' => 'member_info',
+);
+echo $this->_echash . $k['name'] . '|' . serialize($k) . $this->_echash;
+?>
     </div>
   </div>
 </div>
-<!-- Modal -->
+
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content modal_color">
@@ -52,7 +46,7 @@
                 <div class="modal_blank">
                   <a href=""><p>Forgotten your password?</p></a>
                 </div>
-                <img src="./images/login_07.png" alt="" class="img-responsive"/>
+                <img src="themes/BoBo/images/login_07.png" alt="" class="img-responsive"/>
                 <button type="button" name="button" id="submit_login" class="append_parent_log">Single Login</button>
                 <button type="submit" class="append_parent_registration" id="login_remember" >Keep Me Login</button>
               </div>
@@ -73,7 +67,7 @@
           </div>
         </div>
           </form>
-          <button type="button" class="close timesx" data-dismiss="modal" ><img src="./images/login_03.png" alt="" class="img-responsive"/></button>
+          <button type="button" class="close timesx" data-dismiss="modal" ><img src="themes/BoBo/images/login_03.png" alt="" class="img-responsive"/></button>
       </div>
     </div>
   </div>
@@ -140,30 +134,7 @@
       /*End ajax*/
     });
   </script>
-<!-- /Modal -->
-<!-- Wear Online -->
-<script>
-  $(function(){
-    $('.change img').click(function(){
-      var thisclass = $(this).attr('part');
-      var thissrc = $(this).attr('src');
-      var imgObj = $('.'+thisclass+' img');
-      var srcObj = $('.'+thisclass);
-      if(imgObj.length>0){
-        var nowsrc = imgObj.attr('src');
-        if(thissrc==nowsrc){
-          imgObj.remove();
-        }else{
-          imgObj.attr('src',thissrc);
-        }
-      }else{
-        srcObj.append('<img src="'+thissrc+'" />');
-      }
-    })
-  })
 
-</script>
-<!-- /Wear Online  -->
 </body>
 </html>
 
