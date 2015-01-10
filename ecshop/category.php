@@ -26,6 +26,15 @@ if ((DEBUG_MODE & 2) != 2)
 //-- INPUT
 /*------------------------------------------------------ */
 
+
+/* 获取Model对应有图片*/
+
+if (isset($_REQUEST['onlineModel'])) {
+    $layer_type = $_REQUEST['onlineModel'];
+    echo $layer_type;
+    exit;
+}
+
 /* 获得请求的分类 ID */
 if (isset($_REQUEST['id']))
 {
@@ -386,7 +395,7 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
             $goodslist[] = array();
         }
     }
-
+    // dump($goodslist);
     $smarty->assign('goods_list',       $goodslist);
     $smarty->assign('category',         $cat_id);
     $smarty->assign('script_name', 'category');
@@ -443,7 +452,7 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
     $where .= " AND g.goods_sex = ".MY_SEX;
     /* 获得商品列表 */
 
-    $sql = 'SELECT g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
+    $sql = 'SELECT g.layer_type,g.z_index,g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, " .
                 'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_front_cover, g.front_cover_thumb, g.goods_img ' .
             'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
@@ -497,6 +506,8 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         {
             $arr[$row['goods_id']]['goods_name']       = $row['goods_name'];
         }
+        $arr[$row['goods_id']]['z_index']          = $row['z_index'];
+        $arr[$row['goods_id']]['layer_type']       = $row['layer_type'];
         $arr[$row['goods_id']]['name']             = $row['goods_name'];
         $arr[$row['goods_id']]['goods_brief']      = $row['goods_brief'];
         $arr[$row['goods_id']]['goods_style_name'] = add_style($row['goods_name'],$row['goods_name_style']);

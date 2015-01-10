@@ -4,13 +4,10 @@
               <img src="images/model/m-160-l.png" class="img-responsive" />
             </div>
             <div class="trousers z-index50">
-              <img src="images/model/m-160-l-legging.png" class="img-responsive" />
             </div>
             <div class="coat z-index100">
-              <img src="images/model/m-160-l-coat.png" class="img-responsive" />
             </div>
             <div class="underwear z-index10">
-              <img src="images/model/m-160-l-wear.png" class="img-responsive" />
             </div>
           </div>
         </div>
@@ -78,6 +75,25 @@
     </div>
   </div>
   <script type="text/javascript">
+  $(function(){
+      $('.mask a.info').click(function(){
+        var thisclass = $(this).attr('online');
+        var goods_id = $(this).attr('goods_id');
+        var thissrc = 'images/model/'+goods_id+'-m-160-l.png';
+        var imgObj = $('.'+thisclass+' img');
+        var srcObj = $('.'+thisclass);
+        if(imgObj.length>0){
+          var nowsrc = imgObj.attr('src');
+          if(thissrc==nowsrc){
+            imgObj.remove();
+          }else{
+            imgObj.attr('src',thissrc);
+          }
+        }else{
+          srcObj.append('<img src="'+thissrc+'"  class="img-responsive" />');
+        }
+      })
+    
     $('#submit_login').click(function(){
       var $username = $('#username').val();
       var $password = $('#password').val();
@@ -139,31 +155,11 @@
         });
       /*End ajax*/
     });
-  </script>
-<!-- /Modal -->
-<!-- Wear Online -->
-<script>
-  $(function(){
-    $('.change img').click(function(){
-      var thisclass = $(this).attr('part');
-      var thissrc = $(this).attr('src');
-      var imgObj = $('.'+thisclass+' img');
-      var srcObj = $('.'+thisclass);
-      if(imgObj.length>0){
-        var nowsrc = imgObj.attr('src');
-        if(thissrc==nowsrc){
-          imgObj.remove();
-        }else{
-          imgObj.attr('src',thissrc);
-        }
-      }else{
-        srcObj.append('<img src="'+thissrc+'" />');
-      }
-    })
   })
 
-</script>
-<!-- /Wear Online  -->
+
+  </script>
+<!-- /Modal -->
+
 </body>
 </html>
-
