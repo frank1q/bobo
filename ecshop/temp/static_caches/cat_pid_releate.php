@@ -1,0 +1,108 @@
+<?php
+$data = array (
+  0 => 
+  array (
+    'cat_id' => '75',
+    'cat_name' => 'Fashion Type',
+    'measure_unit' => '',
+    'parent_id' => '0',
+    'is_show' => '1',
+    'show_in_nav' => '1',
+    'grade' => '0',
+    'sort_order' => '1',
+    'has_children' => '5',
+    'goods_num' => '2',
+  ),
+  1 => 
+  array (
+    'cat_id' => '113',
+    'cat_name' => 'Designers List',
+    'measure_unit' => '',
+    'parent_id' => '0',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '2',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+  2 => 
+  array (
+    'cat_id' => '72',
+    'cat_name' => 'Product Stage',
+    'measure_unit' => '',
+    'parent_id' => '0',
+    'is_show' => '1',
+    'show_in_nav' => '1',
+    'grade' => '0',
+    'sort_order' => '3',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+  3 => 
+  array (
+    'cat_id' => '116',
+    'cat_name' => 'long inner wear',
+    'measure_unit' => '',
+    'parent_id' => '75',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+  4 => 
+  array (
+    'cat_id' => '117',
+    'cat_name' => 't-shirt',
+    'measure_unit' => '',
+    'parent_id' => '75',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+  5 => 
+  array (
+    'cat_id' => '114',
+    'cat_name' => 'coat',
+    'measure_unit' => '',
+    'parent_id' => '75',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+  6 => 
+  array (
+    'cat_id' => '118',
+    'cat_name' => 'legging',
+    'measure_unit' => '',
+    'parent_id' => '75',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+  7 => 
+  array (
+    'cat_id' => '115',
+    'cat_name' => 'jacket',
+    'measure_unit' => '',
+    'parent_id' => '75',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => 0,
+  ),
+);
+?>

@@ -1332,3 +1332,61 @@ fieldset[disabled] .sex_choose.active {
 .figure_skin img{
   width: 100%;
 }
+
+/* model */
+.model{
+  position: relative;
+}
+.model div{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.z-index1{
+  z-index: 1;
+}
+.z-index100{
+  z-index: 100;
+}
+.z-index10{
+  z-index: 10;
+}
+.z-index50{
+  z-index: 50;
+}
+
+/* /model */
+
+.goodcontent{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #919191;
+  width: 88%;
+  color: #fff;
+  padding:5px 0;
+  font-size: 12px;
+}
+.leftIcon{
+  position: absolute;
+  z-index: 10;
+  border: 10px solid;
+  border-color:transparent transparent transparent #595959 ;
+  width: 0px;
+  height: 0;
+  font-size: 0;
+  right:0;
+  bottom: 4%;
+}
+.writeIcon{
+  position: absolute;
+  z-index: 11;
+  border: 10px solid;
+  border-color:transparent transparent transparent #f1f1f1 ;
+  width: 0px;
+  height: 0;
+  font-size: 0;
+  right:2px;
+  bottom: 4%;
+}
+
