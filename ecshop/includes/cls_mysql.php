@@ -302,7 +302,8 @@ class cls_mysql
 
     /*获取条数*/
     function get_count($sql){
-        return $this->getCol($sql)[0];
+        $countArr = $this->getCol($sql);
+        return $countArr[0];
     }
 
 
