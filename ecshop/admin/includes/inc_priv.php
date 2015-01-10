@@ -151,6 +151,6 @@ if (!defined('IN_ECS'))
     $purview['view_sendlist']        = 'view_sendlist';
 
 //模特管理
-    $purview['model_management']           = 'model_management';
-
+    $purview['model_management']     = 'model_management';
+    $purview['model_height_management'] = 'model_height_management';
 ?>

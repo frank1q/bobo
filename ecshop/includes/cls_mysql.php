@@ -299,6 +299,13 @@ class cls_mysql
         return $query;
     }
 
+
+    /*获取条数*/
+    function get_count($sql){
+        return $this->getCol($sql)[0];
+    }
+
+
     function affected_rows()
     {
         return mysql_affected_rows($this->link_id);
@@ -608,6 +615,7 @@ class cls_mysql
 
     function autoExecute($table, $field_values, $mode = 'INSERT', $where = '', $querymode = '')
     {
+
         $field_names = $this->getCol('DESC ' . $table);
 
         $sql = '';

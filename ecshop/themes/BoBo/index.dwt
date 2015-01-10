@@ -101,7 +101,9 @@
   <!-- {if $group_buy_hot} -->
     <div class="picture_right">
       <div class="pictureimg">
-        <img src="{$group_buy_hot.0.goods_img}" alt="" class="img-responsive"/>
+        <a href="goods.php?id={$group_buy_hot.0.url}">
+          <img src="{$group_buy_hot.0.goods_img}" alt="" class="img-responsive"/>
+        </a>
       </div>
       <div class="introduction">
         <div class="introduction_h">
