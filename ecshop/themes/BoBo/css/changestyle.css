@@ -653,6 +653,9 @@
 		height: 17px !important;
 		margin-bottom: 16px !important;
 	}
+	.view {
+		margin-bottom: 20px !important;
+	}
 }
 
 @media screen and (max-width: 1670px){
