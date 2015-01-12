@@ -125,6 +125,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
     $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
     $smarty->assign('group_buy_hot',   index_get_group_buy($hot));      // 团购商品hot
+
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
 
@@ -247,7 +248,7 @@ function index_get_group_buy($hot = '')
     }
     if ($limit > 0)
     {
-        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info, gb.goods_name, g.goods_thumb, g.goods_img, g.goods_front_cover, g.market_price ' .
+        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info,gb.end_time ,gb.start_time,gb.act_id,gb.goods_name, g.goods_thumb, g.goods_img, g.goods_front_cover, g.market_price ' .
                 'FROM ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb, ' .
                     $GLOBALS['ecs']->table('goods') . ' AS g ' .
                 "WHERE gb.act_type = '" . GAT_GROUP_BUY . "' " .
@@ -257,19 +258,23 @@ function index_get_group_buy($hot = '')
                 "AND g.is_delete = 0 " .$hot.
                 "ORDER BY gb.act_id DESC " .
                 "LIMIT $limit" ;
-
         $res = $GLOBALS['db']->query($sql);
 
         while ($row = $GLOBALS['db']->fetchRow($res))
         {
+             /* 统计开始至结束时间 */
+
+            $start_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($time-$row['start_time'])/60/60/24, 0, '.', ''));
+            $end_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($row['end_time']-$row['start_time'])/60/60/24, 0, '.', ''));
+            $row['start_time']  = $start_time;
+            $row['end_time']    = $end_time;
             /* 如果缩略图为空，使用默认图片 */
             $row['goods_img'] = get_image_path($row['goods_id'], $row['goods_img']);
             $row['thumb'] = get_image_path($row['goods_id'], $row['goods_thumb'], true);
-
             /* 根据价格阶梯，计算最低价 */
             $ext_info = unserialize($row['ext_info']);
-
             $price_ladder = $ext_info['price_ladder'];
+           
             if (!is_array($price_ladder) || empty($price_ladder))
             {
                 $row['last_price'] = price_format(0);
@@ -288,15 +293,17 @@ function index_get_group_buy($hot = '')
                                            sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
             $row['short_style_name']   = add_style($row['short_name'],'');
             $row['ext_info']=$ext_info;
+            $row['market_price'] = price_format($row['market_price']);
             $group_buy_list[] = $row;
             // $group_buy_list = array_merge($group_buy_list,$ext_info);
-
         }
 
     }
     // /* 取得团购活动信息 */
     foreach ($group_buy_list as $key => $value) {
        $group_buy_list[$key]['group_buy'] = group_buy_stat($value['group_buy_id'], $value['deposit']);
+       $group_buy_list[$key]['customers_progress']= $group_buy_list[$key]['group_buy']['valid_goods']/$group_buy_list[$key]['ext_info']['restrict_amount']*100;
+
     }
 
     return $group_buy_list;

@@ -54,19 +54,24 @@
                         {$cat.group_buy.valid_goods}
                         /{$cat.ext_info.restrict_amount}
                         <br>
-                        Days to go 5/7
+                        Days to go {$cat.start_time}/{$cat.end_time}
                         <br>        
                         Future retail price {$cat.market_price}
                         <br>Pre-order Price {$cat.last_price}</p>
                     </div>
-                    <div class="progressa">
-                      <img src="./images/progress.png" class="img-responsive" alt="">
-                    </div>
+                      <div class="progressa">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$cat.customers_progress}%;">
+                          </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
-                <div class="picture_f">
-                  <h3>DISCOVER ALL</h3>
-                </div>
+                <a href="goods.php?id={$cat.goods_id}">
+                  <div class="picture_f">
+                    <h3>DISCOVER ALL</h3>
+                  </div>
+                </a>
               </div>
           </li>
       <!--{/foreach}-->

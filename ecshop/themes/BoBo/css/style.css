@@ -523,12 +523,14 @@ h2{
   float: left;
 }
 .designersa{
-  width: 1047px;
+  width: 1046px;
   background: #fff;
   overflow: auto;
   height: 691px;
   padding-top: 12px;
+  float: left;
 }
+
 .designers_picture{
   margin-left: 17px;
   width: 320px;
@@ -536,6 +538,7 @@ h2{
   float: left;
   color: #111;
 }
+
 .designers_picture h3{
   margin-top: 12px;
 }
@@ -588,13 +591,18 @@ h2{
   float: left;
 }
 .designer_picture{
-  margin-left: 46px;
+  margin: auto 5%;
   width: 300px;
   height: 450px;
   float: left;
   color: #111;
   text-align: center;
 }
+.designersa .designer_picture{
+  margin: auto 2% !important;
+}
+
+
 .designer_picture p{
   font-size: 12px;
   line-height: 14px;
@@ -1123,6 +1131,7 @@ h2{
   height: 92%;
   padding-top: 3%;
   padding-left: 3%;
+  overflow: auto;
 }
 .boxR{
   float: right;
@@ -1162,7 +1171,7 @@ h2{
   float: left;
 }
 .panelhalf input{
-  width: 80%;
+  width: 90%;
 }
 .paneltitle{
   font-size: 12px;
@@ -1318,9 +1327,6 @@ fieldset[disabled] .sex_choose:active,
 .sex_choose[disabled].active,
 fieldset[disabled] .sex_choose.active {
   background-color: #777777;
-}
-.sex_choose .badge {
-  color: #000;
 }
 
 .figure_content{
