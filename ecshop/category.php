@@ -48,7 +48,6 @@ else
 {
     /* 如果分类ID为0，则返回首页 */
     ecs_header("Location: ./\n");
-
     exit;
 }
 
@@ -336,8 +335,9 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
     $position = assign_ur_here($cat_id, $brand_name);
     $smarty->assign('page_title',       $position['title']);    // 页面标题
     $smarty->assign('ur_here',          $position['ur_here']);  // 当前位置
-
-    $smarty->assign('categories',       get_categories_tree($cat_id)); // 分类树
+    $treeArr = get_categories_tree();
+    // dump($treeArr['75']['cat_id']);
+    $smarty->assign('categories',       get_categories_tree()); // 分类树
     $smarty->assign('helps',            get_shop_help());              // 网店帮助
     $smarty->assign('top_goods',        get_top10());                  // 销售排行
     $smarty->assign('show_marketprice', $_CFG['show_marketprice']);
@@ -347,6 +347,8 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
     $smarty->assign('price_min',        $price_min);
     $smarty->assign('filter_attr',      $filter_attr_str);
     $smarty->assign('feed_url',         ($_CFG['rewrite'] == 1) ? "feed-c$cat_id.xml" : 'feed.php?cat=' . $cat_id); // RSS URL
+
+
 
     if ($brand > 0)
     {

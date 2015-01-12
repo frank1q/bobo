@@ -8,6 +8,7 @@
 <script type="text/javascript" src="./themes/BoBo/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="./themes/BoBo/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./themes/BoBo/js/banner.js"></script>
+<script type="text/javascript" src="./themes/BoBo/js/bobo.js"></script>
 <script type="text/javascript" src="./js/user.js"></script>
 <div class="container-fluid bodyheight">
   <div class="main">
@@ -30,21 +31,51 @@
       <p>
         Your current location: {$ur_here} 
         <br>
-        <h1>Female Reception</h1>
+        <h1>{$my_sex_title}</h1>
       </p>
     </div>
     <div class="content">
       <div class="content_left">
-        <div class="content_c">
+        <ul class="content_c">
           <!--{foreach from=$categories item=cat}-->
-            <div class="content_lc">
-              <div class="manufacture"><a href="{$cat.url}">{$cat.name|escape:html}</a></div>
-              <!--{foreach from=$cat.cat_id item=child}-->
-                <div class="sub_c"><a href="{$child.url}">{$child.name|escape:html}</a></div>
+            <li class="content_lc">
+                <a href="{$cat.url}">{$cat.name|escape:html}</a>
+                <ul>
+                <!--{foreach from=$cat.cat_id item=child}-->
+                <li class="sub_c">
+                <a href="{$child.url}">{$child.name|escape:html}</a>
+                <!-- {if !empty($child.cat_id)} -->
+                    <ul class="subTree">
+                    <!--{foreach from=$child.cat_id item=cchild}-->
+                      <li class="sub_d">
+                        <a href="{$cchild.url}">{$cchild.name|escape:html}</a>
+                      </li>
+                    <!--{/foreach}-->
+                    </ul>
+                <!-- {/if} -->
+                </li>
               <!--{/foreach}-->
-            </div>
+              </ul>
+            </li>
           <!--{/foreach}-->
-        </div>
+          <li class="content_lc">
+            <a href="#">Designer List</a>
+            <ul>
+                <li class="sub_c">
+                <a href="#">Be a Designer</a>
+              </li>
+              <li class="sub_c">
+                <a href="#">Be a Moel</a>
+              </li>
+              <li class="sub_c">
+                <a href="#">Campaign & Voucher</a>
+              </li>
+              <li class="sub_c">
+                <a href="article.php?id=4">Get in Touch</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
           {if $smarty.session.user_id gt 0}
             <a href="user.php">
               <button type="button" class="content_lf">
@@ -68,4 +99,3 @@
           {/if}
       </div>
       <div class="content_r">
-

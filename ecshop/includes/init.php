@@ -86,6 +86,13 @@ require(ROOT_PATH . 'includes/lib_article.php');
 /* 选择性别 */
 
 define('MY_SEX', select_sex());
+if(MY_SEX==1){
+    $sex_title = 'Male Reception';
+}else{
+    $sex_title = 'Female Reception';
+}
+
+define('MY_SEX_TITLE',$sex_title);
 
 /* 对用户传入的变量进行转义操作。*/
 if (!get_magic_quotes_gpc())

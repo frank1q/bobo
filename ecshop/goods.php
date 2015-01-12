@@ -225,7 +225,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('ur_here',             $position['ur_here']);                  // 当前位置
 
         $properties = get_goods_properties($goods_id);  // 获得商品的规格和属性
-
+        
         $smarty->assign('properties',          $properties['pro']);                              // 商品属性
         $smarty->assign('specification',       $properties['spe']);                              // 商品规格
         $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品

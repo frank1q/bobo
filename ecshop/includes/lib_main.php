@@ -22,7 +22,7 @@ if (!defined('IN_ECS'))
  * 选择性别，取消性别
  *
  * @access  public
- * @return  sex     性别（0或者1），0=男 1=女
+ * @return  sex     性别（2或者1），1=男 2=女
  */
 function select_sex(){
     // 取消性别
@@ -171,7 +171,8 @@ function assign_ur_here($cat = 0, $str = '')
 
     /* 初始化“页面标题”和“当前位置” */
     $page_title = $GLOBALS['_CFG']['shop_title'];
-    $ur_here    = '<a href=".">' . $GLOBALS['_LANG']['en_home'] . '</a>';
+
+    $ur_here    = '<a href=".">' .  MY_SEX_TITLE . '</a>';
 
     /* 根据文件名分别处理中间的部分 */
     if ($filename != 'index')
@@ -1656,7 +1657,7 @@ function assign_comment($id, $type, $page = 1)
 function assign_template($ctype = '', $catlist = array())
 {
     global $smarty;
-
+    $smarty->assign('my_sex_title',  MY_SEX_TITLE);
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
     $smarty->assign('points_name',   $GLOBALS['_CFG']['integral_name']);
