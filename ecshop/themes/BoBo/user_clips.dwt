@@ -190,7 +190,7 @@
         </div>
         <div class="boxF">
           <div class="reset left">
-            <a href="article.php?id=4">Reset</a>
+            Reset
           </div>
           <div class="submit_form right">
             <button type="submit" name="act" value="edit_profile">

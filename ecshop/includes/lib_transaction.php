@@ -291,6 +291,7 @@ function get_user_orders($user_id, $num = 10, $start = 0)
            " WHERE user_id = '$user_id' ORDER BY add_time DESC";
     $res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
 
+
     while ($row = $GLOBALS['db']->fetchRow($res))
     {
         if ($row['order_status'] == OS_UNCONFIRMED)

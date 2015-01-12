@@ -90,7 +90,6 @@ if ($action == 'default')
     /* 取出注册扩展字段 */
     $sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
-
     $sql = 'SELECT reg_field_id, content ' .
            'FROM ' . $ecs->table('reg_extend_info') .
            " WHERE user_id = $user_id";
@@ -121,7 +120,7 @@ if ($action == 'default')
         $user_info['male'] = '';
         $user_info['female'] = 'active';
     }
-    
+
     $smarty->assign('extend_info_list', $extend_info_list);
 
 
@@ -154,6 +153,7 @@ if ($action == 'default')
     $smarty->assign('user_notice', $_CFG['user_notice']);
     $smarty->assign('prompt',      get_user_prompt($user_id));
     $smarty->display('user_clips.dwt');
+
 }
 
 /* 显示会员注册界面 */
@@ -201,7 +201,7 @@ elseif ($action == 'edit_profile'){
     $code       = isset($_POST['code']) ? trim($_POST['code'])  : '';
     $user_info  = $user->get_profile_by_id($user_id); //论坛记录
     
-    if ($new_password && $confirm_password && $old_password) {
+    if ($new_password || $confirm_password || $old_password) {
         if ($new_password == $confirm_password) {
             if (($user_info && (!empty($code) && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) == $code)) || ($_SESSION['user_id']>0 && $_SESSION['user_id'] == $user_id && $user->check_user($_SESSION['user_name'], $old_password)))
             {
@@ -260,9 +260,7 @@ elseif ($action == 'edit_profile'){
     );
     if (edit_profile($profile))
     {
-        if (isset($user_tips)) {
-            $user_tips.= $_LANG['edit_profile_success'];
-        } else {
+        if (!isset($user_tips)) {
             $user_tips = $_LANG['edit_profile_success'];
         }        
     }
@@ -276,14 +274,12 @@ elseif ($action == 'edit_profile'){
         {
             $msg = $_LANG['edit_profile_failed'];
         }
-        if (isset($user_tips)) {
-            $user_tips.= $msg;
-        } else {
+        if (!isset($user_tips)) {
             $user_tips = $msg;
         }  
     }
-    $smarty->assign('user_tips', $user_tips);
-    $smarty->display('user_clips.dwt');
+
+    show_message($user_tips, '确认','user.php?act=default','error');
 }
 /* 修改个人资料的处理 */
 elseif ($action == 'act_edit_profile')
