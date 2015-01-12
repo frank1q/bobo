@@ -53,11 +53,11 @@
                         Boer
                         {$cat.group_buy.valid_goods}
                         /{$cat.ext_info.restrict_amount}
-                        <br>        
+                        <br>
                         Days to go 5/7
                         <br>        
-                        Future retail price $36
-                        <br>Pre-order Price $18</p>
+                        Future retail price {$cat.market_price}
+                        <br>Pre-order Price {$cat.last_price}</p>
                     </div>
                     <div class="progressa">
                       <img src="./images/progress.png" class="img-responsive" alt="">

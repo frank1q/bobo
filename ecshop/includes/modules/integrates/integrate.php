@@ -257,6 +257,8 @@ class integrate
      */
     function edit_user($cfg)
     {
+
+
         if (empty($cfg['username']))
         {
             return false;

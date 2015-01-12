@@ -8,23 +8,23 @@
     display: none;
   }
 </style>
-<form method="post" action="" name="listForm">
+<form method="post" action="" name="listForm" enctype="">
 <!-- start goods type list -->
   <div class="list-div" id="listDiv">
     {/if}
       <table width="100%" cellpadding="3" cellspacing="1" id="listTable">
         <tr>
-          <th>{$lang.model_management}</th>
-          <th>{$lang.model_complexion}</th>
-          <th>{$lang.model_sex}</th>
-          <th>{$lang.model_high}</th>
-          <th>{$lang.model_figure}</th>
-          <th>{$lang.handler}</th>
+          <th style="width: 16%;">{$lang.model_management}</th>
+          <th style="width: 16%;">{$lang.model_complexion}</th>
+          <th style="width: 16%;">{$lang.model_sex}</th>
+          <th style="width: 16%;">{$lang.model_high}</th>
+          <th style="width: 16%;">{$lang.model_figure}</th>
+          <th style="width: 20%;">{$lang.model_images}</th>
         </tr>
         {foreach from=$model_management_arr item=model_management}
           <tr>
-            <td class="first-cell">{$model_management.model_id}</td>
-            <td>
+            <td align="center">{$model_management.model_id}</td>
+            <td align="center">
               {if $model_management.model_complexion eq 1}
                 {$lang.model_color1}
               {elseif $model_management.model_complexion eq 2}
@@ -35,25 +35,31 @@
                 {$lang.model_color4}
               {/if}
             </td>
-            <td>
+            <td align="center">
               {if $model_management.model_sex eq 1}
                 {$lang.model_male}
               {else}
                 {$lang.model_female}
               {/if}
             </td>
-            <td>{$model_management.model_high_id}</td>
-            <td>{$model_management.model_figure}</td>
             <td align="center">
-<!--<a href="model_management.php?act=edit&model_id={$model_management.model_id}" title="{$lang.edit}">{$lang.lang_enabled}</a> |
- -->              
-              <a href="javascript:;" onclick="listTable.remove({$model_management.model_id}, '{$lang.remove_confirm}')" title="{$lang.remove}">
-                {$lang.remove}
-              </a>
+              {$model_management.model_high_id}
+            </td>
+            <td align="center">
+              {$model_management.model_figure}
+            </td>
+            <td align="center">
+              <input type="file" name="model_images">
+              <img src="images/{if $model_management.model_images}yes{else}no{/if}.gif" />
+              <input type="submit">
             </td>
           </tr>
         {foreachelse}
-        <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+        <tr>
+          <td class="no-records" colspan="10">
+            {$lang.no_records}
+          </td>
+        </tr>
         {/foreach}
         <tr>
           <td align="right" nowrap="true" colspan="6">

@@ -1263,9 +1263,9 @@ h2{
   width: 100%;
 }
 .sex_choose {
-  color: #000;
-  background-color: #bbbbbb;
-  border-color: #fff;
+  color: #fff;
+  background-color: #777777;
+  border-color: #777777 ;
   border-radius: 0; 
   font-size: 12px;
   height: 18px;
@@ -1277,9 +1277,9 @@ h2{
 .sex_choose:active,
 .sex_choose.active,
 .open > .dropdown-toggle.sex_choose {
-  color: #fff;
-  background-color: #777777;
-  border-color: #777777 ;
+  color: #000;
+  background-color: #bbbbbb;
+  border-color: #fff;
 }
 .sex_choose:active,
 .sex_choose.active,
@@ -1305,11 +1305,12 @@ fieldset[disabled] .sex_choose:active,
 .sex_choose.disabled.active,
 .sex_choose[disabled].active,
 fieldset[disabled] .sex_choose.active {
-  background-color: #428bca;
+  background-color: #777777;
 }
 .sex_choose .badge {
   color: #000;
 }
+
 .figure_content{
   height: 50px;
 }
@@ -1388,4 +1389,3 @@ fieldset[disabled] .sex_choose.active {
   right:2px;
   bottom: 4%;
 }
-

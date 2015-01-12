@@ -4,6 +4,14 @@
  * model_management.php Language Packs
  * $Id: model_management.php 15646 2015-1-10 17:43:35 zblikai 
 */
+$_LANG['model_complexion'] = '肤色';
+$_LANG['model_sex'] = '性别';
+$_LANG['model_high'] = '身高';
+$_LANG['model_figure'] = '身材';
+$_LANG['model_images'] = '模特';
+
+
+
 
 $_LANG['model_management_list'] = '模特列表';
 $_LANG['edit_model_management'] = '编辑模特';
@@ -11,14 +19,11 @@ $_LANG['attr_groups'] = '属性分组';
 $_LANG['new_model_management'] = '新添加模特';
 $_LANG['model_management_name'] = '模特名称';
 
-$_LANG['model_sex'] = '性别';
+/* model_sex 性别*/
 $_LANG['model_male'] = '男';
 $_LANG['model_female'] = '女';
-$_LANG['model_high'] = '身高';
-$_LANG['model_images'] = '上传模特';
-$_LANG['model_figure'] = '身材';
-	
-$_LANG['model_complexion'] = '肤色';
+
+/* model_complexion 肤色*/
 $_LANG['model_color1'] = '黑';
 $_LANG['model_color2'] = '白';
 $_LANG['model_color3'] = '蓝';

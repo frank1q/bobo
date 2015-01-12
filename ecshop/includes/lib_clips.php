@@ -602,6 +602,19 @@ function get_user_default($user_id)
 }
 
 /**
+ * 获取获取到用户的身高
+ *
+ * @access  public
+ * @param   int         $user_id            用户ID
+ *
+ * @return  array       $height             身高
+ */
+function get_user_height($user_id)
+{
+    // $sql = "SELECT * FROM " .$GLOBALS['ecs']->table('mb_model_height_management'). ' WHERE ' . $user_id;
+    // return $GLOBALS['db']->getRow($sql);
+}
+/**
  * 添加商品标签
  *
  * @access  public

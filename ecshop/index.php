@@ -125,7 +125,6 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
     $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
     $smarty->assign('group_buy_hot',   index_get_group_buy($hot));      // 团购商品hot
-
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
 
@@ -248,7 +247,7 @@ function index_get_group_buy($hot = '')
     }
     if ($limit > 0)
     {
-        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info, gb.goods_name, g.goods_thumb, g.goods_img, g.goods_front_cover ' .
+        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info, gb.goods_name, g.goods_thumb, g.goods_img, g.goods_front_cover, g.market_price ' .
                 'FROM ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb, ' .
                     $GLOBALS['ecs']->table('goods') . ' AS g ' .
                 "WHERE gb.act_type = '" . GAT_GROUP_BUY . "' " .

@@ -127,6 +127,19 @@ if ($action == 'default')
 
     $smarty->assign('profile', $user_info);
 
+    $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+
+    $record_count = $db->getOne("SELECT COUNT(*) FROM " .$ecs->table('order_info'). " WHERE user_id = '$user_id'");
+
+    $pager  = get_pager('user.php', array('act' => $action), $record_count, $page);
+
+    $orders = get_user_orders($user_id, $pager['size'], $pager['start']);
+    $merge  = get_user_merge($user_id);
+
+    $smarty->assign('merge',  $merge);
+    $smarty->assign('pager',  $pager);
+    $smarty->assign('orders', $orders);
+
     include_once(ROOT_PATH .'includes/lib_clips.php');
     if ($rank = get_rank_info())
     {
@@ -137,18 +150,14 @@ if ($action == 'default')
         }
     }
     $smarty->assign('info',        get_user_default($user_id));
+    // $smarty->assign('user_height',        get_user_height($user_id));
     $smarty->assign('user_notice', $_CFG['user_notice']);
     $smarty->assign('prompt',      get_user_prompt($user_id));
     $smarty->display('user_clips.dwt');
-
-
-
-    
-
 }
 
 /* 显示会员注册界面 */
-if ($action == 'register')
+elseif ($action == 'register')
 {
     if (!isset($back_act) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
     {
@@ -178,14 +187,46 @@ if ($action == 'register')
 /*修改个人资料*/
 elseif ($action == 'edit_profile'){
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
-    $sex          = isset($_POST['sex']);
-    $height       = $_POST['height'];
-    $other['msn'] = $msn = isset($_POST['extend_field1']) ? trim($_POST['extend_field1']) : '';
-    $other['qq'] = $qq = isset($_POST['extend_field2']) ? trim($_POST['extend_field2']) : '';
-    $other['office_phone'] = $office_phone = isset($_POST['extend_field3']) ? trim($_POST['extend_field3']) : '';
-    $other['home_phone'] = $home_phone = isset($_POST['extend_field4']) ? trim($_POST['extend_field4']) : '';
-    $other['mobile_phone'] = $mobile_phone = isset($_POST['extend_field5']) ? trim($_POST['extend_field5']) : '';
-    $birthday = trim($_POST['birthdayYear']) .'-'. trim($_POST['birthdayMonth']) .'-'.
+    $sex            = isset($_POST['sex']);
+    $height         = $_POST['height'];
+    $other['msn']   = $msn  = isset($_POST['extend_field1']) ? trim($_POST['extend_field1']) : '';
+    $other['qq']    = $qq   = isset($_POST['extend_field2']) ? trim($_POST['extend_field2']) : '';
+    $other['office_phone']  = $office_phone = isset($_POST['extend_field3']) ? trim($_POST['extend_field3']) : '';
+    $other['home_phone']    = $home_phone   = isset($_POST['extend_field4']) ? trim($_POST['extend_field4']) : '';
+    $other['mobile_phone']  = $mobile_phone = isset($_POST['extend_field5']) ? trim($_POST['extend_field5']) : '';
+    $birthday       = trim($_POST['birthdayYear']) .'-'. trim($_POST['birthdayMonth']) .'-'.
+    $old_password   = isset($_POST['old_password']) ? trim($_POST['old_password']) : null;
+    $new_password   = isset($_POST['new_password']) ? trim($_POST['new_password']) : '';
+    $confirm_password = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : '';
+    $code       = isset($_POST['code']) ? trim($_POST['code'])  : '';
+    $user_info  = $user->get_profile_by_id($user_id); //论坛记录
+    
+    if ($new_password && $confirm_password && $old_password) {
+        if ($new_password == $confirm_password) {
+            if (($user_info && (!empty($code) && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) == $code)) || ($_SESSION['user_id']>0 && $_SESSION['user_id'] == $user_id && $user->check_user($_SESSION['user_name'], $old_password)))
+            {
+                $cfg = array();
+                $cfg['username']     = $_SESSION['user_name'];
+                $cfg['password']     = $new_password;
+                $cfg['old_password'] = $old_password;
+                if ($user->edit_user($cfg))
+                {
+                    $user->logout();
+                    $user_tips = $_LANG['edit_password_success'];
+                    $smarty->assign('password_success', 'success');
+                }
+                else
+                {
+                    $user_tips = $_LANG['edit_password_failure'];
+                }
+            }else{
+                $user_tips = $_LANG['edit_password_failure'];
+            }
+        } else {
+            $user_tips = $_LANG['password_js']['both_password_error'];
+        }
+    }
+    
     trim($_POST['birthdayDay']);
     
     /* 更新用户扩展字段的数据 */
@@ -219,7 +260,11 @@ elseif ($action == 'edit_profile'){
     );
     if (edit_profile($profile))
     {
-        show_message($_LANG['edit_profile_success'], $_LANG['profile_lnk'], 'user.php?act=profile', 'info');
+        if (isset($user_tips)) {
+            $user_tips.= $_LANG['edit_profile_success'];
+        } else {
+            $user_tips = $_LANG['edit_profile_success'];
+        }        
     }
     else
     {
@@ -231,8 +276,14 @@ elseif ($action == 'edit_profile'){
         {
             $msg = $_LANG['edit_profile_failed'];
         }
-        show_message($msg, '', '', 'info');
+        if (isset($user_tips)) {
+            $user_tips.= $msg;
+        } else {
+            $user_tips = $msg;
+        }  
     }
+    $smarty->assign('user_tips', $user_tips);
+    $smarty->display('user_clips.dwt');
 }
 /* 修改个人资料的处理 */
 elseif ($action == 'act_edit_profile')
@@ -2876,4 +2927,5 @@ elseif ($action == 'clear_history')
 {
     setcookie('ECS[history]',   '', 1);
 }
+
 ?>

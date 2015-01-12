@@ -68,13 +68,30 @@
               <div class="getintouch_content_title">
                 <h5 class="panel-title">
                   <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                   <span class="modified">+</span> Oder History
+                   <span class="modified">+</span> Order History
                   </a>
                 </h5>
               </div>
               <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                  - Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information
+                  <table class="table table-bordered">
+                      <tr align="center">
+                        <td>{$lang.order_number}</td>
+                        <td>{$lang.order_addtime}</td>
+                        <td>{$lang.order_money}</td>
+                        <td>{$lang.order_status}</td>
+                        <td>{$lang.handle}</td>
+                      </tr>
+                    <!--{foreach from=$orders item=item}-->
+                      <tr>
+                        <td align="center"> {$item.order_sn} </td>
+                        <td align="center">{$item.order_time}</td>
+                        <td align="right">{$item.total_fee}</td>
+                        <td align="center">{$item.order_status}</td>
+                        <td align="center">{$item.handler} </td>
+                      </tr>
+                    <!--{/foreach}-->
+                  </table>
                 </div>
               </div>
             </div>
@@ -103,7 +120,24 @@
               </div>
               <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                 <div class="panel-body">
-                  - Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information
+                  <div class="panelhalf">
+                    <div class="paneltitle">New Password</div>
+                    <div class="panelinput">
+                      <input type="password" name="new_password" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="panelhalf">
+                    <div class="paneltitle" >Old Password</div>
+                    <div class="panelinput">
+                      <input type="password" name="old_password" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="panelhalf">
+                    <div class="paneltitle">Confirm Password</div>
+                    <div class="panelinput">
+                      <input type="password" name="confirm_password" class="form-control"/>
+                    </div>
+                  </div>  
                 </div>
               </div>
             </div>
@@ -248,17 +282,25 @@
     </div>
   </div>
 </div>
-
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 <script>
-  
   $(function(){
-    $('.collapeiconv').click(function(event) {
+    $('.collapeiconv').click(function(event) { 
       var ifadd = $(this).find('span').text();
       $('.collapeiconv span').text('+');
       if(ifadd=='+'){
         $(this).find('span').text('-');
       }
     });
+    var ut = '{$user_tips}';
+    var us = '{$user_success}';
+    if (ut) {
+      alert(ut);
+      if (ps) {
+        window.location.href="index.php"; 
+      }else{
+        window.location.href="user.php"; 
+      };
+    };
   })
 </script>

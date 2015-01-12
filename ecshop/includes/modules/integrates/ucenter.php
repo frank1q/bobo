@@ -502,6 +502,7 @@ class ucenter extends integrate
      */
     function get_profile_by_id($id)
     {
+
         $sql = "SELECT user_id, user_name, email, sex, birthday, reg_time FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id='$id'";
         $row = $this->db->getRow($sql);
 
