@@ -21,15 +21,15 @@
           <tr>
             <td class="first-cell">
               <span>
-                {$model_height_management.mode_high}
+                {$model_height_management.model_high}
               </span>
             </td>
             <!-- <td>{$model_height_management.attr_group}</td> -->
             <!-- <td align="right">{$model_height_management.attr_count}</td> -->
             <!-- <td align="center"><img src="images/{if $model_height_management.enabled}yes{else}no{/if}.gif" ></td> -->
             <td align="center">
-              <a href="model_height_management.php?act=edit&mode_id={$model_height_management.mode_id}" title="{$lang.edit}">{$lang.edit}</a> |
-              <a href="javascript:;" onclick="listTable.remove({$model_height_management.mode_id}, '{$lang.remove_confirm}')" title="{$lang.remove}">{$lang.remove}</a>
+              <a href="model_height_management.php?act=edit&model_id={$model_height_management.model_id}" title="{$lang.edit}">{$lang.edit}</a> |
+              <a href="javascript:;" onclick="listTable.remove({$model_height_management.model_id}, '{$lang.remove_confirm}')" title="{$lang.remove}">{$lang.remove}</a>
             </td>
           </tr>
         {foreachelse}

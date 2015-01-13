@@ -17,7 +17,7 @@ define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
 
-$exc = new exchange($ecs->table("model_height_management"), $db, 'mode_id', 'cat_name');
+$exc = new exchange($ecs->table("model_height_management"), $db, 'model_id', 'cat_name');
 
 
 /*------------------------------------------------------ */
@@ -39,10 +39,10 @@ if ($_REQUEST['act'] == 'manage')
     $smarty->assign('record_count', $good_type_list['record_count']);
     $smarty->assign('page_count',   $good_type_list['page_count']);
   
-    // $query = $db->query("SELECT a.mode_id FROM " . $ecs->table('attribute') . " AS a RIGHT JOIN " . $ecs->table('goods_attr') . " AS g ON g.attr_id = a.attr_id GROUP BY a.mode_id");
+    // $query = $db->query("SELECT a.model_id FROM " . $ecs->table('attribute') . " AS a RIGHT JOIN " . $ecs->table('goods_attr') . " AS g ON g.attr_id = a.attr_id GROUP BY a.model_id");
     //  while ($row = $db->fetchRow($query))
     // {
-    //     $good_in_type[$row['mode_id']]=1;
+    //     $good_in_type[$row['model_id']]=1;
     // }
     $smarty->assign('good_in_type', $good_in_type);
 
@@ -136,7 +136,7 @@ elseif ($_REQUEST['act'] == 'insert')
     
     //$model_height_management['cat_name']   = trim_right(sub_str($_POST['cat_name'], 60));
     //$model_height_management['attr_group'] = trim_right(sub_str($_POST['attr_group'], 255));
-    $model_height_management['mode_high'] = $_POST['model_height'];
+    $model_height_management['model_high'] = $_POST['model_height'];
     $num = model_height_judge($_POST['model_height']);
     
     if ($num) {
@@ -160,7 +160,7 @@ elseif ($_REQUEST['act'] == 'insert')
 
 elseif ($_REQUEST['act'] == 'edit')
 {
-    $model_height_management = get_goodstype_info(intval($_GET['mode_id']));
+    $model_height_management = get_goodstype_info(intval($_GET['model_id']));
 
     if (empty($model_height_management))
     {
@@ -183,13 +183,13 @@ elseif ($_REQUEST['act'] == 'update')
 {
     // $model_height_management['cat_name']   = sub_str($_POST['cat_name'], 60);
     // $model_height_management['attr_group'] = sub_str($_POST['attr_group'], 255);
-    $model_height_management['mode_high']    = intval($_POST['model_height']);
-    $mode_id                   = intval($_POST['mode_id']);
+    $model_height_management['model_high']    = intval($_POST['model_height']);
+    $model_id                   = intval($_POST['model_id']);
 
-    if (model_height_judge($model_height_management['mode_high'])) {
+    if (model_height_judge($model_height_management['model_high'])) {
         sys_msg($_LANG['repeat_type_name'], 1);
     }
-    if ($db->autoExecute($ecs->table('model_height_management'), $model_height_management, 'UPDATE', "mode_id='$mode_id'") !== false)
+    if ($db->autoExecute($ecs->table('model_height_management'), $model_height_management, 'UPDATE', "model_id='$model_id'") !== false)
     {
         $links = array(array('href' => 'model_height_management.php?act=manage', 'text' => $_LANG['back_list']));
         sys_msg($_LANG['edit_goodstype_success'], 0, $links);
@@ -252,10 +252,10 @@ function get_goodstype()
         FROM  ". $GLOBALS['ecs']->table('model_height_management')."
         LIMIT ". $filter['start'] . ',' . $filter['page_size']."" ;
     
-        // $sql = "SELECT t.*, COUNT(a.mode_id) AS attr_count ".
+        // $sql = "SELECT t.*, COUNT(a.model_id) AS attr_count ".
         //        "FROM ". $GLOBALS['ecs']->table('model_height_management'). " AS t ".
-        //        "LEFT JOIN ". $GLOBALS['ecs']->table('attribute'). " AS a ON a.mode_id=t.mode_id ".
-        //        "GROUP BY t.mode_id " .
+        //        "LEFT JOIN ". $GLOBALS['ecs']->table('attribute'). " AS a ON a.model_id=t.model_id ".
+        //        "GROUP BY t.model_id " .
         //        'LIMIT ' . $filter['start'] . ',' . $filter['page_size'];
         set_filter($filter, $sql);
     }
@@ -277,14 +277,14 @@ function get_goodstype()
 /**
  * 获得指定的商品类型的详情
  *
- * @param   integer     $mode_id 分类ID
+ * @param   integer     $model_id 分类ID
  *
  * @return  array
  */
-function get_goodstype_info($mode_id)
+function get_goodstype_info($model_id)
 {
 
-    $sql = "SELECT * FROM " .$GLOBALS['ecs']->table('model_height_management'). " WHERE mode_id='$mode_id'";
+    $sql = "SELECT * FROM " .$GLOBALS['ecs']->table('model_height_management'). " WHERE model_id='$model_id'";
 
     return $GLOBALS['db']->getRow($sql);
 }
@@ -292,21 +292,21 @@ function get_goodstype_info($mode_id)
 /**
  * 更新属性的分组
  *
- * @param   integer     $mode_id     商品类型ID
+ * @param   integer     $model_id     商品类型ID
  * @param   integer     $old_group
  * @param   integer     $new_group
  *
  * @return  void
  */
-function update_attribute_group($mode_id, $old_group, $new_group)
+function update_attribute_group($model_id, $old_group, $new_group)
 {
     $sql = "UPDATE " . $GLOBALS['ecs']->table('attribute') .
-            " SET attr_group='$new_group' WHERE mode_id='$mode_id' AND attr_group='$old_group'";
+            " SET attr_group='$new_group' WHERE model_id='$model_id' AND attr_group='$old_group'";
     $GLOBALS['db']->query($sql);
 }
 function model_height_judge($model_height)
 {
-    $sql = "SELECT count(*) FROM " .$GLOBALS['ecs']->table('model_height_management'). " WHERE mode_high='$model_height'";
+    $sql = "SELECT count(*) FROM " .$GLOBALS['ecs']->table('model_height_management'). " WHERE model_high='$model_height'";
 
     return $GLOBALS['db']->get_count($sql);
 }

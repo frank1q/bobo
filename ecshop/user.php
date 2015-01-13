@@ -86,6 +86,7 @@ if ($action == 'default')
 {
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
     $user_info = get_profile($user_id);
+    $model_height = model_height($user_info['high_id']);
 
     /* 取出注册扩展字段 */
     $sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
@@ -121,6 +122,40 @@ if ($action == 'default')
         $user_info['female'] = 'active';
     }
 
+    if ($user_info['complexion']==1) {
+        $user_info['cpl_1'] = 'active';
+        $user_info['cpl_2'] = '';
+        $user_info['cpl_3'] = '';
+        $user_info['cpl_4'] = '';
+    }elseif($user_info['complexion']==2){
+        $user_info['cpl_1'] = '';
+        $user_info['cpl_2'] = 'active';
+        $user_info['cpl_3'] = '';
+        $user_info['cpl_4'] = '';
+    }elseif($user_info['complexion']==3){
+        $user_info['cpl_1'] = '';
+        $user_info['cpl_2'] = '';
+        $user_info['cpl_3'] = 'active';
+        $user_info['cpl_4'] = '';
+    }elseif($user_info['complexion']==4){
+        $user_info['cpl_1'] = '';
+        $user_info['cpl_2'] = '';
+        $user_info['cpl_3'] = '';
+        $user_info['cpl_4'] = 'active';
+    }
+    if ($user_info['figure']==1) {
+        $user_info['fig_1'] = 'active';
+        $user_info['fig_2'] = '';
+        $user_info['fig_3'] = '';
+    }elseif ($user_info['figure']==2) {
+        $user_info['fig_1'] = '';
+        $user_info['fig_2'] = 'active';
+        $user_info['fig_3'] = '';
+    }elseif ($user_info['figure']==3) {
+        $user_info['fig_1'] = '';
+        $user_info['fig_2'] = '';
+        $user_info['fig_3'] = 'active';
+    }
     $smarty->assign('extend_info_list', $extend_info_list);
 
 
@@ -148,7 +183,9 @@ if ($action == 'default')
             $smarty->assign('next_rank_name', sprintf($_LANG['next_level'], $rank['next_rank'] ,$rank['next_rank_name']));
         }
     }
+
     $smarty->assign('info',        get_user_default($user_id));
+    $smarty->assign('model_height',  $model_height);
     // $smarty->assign('user_height',        get_user_height($user_id));
     $smarty->assign('user_notice', $_CFG['user_notice']);
     $smarty->assign('prompt',      get_user_prompt($user_id));
@@ -187,22 +224,27 @@ elseif ($action == 'register')
 /*修改个人资料*/
 elseif ($action == 'edit_profile'){
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
-    $sex            = isset($_POST['sex']);
+    $sex            = isset($_POST['sex']) ? trim($_POST['sex'])  : '';
     $height         = $_POST['height'];
     $other['msn']   = $msn  = isset($_POST['extend_field1']) ? trim($_POST['extend_field1']) : '';
     $other['qq']    = $qq   = isset($_POST['extend_field2']) ? trim($_POST['extend_field2']) : '';
     $other['office_phone']  = $office_phone = isset($_POST['extend_field3']) ? trim($_POST['extend_field3']) : '';
     $other['home_phone']    = $home_phone   = isset($_POST['extend_field4']) ? trim($_POST['extend_field4']) : '';
     $other['mobile_phone']  = $mobile_phone = isset($_POST['extend_field5']) ? trim($_POST['extend_field5']) : '';
-    $birthday       = trim($_POST['birthdayYear']) .'-'. trim($_POST['birthdayMonth']) .'-'.
+    $birthday       = trim($_POST['birthdayYear']) .'-'. trim($_POST['birthdayMonth']) .'-'.trim($_POST['birthdayDay']);
     $old_password   = isset($_POST['old_password']) ? trim($_POST['old_password']) : null;
     $new_password   = isset($_POST['new_password']) ? trim($_POST['new_password']) : '';
     $confirm_password = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : '';
     $code       = isset($_POST['code']) ? trim($_POST['code'])  : '';
-    $user_info  = $user->get_profile_by_id($user_id); //论坛记录
-    
+   
+    $complexion = isset($_POST['complexion']) ? trim($_POST['complexion'])  : '';
+    $height     = isset($_POST['height']) ? trim($_POST['height'])  : '';
+    $figure     = isset($_POST['figure']) ? trim($_POST['figure'])  : '';
+
+
     if ($new_password || $confirm_password || $old_password) {
         if ($new_password == $confirm_password) {
+            $user_info  = $user->get_profile_by_id($user_id); //论坛记录
             if (($user_info && (!empty($code) && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) == $code)) || ($_SESSION['user_id']>0 && $_SESSION['user_id'] == $user_id && $user->check_user($_SESSION['user_name'], $old_password)))
             {
                 $cfg = array();
@@ -226,9 +268,7 @@ elseif ($action == 'edit_profile'){
             $user_tips = $_LANG['password_js']['both_password_error'];
         }
     }
-    
-    trim($_POST['birthdayDay']);
-    
+
     /* 更新用户扩展字段的数据 */
     $sql = 'SELECT id FROM ' . $ecs->table('reg_fields') . ' WHERE type = 0 AND display = 1 ORDER BY dis_order, id';   //读出所有扩展字段的id
     $fields_arr = $db->getAll($sql);
@@ -251,12 +291,16 @@ elseif ($action == 'edit_profile'){
             $db->query($sql);
         }
     }
+
     $profile  = array(
         'user_id'  => $user_id,
         'email'    => isset($_POST['email']) ? trim($_POST['email']) : '',
         'sex'      => $sex,
         'birthday' => $birthday,
-        'other'    => isset($other) ? $other : array()
+        'other'    => isset($other) ? $other : array(),
+        'complexion'  => $complexion,
+        'height'      => $height,
+        'figure'      => $figure
     );
     if (edit_profile($profile))
     {

@@ -258,7 +258,6 @@ class integrate
     function edit_user($cfg)
     {
 
-
         if (empty($cfg['username']))
         {
             return false;
@@ -315,6 +314,10 @@ class integrate
             $values[] = $this->field_bday . "='" . $cfg['bday'] . "'";
         }
 
+        if (!empty($cfg['model_id']))
+        {
+            $values['model_id'] = " model_id = '". $cfg['model_id']."'";
+        }
         if ($values)
         {
             $sql = "UPDATE " . $this->table($this->user_table).
@@ -322,6 +325,11 @@ class integrate
                    " WHERE " . $this->field_name . "='" . $cfg['post_username'] . "' LIMIT 1";
 
             $this->db->query($sql);
+
+            $_SESSION['Gender']   = $cfg['sex'];
+            $_SESSION['Body_Shape']     = $cfg['figure'];
+            $_SESSION['Height']       = $cfg['height'];
+            $_SESSION['Skin_color'] = $cfg['complexion'];
 
             if ($this->need_sync)
             {

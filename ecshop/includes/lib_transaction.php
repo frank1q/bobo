@@ -37,10 +37,11 @@ function edit_profile($profile)
 
     $cfg = array();
     $cfg['username'] = $GLOBALS['db']->getOne("SELECT user_name FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id='" . $profile['user_id'] . "'");
-    if (isset($profile['sex']))
+    if (!empty($profile['sex']))
     {
         $cfg['gender'] = intval($profile['sex']);
     }
+
     if (!empty($profile['email']))
     {
         if (!is_email($profile['email']))
@@ -55,7 +56,39 @@ function edit_profile($profile)
     {
         $cfg['bday'] = $profile['birthday'];
     }
+    
+    if (isset($profile['complexion']) || isset($profile['height']) || isset($profile['figure']) || isset($profile['sex']) ) {
+        $user_profile = get_profile($profile['user_id']);
 
+        if (empty($profile['sex'])) {
+            $profile['sex'] = $user_profile['sex'];
+        }
+        // var_dump($user_profile);
+        if (empty($profile['complexion'])) {
+            $profile['complexion'] = $user_profile['complexion'];
+        }
+        if (empty($profile['height'])) {
+            $profile['height'] = $user_profile['high_id'];
+        }
+        if (empty($profile['figure'])) {
+            $profile['figure'] = $user_profile['figure'];
+        }
+
+
+        $model = model_details($profile['complexion'],$profile['height'],$profile['figure'],$profile['sex']);
+
+        // $GLOBALS['db']->getOne("SELECT user_name FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id='" . $profile['user_id'] . "'");
+        if (isset($model)) {
+            $cfg['model_id'] = $model;
+            $cfg['complexion'] = $profile['complexion'];
+            $cfg['height'] = $profile['height'];
+            $cfg['figure'] = $profile['figure'];
+            $cfg['sex'] = $profile['sex'];
+        } else {
+            return false;
+        }
+    }
+    
     if (!$GLOBALS['user']->edit_user($cfg))
     {
         if ($GLOBALS['user']->error == ERR_EMAIL_EXISTS)
@@ -92,7 +125,22 @@ function edit_profile($profile)
 
     return true;
 }
-
+/**
+ * 获取模特详细休息
+ * @param   int     $user_id    用户编号
+ * @return  array
+ */
+function model_details($complexion,$height,$figure,$sex)
+{
+    $sql = "SELECT model_id FROM " . $GLOBALS['ecs']->table('model_management') .
+            " WHERE model_complexion = '$complexion' And model_high_id = '$height' And model_figure='$figure' And model_sex='$sex'";
+    return $GLOBALS['db']->getOne($sql);
+}
+function model_height($height_id='' )
+{
+    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('model_height_management') ." ";
+    return $GLOBALS['db']->getAll($sql);
+}
 /**
  * 获取用户帐号信息
  *
@@ -110,10 +158,14 @@ function get_profile($user_id)
     $info  = array();
     $infos = array();
     $sql  = "SELECT user_name, birthday, sex, question, answer, rank_points, pay_points,user_money, user_rank,".
-             " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer ".
-           "FROM " .$GLOBALS['ecs']->table('users') . " WHERE user_id = '$user_id'";
+            " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, m.*  ".
+            "FROM " .$GLOBALS['ecs']->table('users') . " u ".
+            " LEFT JOIN ".$GLOBALS['ecs']->table('model_management')." m ON u.model_id = m.model_id ".
+            " WHERE u.user_id = '$user_id'";
     $infos = $GLOBALS['db']->getRow($sql);
+
     $infos['user_name'] = addslashes($infos['user_name']);
+
 
     $row = $user->get_profile_by_name($infos['user_name']); //获取用户帐号信息
     $_SESSION['email'] = $row['email'];    //注册SESSION
@@ -133,7 +185,7 @@ function get_profile($user_id)
 
     if ($row = $GLOBALS['db']->getRow($sql))
     {
-        $info['rank_name']     = $row['rank_name'];
+        $info['rank_name'] = $row['rank_name'];
     }
     else
     {
@@ -157,26 +209,31 @@ function get_profile($user_id)
         }
     }
 
-    $info['discount']    = $_SESSION['discount'] * 100 . "%";
-    $info['email']       = $_SESSION['email'];
-    $info['user_name']   = $_SESSION['user_name'];
-    $info['rank_points'] = isset($infos['rank_points']) ? $infos['rank_points'] : '';
-    $info['pay_points']  = isset($infos['pay_points'])  ? $infos['pay_points']  : 0;
-    $info['user_money']  = isset($infos['user_money'])  ? $infos['user_money']  : 0;
-    $info['sex']         = isset($infos['sex'])      ? $infos['sex']      : 0;
-    $info['birthday']    = isset($infos['birthday']) ? $infos['birthday'] : '';
-    $info['question']    = isset($infos['question']) ? htmlspecialchars($infos['question']) : '';
+    $info['discount']     = $_SESSION['discount'] * 100 . "%";
+    $info['email']        = $_SESSION['email'];
+    $info['user_name']    = $_SESSION['user_name'];
+    $info['rank_points']  = isset($infos['rank_points']) ? $infos['rank_points'] : '';
+    $info['pay_points']   = isset($infos['pay_points'])  ? $infos['pay_points']  : 0;
+    $info['user_money']   = isset($infos['user_money'])  ? $infos['user_money']  : 0;
+    $info['sex']          = isset($infos['sex'])      ? $infos['sex']      : 0;
+    $info['birthday']     = isset($infos['birthday']) ? $infos['birthday'] : '';
+    $info['question']     = isset($infos['question']) ? htmlspecialchars($infos['question']) : '';
 
-    $info['user_money']  = price_format($info['user_money'], false);
-    $info['pay_points']  = $info['pay_points'] . $GLOBALS['_CFG']['integral_name'];
-    $info['bonus']       = $bonus;
-    $info['qq']          = $infos['qq'];
+    $info['user_money']   = price_format($info['user_money'], false);
+    $info['pay_points']   = $info['pay_points'] . $GLOBALS['_CFG']['integral_name'];
+    $info['bonus']        = $bonus;
+    $info['qq']           = $infos['qq'];
     $info['msn']          = $infos['msn'];
-    $info['office_phone']= $infos['office_phone'];
+    $info['office_phone'] = $infos['office_phone'];
     $info['home_phone']   = $infos['home_phone'];
     $info['mobile_phone'] = $infos['mobile_phone'];
     $info['passwd_question'] = $infos['passwd_question'];
-    $info['passwd_answer'] = $infos['passwd_answer'];
+    $info['passwd_answer']   = $infos['passwd_answer'];
+    $info['high_id']         = $infos['model_high_id'];
+    $info['complexion']      = $infos['model_complexion'];
+    $info['figure']          = $infos['model_figure'];
+    $info['images']          = $infos['model_images'];
+    $info['high']            = $infos['model_high'];
 
     return $info;
 }
