@@ -46,7 +46,8 @@ assign_template();
 
 $position = assign_ur_here(0, $_LANG['quotation']);
 $smarty->assign('page_title', $position['title']);   // 页面标题
-$smarty->assign('ur_here',    $position['ur_here']); // 当前位置
+$smarty->assign('ur_here',    $position['ur_here']);
+$smarty->assign('ur_here_base',    $position['ur_here_base']); // 当前位置
 
 $smarty->assign('cat_list', cat_list());
 $smarty->assign('brand_list',   get_brand_list());

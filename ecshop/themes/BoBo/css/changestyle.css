@@ -212,10 +212,10 @@
 		width: 40% !important;
 	}
 	.content_left{
-		min-height: 463px !important;
+		height: 463px !important;
 	}
 	.content_c{
-	  min-height: 426px !important;
+	  height: 426px !important;
 	}
 	.content_lf{
 		height: 37px !important;

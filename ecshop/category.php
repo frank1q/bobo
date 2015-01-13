@@ -333,8 +333,10 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
     assign_template('c', array($cat_id));
 
     $position = assign_ur_here($cat_id, $brand_name);
+
     $smarty->assign('page_title',       $position['title']);    // 页面标题
     $smarty->assign('ur_here',          $position['ur_here']);  // 当前位置
+    $smarty->assign('ur_here_base',      $position['ur_here_base']);  // 当前位置
     $treeArr = get_categories_tree();
     // dump($treeArr['75']['cat_id']);
     $smarty->assign('categories',       get_categories_tree()); // 分类树

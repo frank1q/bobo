@@ -113,7 +113,8 @@ else
 assign_template();
 $position = assign_ur_here(0, $_LANG['goods_compare']);
 $smarty->assign('page_title', $position['title']);    // 页面标题
-$smarty->assign('ur_here',    $position['ur_here']);  // 当前位置
+$smarty->assign('ur_here',    $position['ur_here']);
+$smarty->assign('ur_here_base',    $position['ur_here_base']);  // 当前位置
 
 $smarty->assign('categories', get_categories_tree()); // 分类树
 $smarty->assign('helps',      get_shop_help());       // 网店帮助

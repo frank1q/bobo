@@ -172,11 +172,14 @@ function assign_ur_here($cat = 0, $str = '')
     /* 初始化“页面标题”和“当前位置” */
     $page_title = $GLOBALS['_CFG']['shop_title'];
 
-    $ur_here    = '<a href=".">' .  MY_SEX_TITLE . '</a>';
-
+    // $ur_here    = '<a href=".">' .  MY_SEX_TITLE . '</a>';
+    $ur_here  = '';
+    // var_dump($filename);
     /* 根据文件名分别处理中间的部分 */
     if ($filename != 'index')
     {
+        $ur_here    = '<a href=".">' .  MY_SEX_TITLE . '</a>';
+    
         /* 处理有分类的 */
         if (in_array($filename, array('category', 'goods', 'article_cat', 'article', 'brand')))
         {
@@ -215,8 +218,12 @@ function assign_ur_here($cat = 0, $str = '')
             if (!empty($cat_arr))
             {
                 krsort($cat_arr);
-                foreach ($cat_arr AS $val)
+                foreach ($cat_arr AS $key=>$val)
                 {
+                    if($key==0){
+                        $strTitle = $val['cat_name'];
+                        break;
+                    }
                     $page_title = htmlspecialchars($val['cat_name']) . '_' . $page_title;
                     $args       = array($key => $val['cat_id']);
                     $ur_here   .= ' / <a href="' . build_uri($type, $args, $val['cat_name']) . '">' .
@@ -270,15 +277,25 @@ function assign_ur_here($cat = 0, $str = '')
         }
     }
 
+
     /* 处理最后一部分 */
-    if (!empty($str))
-    {
-        $page_title  = $str . '_' . $page_title;
-        $ur_here    .= ' /  ' . $str;
+    if(!empty($str)){
+        $ur_here_base = $str;
+    }else{
+        if (empty($strTitle))
+        {
+            $ur_here_base = MY_SEX_TITLE;
+        }
+        else{
+            $ur_here_base = $strTitle;
+        }
     }
+    
+
+    // dump($ur_here_base);
 
     /* 返回值 */
-    return array('title' => $page_title, 'ur_here' => $ur_here);
+    return array('title' => $page_title, 'ur_here' => $ur_here,'ur_here_base'=>$ur_here_base);
 }
 
 /**
@@ -1495,8 +1512,10 @@ function show_message($content, $links = '', $hrefs = '', $type = 'info', $auto_
 
     $msg['type']    = $type;
     $position = assign_ur_here(0, $GLOBALS['_LANG']['sys_msg']);
+
     $GLOBALS['smarty']->assign('page_title', $position['title']);   // 页面标题
     $GLOBALS['smarty']->assign('ur_here',    $position['ur_here']); // 当前位置
+    $GLOBALS['smarty']->assign('ur_here_base',    $position['ur_here_base']); // 当前位置
 
     if (is_null($GLOBALS['smarty']->get_template_vars('helps')))
     {
@@ -1679,7 +1698,6 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('category_list', cat_list(0, 0, true,  2, false));
     $smarty->assign('catalog_list',  cat_list(0, 0, false, 1, false));
     $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
-
     if (!empty($GLOBALS['_CFG']['search_keywords']))
     {
         $searchkeywords = explode(',', trim($GLOBALS['_CFG']['search_keywords']));

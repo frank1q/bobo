@@ -481,6 +481,7 @@ class cls_mysql
     function getAll($sql)
     {
         $res = $this->query($sql);
+
         if ($res !== false)
         {
             $arr = array();
