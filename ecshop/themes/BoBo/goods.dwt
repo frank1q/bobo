@@ -15,9 +15,9 @@
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
   <!-- #EndLibraryItem -->
 <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
-  <!--相册 START-->
-      <!--* #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
-    <!--相册 END-->
+
+
+
   <!-- {if $promotion} -->
     <!-- {foreach from=$promotion item=item key=key} 优惠活动-->
       <!-- {if $item.type eq "group_buy"} -->
@@ -27,7 +27,12 @@
   <!-- {/if} -->
   <div class="content_middle designer_product">
     <div class="item">
-      <div class="item_content"></div>
+      <div class="item_content">
+          <!--相册 START-->
+            <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+          <!--相册 END-->
+
+      </div>
       <div class="item_footer">
         <div class="item_complete">COMPLETE OUTFIT</div>
         <div class="item_complete_con">

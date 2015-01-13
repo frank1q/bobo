@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="./themes/BoBo/css/bootstrap.css" />
-<link rel="stylesheet" href="./themes/BoBo/css/style.css" />
 <link rel="stylesheet" href="./themes/BoBo/css/changestyle.css" />
+<link rel="stylesheet" href="./themes/BoBo/css/style.css" />
 <link rel="stylesheet" href="./themes/BoBo/css/common.css" />
 <link rel="stylesheet" type="text/css" href="./themes/BoBo/css/style_common.css" />
 <link rel="stylesheet" type="text/css" href="./themes/BoBo/css/style_hover.css" />
@@ -31,7 +31,7 @@
       <p>
         Your current location: {$ur_here} 
         <br>
-        <h1>{$my_sex_title}</h1>
+        <h1>{$ur_here_base}</h1>
       </p>
     </div>
     <div class="content">
@@ -58,7 +58,25 @@
               </ul>
             </li>
           <!--{/foreach}-->
-          <li class="content_lc">
+          <li class="content_other">
+                <a href="#">Product Stage</a>
+                <ul>
+                  <li class="sub_c">
+                  <a href="category.php?id=139">Boing (Pre-order)</a>
+                  </li>
+                  <li class="sub_c">
+                  <a href="category.php?id=140">Boed (Buy it now)</a>
+                  </li>
+                  <li class="sub_c">
+                  <a href="category.php?id=141">Last Chance to Buy</a>
+                  </li>
+                </ul>
+                            
+            </li>
+
+
+
+          <li class="content_other">
             <a href="#">Designer List</a>
             <ul>
                 <li class="sub_c">

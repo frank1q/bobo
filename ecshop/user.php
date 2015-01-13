@@ -65,7 +65,8 @@ if (in_array($action, $ui_arr))
     assign_template();
     $position = assign_ur_here(0, $_LANG['user_center']);
     $smarty->assign('page_title', $position['title']); // 页面标题
-    $smarty->assign('ur_here',    $position['ur_here']);
+    $smarty->assign('ur_here',    $position['ur_here']);    // 当前位置
+    $smarty->assign('ur_here_base',    $position['ur_here_base']);  // 当前标题
     $sql = "SELECT value FROM " . $ecs->table('shop_config') . " WHERE id = 419";
     $row = $db->getRow($sql);
     $car_off = $row['value'];

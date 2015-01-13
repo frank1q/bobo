@@ -179,17 +179,18 @@ html{
 }
 .content_left{
   width: 11.771919068056407%;
-  min-height: 691px;
+  height: 691px;
   float: left;
   margin-left: 2.5137952176578784%;
+  overflow: hidden;
 }
 .content_c{
   opacity: 0.8;
   float: left;
   background: #e4e4e4;
   width: 100%;
-  min-height: 640px;
-  padding-bottom: 15px;
+  height: 621px;
+  overflow: hidden;
 }
 .content_lc{
   margin-left: 8%;
@@ -599,7 +600,7 @@ h2{
   text-align: center;
 }
 .designersa .designer_picture{
-  margin: auto 2% !important;
+  margin: 0 2% 28px ;
 }
 
 
@@ -799,6 +800,7 @@ h2{
   height: 81.91027496382056%;
   background: #aaa;
   float: left;
+  overflow: hidden;
 }
 .item_footer{
   width: 100%;
@@ -1302,6 +1304,32 @@ h2{
   background-color: #bbbbbb;
   border-color: #fff;
 }
+.sex_choose:active,
+.sex_choose.active,
+.open > .dropdown-toggle.sex_choose {
+  background-image: none;
+}
+
+.sex_choose.disabled,
+.sex_choose[disabled],
+fieldset[disabled] .sex_choose,
+.sex_choose.disabled:hover,
+.sex_choose[disabled]:hover,
+fieldset[disabled] .sex_choose:hover,
+.sex_choose.disabled:focus,
+.sex_choose[disabled]:focus,
+fieldset[disabled] .sex_choose:focus,
+.sex_choose.disabled.focus,
+.sex_choose[disabled].focus,
+fieldset[disabled] .sex_choose.focus,
+.sex_choose.disabled:active,
+.sex_choose[disabled]:active,
+fieldset[disabled] .sex_choose:active,
+.sex_choose.disabled.active,
+.sex_choose[disabled].active,
+fieldset[disabled] .sex_choose.active {
+  background-color: #777777;
+}
 
 .figure_content{
   height: 50px;
@@ -1318,9 +1346,9 @@ h2{
 .figure_height option:hover{
   background: #bbbbbb;
 }
-.figure_skin{
-  width: 100%;
-}
+  .figure_skin{
+    width: 100%;
+  }
 .figure_skin img{
   width: 100%;
 }
@@ -1381,39 +1409,65 @@ h2{
   right:2px;
   bottom: 4%;
 }
-
-.complexion {
-  color: #fff;
-  border-color: #e4e4e4 ;
-  border-radius: 0; 
-  font-size: 12px;
-  height: 18px;
-  padding: 1px;
-  width: 25%;
+.content_other{
+  margin-left: 8%;
+  margin-top: 7px !important;
 }
-.complexion:focus,
-.complexion.focus,
-.complexion:active,
-.complexion.active,
-.open > .dropdown-toggle.complexion {
-  background-image: url(../images/lcon_16.png);
-} 
-
-.model_figure {
-  border-color: #666666 ;
-  background-color: #555555;
-  border-radius: 0; 
-  font-size: 12px;
-  height: 18px;
-  padding: 1px;
-  width: 33.33%;
+.swiper-slide img{
+  max-width: 170px;
+  margin-right: 7px;
 }
-.model_figure:focus,
-.model_figure.focus,
-.model_figure:active,
-.model_figure.active,
-.open > .dropdown-toggle.model_figure {
-  border-color: #e4e4e4;
-  background-color: #bbbbbb;
-  color: #323232;
+.device{
+  position: relative;
+}
+
+.Page{
+  position: absolute;
+  top: 15px;
+  left:135px;
+  overflow: hidden;
+  z-index: 100;
+  width: 75px;
+  height: 28px;
+  background: #E4E4E4;
+}
+
+.sliderPagePre{
+  width: 12px;
+  height: 23px;
+  background: url('../images/left.png');
+  float: left;
+  margin-top: 3px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.sliderPageNext{
+  width: 12px;
+  height: 23px;
+  background: url('../images/right.png');
+  float: right;
+  margin-top: 3px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+.cover{
+  position: absolute;
+  overflow: hidden;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+.coverleft{
+  background: #000;
+  opacity: 0.7;
+  width: 32.5%;
+  height: 100%;
+  float: left;
+}
+.coverright{
+  background: #000;
+  opacity: 0.7;
+  width: 34%;
+  float: right;
+  height: 100%;
 }

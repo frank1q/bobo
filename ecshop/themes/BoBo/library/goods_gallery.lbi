@@ -1,28 +1,62 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- {if $pictures}-->
- <div class="picture" id="imglist">
-		
-             <!-- {foreach from=$pictures item=picture name=no}-->
-             
-             <!-- {if $smarty.foreach.no.iteration < 2}  -->
-            
-           <a  href="{$picture.img_url}"
-    	rel="zoom1" 
-        rev="{$picture.img_url}"
-        title="{$picture.img_desc|escape:html}">
-        <img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}" class="onbg" /></a>
-           <!-- {else}-->
-  <a  href="{$picture.img_url}"
-    	rel="zoom1" 
-        rev="{$picture.img_url}"
-        title="{$picture.img_desc|escape:html}">
-        <img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}" class="autobg" /></a>
-          <!-- {/if}-->
-            <!--{/foreach}-->
-           
-</div>
- 
-<!-- {/if}-->
-<script type="text/javascript">
-	mypicBg();
+<link rel="stylesheet" type="text/css" href="./themes/BoBo/css/idangerous.swiper.css" />
+<script type="text/javascript" src="./themes/BoBo/js/idangerous.swiper.min.js"></script>
+  <div class="device">
+    <div class="Page" >
+      <div class="sliderPageNext"></div>
+      <div class="sliderPagePre"></div>
+    </div>
+    <div class="cover">
+      <div class="coverleft"></div>
+      <div class="coverright"></div>
+    </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+        <div class="swiper-slide">
+            <img src="images/model/model2.png" class="img-responsive" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="pagination"></div>
+<script>
+$('.sliderPageNext').click(function(){
+    mySwiper.swipeNext();
+})
+$('.sliderPagePre').click(function(){
+    mySwiper.swipePrev();
+})
+var mySwiper = new Swiper('.swiper-container',{
+  pagination: '.pagination',
+  paginationClickable: true,
+  slidesPerView: 3,
+  watchActiveIndex: true,
+});
+
+
+
+
 </script>
