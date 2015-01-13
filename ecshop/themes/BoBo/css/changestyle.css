@@ -661,6 +661,28 @@
 	.view {
 		margin-bottom: 22px !important;
 	}
+	.complexion{
+		height: 13px !important;
+	}
+	.complexion:focus,
+	.complexion.focus,
+	.complexion:active,
+	.complexion.active,
+	.open > .dropdown-toggle.complexion {
+	  background-image: url(../images/lcon_1280_16.png) !important;
+	}
+	.figure_content{
+		height: 44px;
+	}
+	.sex_choose{
+  		padding: 0px;
+  		height: 16px;
+		font-size: 12px;
+	}
+	.model_figure{
+		height: 16px;
+		padding: 0px;
+	}
 }
 
 @media screen and (max-width: 1670px){

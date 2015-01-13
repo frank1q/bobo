@@ -188,7 +188,7 @@ html{
   float: left;
   background: #e4e4e4;
   width: 100%;
-  min-height: 621px;
+  min-height: 640px;
   padding-bottom: 15px;
 }
 .content_lc{
@@ -1302,32 +1302,6 @@ h2{
   background-color: #bbbbbb;
   border-color: #fff;
 }
-.sex_choose:active,
-.sex_choose.active,
-.open > .dropdown-toggle.sex_choose {
-  background-image: none;
-}
-
-.sex_choose.disabled,
-.sex_choose[disabled],
-fieldset[disabled] .sex_choose,
-.sex_choose.disabled:hover,
-.sex_choose[disabled]:hover,
-fieldset[disabled] .sex_choose:hover,
-.sex_choose.disabled:focus,
-.sex_choose[disabled]:focus,
-fieldset[disabled] .sex_choose:focus,
-.sex_choose.disabled.focus,
-.sex_choose[disabled].focus,
-fieldset[disabled] .sex_choose.focus,
-.sex_choose.disabled:active,
-.sex_choose[disabled]:active,
-fieldset[disabled] .sex_choose:active,
-.sex_choose.disabled.active,
-.sex_choose[disabled].active,
-fieldset[disabled] .sex_choose.active {
-  background-color: #777777;
-}
 
 .figure_content{
   height: 50px;
@@ -1344,9 +1318,9 @@ fieldset[disabled] .sex_choose.active {
 .figure_height option:hover{
   background: #bbbbbb;
 }
-  .figure_skin{
-    width: 100%;
-  }
+.figure_skin{
+  width: 100%;
+}
 .figure_skin img{
   width: 100%;
 }
@@ -1408,3 +1382,38 @@ fieldset[disabled] .sex_choose.active {
   bottom: 4%;
 }
 
+.complexion {
+  color: #fff;
+  border-color: #e4e4e4 ;
+  border-radius: 0; 
+  font-size: 12px;
+  height: 18px;
+  padding: 1px;
+  width: 25%;
+}
+.complexion:focus,
+.complexion.focus,
+.complexion:active,
+.complexion.active,
+.open > .dropdown-toggle.complexion {
+  background-image: url(../images/lcon_16.png);
+} 
+
+.model_figure {
+  border-color: #666666 ;
+  background-color: #555555;
+  border-radius: 0; 
+  font-size: 12px;
+  height: 18px;
+  padding: 1px;
+  width: 33.33%;
+}
+.model_figure:focus,
+.model_figure.focus,
+.model_figure:active,
+.model_figure.active,
+.open > .dropdown-toggle.model_figure {
+  border-color: #e4e4e4;
+  background-color: #bbbbbb;
+  color: #323232;
+}
