@@ -83,16 +83,7 @@ require(ROOT_PATH . 'includes/lib_insert.php');
 require(ROOT_PATH . 'includes/lib_goods.php');
 require(ROOT_PATH . 'includes/lib_article.php');
 
-/* 选择性别 */
 
-define('MY_SEX', select_sex());
-if(MY_SEX==1){
-    $sex_title = 'Male Reception';
-}else{
-    $sex_title = 'Female Reception';
-}
-
-define('MY_SEX_TITLE',$sex_title);
 
 /* 对用户传入的变量进行转义操作。*/
 if (!get_magic_quotes_gpc())
@@ -158,6 +149,10 @@ if (is_spider())
     $_SESSION['discount']    = 1.00;
 }
 
+
+
+
+
 if (!defined('INIT_NO_USERS'))
 {
     /* 初始化session */
@@ -167,6 +162,23 @@ if (!defined('INIT_NO_USERS'))
 
     define('SESS_ID', $sess->get_session_id());
 }
+
+/* 选择性别，初始化肤色，身高，体形*/
+
+define('MY_SEX', select_sex());
+if(MY_SEX==1){
+    $sex_title = 'Male Reception';
+}else{
+    $sex_title = 'Female Reception';
+}
+if(!isset($_COOKIE['my_SIGN'])){
+    
+}else{
+    
+}
+
+define('MY_SEX_TITLE',$sex_title);
+
 
 if (!defined('INIT_NO_SMARTY'))
 {

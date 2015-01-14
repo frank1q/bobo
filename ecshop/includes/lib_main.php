@@ -25,6 +25,10 @@ if (!defined('IN_ECS'))
  * @return  sex     性别（2或者1），1=男 2=女
  */
 function select_sex(){
+    // dump($_SESSION);
+    if(isset($_SESSION['Gender']) && is_numeric($_SESSION['Gender'])){
+        return $_SESSION['Gender'];
+    }
     // 取消性别
     if(isset($GLOBALS['_GET']['sex']) && $GLOBALS['_GET']['sex']=='select_sex_again'){
         setcookie("my_sex", $GLOBALS['_GET']['sex'], time()-3600);
@@ -45,6 +49,7 @@ function select_sex(){
             $sex = $_COOKIE['my_sex'];
         }
     }
+    // dump($sex);
     return $sex;
 }
 
