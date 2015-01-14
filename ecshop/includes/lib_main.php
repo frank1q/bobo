@@ -2101,5 +2101,89 @@ function license_info()
         return '';
     }
 }
+/**
+ * 获得购物车中的商品
+ *
+ * @access  public
+ * @return  array
+ */
+function user_cart_goods()
+{
+    /* 初始化 */
+    $goods_list = array();
+    $total = array(
+        'goods_price'  => 0, // 本店售价合计（有格式）
+        'market_price' => 0, // 市场售价合计（有格式）
+        'saving'       => 0, // 节省金额（有格式）
+        'save_rate'    => 0, // 节省百分比
+        'goods_amount' => 0, // 本店售价合计（无格式）
+    );
 
+    /* 循环、统计 */
+    $sql = "SELECT *, IF(parent_id, parent_id, goods_id) AS pid " .
+            " FROM " . $GLOBALS['ecs']->table('cart') . " " .
+            " WHERE session_id = '" . SESS_ID . "' AND rec_type = '" . CART_GENERAL_GOODS . "'" .
+            " ORDER BY pid, parent_id";
+    $res = $GLOBALS['db']->query($sql);
+
+    /* 用于统计购物车中实体商品和虚拟商品的个数 */
+    $virtual_goods_count = 0;
+    $real_goods_count    = 0;
+
+    while ($row = $GLOBALS['db']->fetchRow($res))
+    {
+        $total['goods_price']  += $row['goods_price'] * $row['goods_number'];
+        $total['market_price'] += $row['market_price'] * $row['goods_number'];
+
+        $row['subtotal']     = price_format($row['goods_price'] * $row['goods_number'], false);
+        $row['goods_price']  = price_format($row['goods_price'], false);
+        $row['market_price'] = price_format($row['market_price'], false);
+
+        /* 统计实体商品和虚拟商品的个数 */
+        if ($row['is_real'])
+        {
+            $real_goods_count++;
+        }
+        else
+        {
+            $virtual_goods_count++;
+        }
+
+        /* 查询规格 */
+        if (trim($row['goods_attr']) != '')
+        {
+            $sql = "SELECT attr_value FROM " . $GLOBALS['ecs']->table('goods_attr') . " WHERE goods_attr_id " .
+            db_create_in($row['goods_attr']);
+            $attr_list = $GLOBALS['db']->getCol($sql);
+            foreach ($attr_list AS $attr)
+            {
+                $row['goods_name'] .= ' [' . $attr . '] ';
+            }
+        }
+        /* 增加是否在购物车里显示商品图 */
+        if (($GLOBALS['_CFG']['show_goods_in_cart'] == "2" || $GLOBALS['_CFG']['show_goods_in_cart'] == "3") && $row['extension_code'] != 'package_buy')
+        {
+            $goods_thumb = $GLOBALS['db']->getOne("SELECT `goods_thumb` FROM " . $GLOBALS['ecs']->table('goods') . " WHERE `goods_id`='{$row['goods_id']}'");
+            $row['goods_thumb'] = get_image_path($row['goods_id'], $goods_thumb, true);
+        }
+        if ($row['extension_code'] == 'package_buy')
+        {
+            $row['package_goods_list'] = get_package_goods($row['goods_id']);
+        }
+        $goods_list[] = $row;
+    }
+    $total['goods_amount'] = $total['goods_price'];
+    $total['saving']       = price_format($total['market_price'] - $total['goods_price'], false);
+    if ($total['market_price'] > 0)
+    {
+        $total['save_rate'] = $total['market_price'] ? round(($total['market_price'] - $total['goods_price']) *
+        100 / $total['market_price']).'%' : 0;
+    }
+    $total['goods_price']  = price_format($total['goods_price'], false);
+    $total['market_price'] = price_format($total['market_price'], false);
+    $total['real_goods_count']    = $real_goods_count;
+    $total['virtual_goods_count'] = $virtual_goods_count;
+
+    return array('goods_list' => $goods_list, 'total' => $total);
+}
 ?>
