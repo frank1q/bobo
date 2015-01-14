@@ -19,10 +19,10 @@ if (!defined('IN_ECS'))
 }
 
 /**
- * 选择性别，取消性别
+ * 选择模特性别，取消性别
  *
  * @access  public
- * @return  sex     性别（2或者1），1=男 2=女
+ * @return  int     性别（2或者1），1=男 2=女
  */
 function select_sex(){
     // dump($_SESSION);
@@ -52,6 +52,74 @@ function select_sex(){
     // dump($sex);
     return $sex;
 }
+
+/**
+ * 选择模特肤色
+ *
+ * @access  public
+ * @return  int 1,2,3,4（分别代表一个颜色）
+ */
+
+function select_skin(){
+    if(isset($_SESSION['Skin_color']) && is_numeric($_SESSION['Skin_color'])){
+        return $_SESSION['Skin_color'];
+    }
+    if (isset($_COOKIE['Skin_color'])) {
+        $Skin_color = $_COOKIE['Skin_color'];
+    }else{
+        $expiretime=3600*24*365*60;
+        setcookie("my_Skin_color", 1, time()+$expiretime);
+        $Skin_color = 1;
+    }
+    return $Skin_color;
+}
+
+/**
+ * 选择模特体型
+ *
+ * @access  public
+ * @return  int 1,2,3（分别代表一个体型）
+ */
+
+function select_shape(){
+    $ShapeArr = array(1=>'s',2=>'m',3=>'l');
+    if(isset($_SESSION['Body_Shape'])){
+        $s =$_SESSION['Body_Shape'];
+        return $ShapeArr[$s];
+    }
+    if (isset($_COOKIE['Body_Shape'])) {
+        $Body_Shape = $_COOKIE['Body_Shape'];
+    }else{
+        $expiretime=3600*24*365*60;
+        setcookie("my_Skin_color", 1, time()+$expiretime);
+        $Body_Shape = 1;
+    }
+    
+    return $ShapeArr[$Body_Shape];
+}
+
+/**
+ * 选择模特身高
+ *
+ * @access  public
+ * @return  int（分别代表一个身高,单位：cm）
+ */
+
+function select_height(){
+    if(isset($_SESSION['Height'])){
+        return $_SESSION['Height'];
+    }
+    if (isset($_COOKIE['my_Height'])) {
+        $Height = $_COOKIE['my_Height'];
+    }else{
+        $expiretime=3600*24*365*60;
+        setcookie("myHeight", 160, time()+$expiretime);
+        $Height = 160;
+    }
+    return $Height;
+}
+
+
 
 /**
  * 更新用户SESSION,COOKIE及登录时间、登录次数。
@@ -1690,6 +1758,11 @@ function assign_template($ctype = '', $catlist = array())
 {
     global $smarty;
     $smarty->assign('my_sex_title',  MY_SEX_TITLE);
+    $smarty->assign('my_skin',  MY_SKIN);
+    $smarty->assign('my_shape',  MY_SHAPE);
+    $smarty->assign('my_height',  MY_HEIGHT);
+    $sexArr = array(1=>'m',2=>'f');
+    $smarty->assign('my_sex',  $sexArr[MY_SEX]);
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
     $smarty->assign('points_name',   $GLOBALS['_CFG']['integral_name']);

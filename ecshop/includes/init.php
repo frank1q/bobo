@@ -166,17 +166,15 @@ if (!defined('INIT_NO_USERS'))
 /* 选择性别，初始化肤色，身高，体形*/
 
 define('MY_SEX', select_sex());
+define('MY_SKIN', select_skin());
+define('MY_SHAPE', select_shape());
+define('MY_HEIGHT', select_height());
+// 设置页面标题
 if(MY_SEX==1){
     $sex_title = 'Male Reception';
 }else{
     $sex_title = 'Female Reception';
 }
-if(!isset($_COOKIE['my_SIGN'])){
-    
-}else{
-    
-}
-
 define('MY_SEX_TITLE',$sex_title);
 
 

@@ -1,7 +1,7 @@
 <div class="content_right">
           <div class="model">
             <div class="modelimg z-index1">
-              <img src="images/model/m-160-l.png" class="img-responsive" />
+              <img src="images/model/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="trousers z-index50">
             </div>
@@ -109,7 +109,7 @@
       $('.mask a.info').click(function(){
         var thisclass = $(this).attr('online');
         var goods_id = $(this).attr('goods_id');
-        var thissrc = 'images/model/'+goods_id+'-m-160-l.png';
+        var thissrc = 'images/model/'+goods_id+'/{$my_height}-{$my_shape}.png';
         var imgObj = $('.'+thisclass+' img');
         var srcObj = $('.'+thisclass);
         if(imgObj.length>0){
