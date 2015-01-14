@@ -45,6 +45,8 @@ if (empty($_SESSION['user_id']))
             }
             else
             {}*/
+            header("location: index.php");
+            exit;
             if (!empty($_SERVER['QUERY_STRING']))
             {
                 $back_act = 'user.php?' . $_SERVER['QUERY_STRING'];
@@ -87,8 +89,8 @@ if ($action == 'default')
 {
     include_once(ROOT_PATH . 'includes/lib_transaction.php');
     $user_info = get_profile($user_id);
-    $model_height = model_height($user_info['high_id']);
 
+    $model_height = model_height();
     /* 取出注册扩展字段 */
     $sql = 'SELECT * FROM ' . $ecs->table('reg_fields') . ' WHERE type < 2 AND display = 1 ORDER BY dis_order, id';
     $extend_info_list = $db->getAll($sql);
@@ -303,6 +305,7 @@ elseif ($action == 'edit_profile'){
         'height'      => $height,
         'figure'      => $figure
     );
+
     if (edit_profile($profile))
     {
         if (!isset($user_tips)) {
@@ -401,7 +404,7 @@ elseif ($action == 'act_edit_profile')
     $profile  = array(
         'user_id'  => $user_id,
         'email'    => isset($_POST['email']) ? trim($_POST['email']) : '',
-        'sex'      => isset($_POST['sex'])   ? intval($_POST['sex']) : 0,
+        'sex'      => isset($_POST['sex'])   ? intval($_POST['sex']) : 1,
         'birthday' => $birthday,
         'other'    => isset($other) ? $other : array()
         );

@@ -9,11 +9,12 @@
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
-{* 包含脚本文件 *}
-{insert_scripts files='common.js,index.js'}
+
 </head>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
-  <!-- #EndLibraryItem -->
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+
 <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 
 
@@ -53,7 +54,7 @@
     </div>
     <div class="designer_introduction">
       <div class="item_portrait">
-        <p>BY</p>
+        <p>BY</p> 
         <h3>
           STYLELCON
           <p>T O K Y O</p>
@@ -84,6 +85,7 @@
           <a href="javascript:addToCart({$goods.goods_id})">
             <div class="chatbutton">Add to basket</div>
           </a>
+        <input name="number" type="hidden" id="number" value="1"/>
         </div>
         <div class="item_guide">
           <div class="item_size">+ Size Guide</div>
@@ -96,6 +98,7 @@
 
 
 </form>
+{insert_scripts files='transport.js'}
 <script type="text/javascript">
 var process_request = "{$lang.process_request}";
 </script>
@@ -125,7 +128,6 @@ function changePrice()
 {
   var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
   var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
-
   Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
 }
 

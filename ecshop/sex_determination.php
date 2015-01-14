@@ -23,8 +23,8 @@
 		<img src="./themes/BoBo/images/landing.png" alt="" class="img-responsive"/>
 	</div>
 	<div class="sex">
-		<a href="index.php?sex=1"><div class="sexa violet">Violet</div></a>
-		<a href="index.php?sex=0"><div class="sexa azure">Azure</div></a>
+		<a href="index.php?sex=2"><div class="sexa violet">Violet</div></a>
+		<a href="index.php?sex=1"><div class="sexa azure">Azure</div></a>
 	</div>
 </body>
 </html>

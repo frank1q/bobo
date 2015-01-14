@@ -15,13 +15,23 @@
     </div>
   </div>
   <div class="sidebar">
-    <div class="sidebar_b">
-      <div class="lcon_03">
-        <img src="./images/lcon_03.png" class="img-responsive"/>
-      </div>
-      <div class="color">
-        BASKET &
-        <br>CHECKOUT</div>
+    <div class="dropdown basket-checkout">
+      <a id="dLabel" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="sidebar_b">
+          <div class="lcon_03">
+            <img src="./images/lcon_03.png" class="img-responsive"/>
+          </div>
+          <div class="color">
+            BASKET &  
+            <br>CHECKOUT</div>
+        </div>
+      </a>
+      <ul class="dropdown-menu basket_cart role="menu" aria-labelledby="dLabel">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
     <div class="sidebar_c">
       <div class="titlea">
@@ -64,7 +74,7 @@
             <input type="password" class="form-control mb13" value="" id="password1" placeholder="Password"/>
             <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password"/>
             <div class="modal_blank"></div>
-            <button type="button" data-dismiss="modal" class="append_parent_log">Reset</button>
+            <button type="reset" class="append_parent_log">Reset</button>
             <button type="button" name="button" id="register"class="append_parent_registration">Remember Me</button>
             <input type="hidden" value="1" name="remember" id="remember" />
           </div>
@@ -74,7 +84,7 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
+<script type="text/javascript">
   $(function(){
       $('.mask a.info').click(function(){
         var thisclass = $(this).attr('online');
@@ -105,8 +115,7 @@
             success:function(data){         
             if(data=="info"){
               $('#myModal').modal('hide');
-              alert('Login successfully');
-              location=location;
+              window.location= "user.php";
             }else{
               alert(data);
             }
@@ -125,8 +134,7 @@
             success:function(data){         
             if(data=="info"){
               $('#myModal').modal('hide');
-              alert('Login successfully');
-              location=location;
+              window.location= "user.php";
             }else{
               alert(data);
             }
