@@ -68,20 +68,28 @@ function update_user_info()
 
     /* 查询会员信息 */
     $time = date('Y-m-d');
-    $sql = 'SELECT u.user_money, u.pay_points, u.user_rank, u.rank_points, '.
+    $sql = 'SELECT u.user_money, u.pay_points, u.user_rank, u.rank_points, u.sex, m.*, mh.model_high ,'.
             ' IFNULL(b.type_money, 0) AS user_bonus, u.last_login, u.last_ip'.
             ' FROM ' .$GLOBALS['ecs']->table('users'). ' AS u ' .
             ' LEFT JOIN ' .$GLOBALS['ecs']->table('user_bonus'). ' AS ub'.
             ' ON ub.user_id = u.user_id AND ub.used_time = 0 ' .
             ' LEFT JOIN ' .$GLOBALS['ecs']->table('bonus_type'). ' AS b'.
             " ON b.type_id = ub.bonus_type_id AND b.use_start_date <= '$time' AND b.use_end_date >= '$time' ".
+            " LEFT JOIN ".$GLOBALS['ecs']->table('model_management')." m ON u.model_id = m.model_id ".
+            " LEFT JOIN ".$GLOBALS['ecs']->table('model_height_management')." mh ON mh.model_id = m.model_high_id ".
             " WHERE u.user_id = '$_SESSION[user_id]'";
+
     if ($row = $GLOBALS['db']->getRow($sql))
     {
         /* 更新SESSION */
         $_SESSION['last_time']   = $row['last_login'];
         $_SESSION['last_ip']     = $row['last_ip'];
         $_SESSION['login_fail']  = 0;
+
+        $_SESSION['Gender']   = $row['sex'];
+        $_SESSION['Body_Shape']     = $row['model_figure'];
+        $_SESSION['Height']       = $row['model_high'];
+        $_SESSION['Skin_color'] = $row['model_complexion'];
 
         /* 取得用户等级和折扣 */
         if ($row['user_rank'] == 0)

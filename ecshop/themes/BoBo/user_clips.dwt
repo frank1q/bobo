@@ -159,30 +159,48 @@
                     <input type="radio" name="sex"  value="1" id="option2" autocomplete="off"> Male
                   </label>
                   <label class="btn sex_choose {$profile.female}">
-                    <input type="radio" name="sex" value="2" id="option3" autocomplete="off">  Female
+                    <input type="radio" name="sex"  value="2" id="option3" autocomplete="off">  Female
                   </label>
                 </div>
               </div>
               <div class="figure_content">
                 Skin color
-                <div class="figure_skin">
-                  <img src="./images/color01.png" class="img-responsive" />
-                </div>
+                  <div class="btn-group gender" data-toggle="buttons">
+                    <label class="btn complexion BC5C5449 {$profile.cpl_1}">
+                      <input type="radio" name="complexion"  value="1" id="complexion1" autocomplete="off">
+                    </label>
+                    <label class="btn complexion BCB6A48D {$profile.cpl_2}">
+                      <input type="radio" name="complexion"  value="2" id="complexion2" autocomplete="off">
+                    </label>
+                    <label class="btn complexion BCEFE3CB {$profile.cpl_3}">
+                      <input type="radio" name="complexion"  value="3" id="complexion3" autocomplete="off">
+                    </label>
+                    <label class="btn complexion BCFAEFE1 {$profile.cpl_4}">
+                      <input type="radio" name="complexion"  value="4" id="complexion4" autocomplete="off">
+                    </label>
+                  </div>
               </div>
               <div class="figure_content">
                 Height
                 <select class="figure_height" name="height">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  
+                  {foreach from=$model_height item=height}
+                  <option value="{$height.model_id}" <!-- {if $height.model_id eq $profile.high_id} --> selected="selected"<!-- {/if} --> >{$height.model_high}</option>  
+                  {/foreach}
                 </select>
               </div>
               <div class="figure_content">
                 Body Shape
-                <div class="figure_skin">
-                  <img src="./images/user-center-2_03.png" class="img-responsive" />
+                <div class="btn-group gender" data-toggle="buttons">
+                  <label class="btn model_figure  {$profile.fig_1}">
+                    <input type="radio" name="figure"  value="1" id="figure1" autocomplete="off"> - Size
+                  </label>
+                  <label class="btn model_figure  {$profile.fig_2}">
+                    <input type="radio" name="figure"  value="2" id="figure2" autocomplete="off"> Medium
+                  </label>
+                  <label class="btn model_figure {$profile.fig_3}">
+                    <input type="radio" name="figure"  value="3" id="figure3" autocomplete="off"> + Size
+                  </label>
                 </div>
               </div>
             </div>
