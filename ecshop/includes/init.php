@@ -169,6 +169,8 @@ define('MY_SEX', select_sex());
 define('MY_SKIN', select_skin());
 define('MY_SHAPE', select_shape());
 define('MY_HEIGHT', select_height());
+$arr = online_wear();
+// dump($arr);
 // 设置页面标题
 if(MY_SEX==1){
     $sex_title = 'Male Reception';

@@ -4,10 +4,14 @@
               <img src="images/model/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="trousers z-index50">
+                  <img src="images/model/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+
             </div>
             <div class="coat z-index100">
+                  <img src="images/model/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="underwear z-index10">
+                  <img src="images/model/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
           </div>
         </div>
@@ -102,6 +106,19 @@
         }else{
           srcObj.append('<img src="'+thissrc+'"  class="img-responsive" />');
         }
+        /*ajax*/
+        $.ajax({
+              type:'GET',
+              url:"online_wear.php",
+              data:{goods_id:goods_id,part_class:thisclass},
+              success:function(data){
+              //alert(data);
+                if(data==0){
+                  alert('Wear Failed');
+                }
+            }
+          });
+        /*End ajax*/
       })
     
     $('#submit_login').click(function(){
@@ -164,10 +181,14 @@
       /*End ajax*/
     });
   })
-
-
+  $("img").error(function() { 
+  $(this).remove(); 
+  });
   </script>
 <!-- /Modal -->
+
+
+
 
 </body>
 </html>

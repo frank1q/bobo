@@ -119,6 +119,26 @@ function select_height(){
     return $Height;
 }
 
+/**
+ * 获取用户目前穿上的哪个衣服
+ *
+ * @access  public
+ * @return  array
+ */
+
+function online_wear(){
+    if(!isset($_SESSION['user_id']) && !$_SESSION['user_id']){
+        return false;
+    }
+    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = '.$_SESSION['user_id'];
+    $arr =  $GLOBALS['db']->getAll($sql);
+    $res = array();
+    foreach ($arr as $key => $value) {
+        $newKey = $value['part_class'];
+        $res[$newKey] = $value;
+    }
+    return $res;
+}
 
 
 /**
@@ -1793,6 +1813,12 @@ function assign_template($ctype = '', $catlist = array())
         $searchkeywords = array();
     }
     $smarty->assign('searchkeywords', $searchkeywords);
+    // 用户已穿上的数据
+    $arrWear = online_wear();
+    // dump($arrWear);
+    $smarty->assign('arrWear',  online_wear());
+
+
 }
 
 /**
@@ -2153,6 +2179,7 @@ function get_navigator($ctype = '', $catlist = array())
  */
 function license_info()
 {
+    return '';
     if($GLOBALS['_CFG']['licensed'] > 0)
     {
         /* 获取HOST */
@@ -2174,5 +2201,4 @@ function license_info()
         return '';
     }
 }
-
 ?>
