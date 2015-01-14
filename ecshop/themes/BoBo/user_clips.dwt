@@ -208,7 +208,8 @@
         </div>
         <div class="boxF">
           <div class="reset left">
-            Reset
+            
+            <button type="reset">Reset</button>
           </div>
           <div class="submit_form right">
             <button type="submit" name="act" value="edit_profile">

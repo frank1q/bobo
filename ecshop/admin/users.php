@@ -249,7 +249,7 @@ elseif ($_REQUEST['act'] == 'edit')
     }
     else
     {
-        $user['sex']            = 0;
+        $user['sex']            = 1;
         $user['pay_points']     = 0;
         $user['rank_points']    = 0;
         $user['user_money']     = 0;

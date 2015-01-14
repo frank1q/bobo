@@ -33,7 +33,7 @@ html{
 .sidebar_b{
   background-image: url(../images/menu_top.png);
   width: 100%;
-  height: 67px;
+  height: 100%;
   float: left;
 }
 .search{
@@ -189,7 +189,7 @@ html{
   float: left;
   background: #e4e4e4;
   width: 100%;
-  height: 621px;
+  height: 640px;
   overflow: hidden;
 }
 .content_lc{
@@ -1470,4 +1470,58 @@ fieldset[disabled] .sex_choose.active {
   width: 34%;
   float: right;
   height: 100%;
+}
+.complexion {
+  color: #fff;
+  border-color: #e4e4e4 ;
+  border-radius: 0; 
+  font-size: 12px;
+  height: 18px;
+  padding: 1px;
+  width: 25%;
+}
+.complexion:focus,
+.complexion.focus,
+.complexion:active,
+.complexion.active,
+.open > .dropdown-toggle.complexion {
+  background-image: url(../images/lcon_16.png);
+} 
+
+.model_figure {
+  border-color: #666666 ;
+  background-color: #555555;
+  border-radius: 0; 
+  font-size: 12px;
+  height: 18px;
+  padding: 1px;
+  width: 33.33%;
+}
+.model_figure:focus,
+.model_figure.focus,
+.model_figure:active,
+.model_figure.active,
+.open > .dropdown-toggle.model_figure {
+  border-color: #e4e4e4;
+  background-color: #bbbbbb;
+  color: #323232;
+}
+.reset button{
+  background: transparent;
+  border: 0;
+}
+.basket-checkout{
+  float: left;
+}
+.basket-checkout{
+  width: 100%;
+  height: 67px;
+}
+.basket_cart{
+  background:#646464; 
+  width: 100%;
+  margin:auto;
+  border-radius:0px;
+  background-clip: inherit;
+  box-shadow: 0px 12px 0px 0px #4A4A4A;
 }

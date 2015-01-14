@@ -133,10 +133,10 @@
             <td class="label">{$lang.category_sex}</td>
             <td>
               {if $goods.goods_sex eq 1}
-                <input type="radio" name="goods_sex" value="0" /> {$lang.category_male}
-                <input type="radio" name="goods_sex" value="1" checked="checked"/> {$lang.category_female}
+                <input type="radio" name="goods_sex" value="1" /> {$lang.category_male}
+                <input type="radio" name="goods_sex" value="2" checked="checked"/> {$lang.category_female}
               {else}
-                <input type="radio" name="goods_sex" value="0" checked="checked"/> {$lang.category_male}
+                <input type="radio" name="goods_sex" value="2" checked="checked"/> {$lang.category_male}
                 <input type="radio" name="goods_sex" value="1" /> {$lang.category_female}
               {/if}
             </td>

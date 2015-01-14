@@ -69,16 +69,18 @@ function edit_profile($profile)
         }
         if (empty($profile['height'])) {
             $profile['height'] = $user_profile['high_id'];
-        }
+        } 
         if (empty($profile['figure'])) {
             $profile['figure'] = $user_profile['figure'];
         }
-
-
+       
         $model = model_details($profile['complexion'],$profile['height'],$profile['figure'],$profile['sex']);
 
         // $GLOBALS['db']->getOne("SELECT user_name FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id='" . $profile['user_id'] . "'");
         if (isset($model)) {
+            
+            $profile['height'] = model_height($profile['height'])[0]['model_high'];
+            
             $cfg['model_id'] = $model;
             $cfg['complexion'] = $profile['complexion'];
             $cfg['height'] = $profile['height'];
@@ -126,7 +128,7 @@ function edit_profile($profile)
     return true;
 }
 /**
- * 获取模特详细休息
+ * 获取相对应模特
  * @param   int     $user_id    用户编号
  * @return  array
  */
@@ -138,7 +140,14 @@ function model_details($complexion,$height,$figure,$sex)
 }
 function model_height($height_id='' )
 {
-    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('model_height_management') ." ";
+    if (!empty($height_id)) {
+        $and = " WHERE model_id = ".$height_id;
+    } else {
+       $and = "";
+    }
+    
+    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('model_height_management') ." $and ";
+
     return $GLOBALS['db']->getAll($sql);
 }
 /**
@@ -158,9 +167,10 @@ function get_profile($user_id)
     $info  = array();
     $infos = array();
     $sql  = "SELECT user_name, birthday, sex, question, answer, rank_points, pay_points,user_money, user_rank,".
-            " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, m.*  ".
+            " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, m.* , mh.model_high ".
             "FROM " .$GLOBALS['ecs']->table('users') . " u ".
             " LEFT JOIN ".$GLOBALS['ecs']->table('model_management')." m ON u.model_id = m.model_id ".
+            " LEFT JOIN ".$GLOBALS['ecs']->table('model_height_management')." mh ON mh.model_id = m.model_high_id ".
             " WHERE u.user_id = '$user_id'";
     $infos = $GLOBALS['db']->getRow($sql);
 

@@ -2066,7 +2066,10 @@ else
 
     /* 取得商品列表，计算合计 */
     $cart_goods = get_cart_goods();
+    
+
     $smarty->assign('goods_list', $cart_goods['goods_list']);
+
     $smarty->assign('total', $cart_goods['total']);
 
     //购物车的描述的格式化
