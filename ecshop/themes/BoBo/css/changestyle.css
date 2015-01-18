@@ -223,11 +223,8 @@
 	.model{
 		width: 122px !important;
 	}
-	.lcon_04{
-		margin-right: 5% !important;
-	}
 	.color{
-		margin-top: 16px !important;
+		margin-top: 14px !important;
 		margin-left: 5% !important;
 		line-height: 10px !important;
 		font-size: 12px !important;
@@ -351,15 +348,22 @@
 	}
 	.lcon_04{
 		width: 25px !important;
+		margin-top: 14px;
 	}
 	.sidebar_b{
 		height: 44px !important;
 		background-image: url(../images/1280/menu_top.png) !important;
 	}
+	.basket-checkout{
+		height: 44px !important;
+	}
 	.designersa{
 		width: 700px !important;
 		height: 463px !important;
 		padding-top: 10px !important;
+	}
+	.find{
+		padding-top: 10px;
 	}
 	.designers_picture{
 		margin-left: 10px !important;
@@ -683,12 +687,32 @@
 		height: 16px;
 		padding: 0px;
 	}
+	.cart_title{
+		font-size: 12px;
+	}
+	.basket_cart li{
+		height: 90px;
+	}
+	.cart_color{
+		height: 18%;
+	}
+	.cart_progress{
+		height: 48%;
+	}
+	.cart_footer_price p{
+		font-size: 15px;
+		line-height: 14px;
+	}
+	.name{
+		margin-top: 10px;
+	}
 }
 
 @media screen and (max-width: 1670px){
 	.content_right{
 		width: 38%  !important;
 	}
+
 }
 @media screen and (max-width: 1620px){
 	.content_right{

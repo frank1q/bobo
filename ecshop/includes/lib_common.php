@@ -4,7 +4,7 @@
  * ECSHOP 公用函数库
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -717,7 +717,7 @@ function get_promotion_info($goods_id = '')
         {
             case GAT_SNATCH: //夺宝奇兵
                 $snatch[$data['act_id']]['act_name'] = $data['act_name'];
-                $snatch[$data['act_id']]['url'] = build_uri('snatch', array('sid' => $data['act_id']));
+                $snatch[$data['act_id']]['url']  = build_uri('snatch', array('sid' => $data['act_id']));
                 $snatch[$data['act_id']]['time'] = sprintf($GLOBALS['_LANG']['promotion_time'], local_date('Y-m-d', $data['start_time']), local_date('Y-m-d', $data['end_time']));
                 $snatch[$data['act_id']]['sort'] = $data['start_time'];
                 $snatch[$data['act_id']]['type'] = 'snatch';
@@ -725,7 +725,7 @@ function get_promotion_info($goods_id = '')
 
             case GAT_GROUP_BUY: //团购
                 $group[$data['act_id']]['act_name'] = $data['act_name'];
-                $group[$data['act_id']]['url'] = build_uri('group_buy', array('gbid' => $data['act_id']));
+                $group[$data['act_id']]['url']  = build_uri('group_buy', array('gbid' => $data['act_id']));
                 $group[$data['act_id']]['time'] = sprintf($GLOBALS['_LANG']['promotion_time'], local_date('Y-m-d', $data['start_time']), local_date('Y-m-d', $data['end_time']));
                 $group[$data['act_id']]['sort'] = $data['start_time'];
                 $group[$data['act_id']]['type'] = 'group_buy';
@@ -733,7 +733,7 @@ function get_promotion_info($goods_id = '')
 
             case GAT_AUCTION: //拍卖
                 $auction[$data['act_id']]['act_name'] = $data['act_name'];
-                $auction[$data['act_id']]['url'] = build_uri('auction', array('auid' => $data['act_id']));
+                $auction[$data['act_id']]['url']  = build_uri('auction', array('auid' => $data['act_id']));
                 $auction[$data['act_id']]['time'] = sprintf($GLOBALS['_LANG']['promotion_time'], local_date('Y-m-d', $data['start_time']), local_date('Y-m-d', $data['end_time']));
                 $auction[$data['act_id']]['sort'] = $data['start_time'];
                 $auction[$data['act_id']]['type'] = 'auction';
@@ -741,7 +741,7 @@ function get_promotion_info($goods_id = '')
 
             case GAT_PACKAGE: //礼包
                 $package[$data['act_id']]['act_name'] = $data['act_name'];
-                $package[$data['act_id']]['url'] = 'package.php#' . $data['act_id'];
+                $package[$data['act_id']]['url']  = 'package.php#' . $data['act_id'];
                 $package[$data['act_id']]['time'] = sprintf($GLOBALS['_LANG']['promotion_time'], local_date('Y-m-d', $data['start_time']), local_date('Y-m-d', $data['end_time']));
                 $package[$data['act_id']]['sort'] = $data['start_time'];
                 $package[$data['act_id']]['type'] = 'package';

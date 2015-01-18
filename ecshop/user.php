@@ -44,7 +44,7 @@ if (empty($_SESSION['user_id']))
                 }
             }
             else
-            {}*/
+            {}*/ 
             header("location: index.php");
             exit;
             if (!empty($_SERVER['QUERY_STRING']))

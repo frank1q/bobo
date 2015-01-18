@@ -4,7 +4,7 @@
  * ECSHOP 商品分类
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -400,6 +400,7 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
         }
     }
     // dump($goodslist);
+
     $smarty->assign('goods_list',       $goodslist);
     $smarty->assign('category',         $cat_id);
     $smarty->assign('script_name', 'category');
@@ -457,7 +458,8 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
     /* 获得商品列表 */
 
     $sql = 'SELECT g.layer_type,g.z_index,g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
-                "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, " .
+                // "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, " .
+                "shop_price, g.promote_price, g.goods_type, " .
                 'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_front_cover, g.front_cover_thumb, g.goods_img ' .
             'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
             'LEFT JOIN ' . $GLOBALS['ecs']->table('member_price') . ' AS mp ' .
@@ -510,6 +512,7 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         {
             $arr[$row['goods_id']]['goods_name']       = $row['goods_name'];
         }
+
         $arr[$row['goods_id']]['z_index']          = $row['z_index'];
         $arr[$row['goods_id']]['layer_type']       = $row['layer_type'];
         $arr[$row['goods_id']]['name']             = $row['goods_name'];

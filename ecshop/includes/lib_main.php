@@ -4,7 +4,7 @@
  * ECSHOP 前台公用函数库
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -1763,6 +1763,9 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('my_height',  MY_HEIGHT);
     $sexArr = array(1=>'m',2=>'f');
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
+
+    $smarty->assign('user_cart_goods',   user_cart_goods());       // 购物车
+
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
     $smarty->assign('points_name',   $GLOBALS['_CFG']['integral_name']);
@@ -2191,27 +2194,94 @@ function user_cart_goods()
         'save_rate'    => 0, // 节省百分比
         'goods_amount' => 0, // 本店售价合计（无格式）
     );
-
+    
     /* 循环、统计 */
-    $sql = "SELECT *, IF(parent_id, parent_id, goods_id) AS pid " .
-            " FROM " . $GLOBALS['ecs']->table('cart') . " " .
-            " WHERE session_id = '" . SESS_ID . "' AND rec_type = '" . CART_GENERAL_GOODS . "'" .
+    $sql = "SELECT c.*, g.shop_price ,  gb.ext_info, gb.act_id, gb.end_time , gb.start_time, IF(c.parent_id, c.parent_id, c.goods_id) AS pid " .
+            " FROM " . $GLOBALS['ecs']->table('cart') . " AS c " .
+            ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON g.goods_id = c.goods_id ' .
+            ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb ON gb.goods_id = c.goods_id ' .
+            " WHERE c.user_id = '" . $_SESSION['user_id'] . "' AND c.rec_type = '" . CART_GENERAL_GOODS . "'" .
             " ORDER BY pid, parent_id";
-    $res = $GLOBALS['db']->query($sql);
 
+    $res = $GLOBALS['db']->query($sql);
     /* 用于统计购物车中实体商品和虚拟商品的个数 */
     $virtual_goods_count = 0;
     $real_goods_count    = 0;
 
     while ($row = $GLOBALS['db']->fetchRow($res))
     {
-        $total['goods_price']  += $row['goods_price'] * $row['goods_number'];
-        $total['market_price'] += $row['market_price'] * $row['goods_number'];
 
-        $row['subtotal']     = price_format($row['goods_price'] * $row['goods_number'], false);
-        $row['goods_price']  = price_format($row['goods_price'], false);
+
+        if (!empty($row['ext_info'])) {
+            $time = gmtime();
+
+            $start_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($time-$row['start_time'])/60/60/24, 0, '.', ''));
+            $end_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($row['end_time']-$row['start_time'])/60/60/24, 0, '.', ''));
+            $row['start_time']  = $start_time;
+            $row['end_time']    = $end_time;
+
+
+            $ext_info = unserialize($row['ext_info']);
+            $price_ladder = $ext_info['price_ladder'];
+
+            if (!is_array($price_ladder) || empty($price_ladder))
+            {
+                $row['last_price'] = price_format(0);
+            }
+            else
+            {
+                foreach ($price_ladder AS $amount_price)
+                {
+                    $price_ladder[$amount_price['amount']] = $amount_price['price'];
+                }
+            }
+            ksort($price_ladder);
+            $row['shop_price'] = end($price_ladder);
+
+            $row['ext_info']   = $ext_info;
+
+            $sql = "SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods " .
+            "FROM " . $GLOBALS['ecs']->table('order_info') . " AS o, " .
+                $GLOBALS['ecs']->table('order_goods') . " AS g " .
+            " WHERE o.order_id = g.order_id " .
+            "AND o.extension_code = 'group_buy' " .
+            "AND o.extension_id = '$row[act_id]' " .
+            "AND g.goods_id = '$row[goods_id]' " .
+            "AND (order_status = '" . OS_CONFIRMED . "' OR order_status = '" . OS_UNCONFIRMED . "')";
+            $stat = $GLOBALS['db']->getRow($sql);
+            if ($stat['total_order'] == 0)
+            {
+                $stat['total_goods'] = 0;
+            }
+            /* 取得有效订单数和有效商品数 */
+            $deposit = floatval($deposit);
+            if ($deposit > 0 && $stat['total_order'] > 0)
+            {
+                $sql .= " AND (o.money_paid + o.surplus) >= '$deposit'";
+                $row = $GLOBALS['db']->getRow($sql);
+                $stat['valid_order'] = $row['total_order'];
+                if ($stat['valid_order'] == 0)
+                {
+                    $stat['valid_goods'] = 0;
+                }
+                else
+                {
+                    $stat['valid_goods'] = $row['total_goods'];
+                }
+            }
+            else
+            {
+                $stat['valid_order'] = $stat['total_order'];
+                $stat['valid_goods'] = $stat['total_goods'];
+            }
+                $row['group_buy']=$stat;
+            $row['customers_progress'] =$row['group_buy']['valid_goods']/$row['ext_info']['restrict_amount']*100;
+        }
+        $total['goods_price']  += $row['shop_price'] ;
+        $total['market_price'] += $row['market_price'];        
+        $row['subtotal']     = price_format($row['shop_price'], false);
+        $row['goods_price']  = price_format($row['shop_price'], false);
         $row['market_price'] = price_format($row['market_price'], false);
-
         /* 统计实体商品和虚拟商品的个数 */
         if ($row['is_real'])
         {

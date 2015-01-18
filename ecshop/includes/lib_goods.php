@@ -4,7 +4,7 @@
  * ECSHOP 商品相关函数库
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -971,6 +971,7 @@ function spec_price($spec)
 function group_buy_info($group_buy_id, $current_num = 0)
 {
     /* 取得团购活动信息 */
+
     $group_buy_id = intval($group_buy_id);
     $sql = "SELECT *, act_id AS group_buy_id, act_desc AS group_buy_desc, start_time AS start_date, end_time AS end_date " .
             "FROM " . $GLOBALS['ecs']->table('goods_activity') .
@@ -985,6 +986,7 @@ function group_buy_info($group_buy_id, $current_num = 0)
 
     $ext_info = unserialize($group_buy['ext_info']);
     $group_buy = array_merge($group_buy, $ext_info);
+
 
     /* 格式化时间 */
     $group_buy['formated_start_date'] = local_date('Y-m-d H:i', $group_buy['start_time']);
@@ -1067,6 +1069,7 @@ function group_buy_stat($group_buy_id, $deposit)
            "WHERE act_id = '$group_buy_id' " .
            "AND act_type = '" . GAT_GROUP_BUY . "'";
     $group_buy_goods_id = $GLOBALS['db']->getOne($sql);
+
     /* 取得总订单数和总商品数 */
     $sql = "SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods " .
             "FROM " . $GLOBALS['ecs']->table('order_info') . " AS o, " .
@@ -1081,7 +1084,6 @@ function group_buy_stat($group_buy_id, $deposit)
     {
         $stat['total_goods'] = 0;
     }
-
     /* 取得有效订单数和有效商品数 */
     $deposit = floatval($deposit);
     if ($deposit > 0 && $stat['total_order'] > 0)
