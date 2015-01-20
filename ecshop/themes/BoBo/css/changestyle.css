@@ -352,7 +352,6 @@
 	}
 	.sidebar_b{
 		height: 44px !important;
-		background-image: url(../images/1280/menu_top.png) !important;
 	}
 	.basket-checkout{
 		height: 44px !important;
@@ -364,6 +363,9 @@
 	}
 	.find{
 		padding-top: 10px;
+	}
+	.find input{
+		height: 24px;
 	}
 	.designers_picture{
 		margin-left: 10px !important;
@@ -582,7 +584,7 @@
   		line-height: 12px !important;
 	}
 	.facebook_c{
-		height: 450px !important;
+		height: 426px !important;
 	}
 	.before h3{
 		width: 171px !important;
@@ -690,7 +692,10 @@
 	.cart_title{
 		font-size: 12px;
 	}
-	.basket_cart li{
+	.basket_cart{
+		height: 545px;
+	}
+	.cart_main li{
 		height: 90px;
 	}
 	.cart_color{
@@ -705,6 +710,28 @@
 	}
 	.name{
 		margin-top: 10px;
+	}
+	.cart_main > div{
+		margin-bottom: 10px;
+	}
+	.cart_footer_title{
+		font-size: 12px;
+		line-height: 11px;
+	}
+	.cart_footer_content{
+		line-height: 13px;
+	}
+	.cart_footer_content p{
+		width: 80%;
+	}
+	.cart_footer_content input{
+		height: 20px;	
+	}
+	.cart_footer_content h3{
+		font-size: 18px;
+	}
+	.Page{
+		left :26%;
 	}
 }
 

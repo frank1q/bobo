@@ -141,6 +141,91 @@
                 </div>
               </div>
             </div>
+             <div class="panel panel-default">
+              <div class="getintouch_content_title">
+                <h5 class="panel-title">
+                  <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                   <span class="modified">+</span> Delivery address
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                <div class="panel-body">
+                  <div class="address">
+                    <!-- {foreach from=$consignee_list item=consignee key=sn} -->
+                      <div class="panelhalf">
+                        <div class="paneltitle">{$lang.country_province}：</div>
+                        <div class="panelinput">
+                          <select name="country" id="selCountries_{$sn}" onchange="region.changed(this, 1, 'selProvinces_{$sn}')">
+                            <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
+                            <!-- {foreach from=$country_list item=country} -->                      
+                            <option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+                            <!-- {/foreach} --> </select>
+                          <select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
+                            <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+                            <!-- {foreach from=$province_list.$sn item=province} -->                      
+                            <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+                            <!-- {/foreach} --> </select>
+                          <select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
+                            <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+                            <!-- {foreach from=$city_list.$sn item=city} -->                      
+                            <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+                            <!-- {/foreach} --> </select>
+                          <select name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if}>
+                            <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+                            <!-- {foreach from=$district_list.$sn item=district} -->                      
+                            <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+                            <!-- {/foreach} --> </select>
+                        </div>
+                      </div>
+                      <div class="panelhalf">
+                        <div class="paneltitle">{$lang.consignee_name}：</div>
+                        <div class="panelinput">
+                          <input name="consignee" type="text" class="form-control" id="consignee_{$sn}" value="{$consignee.consignee|escape}" />
+                        </div>
+                      </div>
+                      <div class="panelhalf">
+                        <div class="paneltitle">{$lang.email_address}：</div>
+                        <div class="panelinput">
+                          <input name="email" type="text" class="form-control" id="email_{$sn}" value="{$consignee.email|escape}" />
+                        </div>
+                      </div>
+                      <div class="panelhalf">
+                        <div class="paneltitle">{$lang.detailed_address}：</div>
+                        <div class="panelinput">
+                          <input name="address" type="text" class="form-control" id="address_{$sn}" value="{$consignee.address|escape}" />
+                        </div>
+                      </div>
+                      <div class="panelhalf">
+                        <div class="paneltitle">{$lang.postalcode}：</div>
+                        <div class="panelinput">
+                          <input name="zipcode" type="text" class="form-control" id="zipcode_{$sn}" value="{$consignee.zipcode|escape}" />
+                        </div>
+                      </div>
+                      <div class="panelhalf">
+                        <div class="paneltitle">{$lang.phone}：</div>
+                        <div class="panelinput">
+                          <input name="tel" type="text" class="form-control" id="tel_{$sn}" value="{$consignee.tel|escape}" />
+                        </div>
+                      </div>
+                      <div class="panelhalf">
+                        <div class="paneltitle">&nbsp;</div>
+                        <div class="panelinput">
+                          <!-- {if $consignee.consignee && $consignee.email} -->                  
+                            <button type="submit" name="submit"  class="append_parent_log">{$lang.confirm_edit}</button>
+                            <!-- <button name="button" type="button"  onclick="if (confirm('{$lang.confirm_drop_address}'))location.href='user.php?act=drop_consignee&id={$consignee.address_id}'"  class="append_parent_registration" >{$lang.drop}</button>             -->   
+                          <!-- {else} -->                  
+                            <button type="submit" name="submit" class="append_parent_log">{$lang.add_address}</button>                
+                          <!-- {/if} -->                  
+                            <input type="hidden" name="act" value="act_edit_address" />                  
+                            <input name="address_id" type="hidden" value="{$consignee.address_id}" />
+                        </div>
+                      </div>
+                    <!-- {/foreach} -->
+                  </div>    
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="boxR">
@@ -208,7 +293,6 @@
         </div>
         <div class="boxF">
           <div class="reset left">
-            
             <button type="reset">Reset</button>
           </div>
           <div class="submit_form right">
@@ -323,3 +407,36 @@
     };
   })
 </script>
+
+
+
+
+
+
+
+
+
+<select name="country" id="selCountries_{$sn}" onchange="region.changed(this, 1, 'selProvinces_{$sn}')">
+  <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
+  <!-- {foreach from=$country_list item=country} -->                      
+  <option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+  <!-- {/foreach} -->
+</select>
+<select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')">
+  <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+  <!-- {foreach from=$province_list.$sn item=province} -->                      
+  <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+  <!-- {/foreach} -->
+</select>
+<select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')">
+  <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+  <!-- {foreach from=$city_list.$sn item=city} -->                      
+  <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+  <!-- {/foreach} -->
+</select>
+<select name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if}>
+  <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+  <!-- {foreach from=$district_list.$sn item=district} -->                      
+  <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+  <!-- {/foreach} -->
+</select>

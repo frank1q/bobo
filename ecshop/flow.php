@@ -1811,8 +1811,6 @@ elseif ($_REQUEST['step'] == 'drop_goods')
 {
     $rec_id = intval($_GET['id']);
     flow_drop_cart_goods($rec_id);
-
-    ecs_header("Location: flow.php\n");
     exit;
 }
 

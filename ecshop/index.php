@@ -36,7 +36,6 @@ if(($ua == '' || preg_match($uachar, $ua))&& !strpos(strtolower($_SERVER['REQUES
     }
 
 }
-
 /*------------------------------------------------------ */
 //-- Shopex系统地址转换
 /*------------------------------------------------------ */
@@ -130,7 +129,6 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
 
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
-// var_dump(index_get_group_buy()[0]);
     /* 首页主广告设置 */
     $smarty->assign('index_ad',     $_CFG['index_ad']);
     if ($_CFG['index_ad'] == 'cus')
@@ -380,5 +378,6 @@ function index_get_links()
 
     return $links;
 }
+
 
 ?>

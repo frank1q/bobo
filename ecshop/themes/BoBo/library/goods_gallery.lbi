@@ -12,10 +12,11 @@
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-            <img src="images/model/model2.png" class="img-responsive" />
-        </div>
+        <!-- {foreach from=$pictures item=picture name=no}-->
+          <div class="swiper-slide">
+              <img src="{$picture.img_url}" class="img-responsive" />
+          </div>
+        <!--{/foreach}-->
         <div class="swiper-slide">
             <img src="images/model/model2.png" class="img-responsive" />
         </div>
@@ -42,6 +43,7 @@
     </div>
   </div>
   <div class="pagination"></div>
+
 <script>
 $('.sliderPageNext').click(function(){
     mySwiper.swipeNext();
@@ -55,8 +57,4 @@ var mySwiper = new Swiper('.swiper-container',{
   slidesPerView: 3,
   watchActiveIndex: true,
 });
-
-
-
-
 </script>

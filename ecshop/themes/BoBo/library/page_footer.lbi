@@ -18,7 +18,9 @@
     <div class="panel-group" id="accordiona" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingSix">
+        {if $smarty.session.user_id gt 0}
           <a data-toggle="collapse" data-parent="#accordiona" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+        {/if}
             <div class="basket-checkout">
               <div class="sidebar_b">
                 <div class="lcon_03">
@@ -33,52 +35,111 @@
           </a>
         </div>
         <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-          <div class="panel-body basket_cart">
-            <!--{foreach from=$user_cart_goods.goods_list item=user_cart}-->
-            <div >
-              <div class="cart_image">
-                <img src="{$user_cart.goods_thumb}" class="img-responsive"/>
-              </div>
-              <div class="cart_content">
-                <div class="cart_top">
-                  <p>{$user_cart.goods_name}</p>
-                   <div class="cart_right">
-                    <button type="button" class="close">
-                      <img src="./images/lcon_17.png" class="img-responsive"/>
-                    </button>
+          <div class="basket_cart">
+            <div class="cart_main">
+              <!--{foreach from=$user_cart_goods.goods_list item=user_cart}-->
+              <div id="cart_{$user_cart.rec_id}">
+                <div class="cart_image">
+                  <img src="{$user_cart.goods_thumb}" class="img-responsive"/>
+                </div>
+                <div class="cart_content">
+                  <div class="cart_top">
+                    <p>{$user_cart.goods_name}</p>
+                     <div class="cart_right">
+                      <button type="button" class="close cart_delete" value="{$user_cart.rec_id}">
+                        <img src="./images/lcon_17.png" class="img-responsive"/>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="cart_color">
+                    <div class="E55"></div><p>XS</p>
+                  </div>
+                  <div class="cart_progress">
+                    <!-- {if $user_cart.ext_info} -->
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$user_cart.customers_progress}%;">
+                        </div>
+                      </div>
+                      <div class="cart_detail">
+                        <div>
+                          <p class='cart_title'>{$user_cart.start_time}/{$user_cart.end_time}</p>
+                          <p class='cart_footer_detail'>days to go</p>
+                        </div>
+                        <div>
+                          <p class='cart_title'>{$user_cart.customers_progress}%</p>
+                          <p class='cart_footer_detail'>ready</p>
+                        </div>
+                        <div>
+                          <p class='cart_title'>{$user_cart.market_price}</p>
+                          <p class='cart_footer_detail'>Future Price</p>
+                        </div>
+                      </div>
+                    <!-- {/if} -->
+                  </div>
+                  <div class="cart_footer_price">
+                    <p>{$user_cart.goods_price}</p>
                   </div>
                 </div>
-                <div class="cart_color">
-                  <div class="E55"></div><p>XS</p>
-                </div>
-                <div class="cart_progress">
-                  <!-- {if $user_cart.ext_info} -->
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$user_cart.customers_progress}%;">
-                      </div>
-                    </div>
-                    <div class="cart_detail">
-                      <div>
-                        <p class='cart_title'>{$user_cart.start_time}/{$user_cart.end_time}</p>
-                        <p class='cart_footer_detail'>days to go</p>
-                      </div>
-                      <div>
-                        <p class='cart_title'>{$user_cart.customers_progress}%</p>
-                        <p class='cart_footer_detail'>ready</p>
-                      </div>
-                      <div>
-                        <p class='cart_title'>{$user_cart.market_price}</p>
-                        <p class='cart_footer_detail'>Future Price</p>
-                      </div>
-                    </div>
-                  <!-- {/if} -->
-                </div>
-                <div class="cart_footer_price">
-                  <p>{$user_cart.goods_price}</p>
-                </div>
+              </div>
+              <!--{/foreach}-->
+            </div>
+            <div class="cart_footer">
+
+              
+              <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+                <tbody>
+                 <!-- {foreach from=$consignee_list item=consignee key=sn} -->
+                  <tr>
+                    <td class="cart_footer_title">TOTAL:</td>
+                    <td class="cart_footer_content">
+                        <h3>{$user_cart_goods.total.goods_price}</h3>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cart_footer_title">Deliver to:</td>
+                    <td class="cart_footer_content">
+                      <p>
+                        {$consignee.address|escape}
+                      </p>
+                       
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cart_footer_title">Contact:</td>
+                    <td class="cart_footer_content">
+                      <p>
+                        {$consignee.consignee|escape} | {$consignee.tel|escape}
+                      </p>
+                       
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cart_footer_title">Payment method:</td>
+                    <td class="cart_footer_content">
+                      <p>
+                        VISA Debit | B CHEN | xxxx xxxx xxxx 5974
+                      </p>
+                       
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cart_footer_title">Password:</td>
+                    <td class="cart_footer_content">
+                       <input type="password"  class="form-control"/>
+                    </td>
+                  </tr>
+                <!-- {/foreach} -->
+                </tbody>
+              </table>
+              <div class="cart_footer_submit">
+                <button type="button" class="append_parent_log">
+                  Help
+                </button>
+                <button type="button" class="append_parent_registration">
+                  Checkout
+                </button>
               </div>
             </div>
-            <!--{/foreach}-->
           </div>
         </div>
       </div>
@@ -128,18 +189,18 @@
           </form>
           <div class="modal_line"></div>
           <form role="form" id="formLogin" name="formLogin" action="" method="post" onSubmit="return userLogin()" >
-        <div class="modal_login left">
-          <h3>Signup to BoBo</h3>
-          <div class="modal_input">
-            <input type="email"  name="email" id="email" class="form-control mb13" value="" placeholder="Email Address"/>
-            <input type="password" class="form-control mb13" value="" id="password1" placeholder="Password"/>
-            <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password"/>
-            <div class="modal_blank"></div>
-            <button type="reset" class="append_parent_log">Reset</button>
-            <button type="button" name="button" id="register"class="append_parent_registration">Remember Me</button>
-            <input type="hidden" value="1" name="remember" id="remember" />
-          </div>
-        </div>
+            <div class="modal_login left">
+              <h3>Signup to BoBo</h3>
+              <div class="modal_input">
+                <input type="email"  name="email" id="email" class="form-control mb13" value="" placeholder="Email Address"/>
+                <input type="password" class="form-control mb13" value="" id="password1" placeholder="Password"/>
+                <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password"/>
+                <div class="modal_blank"></div>
+                <button type="reset" class="append_parent_log">Reset</button>
+                <button type="button" name="button" id="register"class="append_parent_registration">Remember Me</button>
+                <input type="hidden" value="1" name="remember" id="remember" />
+              </div>
+            </div>
           </form>
           <button type="button" class="close timesx" data-dismiss="modal" ><img src="./images/login_03.png" alt="" class="img-responsive"/></button>
       </div>
@@ -223,6 +284,21 @@
           }
         });
       /*End ajax*/
+    });
+    $('.cart_delete').click(function(){
+      if(confirm('{$lang.user_cart_delete}')){
+        var rec_id = $(this).val();
+        /*ajax*/
+        $.ajax({
+            type:'GET',
+            url:"flow.php?step=drop_goods",
+            data:{id:rec_id},
+            success:function(data){
+              $('#cart_'+rec_id).hide();
+            }
+          });
+        /*End ajax*/
+      }
     });
   })
 

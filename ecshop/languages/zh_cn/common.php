@@ -158,6 +158,8 @@ $_LANG['collect_existed'] = '该商品已经存在于您的收藏夹中。';
 $_LANG['collect_success'] = '该商品已经成功地加入了您的收藏夹。';
 $_LANG['copyright'] = "&copy; 2005-%s %s 版权所有，并保留所有权利。";
 $_LANG['no_ads_id'] = '没有指定广告的ID以及跳转的URL地址!';
+
+$_LANG['user_cart_delete'] = '您确实要把该商品移出购物车吗？';
 $_LANG['remove_collection_confirm'] = '您确定要从收藏夹中删除选定的商品吗？';
 $_LANG['err_change_attr'] = '没有找到指定的商品或者没有找到指定的商品属性。';
 
