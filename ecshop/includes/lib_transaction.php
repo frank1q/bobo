@@ -78,8 +78,8 @@ function edit_profile($profile)
 
         // $GLOBALS['db']->getOne("SELECT user_name FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id='" . $profile['user_id'] . "'");
         if (isset($model)) {
-            
-            $profile['height'] = model_height($profile['height'])[0]['model_high'];
+            $arr = model_height($profile['height']);
+            $profile['height'] = $arr[0]['model_high'];
             
             $cfg['model_id'] = $model;
             $cfg['complexion'] = $profile['complexion'];
