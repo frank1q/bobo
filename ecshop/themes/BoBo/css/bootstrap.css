@@ -5486,7 +5486,7 @@ a.list-group-item-danger.active:focus {
   text-decoration: none;
   cursor: pointer;
   filter: alpha(opacity=50);
-  opacity: .5;
+
 }
 button.close {
   -webkit-appearance: none;
@@ -5494,6 +5494,8 @@ button.close {
   cursor: pointer;
   background: transparent;
   border: 0;
+  opacity: 1;
+
 }
 .modal-open {
   overflow: hidden;

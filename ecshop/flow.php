@@ -4,7 +4,7 @@
  * ECSHOP 购物流程
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -54,6 +54,8 @@ if ($_REQUEST['step'] == 'add_to_cart')
 {
     include_once('includes/cls_json.php');
     $_POST['goods'] = json_str_iconv($_POST['goods']);
+    
+    
 
     if (!empty($_REQUEST['goods_id']) && empty($_POST['goods']))
     {
@@ -68,6 +70,12 @@ if ($_REQUEST['step'] == 'add_to_cart')
     $result = array('error' => 0, 'message' => '', 'content' => '', 'goods_id' => '');
     $json  = new JSON;
 
+    if ($_SESSION['user_id']==0) {
+        $result['error']   = 1;
+        $result['message'] = $_LANG['user_log_in'];
+        die($json->encode($result));
+    }
+    
     if (empty($_POST['goods']))
     {
         $result['error'] = 1;
@@ -97,10 +105,10 @@ if ($_REQUEST['step'] == 'add_to_cart')
                 $spe_arr[$row['attr_id']]['name']     = $row['attr_name'];
                 $spe_arr[$row['attr_id']]['attr_id']     = $row['attr_id'];
                 $spe_arr[$row['attr_id']]['values'][] = array(
-                                                            'label'        => $row['attr_value'],
-                                                            'price'        => $row['attr_price'],
-                                                            'format_price' => price_format($row['attr_price'], false),
-                                                            'id'           => $row['goods_attr_id']);
+                                                        'label'        => $row['attr_value'],
+                                                        'price'        => $row['attr_price'],
+                                                        'format_price' => price_format($row['attr_price'], false),
+                                                        'id'           => $row['goods_attr_id']);
             }
             $i = 0;
             $spe_array = array();
@@ -129,6 +137,8 @@ if ($_REQUEST['step'] == 'add_to_cart')
         $result['error']   = 1;
         $result['message'] = $_LANG['invalid_number'];
     }
+
+
     /* 更新：购物车 */
     else
     {
@@ -152,7 +162,8 @@ if ($_REQUEST['step'] == 'add_to_cart')
             $result['message']  = $err->last_message();
             $result['error']    = $err->error_no;
             $result['goods_id'] = stripslashes($goods->goods_id);
-            if (is_array($goods->spec))
+            if (is_array(
+                $goods->spec))
             {
                 $result['product_spec'] = implode(',', $goods->spec);
             }
@@ -162,9 +173,11 @@ if ($_REQUEST['step'] == 'add_to_cart')
             }
         }
     }
-
+    
     $result['confirm_type'] = !empty($_CFG['cart_confirm']) ? $_CFG['cart_confirm'] : 2;
-    die($json->encode($result));
+    $json->encode($result);
+    // ecs_header("Location:./goods.php?".$_REQUEST['goods_id']);
+    // exit;
 }
 elseif ($_REQUEST['step'] == 'link_buy')
 {
@@ -1800,8 +1813,6 @@ elseif ($_REQUEST['step'] == 'drop_goods')
 {
     $rec_id = intval($_GET['id']);
     flow_drop_cart_goods($rec_id);
-
-    ecs_header("Location: flow.php\n");
     exit;
 }
 
@@ -1882,8 +1893,8 @@ elseif ($_REQUEST['step'] == 'add_favourable')
 }
 elseif ($_REQUEST['step'] == 'clear')
 {
-    $sql = "DELETE FROM " . $ecs->table('cart') . " WHERE session_id='" . SESS_ID . "'";
-    $db->query($sql);
+    // $sql = "DELETE FROM " . $ecs->table('cart') . " WHERE session_id='" . SESS_ID . "'";
+    // $db->query($sql);
 
     ecs_header("Location:./\n");
 }
@@ -1920,15 +1931,15 @@ elseif ($_REQUEST['step'] == 'validate_bonus')
         $bonus = array();
     }
 
-//    if (empty($bonus) || $bonus['user_id'] > 0 || $bonus['order_id'] > 0)
-//    {
-//        die($_LANG['bonus_sn_error']);
-//    }
-//    if ($bonus['min_goods_amount'] > cart_amount())
-//    {
-//        die(sprintf($_LANG['bonus_min_amount_error'], price_format($bonus['min_goods_amount'], false)));
-//    }
-//    die(sprintf($_LANG['bonus_is_ok'], price_format($bonus['type_money'], false)));
+    //    if (empty($bonus) || $bonus['user_id'] > 0 || $bonus['order_id'] > 0)
+    //    {
+    //        die($_LANG['bonus_sn_error']);
+    //    }
+    //    if ($bonus['min_goods_amount'] > cart_amount())
+    //    {
+    //        die(sprintf($_LANG['bonus_min_amount_error'], price_format($bonus['min_goods_amount'], false)));
+    //    }
+    //    die(sprintf($_LANG['bonus_is_ok'], price_format($bonus['type_money'], false)));
     $bonus_kill = price_format($bonus['type_money'], false);
 
     include_once('includes/cls_json.php');

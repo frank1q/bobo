@@ -156,6 +156,7 @@ $_LANG['collect_existed'] = 'Collected in your favorite.';
 $_LANG['collect_success'] = 'Collected in your favorite successfully.';
 $_LANG['copyright'] = "&copy; 2005-%s %s Copyright, All Rights Reserved.";
 $_LANG['no_ads_id'] = 'No appoint ID of advertisement and a jump URL address!';
+$_LANG['user_cart_delete'] = 'Are you sure you want to send the goods out of the shopping cart?';
 $_LANG['remove_collection_confirm'] = 'Are you sure delete the product from your favorite?';
 $_LANG['err_change_attr'] = 'No such product or no attribute is found.';
 
@@ -178,6 +179,9 @@ $_LANG['tag_cloud_desc'] = 'A tag cloud or word cloud is a visual depiction of u
 $_LANG['invalid_captcha'] = 'Please enter a valid verification code.';
 $_LANG['goods_exists'] = 'Sorry, the same product has existed in your cart.';
 $_LANG['fitting_goods_exists'] = 'Sorry，The accessories in your shopping cart already exists。';
+
+$_LANG['user_log_in'] = 'Please login.';
+
 $_LANG['invalid_number'] = 'Please enter a valid number.';
 $_LANG['not_on_sale'] = 'Sorry, the sales have been overdue.';
 $_LANG['no_basic_goods'] = 'Sorry, there is no basic goods for this product in the cart.';

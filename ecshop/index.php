@@ -4,7 +4,7 @@
  * ECSHOP 首页文件
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -36,7 +36,6 @@ if(($ua == '' || preg_match($uachar, $ua))&& !strpos(strtolower($_SERVER['REQUES
     }
 
 }
-
 /*------------------------------------------------------ */
 //-- Shopex系统地址转换
 /*------------------------------------------------------ */
@@ -126,11 +125,10 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('invoice_list',    index_get_invoice_query());  // 发货查询
     $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
     $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
-    $smarty->assign('group_buy_hot',   index_get_group_buy($hot));      // 团购商品hot
+    $smarty->assign('group_buy_hot',   index_get_group_buy($hot));  // 团购商品hot
 
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
-
     /* 首页主广告设置 */
     $smarty->assign('index_ad',     $_CFG['index_ad']);
     if ($_CFG['index_ad'] == 'cus')
@@ -303,9 +301,9 @@ function index_get_group_buy($hot = '')
     }
     // /* 取得团购活动信息 */
     foreach ($group_buy_list as $key => $value) {
+
        $group_buy_list[$key]['group_buy'] = group_buy_stat($value['group_buy_id'], $value['deposit']);
        $group_buy_list[$key]['customers_progress']= $group_buy_list[$key]['group_buy']['valid_goods']/$group_buy_list[$key]['ext_info']['restrict_amount']*100;
-
     }
 
     return $group_buy_list;
@@ -380,5 +378,6 @@ function index_get_links()
 
     return $links;
 }
+
 
 ?>

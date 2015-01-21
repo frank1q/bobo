@@ -44,7 +44,7 @@ if (empty($_SESSION['user_id']))
                 }
             }
             else
-            {}*/
+            {}*/ 
             header("location: index.php");
             exit;
             if (!empty($_SERVER['QUERY_STRING']))
@@ -1204,7 +1204,7 @@ elseif ($action == 'act_edit_address')
 
     if (update_address($address))
     {
-        show_message($_LANG['edit_address_success'], $_LANG['address_list_lnk'], 'user.php?act=address_list');
+        show_message($_LANG['edit_address_success'], $_LANG['address_list_lnk'],'user.php?act=default','error');
     }
 }
 
@@ -1217,7 +1217,7 @@ elseif ($action == 'drop_consignee')
 
     if (drop_consignee($consignee_id))
     {
-        ecs_header("Location: user.php?act=address_list\n");
+        ecs_header("Location: user.php?act=default\n");
         exit;
     }
     else

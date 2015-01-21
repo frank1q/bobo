@@ -4,7 +4,7 @@
  * ECSHOP 前台公用函数库
  * ============================================================================
  * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.dn0663.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
@@ -1786,6 +1786,27 @@ function assign_template($ctype = '', $catlist = array())
     $sexArr = array(1=>'m',2=>'f');
     // var_dump($_SESSION);
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
+
+    $smarty->assign('user_cart_goods',  user_cart_goods());       // 购物车
+
+    //收货地址
+    $address = user_address();
+    $smarty->assign('real_goods_count',  $address['real_goods_count'] );
+    $smarty->assign('shop_country',      $address['shop_country'] );
+    $smarty->assign('shop_province',     $address['shop_province'] );    
+    $smarty->assign('province_list',     $address['province_list'] );
+    $smarty->assign('address',           $address['address'] );
+    $smarty->assign('city_list',         $address['city_list'] );    
+    $smarty->assign('district_list',     $address['district_list'] );
+    $smarty->assign('currency_format',   $address['currency_format'] );
+    $smarty->assign('integral_scale',    $address['integral_scale'] );
+    $smarty->assign('name_of_region',    $address['name_of_region'] );
+    $smarty->assign('country_list',      $address['country_list'] );
+    $smarty->assign('shop_province_list',$address['shop_province_list'] );
+    $smarty->assign('consignee_list',    $address['consignee_list'] );
+    //End
+
+
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
     $smarty->assign('points_name',   $GLOBALS['_CFG']['integral_name']);
@@ -2204,4 +2225,206 @@ function license_info()
         return '';
     }
 }
+/**
+ * 获得购物车中的商品
+ *
+ * @access  public
+ * @return  array
+ */
+function user_cart_goods()
+{
+    /* 初始化 */
+    $goods_list = array();
+    $total = array(
+        'goods_price'  => 0, // 本店售价合计（有格式）
+        'market_price' => 0, // 市场售价合计（有格式）
+        'saving'       => 0, // 节省金额（有格式）
+        'save_rate'    => 0, // 节省百分比
+        'goods_amount' => 0, // 本店售价合计（无格式）
+    );
+    
+    /* 循环、统计 */
+    $sql = "SELECT c.*, g.shop_price ,  gb.ext_info, gb.act_id, gb.end_time , gb.start_time, IF(c.parent_id, c.parent_id, c.goods_id) AS pid " .
+            " FROM " . $GLOBALS['ecs']->table('cart') . " AS c " .
+            ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON g.goods_id = c.goods_id ' .
+            ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb ON gb.goods_id = c.goods_id ' .
+            " WHERE c.user_id = '" . $_SESSION['user_id'] . "' AND c.rec_type = '" . CART_GENERAL_GOODS . "'" .
+            " ORDER BY pid, parent_id";
+
+    $res = $GLOBALS['db']->query($sql);
+    /* 用于统计购物车中实体商品和虚拟商品的个数 */
+    $virtual_goods_count = 0;
+    $real_goods_count    = 0;
+
+    while ($row = $GLOBALS['db']->fetchRow($res))
+    {
+
+
+        if (!empty($row['ext_info'])) {
+            $time = gmtime();
+
+            $start_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($time-$row['start_time'])/60/60/24, 0, '.', ''));
+            $end_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($row['end_time']-$row['start_time'])/60/60/24, 0, '.', ''));
+            $row['start_time']  = $start_time;
+            $row['end_time']    = $end_time;
+
+
+            $ext_info = unserialize($row['ext_info']);
+            $price_ladder = $ext_info['price_ladder'];
+
+            if (!is_array($price_ladder) || empty($price_ladder))
+            {
+                $row['last_price'] = price_format(0);
+            }
+            else
+            {
+                foreach ($price_ladder AS $amount_price)
+                {
+                    $price_ladder[$amount_price['amount']] = $amount_price['price'];
+                }
+            }
+            ksort($price_ladder);
+            $row['shop_price'] = end($price_ladder);
+
+            $row['ext_info']   = $ext_info;
+
+            $sql = "SELECT COUNT(*) AS total_order, SUM(g.goods_number) AS total_goods " .
+            "FROM " . $GLOBALS['ecs']->table('order_info') . " AS o, " .
+                $GLOBALS['ecs']->table('order_goods') . " AS g " .
+            " WHERE o.order_id = g.order_id " .
+            "AND o.extension_code = 'group_buy' " .
+            "AND o.extension_id = '$row[act_id]' " .
+            "AND g.goods_id = '$row[goods_id]' " .
+            "AND (order_status = '" . OS_CONFIRMED . "' OR order_status = '" . OS_UNCONFIRMED . "')";
+            $stat = $GLOBALS['db']->getRow($sql);
+            if ($stat['total_order'] == 0)
+            {
+                $stat['total_goods'] = 0;
+            }
+            /* 取得有效订单数和有效商品数 */
+            $deposit = floatval($deposit);
+            if ($deposit > 0 && $stat['total_order'] > 0)
+            {
+                $sql .= " AND (o.money_paid + o.surplus) >= '$deposit'";
+                $row = $GLOBALS['db']->getRow($sql);
+                $stat['valid_order'] = $row['total_order'];
+                if ($stat['valid_order'] == 0)
+                {
+                    $stat['valid_goods'] = 0;
+                }
+                else
+                {
+                    $stat['valid_goods'] = $row['total_goods'];
+                }
+            }
+            else
+            {
+                $stat['valid_order'] = $stat['total_order'];
+                $stat['valid_goods'] = $stat['total_goods'];
+            }
+                $row['group_buy']=$stat;
+            $row['customers_progress'] =$row['group_buy']['valid_goods']/$row['ext_info']['restrict_amount']*100;
+        }
+        $total['goods_price']  += $row['shop_price'] ;
+        $total['market_price'] += $row['market_price'];        
+        $row['subtotal']     = price_format($row['shop_price'], false);
+        $row['goods_price']  = price_format($row['shop_price'], false);
+        $row['market_price'] = price_format($row['market_price'], false);
+        /* 统计实体商品和虚拟商品的个数 */
+        if ($row['is_real'])
+        {
+            $real_goods_count++;
+        }
+        else
+        {
+            $virtual_goods_count++;
+        }
+
+        /* 查询规格 */
+        if (trim($row['goods_attr']) != '')
+        {
+            $sql = "SELECT attr_value FROM " . $GLOBALS['ecs']->table('goods_attr') . " WHERE goods_attr_id " .
+            db_create_in($row['goods_attr']);
+            $attr_list = $GLOBALS['db']->getCol($sql);
+            foreach ($attr_list AS $attr)
+            {
+                $row['goods_name'] .= ' [' . $attr . '] ';
+            }
+        }
+        /* 增加是否在购物车里显示商品图 */
+        if (($GLOBALS['_CFG']['show_goods_in_cart'] == "2" || $GLOBALS['_CFG']['show_goods_in_cart'] == "3") && $row['extension_code'] != 'package_buy')
+        {
+            $goods_thumb = $GLOBALS['db']->getOne("SELECT `goods_thumb` FROM " . $GLOBALS['ecs']->table('goods') . " WHERE `goods_id`='{$row['goods_id']}'");
+            $row['goods_thumb'] = get_image_path($row['goods_id'], $goods_thumb, true);
+        }
+        if ($row['extension_code'] == 'package_buy')
+        {
+            $row['package_goods_list'] = get_package_goods($row['goods_id']);
+        }
+        $goods_list[] = $row;
+    }
+    $total['goods_amount'] = $total['goods_price'];
+    $total['saving']       = price_format($total['market_price'] - $total['goods_price'], false);
+    if ($total['market_price'] > 0)
+    {
+        $total['save_rate'] = $total['market_price'] ? round(($total['market_price'] - $total['goods_price']) *
+        100 / $total['market_price']).'%' : 0;
+    }
+    $total['goods_price']  = price_format($total['goods_price'], false);
+    $total['market_price'] = price_format($total['market_price'], false);
+    $total['real_goods_count']    = $real_goods_count;
+    $total['virtual_goods_count'] = $virtual_goods_count;
+
+    return array('goods_list' => $goods_list, 'total' => $total);
+}
+function user_address()
+{
+    include_once(ROOT_PATH . 'includes/lib_transaction.php');
+
+
+    /* 取得国家列表、商店所在国家、商店所在国家的省列表 */
+
+    $address['country_list']   = get_regions();
+    $address['shop_province_list']   = get_regions(1, $_CFG['shop_country']);
+    $user_id = $_SESSION['user_id'];
+    /* 获得用户所有的收货人信息 */
+    $consignee_list = get_consignee_list($_SESSION['user_id']);
+
+    if (count($consignee_list) < 1 && $_SESSION['user_id'] > 0)
+    {
+        /* 如果用户收货人信息的总数小于5 则增加一个新的收货人信息 */
+        $consignee_list[] = array('country' => $_CFG['shop_country'], 'email' => isset($_SESSION['email']) ? $_SESSION['email'] : '');
+    }
+
+    $address['consignee_list']   = $consignee_list;
+
+    //取得国家列表，如果有收货人列表，取得省市区列表
+    foreach ($consignee_list AS $region_id => $consignee)
+    {
+        $consignee['country']  = isset($consignee['country'])  ? intval($consignee['country'])  : 0;
+        $consignee['province'] = isset($consignee['province']) ? intval($consignee['province']) : 0;
+        $consignee['city']     = isset($consignee['city'])     ? intval($consignee['city'])     : 0;
+
+        $province_list[$region_id] = get_regions(1, $consignee['country']);
+        $city_list[$region_id]     = get_regions(2, $consignee['province']);
+        $district_list[$region_id] = get_regions(3, $consignee['city']);
+    }
+
+    /* 获取默认收货ID */
+    $address_id  = $GLOBALS['db']->getOne("SELECT address_id FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id='$user_id'");
+
+    $address['real_goods_count'] =  1;
+    $address['shop_country']     =  $_CFG['shop_country'];
+    $address['shop_province']    =  get_regions(1, $_CFG['shop_country']);
+    $address['province_list']    =  $province_list;
+    $address['address']          =  $address_id;
+    $address['city_list']        =  $city_list;
+    $address['district_list']    =  $district_list;
+    $address['currency_format']  =  $_CFG['currency_format'];
+    $address['integral_scale']   =  $_CFG['integral_scale'];
+    $address['name_of_region']   =  array($_CFG['name_of_region_1'], $_CFG['name_of_region_2'], $_CFG['name_of_region_3'], $_CFG['name_of_region_4']);
+
+    return $address;
+}
+
 ?>
