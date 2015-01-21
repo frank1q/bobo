@@ -1893,8 +1893,8 @@ elseif ($_REQUEST['step'] == 'add_favourable')
 }
 elseif ($_REQUEST['step'] == 'clear')
 {
-    $sql = "DELETE FROM " . $ecs->table('cart') . " WHERE session_id='" . SESS_ID . "'";
-    $db->query($sql);
+    // $sql = "DELETE FROM " . $ecs->table('cart') . " WHERE session_id='" . SESS_ID . "'";
+    // $db->query($sql);
 
     ecs_header("Location:./\n");
 }
