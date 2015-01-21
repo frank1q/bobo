@@ -127,10 +127,12 @@ function select_height(){
  */
 
 function online_wear(){
-    if(!isset($_SESSION['user_id']) && !$_SESSION['user_id']){
-        return false;
+    if(!isset($_SESSION['user_id']) || !$_SESSION['user_id']){
+        $uid =addslashes(SESS_ID);
+    }else{
+        $uid = $_SESSION['user_id'];
     }
-    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = '.$_SESSION['user_id'];
+    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'"';
     $arr =  $GLOBALS['db']->getAll($sql);
     $res = array();
     foreach ($arr as $key => $value) {
@@ -1782,6 +1784,7 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('my_shape',  MY_SHAPE);
     $smarty->assign('my_height',  MY_HEIGHT);
     $sexArr = array(1=>'m',2=>'f');
+    // var_dump($_SESSION);
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);

@@ -9,11 +9,7 @@
 <!-- TemplateEndEditable -->
   <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
-<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
 {* 包含脚本文件 *}
 {insert_scripts files='common.js,index.js'}
 </head>
