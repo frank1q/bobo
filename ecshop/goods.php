@@ -21,6 +21,9 @@ if ((DEBUG_MODE & 2) != 2)
 {
     $smarty->caching = true;
 }
+if (isset($_GET['cartShow'])) {
+    $smarty->assign('cartShow', $_GET['cartShow']);
+}
 
 $affiliate = unserialize($GLOBALS['_CFG']['affiliate']);
 $smarty->assign('affiliate', $affiliate);

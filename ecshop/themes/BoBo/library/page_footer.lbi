@@ -38,7 +38,7 @@
             </div>
           </a>
         </div>
-        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+        <div id="collapseSix" class="panel-collapse collapse {if $cartShow} in {/if} " role="tabpanel" aria-labelledby="headingSix">
           <div class="basket_cart">
             <div class="cart_main">
               <!--{foreach from=$user_cart_goods.goods_list item=user_cart}-->
@@ -163,12 +163,13 @@
             </div>
           </a>
         </div>
-        <div id="collapseSeven" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSeven" aria-expanded="true">
+        <div id="collapseSeven" class="panel-collapse collapse {if !$cartShow} in {/if}" role="tabpanel" aria-labelledby="headingSeven" aria-expanded="true">
           <div class="panel-body">
                {insert name='member_info'}
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -321,6 +322,7 @@
   $("img").error(function() { 
   $(this).remove(); 
   });
+
 </script>
 <!-- /Modal -->
 

@@ -175,9 +175,9 @@ if ($_REQUEST['step'] == 'add_to_cart')
     }
     
     $result['confirm_type'] = !empty($_CFG['cart_confirm']) ? $_CFG['cart_confirm'] : 2;
-    $json->encode($result);
-    // ecs_header("Location:./goods.php?".$_REQUEST['goods_id']);
-    // exit;
+
+    $result['gid'] = $goods->goods_id;
+    die($json->encode($result));
 }
 elseif ($_REQUEST['step'] == 'link_buy')
 {

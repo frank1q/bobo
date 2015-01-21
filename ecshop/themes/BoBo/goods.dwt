@@ -100,7 +100,9 @@
 
 {insert_scripts files='transport.js'}
 <script type="text/javascript">
-var process_request = "{$lang.process_request}";
+// var process_request = "{$lang.process_request}";
+var process_request = '';
+
 </script>
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->  
 <script type="text/javascript">
