@@ -663,6 +663,8 @@
 	.panelinput input{
 		height: 17px !important;
 		margin-bottom: 16px !important;
+		padding: 0px 6px;
+		font-size: 12px;
 	}
 	.view {
 		margin-bottom: 22px !important;
@@ -725,13 +727,21 @@
 		width: 80%;
 	}
 	.cart_footer_content input{
+		padding: 0px 6px;
 		height: 20px;	
+		font-size: 12px;
 	}
 	.cart_footer_content h3{
 		font-size: 18px;
 	}
 	.Page{
 		left :26%;
+	}
+	.submit_form button{
+		margin-top: 3%;
+	}
+	.reset{
+		margin-top: 1.5%;
 	}
 }
 

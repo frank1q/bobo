@@ -210,7 +210,7 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
+<script type="text/javascript">
   $(function(){
       $('.mask a.info').click(function(){
         var thisclass = $(this).attr('online');
@@ -321,7 +321,7 @@
   $("img").error(function() { 
   $(this).remove(); 
   });
-  </script>
+</script>
 <!-- /Modal -->
 
 
