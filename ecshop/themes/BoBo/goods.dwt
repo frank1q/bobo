@@ -9,11 +9,11 @@
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
-{* 包含脚本文件 *}
-{insert_scripts files='common.js,index.js'}
+
 </head>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
-
+{* 包含脚本文件 *}
+{insert_scripts files='jquery.json-2.4.js,common.js,index.js'}
 <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 
 
@@ -97,6 +97,7 @@
 
 
 </form>
+
 {insert_scripts files='transport.js'}
 <script type="text/javascript">
 var process_request = "{$lang.process_request}";

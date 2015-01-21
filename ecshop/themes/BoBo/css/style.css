@@ -1356,7 +1356,8 @@ fieldset[disabled] .sex_choose.active {
 .model{
   position: relative;
 }
-.model div{
+.model>div{
+  position: absolute;
   left: 0;
   top: 0;
 }
