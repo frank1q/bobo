@@ -1811,6 +1811,7 @@ elseif ($_REQUEST['step'] == 'update_cart')
 
 elseif ($_REQUEST['step'] == 'drop_goods')
 {
+
     $rec_id = intval($_GET['id']);
     flow_drop_cart_goods($rec_id);
     exit;
@@ -2371,46 +2372,46 @@ function flow_drop_cart_goods($id)
     $row = $GLOBALS['db']->getRow($sql);
     if ($row)
     {
+
         //如果是超值礼包
-        if ($row['extension_code'] == 'package_buy')
-        {
-            $sql = "DELETE FROM " . $GLOBALS['ecs']->table('cart') .
-                    " WHERE session_id = '" . SESS_ID . "' " .
-                    "AND rec_id = '$id' LIMIT 1";
-        }
+        // if ($row['extension_code'] == 'package_buy')
+        // {
+        //     $sql = "DELETE FROM " . $GLOBALS['ecs']->table('cart') .
+        //             " WHERE session_id = '" . SESS_ID . "' " .
+        //             "AND rec_id = '$id' LIMIT 1";
+        // }
 
-        //如果是普通商品，同时删除所有赠品及其配件
-        elseif ($row['parent_id'] == 0 && $row['is_gift'] == 0)
-        {
-            /* 检查购物车中该普通商品的不可单独销售的配件并删除 */
-            $sql = "SELECT c.rec_id
-                    FROM " . $GLOBALS['ecs']->table('cart') . " AS c, " . $GLOBALS['ecs']->table('group_goods') . " AS gg, " . $GLOBALS['ecs']->table('goods'). " AS g
-                    WHERE gg.parent_id = '" . $row['goods_id'] . "'
-                    AND c.goods_id = gg.goods_id
-                    AND c.parent_id = '" . $row['goods_id'] . "'
-                    AND c.extension_code <> 'package_buy'
-                    AND gg.goods_id = g.goods_id
-                    AND g.is_alone_sale = 0";
-            $res = $GLOBALS['db']->query($sql);
-            $_del_str = $id . ',';
-            while ($id_alone_sale_goods = $GLOBALS['db']->fetchRow($res))
-            {
-                $_del_str .= $id_alone_sale_goods['rec_id'] . ',';
-            }
-            $_del_str = trim($_del_str, ',');
+        // //如果是普通商品，同时删除所有赠品及其配件
+        // elseif ($row['parent_id'] == 0 && $row['is_gift'] == 0)
+        // {
+        //     /* 检查购物车中该普通商品的不可单独销售的配件并删除 */
+        //     $sql = "SELECT c.rec_id
+        //             FROM " . $GLOBALS['ecs']->table('cart') . " AS c, " . $GLOBALS['ecs']->table('group_goods') . " AS gg, " . $GLOBALS['ecs']->table('goods'). " AS g
+        //             WHERE gg.parent_id = '" . $row['goods_id'] . "'
+        //             AND c.goods_id = gg.goods_id
+        //             AND c.parent_id = '" . $row['goods_id'] . "'
+        //             AND c.extension_code <> 'package_buy'
+        //             AND gg.goods_id = g.goods_id
+        //             AND g.is_alone_sale = 0";
+        //     $res = $GLOBALS['db']->query($sql);
+        //     $_del_str = $id . ',';
+        //     while ($id_alone_sale_goods = $GLOBALS['db']->fetchRow($res))
+        //     {
+        //         $_del_str .= $id_alone_sale_goods['rec_id'] . ',';
+        //     }
+        //     $_del_str = trim($_del_str, ',');
 
-            $sql = "DELETE FROM " . $GLOBALS['ecs']->table('cart') .
-                    " WHERE session_id = '" . SESS_ID . "' " .
-                    "AND (rec_id IN ($_del_str) OR parent_id = '$row[goods_id]' OR is_gift <> 0)";
-        }
+        //     $sql = "DELETE FROM " . $GLOBALS['ecs']->table('cart') .
+        //             " WHERE session_id = '" . SESS_ID . "' " .
+        //             "AND (rec_id IN ($_del_str) OR parent_id = '$row[goods_id]' OR is_gift <> 0)";
+        // }
 
         //如果不是普通商品，只删除该商品即可
-        else
-        {
+        // else
+        // {
             $sql = "DELETE FROM " . $GLOBALS['ecs']->table('cart') .
-                    " WHERE session_id = '" . SESS_ID . "' " .
-                    "AND rec_id = '$id' LIMIT 1";
-        }
+                    " WHERE rec_id = '$id' LIMIT 1 ";
+        // }
 
         $GLOBALS['db']->query($sql);
     }
