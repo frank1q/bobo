@@ -24,6 +24,8 @@
         <div class="panel-heading" role="tab" id="headingSix">
         {if $smarty.session.user_id gt 0}
           <a data-toggle="collapse" data-parent="#accordiona" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+          {else}
+
         {/if}
             <div class="basket-checkout">
               <div class="sidebar_b">
@@ -105,7 +107,6 @@
                       <p>
                         {$consignee.address|escape}
                       </p>
-                       
                     </td>
                   </tr>
                   <tr>
@@ -114,7 +115,6 @@
                       <p>
                         {$consignee.consignee|escape} | {$consignee.tel|escape}
                       </p>
-                       
                     </td>
                   </tr>
                   <tr>

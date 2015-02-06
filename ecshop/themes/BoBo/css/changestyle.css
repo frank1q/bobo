@@ -356,6 +356,9 @@
 	.basket-checkout{
 		height: 44px !important;
 	}
+	.basket-checkout:hover{
+	  background-image: url(../images/1280/menu_top.png);
+	}
 	.designersa{
 		width: 700px !important;
 		height: 463px !important;

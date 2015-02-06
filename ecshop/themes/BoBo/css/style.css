@@ -1520,11 +1520,12 @@ fieldset[disabled] .sex_choose.active {
   border: 0;
 }
 .basket-checkout{
-  float: left;
-}
-.basket-checkout{
   width: 100%;
   height: 67px;
+  float: left;
+}
+.basket-checkout:hover{
+  background-image: url(../images/menu_top.png);
 }
 .basket_cart{
   background:#646464; 
