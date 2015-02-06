@@ -226,7 +226,6 @@ function payment_info($pay_id)
 {
     $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('payment') .
             " WHERE pay_id = '$pay_id' AND enabled = 1";
-
     return $GLOBALS['db']->getRow($sql);
 }
 
@@ -860,7 +859,7 @@ function cart_goods($type = CART_GENERAL_GOODS)
             "market_price, goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, is_shipping, " .
             "goods_price * goods_number AS subtotal " .
             "FROM " . $GLOBALS['ecs']->table('cart') .
-            " WHERE session_id = '" . SESS_ID . "' " .
+            " WHERE user_id = '" . $_SESSION['user_id'] . "' " .
             "AND rec_type = '$type'";
 
     $arr = $GLOBALS['db']->getAll($sql);

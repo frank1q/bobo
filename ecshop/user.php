@@ -476,23 +476,33 @@ elseif ($action == 'act_register')
                     if (!$user->check_email($email)){
                         if (register($username, $password, $email, $other) !== false)
                         {
-                            echo "info";
+                            $cfg = $_CFG['smtp_user'];
+                            if(!empty($cfg) )
+                            {
+                              $sql="select user_id from ".$GLOBALS['ecs']->table('users') ."where user_name = '$username'";
+                              $user_id=$db->getOne($sql);
+                              send_regiter_hash ($user_id);
+                            }
+                            $user->logout();
+                            echo $_LANG['not_validate'];exit;
                         }else{
-                             echo $_LANG['passport_js']['msg_email_format'];
+                             echo $_LANG['passport_js']['msg_email_format'];exit;
                         }
                     }
                     else{
-                        echo $_LANG['msg_email_registered'];
+                        echo $_LANG['msg_email_registered'];exit;
                     };
                 }else{
-                    echo  $_LANG['passport_js']['email_invalid'];
+                    echo  $_LANG['passport_js']['email_invalid'];exit;
                 }
             } else {
-                echo $_LANG['passport_js']['confirm_password_invalid'];
+                echo $_LANG['passport_js']['confirm_password_invalid'];exit;
             }
         } else {
-            echo $_LANG['passport_js']['passwd_balnk'];
+            echo $_LANG['passport_js']['passwd_balnk'];exit;
         }
+
+        // show_message('需要验证邮件才能登录', array($_LANG['back_up_page'], $_LANG['back_home_lnk']), array('user.php', 'index.php'), 'info');
         /* 验证码检查 */
         // if ((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
         // {
@@ -664,10 +674,17 @@ elseif ($action == 'act_login')
             // if ($password==$password_confirm) {
                 if ($user->login($username, $password,isset($_POST['remember'])))
                 {
-                    update_user_info();
-                    recalculate_price();
-                    $ucdata = isset($user->ucdata)? $user->ucdata : '';
-                    echo 'info';
+                    if(is_validated_email($username) > 0)
+                    {
+                        update_user_info();
+                        recalculate_price();
+                        $ucdata = isset($user->ucdata)? $user->ucdata : '';
+                        echo 'info';
+                    }
+                    else{
+                        $user->logout();
+                        echo $_LANG['not_validate'];
+                    }
                     // show_message($_LANG['login_success'] . $ucdata , array($_LANG['back_up_page'], $_LANG['profile_lnk']), array($back_act,'user.php'), 'info');
                 }
                 else
@@ -685,7 +702,9 @@ elseif ($action == 'act_login')
         }
     } else {
         echo $_LANG['msg_un_blank'];
-    }  
+    }
+
+
 }
 
 /* 处理 ajax 的登录请求 */

@@ -80,7 +80,9 @@
         <div class="item_introduction">
           <div class="item_opinion">DESIGNER'S COMMENT</div>
           <div class="item_comment">{$goods.goods_desc}</div>
-          <div class="visitbutton">FiTin & Share</div>
+          <div class="visitbutton">
+            <a href="javascript:void(0);" online="{$goods.layer_type}" goods_id="{$goods.goods_id}" on_index="{$goods.z_index}" class="info">FiTin & Share</a>
+          </div>
           <a href="javascript:addToCart({$goods.goods_id})">
             <div class="chatbutton">Add to basket</div>
           </a>

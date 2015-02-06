@@ -19,6 +19,47 @@ if (!defined('IN_ECS'))
 }
 
 /**
+ * 读取目录下的文件名称
+ *
+ * @access  public
+ * @param $dir目录，$pre，只留该后缀名，如果为空，则都以取
+ * @return  int     0 or 1
+ */
+function getFile($dir,$pre='') {
+    $fileArray=array();
+    if (!file_exists($dir)) return $fileArray;
+    if (false != ($handle = opendir ( $dir ))) {
+        $i=0;
+        while ( false !== ($file = readdir ( $handle )) ) {
+            if($pre==''){
+                if ($file != "." && $file != "..") {
+                    $fileArray[$i]=$file;
+                    if($i==100){
+                        break;
+                    }
+                    $i++;
+                }
+            }
+            else{
+                // var_dump($dir.'/'.$file);
+                if(!is_dir($dir.'/'.$file) && stripos($file, '.'.$pre)!==false){
+                    $fileArray[$i]=$file;
+                    if($i==100){
+                        break;
+                    }
+                    $i++;
+                }
+            }
+        }
+        //关闭句柄
+        closedir ( $handle );
+    }
+    return $fileArray;
+}
+
+
+
+/**
  * 获得所有模块的名称以及链接地址
  *
  * @access      public

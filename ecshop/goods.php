@@ -283,6 +283,7 @@ $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 
 
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
+$smarty->assign('bobo_key',md5('unique_salt_bobo').gmtime());
 $smarty->display('goods.dwt',      $cache_id);
 
 /*------------------------------------------------------ */

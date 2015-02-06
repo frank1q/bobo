@@ -1,17 +1,17 @@
 <div class="content_right">
           <div class="model">
             <div class="modelimg z-index1">
-              <img src="images/model/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+              <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="trousers z-index50">
-                  <img src="images/model/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+                  <img src="model_img/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
 
             </div>
             <div class="coat z-index100">
-                  <img src="images/model/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+                  <img src="model_img/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="underwear z-index10">
-                  <img src="images/model/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+                  <img src="model_img/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
           </div>
         </div>
@@ -118,18 +118,9 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="cart_footer_title">Payment method:</td>
+                    <td class="cart_footer_title">Payment method:<input type="radio" name="paypal" id="paypal" checked="true"> Paypal </td>
                     <td class="cart_footer_content">
-                      <p>
-                        VISA Debit | B CHEN | xxxx xxxx xxxx 5974
-                      </p>
-                       
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="cart_footer_title">Password:</td>
-                    <td class="cart_footer_content">
-                       <input type="password"  class="form-control"/>
+                      
                     </td>
                   </tr>
                 <!-- {/foreach} -->
@@ -139,9 +130,27 @@
                 <button type="button" class="append_parent_log">
                   Help
                 </button>
-                <button type="button" class="append_parent_registration">
-                  Checkout
-                </button>
+                <form action="flow.php?step=done" method="post">
+                <input type="hidden" value="8" name="shipping" />
+                <input type="hidden" value="1" name="need_insure" />
+                <input type="hidden" value="4" name="payment" />
+                <input type="hidden" value="0" name="pack" />
+                <input type="hidden" value="0" name="card" />
+                <input type="hidden" value="" name="card_message" />
+                <input type="hidden" value="0" name="bonus" />
+                <input type="hidden" value="" name="bonus_sn" />
+                <input type="hidden" value="" name="postscript" />
+                <input type="hidden" value="0" name="how_oos" />
+                <input type="hidden" value="102" name="x" />
+                <input type="hidden" value="19" name="y" />
+                <input type="hidden" value="done" name="step" />
+
+
+
+                  <button type="submit" class="append_parent_registration">
+                    Checkout
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -181,7 +190,7 @@
             <div class="modal_login left">
               <h3>Login to BoBo</h3>
               <div class="modal_input">
-                <input type="text"  name="username" id="username"  class="form-control mb13" placeholder="honor-pandora@hotmail.com"/>
+                <input type="text"  name="username" id="username"  class="form-control mb13" placeholder="Your Account"/>
                 <input type="password"  name="password" id="password" class="form-control"  placeholder="******"/>
                 <div class="modal_blank">
                   <a href=""><p>Forgotten your password?</p></a>
@@ -195,14 +204,14 @@
           <div class="modal_line"></div>
           <form role="form" id="formLogin" name="formLogin" action="" method="post" onSubmit="return userLogin()" >
             <div class="modal_login left">
-              <h3>Signup to BoBo</h3>
+              <h3>Sign Up to BoBo</h3>
               <div class="modal_input">
                 <input type="email"  name="email" id="email" class="form-control mb13" value="" placeholder="Email Address"/>
                 <input type="password" class="form-control mb13" value="" id="password1" placeholder="Password"/>
                 <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password"/>
                 <div class="modal_blank"></div>
                 <button type="reset" class="append_parent_log">Reset</button>
-                <button type="button" name="button" id="register"class="append_parent_registration">Remember Me</button>
+                <button type="button" name="button" id="register"class="append_parent_registration">Sign Up</button>
                 <input type="hidden" value="1" name="remember" id="remember" />
               </div>
             </div>
@@ -213,10 +222,10 @@
   </div>
 <script type="text/javascript">
   $(function(){
-      $('.mask a.info').click(function(){
+      $('a.info').click(function(){
         var thisclass = $(this).attr('online');
         var goods_id = $(this).attr('goods_id');
-        var thissrc = 'images/model/'+goods_id+'/{$my_height}-{$my_shape}.png';
+        var thissrc = 'model_img/'+goods_id+'/{$my_height}-{$my_shape}.png';
         var imgObj = $('.'+thisclass+' img');
         var srcObj = $('.'+thisclass);
         if(imgObj.length>0){
@@ -235,7 +244,7 @@
               url:"online_wear.php",
               data:{goods_id:goods_id,part_class:thisclass},
               success:function(data){
-              //alert(data);
+              // alert(data);
                 if(data==0){
                   alert('Wear Failed');
                 }

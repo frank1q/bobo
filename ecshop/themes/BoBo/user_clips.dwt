@@ -37,7 +37,7 @@
                     </div>
                   </div>
                   {/foreach}
-                  <div class="panelhalf">
+                  <div class="">
                     <div class="paneltitle">Day of Birth</div>
                     <div class="panelinput">
                       {html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=-1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}
@@ -56,7 +56,7 @@
               </div>
               <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                  - Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information
+                  <input type="radio" checked="true" value="paypal" /> Paypal
                 </div>
               </div>
             </div>
@@ -102,7 +102,7 @@
               </div>
               <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                 <div class="panel-body">
-                  - Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information- Basic Information
+                  facebook
                 </div>
               </div>
             </div>
@@ -119,19 +119,19 @@
                   <div class="panelhalf">
                     <div class="paneltitle">New Password</div>
                     <div class="panelinput">
-                      <input type="password" name="new_password" class="form-control"/>
+                      <input type="password" name="new_password" class="form-control" autocomplete="false" value=""  placeholder="*******" />
                     </div>
                   </div>
                   <div class="panelhalf">
                     <div class="paneltitle" >Old Password</div>
                     <div class="panelinput">
-                      <input type="password" name="old_password" class="form-control"/>
+                      <input type="password" name="old_password" class="form-control" autocomplete="false" value=""   placeholder="*******"/>
                     </div>
                   </div>
                   <div class="panelhalf">
                     <div class="paneltitle">Confirm Password</div>
                     <div class="panelinput">
-                      <input type="password" name="confirm_password" class="form-control"/>
+                      <input type="password" name="confirm_password" class="form-control" autocomplete="false" value=""   placeholder="*******"/>
                     </div>
                   </div>  
                 </div>
@@ -268,7 +268,7 @@
           </div>
           <div class="submit_form right">
             <button type="submit" name="act" value="edit_profile">
-                Updote Changes
+                Update Changes
             </button>
           </div>
         </div>

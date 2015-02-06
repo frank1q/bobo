@@ -106,6 +106,8 @@ $_LANG['package_price'] = 'Packeage Price：';
 $_LANG['then_old_price'] = 'Then old Price：';
 $_LANG['free_goods'] = 'Free shipping goods';
 
+$_LANG['not_validate'] = 'To activate after landing';
+
 $_LANG['searchkeywords_notice'] = 'Search by more keywords, can be linked by keywords or "AND". Eg. win32 AND unix<br /> Search by part of "+", can be linked by rank or "OR". Eg. win32 OR unix';
 $_LANG['hidden_outstock'] = 'Hide outstock products';
 $_LANG['keywords'] = 'Keywords';

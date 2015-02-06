@@ -31,7 +31,7 @@ document.getElementById("tabbar-div").onmouseout = function(e)
 document.getElementById("tabbar-div").onclick = function(e)
 {
   var obj = Utils.srcElement(e);
-
+  
   if (obj.className == "tab-front" || obj.className == '' || obj.tagName.toLowerCase() != 'span')
   {
     return;
@@ -42,11 +42,11 @@ document.getElementById("tabbar-div").onclick = function(e)
 
     var tables = document.getElementsByTagName("table");
     var spans  = document.getElementsByTagName("span");
-
     for (i = 0; i < tables.length; i ++ )
     {
       if (tables[i].id == objTable)
       {
+
         tables[i].style.display = (Browser.isIE) ? "block" : "table";
       }
       else

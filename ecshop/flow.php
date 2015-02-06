@@ -248,21 +248,27 @@ elseif ($_REQUEST['step'] == 'login')
 
             if ($user->login($_POST['username'], $_POST['password'],isset($_POST['remember'])))
             {
-                update_user_info();  //更新用户信息
-                recalculate_price(); // 重新计算购物车中的商品价格
+                if(is_validated_email($_POST['username']) > 0){
+                    update_user_info();  //更新用户信息
+                    recalculate_price(); // 重新计算购物车中的商品价格
 
-                /* 检查购物车中是否有商品 没有商品则跳转到首页 */
-                $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') . " WHERE session_id = '" . SESS_ID . "' ";
-                if ($db->getOne($sql) > 0)
-                {
-                    ecs_header("Location: flow.php?step=checkout\n");
-                }
-                else
-                {
-                    ecs_header("Location:index.php\n");
-                }
+                    /* 检查购物车中是否有商品 没有商品则跳转到首页 */
+                    $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') . " WHERE session_id = '" . SESS_ID . "' ";
+                    if ($db->getOne($sql) > 0)
+                    {
+                        ecs_header("Location: flow.php?step=checkout\n");
+                    }
+                    else
+                    {
+                        ecs_header("Location:index.php\n");
+                    }
 
-                exit;
+                    exit;
+                }
+                else{
+                    $user->logout();
+                    show_message($_LANG['not_validate'], array($_LANG['back_up_page'], $_LANG['back_home_lnk']), array('flow.phpstep=login', 'index.php'), 'info');
+                }
             }
             else
             {
@@ -292,8 +298,17 @@ elseif ($_REQUEST['step'] == 'login')
             if (register(trim($_POST['username']), trim($_POST['password']), trim($_POST['email'])))
             {
                 /* 用户注册成功 */
-                ecs_header("Location: flow.php?step=consignee\n");
-                exit;
+                // ecs_header("Location: flow.php?step=consignee\n");
+                // exit;
+                $cfg = $_CFG['smtp_user'];
+                if(!empty($cfg) )
+                {
+                    $sql="select user_id from ".$GLOBALS['ecs']->table('users') ."where user_name = '".trim($_POST['username'])."'";
+                    $user_id=$db->getOne($sql);
+                    send_regiter_hash ($user_id);
+                }
+                $user->logout();
+                show_message($_LANG['not_validate'], array($_LANG['back_up_page'], $_LANG['back_home_lnk']), array('flow.php?step=login', 'index.php'), 'info');
             }
             else
             {
@@ -1329,16 +1344,15 @@ elseif ($_REQUEST['step'] == 'done')
 
     /* 取得购物类型 */
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
-
     /* 检查购物车中是否有商品 */
     $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') .
-        " WHERE session_id = '" . SESS_ID . "' " .
+        " WHERE user_id = '" . $_SESSION['user_id'] . "' " .
         "AND parent_id = 0 AND is_gift = 0 AND rec_type = '$flow_type'";
+        // exit;
     if ($db->getOne($sql) == 0)
     {
         show_message($_LANG['no_goods_in_cart'], '', '', 'warning');
     }
-
     /* 检查商品库存 */
     /* 如果使用库存，且下订单时减库存，则减少库存 */
     if ($_CFG['use_storage'] == '1' && $_CFG['stock_dec_time'] == SDT_PLACE)
@@ -1405,7 +1419,6 @@ elseif ($_REQUEST['step'] == 'done')
         'pay_status'      => PS_UNPAYED,
         'agency_id'       => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district']))
         );
-
     /* 扩展信息 */
     if (isset($_SESSION['flow_type']) && intval($_SESSION['flow_type']) != CART_GENERAL_GOODS)
     {
@@ -1478,7 +1491,6 @@ elseif ($_REQUEST['step'] == 'done')
 
     /* 订单中的商品 */
     $cart_goods = cart_goods($flow_type);
-
     if (empty($cart_goods))
     {
         show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
@@ -1495,10 +1507,10 @@ elseif ($_REQUEST['step'] == 'done')
     {
         $order[$key] = addslashes($value);
     }
-
+    // var_dump($cart_goods);
     /* 订单中的总额 */
     $total = order_fee($order, $cart_goods, $consignee);
-
+    
     $order['bonus']        = $total['bonus'];
     $order['goods_amount'] = $total['goods_price'];
     $order['discount']     = $total['discount'];
@@ -1527,6 +1539,7 @@ elseif ($_REQUEST['step'] == 'done')
     if ($order['pay_id'] > 0)
     {
         $payment = payment_info($order['pay_id']);
+
         $order['pay_name'] = addslashes($payment['pay_name']);
     }
     $order['pay_fee'] = $total['pay_fee'];
@@ -1749,7 +1762,6 @@ elseif ($_REQUEST['step'] == 'done')
         }
 
     }
-
     /* 清空购物车 */
     clear_cart($flow_type);
     /* 清除缓存，否则买了商品，但是前台页面读取缓存，商品数量不减少 */

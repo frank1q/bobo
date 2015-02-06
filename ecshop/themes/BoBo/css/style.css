@@ -492,6 +492,7 @@ h2{
   width: 182px;
   height: 100%;
   margin: 0 auto;
+  margin-top: -67px;
 }
 .content_r{
   width: 84%;
@@ -1694,4 +1695,7 @@ fieldset[disabled] .sex_choose.active {
   margin-top: 4%;
   width: 100%;
   float: left;
+}
+.visitbutton>a{
+  color: #fff !important;
 }
