@@ -107,6 +107,8 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
 
     $is_add = $_REQUEST['act'] == 'add'; // 添加还是编辑的标识
     $is_copy = $_REQUEST['act'] == 'copy'; //是否复制
+    $is_edit = $_REQUEST['act'] == 'edit'; //是否复制
+    $smarty->assign('is_edit',$is_edit);
     $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
     if ($code == 'virual_card')
     {
@@ -213,7 +215,11 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         /* 商品信息 */
         $sql = "SELECT * FROM " . $ecs->table('goods') . " WHERE goods_id = '$_REQUEST[goods_id]'";
         $goods = $db->getRow($sql);
-
+        // var_dump($_REQUEST['goods_id']);
+        $smarty->assign('goods_id',$_REQUEST['goods_id']);
+        $imgList = getFile('../model_img/'.$_REQUEST['goods_id'],'png');
+        $smarty->assign('imgList',$imgList);
+        // var_dump($imgList);
         /* 虚拟卡商品复制时, 将其库存置为0*/
         if ($is_copy && $code != '')
         {
@@ -979,7 +985,8 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                 "is_shipping = '$is_shipping', " .
                 "goods_desc = '$_POST[goods_desc]', " .
                 "last_update = '". gmtime() ."', ".
-                "goods_type = '$goods_type' " .
+                "goods_type = '$goods_type' ," .
+                "goods_sex = '$_POST[goods_sex]' " .
                 "WHERE goods_id = '$_REQUEST[goods_id]' LIMIT 1";
     }
     $db->query($sql);
@@ -1095,10 +1102,10 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         }
     }
     /* 处理商品所属性别分类 */
-    if (isset($_POST['goods_sex']))
+/*    if (isset($_POST['goods_sex']))
     {
         $db->query("UPDATE " . $ecs->table('goods') . " SET goods_sex = '".$_POST['goods_sex']."' WHERE goods_id='$goods_id'");
-    }
+    }*/
     /* 处理会员价格 */
     if (isset($_POST['user_rank']) && isset($_POST['user_price']))
     {

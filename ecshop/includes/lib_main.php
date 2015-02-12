@@ -19,6 +19,26 @@ if (!defined('IN_ECS'))
 }
 
 /**
+ * 登陆邮箱验证
+ *
+ * @access  public
+ * @return  int     0 or 1
+ */
+
+function  is_validated_email($username)
+{
+  $sql = "SELECT  is_validated" .
+   " FROM ". $GLOBALS['ecs']->table('users').
+   " WHERE  user_name='" . $username."'";
+ 
+   return $GLOBALS['db']->getOne($sql);
+}
+
+
+
+
+
+/**
  * 选择模特性别，取消性别
  *
  * @access  public
@@ -132,7 +152,7 @@ function online_wear(){
     }else{
         $uid = $_SESSION['user_id'];
     }
-    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'"';
+    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'" and sex = '.MY_SEX;
     $arr =  $GLOBALS['db']->getAll($sql);
     $res = array();
     foreach ($arr as $key => $value) {
@@ -140,6 +160,7 @@ function online_wear(){
         $res[$newKey] = $value;
     }
     return $res;
+    
 }
 
 
@@ -1803,9 +1824,15 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('name_of_region',    $address['name_of_region'] );
     $smarty->assign('country_list',      $address['country_list'] );
     $smarty->assign('shop_province_list',$address['shop_province_list'] );
-    $smarty->assign('consignee_list',    $address['consignee_list'] );
+    foreach ($address['consignee_list'] as $key => $consignee) {
+        if($consignee['address_id']==$address['address']){
+            $consignee_list[0] = $consignee;
+            $smarty->assign('consignee_list',    $consignee_list );
+        }
+    }
+    
     //End
-
+    // var_dump($address['consignee_list']);
 
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
@@ -2423,7 +2450,7 @@ function user_address()
     $address['currency_format']  =  $_CFG['currency_format'];
     $address['integral_scale']   =  $_CFG['integral_scale'];
     $address['name_of_region']   =  array($_CFG['name_of_region_1'], $_CFG['name_of_region_2'], $_CFG['name_of_region_3'], $_CFG['name_of_region_4']);
-
+    // var_dump($address);
     return $address;
 }
 
