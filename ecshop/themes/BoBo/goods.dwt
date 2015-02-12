@@ -55,6 +55,7 @@
         <div class="item_complete_con">{insert name='history'}</div>
       </div>
     </div>
+
     <div class="designer_introduction">
       <div class="item_portrait">
         <p>BY</p> 
@@ -74,6 +75,7 @@
             <img src="./images/color.png" alt="" class="img-responsive"/>  
           </div>
           <div class="itm_size">
+
             <div class="itm_size_coding">L</div>
             <div class="itm_size_coding">M</div>
             <div class="itm_size_coding">S</div>
@@ -81,28 +83,60 @@
             <div class="itm_size_coding">XXS</div>
           </div>
         </div>
-        <div class="item_introduction">
-          <div class="item_opinion">DESIGNER'S COMMENT</div>
+        <div class="item_introduction"> 
+          <!-- {if $promotion} -->
+            <div class="item_opinion">*THIS ITEM IS IN <div class="item_red">BOING (PRE-ORDER) STAGE</div></div><!--{else} -->
+            <div class="item_opinion">DESIGNER'S COMMENT</div>
+          <!-- {/if} -->
           <div class="item_comment">{$goods.goods_desc}</div>
           <div class="visitbutton">
             <a href="javascript:void(0);" online="{$goods.layer_type}" goods_id="{$goods.goods_id}" on_index="{$goods.z_index}" class="info">FiTin & Share</a>
           </div>
           <a href="javascript:addToCart({$goods.goods_id})">
-            <div class="chatbutton">Add to basket</div>
+            <!-- {if $promotion} -->
+              <div class="chatbutton">Pre-order</div>
+            <!--{else} -->
+              <div class="chatbutton">Add to basket</div>
+            <!-- {/if} --> 
           </a>
         <input name="number" type="hidden" id="number" value="1"/>
         </div>
-        <div class="item_guide">
-          <div class="item_size">+ Size Guide</div>
-          <p>Free Standard Shipping</p>
-          <p>for orders over number$30</p>
-        </div>
+        <!-- {if $promotion} -->
+          <div class="item_sizeguide">
+            <img src="./images/progressa.png" class="img-responsive">
+            <div class="ranking">
+              <p>Average Price</p>
+              <h4>$53</h4>
+            </div>
+            <div class="ranking">
+              <p>Total Sales</p>
+              <h4>648</h4>
+            </div>
+            <div class="ranking">
+              <p>30 Days Sales</p>
+              <h4>92</h4>
+            </div>
+            <div class="ranking">
+              <p>BoBo Ranking</p>
+              <h4>52</h4>
+            </div>
+          </div>
+          <div class="item_size">
+            <p>+ Size Guide</p>
+          </div>
+        <!--{else} -->
+          <div class="item_guide">
+            <div class="item_size">+ Size Guide</div>
+            <p>Free Standard Shipping</p>
+            <p>for orders over number$30</p>
+          </div>
+        <!-- {/if} --> 
       </div>
     </div>
   </div>
 
-
 </form>
+
 
 {insert_scripts files='transport.js'}
 <script type="text/javascript">
