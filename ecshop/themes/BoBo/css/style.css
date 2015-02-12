@@ -1526,6 +1526,19 @@ fieldset[disabled] .sex_choose.active {
 .basket-checkout:hover{
   background-image: url(../images/menu_top.png);
 }
+#text{
+  display:block;
+  width:300px;
+  cursor:pointer;
+  height:20px;
+  border:solid 1px #CCC;
+}
+#menu{
+  display:none;
+  width:300px;
+  height:100px;
+  border:solid 1px #CCC;
+}
 .basket_cart{
   background:#646464; 
   width: 100%;
