@@ -450,7 +450,7 @@
 	}
 	.ranking p {
 		font-size: 11px !important;
-		-webkit-transform: scale(0.89); 
+		/*-webkit-transform: scale(0.89); */
 		height: 30px !important;
 	}
 	.ranking h4{
@@ -596,7 +596,7 @@
 	.before p{
 		font-size: 12px !important;
 		width: 178px !important;
-		-webkit-transform: scale(0.88); 
+		/*-webkit-transform: scale(0.88); */
 	}
 	.before img{
 	  width: 54px !important;
@@ -746,7 +746,10 @@
 	.reset{
 		margin-top: 1.5%;
 	}
-}
+	div.headimg {
+	top: 105px !important;
+	left: 0px !important;
+	}
 
 @media screen and (max-width: 1670px){
 	.content_right{

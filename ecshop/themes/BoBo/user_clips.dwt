@@ -119,7 +119,7 @@
                   <div class="panelhalf">
                     <div class="paneltitle">New Password</div>
                     <div class="panelinput">
-                      <input type="password" name="new_password" class="form-control" autocomplete="false" value=""  placeholder="*******" />
+                      <input type="password" name="new_password" class="form-control"  placeholder="*******" />
                     </div>
                   </div>
                   <div class="panelhalf">
@@ -190,6 +190,7 @@
                           <!-- {/if} -->                  
                             <input type="hidden" name="act" value="act_edit_address" />                  
                             <input name="address_id" type="hidden" value="{$consignee.address_id}" />
+
                         </div>
                       </div>
                     <!-- {/foreach} -->
@@ -204,8 +205,18 @@
             <img src="./images/picture-right_6.png" alt="" class="img-responsive"/>
           </div>
           <div class="boxR_editor">
-            <div class="boxR_portrait">
+            <div class="boxR_portrait view view-first ">
+              <!-- {if $profile.user_head_img eq ''} -->   
               <img src="./images/user-portrait.png" alt="" class="img-responsive"/>
+              <!-- {else} -->
+              <img src="./headImg/images/{$profile.user_head_img}" alt="" class="img-responsive"/>
+              <!-- {/if} -->
+              
+              <div class="mask">
+                  <div class="editImg">
+                    <a href="headImg/index.php"><button type="button" class="btn editColor" >Edit</button></a>
+                  </div>
+              </div>
             </div>
             <div class="figure">
               <div class="figure_content">

@@ -161,9 +161,8 @@ if ($action == 'default')
     }
     $smarty->assign('extend_info_list', $extend_info_list);
 
-
+    // var_dump($_SESSION);
     $smarty->assign('profile', $user_info);
-
     $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
 
     $record_count = $db->getOne("SELECT COUNT(*) FROM " .$ecs->table('order_info'). " WHERE user_id = '$user_id'");
@@ -172,7 +171,8 @@ if ($action == 'default')
 
     $orders = get_user_orders($user_id, $pager['size'], $pager['start']);
     $merge  = get_user_merge($user_id);
-
+    $smarty->assign('country_list',       get_regions());
+    // var_dump(get_regions());
     $smarty->assign('merge',  $merge);
     $smarty->assign('pager',  $pager);
     $smarty->assign('orders', $orders);

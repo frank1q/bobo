@@ -148,10 +148,15 @@ function select_height(){
 
 function online_wear(){
     if(!isset($_SESSION['user_id']) || !$_SESSION['user_id']){
+        if (!defined('SESS_ID'))
+        {
+            return false;
+        }
         $uid =addslashes(SESS_ID);
     }else{
         $uid = $_SESSION['user_id'];
     }
+
     $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'" and sex = '.MY_SEX;
     $arr =  $GLOBALS['db']->getAll($sql);
     $res = array();
@@ -1800,12 +1805,14 @@ function assign_comment($id, $type, $page = 1)
 function assign_template($ctype = '', $catlist = array())
 {
     global $smarty;
+    // 头像
+    $smarty->assign('user_head_img',  $_SESSION['user_head_img']);
+
     $smarty->assign('my_sex_title',  MY_SEX_TITLE);
     $smarty->assign('my_skin',  MY_SKIN);
     $smarty->assign('my_shape',  MY_SHAPE);
     $smarty->assign('my_height',  MY_HEIGHT);
     $sexArr = array(1=>'m',2=>'f');
-    // var_dump($_SESSION);
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
 
     $smarty->assign('user_cart_goods',  user_cart_goods());       // 购物车

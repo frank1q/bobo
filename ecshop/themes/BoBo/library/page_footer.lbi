@@ -3,9 +3,11 @@
             <div class="modelimg z-index1">
               <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
+            <div class="headimg index999">
+              <img src="headImg/images/{$user_head_img}" class="img-responsive" alt="">
+            </div>
             <div class="trousers z-index50">
                   <img src="model_img/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
-
             </div>
             <div class="coat z-index100">
                   <img src="model_img/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
@@ -94,13 +96,14 @@
               
               <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
                 <tbody>
-                 <!-- {foreach from=$consignee_list item=consignee key=sn} -->
+                
                   <tr>
                     <td class="cart_footer_title">TOTAL:</td>
                     <td class="cart_footer_content">
                         <h3>{$user_cart_goods.total.goods_price}</h3>
                     </td>
                   </tr>
+                   <!-- {foreach from=$consignee_list item=consignee key=sn} -->
                   <tr>
                     <td class="cart_footer_title">Deliver to:</td>
                     <td class="cart_footer_content">
@@ -109,6 +112,7 @@
                       </p>
                     </td>
                   </tr>
+
                   <tr>
                     <td class="cart_footer_title">Contact:</td>
                     <td class="cart_footer_content">
@@ -117,13 +121,14 @@
                       </p>
                     </td>
                   </tr>
+                  <!-- {/foreach} -->
                   <tr>
                     <td class="cart_footer_title">Payment method:<input type="radio" name="paypal" id="paypal" checked="true"> Paypal </td>
                     <td class="cart_footer_content">
                       
                     </td>
                   </tr>
-                <!-- {/foreach} -->
+                
                 </tbody>
               </table>
               <div class="cart_footer_submit">

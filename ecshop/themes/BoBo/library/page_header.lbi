@@ -5,11 +5,13 @@
 <link rel="stylesheet" href="./themes/BoBo/css/common.css" />
 <link rel="stylesheet" type="text/css" href="./themes/BoBo/css/style_common.css" />
 <link rel="stylesheet" type="text/css" href="./themes/BoBo/css/style_hover.css" />
+
 <script type="text/javascript" src="./themes/BoBo/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="./themes/BoBo/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./themes/BoBo/js/banner.js"></script>
 <script type="text/javascript" src="./themes/BoBo/js/bobo.js"></script>
 <script type="text/javascript" src="./js/user.js"></script>
+<script type="text/javascript" src="./js/jquery.json-2.4.js"></script>
 <div class="container-fluid bodyheight">
   <div class="main">
     <div class="header">

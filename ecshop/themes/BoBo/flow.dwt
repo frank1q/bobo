@@ -10,8 +10,10 @@
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
 <link href="style.css" rel="stylesheet" type="text/css" />
+
+
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,shopping_flow.js'}
+{insert_scripts files='common.js'}
 </head>
 <body>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
@@ -429,7 +431,7 @@
       </div>
      <div class="blank"></div>
     <!--{if $total.real_goods_count neq 0}-->
-    <div class="flowBox">
+    <div class="flowBox disnone">
     <h6><span>{$lang.shipping_method}</span></h6>
     <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" id="shippingTable">
             <tr>
@@ -463,7 +465,7 @@
         <input name = "shipping" type="radio" value = "-1" checked="checked"  style="display:none"/>
         <!--{/if}-->
     <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
-    <div class="flowBox">
+    <div class="flowBox ">
     <h6><span>{$lang.payment_method}</span></h6>
     <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" id="paymentTable">
             <tr>
@@ -475,7 +477,7 @@
             <!-- {foreach from=$payment_list item=payment} -->
             <!-- 循环支付方式 -->
             <tr>
-              <td valign="top" bgcolor="#ffffff"><input type="radio" name="payment" value="{$payment.pay_id}" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/></td>
+              <td valign="top" bgcolor="#ffffff"><input type="radio" name="payment" value="{$payment.pay_id}" checked="checked" isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/></td>
               <td valign="top" bgcolor="#ffffff"><strong>{$payment.pay_name}</strong></td>
               <td valign="top" bgcolor="#ffffff">{$payment.pay_desc}</td>
               <td align="right" bgcolor="#ffffff" valign="top">{$payment.format_pay_fee}</td>
@@ -488,7 +490,7 @@
     <!--{/if}-->
     <div class="blank"></div>
           <!-- {if $pack_list} 是否有包装 -->
-          <div class="flowBox">
+          <div class="flowBox disnone">
           <h6><span>{$lang.goods_package}</span></h6>
           <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" id="packTable">
             <tr>
@@ -527,7 +529,7 @@
           <!-- {/if} 是否使用包装 -->
 
           <!-- {if $card_list} 是否有贺卡 -->
-          <div class="flowBox">
+          <div class="flowBox  disnone">
           <h6><span>{$lang.goods_card}</span></h6>
           <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" id="cardTable">
             <tr>
@@ -571,7 +573,7 @@
         <!-- {/if} 是否使用贺卡 -->
 
 
-      <div class="flowBox">
+      <div class="flowBox  disnone">
     <h6><span>{$lang.other_info}</span></h6>
       <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
             <!-- {if $allow_use_surplus} 是否使用余额 -->
@@ -646,11 +648,12 @@
           </table>
     </div>
     <div class="blank"></div>
-    <div class="flowBox">
+    <div class="flowBox ">
     <h6><span>{$lang.fee_total}</span></h6>
           <!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem -->
            <div align="center" style="margin:8px auto;">
             <input type="image" src="images/bnt_subOrder.gif" />
+            <!-- <input type="button"  value="checkout" /> -->
             <input type="hidden" name="step" value="done" />
             </div>
     </div>

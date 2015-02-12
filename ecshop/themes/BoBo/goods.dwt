@@ -25,6 +25,10 @@
       <!-- {/if} -->
     <!-- {/foreach} -->
   <!-- {/if} -->
+
+
+
+
   <div class="content_middle designer_product">
     <div class="item">
       <div class="item_content">
@@ -154,3 +158,4 @@ function changePriceResponse(res)
 }
 <!-- {/literal} -->
 </script>
+

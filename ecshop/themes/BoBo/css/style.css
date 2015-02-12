@@ -800,7 +800,7 @@ h2{
 .item_content{
   width: 100%;
   height: 81.91027496382056%;
-  background: #aaa;
+  background: #646464;
   float: left;
   overflow: hidden;
 }
@@ -1429,7 +1429,18 @@ fieldset[disabled] .sex_choose.active {
   height: 100%;
   position: relative;
 }
-
+.youtube{
+  height: 100%;
+  position: relative;
+}
+.boboclose{
+  position: absolute;
+  top:0;
+  right: 0;
+  z-index: 100;
+  opacity: 0.8;
+  cursor: pointer;
+}
 .Page{
   position: absolute;
   top: 15px;
@@ -1472,6 +1483,66 @@ fieldset[disabled] .sex_choose.active {
   width: 33%;
   height: 100%;
   float: left;
+  position: relative;
+}
+.covermiddle{
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 34%;
+  height: 100%;
+}
+.twobutton{
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+}
+.covermiddle button{
+  border: none;
+  width: 49.2%;
+  background: #bbbbbb;
+  color: #000;
+  /*font-weight: bold;*/
+}
+.cart_slider{
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.bxPage{
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+  z-index: 100;
+  width: 75px;
+  height: 28px;
+  background: #E4E4E4;
+}
+.bxPage span{
+  float: left;
+  width: 12px;
+  height: 23px;
+  margin-top: 3px;
+  cursor: pointer;
+  display: block;
+}
+#slider-prev{
+  background: url('../images/left.png');
+  margin-left: 4px;
+}
+#slider-next{
+  background: url('../images/right.png');
+  float: right;
+  margin-right: 4px;
+
+}
+.covermiddle .zoom{
+  
+}
+.covermiddle .film{
+  float: right;
+  border: none;
 }
 .coverright{
   background: #000;
@@ -1479,6 +1550,7 @@ fieldset[disabled] .sex_choose.active {
   width: 33%;
   float: right;
   height: 100%;
+  position: relative;
 }
 .complexion {
   color: #fff;
@@ -1699,4 +1771,34 @@ fieldset[disabled] .sex_choose.active {
 }
 .visitbutton>a{
   color: #fff !important;
+}
+.disnone{
+  display: none;
+}
+.boxR_portrait .mask{
+  background-color: rgba(56, 55, 55, 0.85) !important;
+}
+.editImg{
+  width: 50%;
+  overflow: hidden;
+  height: 100%;
+  margin: 0 auto;
+}
+.editColor{
+  border-radius: 0;
+  background: #313131;
+  width: 100%;
+  color: #fff;
+  border: 1px solid #fff;
+  margin-top: 90%;
+}
+.index999{
+  z-index: 999;
+}
+div.headimg{
+top: 214px;
+left: 37px;
+}
+div.headimg img{
+  max-width: 110px;
 }

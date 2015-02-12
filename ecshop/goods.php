@@ -280,7 +280,7 @@ else
 /* 更新点击次数 */
 $db->query('UPDATE ' . $ecs->table('goods') . " SET click_count = click_count + 1 WHERE goods_id = '$_REQUEST[id]'");
 
-
+// var_dump($goods);
 
 $smarty->assign('now_time',  gmtime());           // 当前系统时间
 $smarty->assign('bobo_key',md5('unique_salt_bobo').gmtime());
