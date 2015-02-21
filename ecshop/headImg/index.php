@@ -78,7 +78,7 @@ if(!isset($_SESSION['user_id'])){
         </div>
     </div>
     <script type="text/javascript">
-        var centerPointX = 140, centerPointY = 140,imageWidth = 140,imageHeight = 140;
+    var centerPointX = 140, centerPointY = 140,imageWidth = 140,imageHeight = 140;
 
     $(document).ready(function () {
     	$('#up').submit(function(){

@@ -170,7 +170,11 @@ define('MY_SKIN', select_skin());
 define('MY_SHAPE', select_shape());
 define('MY_HEIGHT', select_height());
 $arr = online_wear();
-// dump($arr);
+
+
+
+
+
 // 设置页面标题
 if(MY_SEX==1){
     $sex_title = 'Male Reception';
@@ -218,6 +222,68 @@ if (!defined('INIT_NO_SMARTY'))
 
 }
 
+    // session_start();
+    /* facebook */
+    /*require(ROOT_PATH . 'includes/facebook/autoload.php');
+    use Facebook\FacebookSession;
+    use Facebook\FacebookRedirectLoginHelper;
+    use Facebook\FacebookRequest;
+    use Facebook\FacebookResponse;
+    use Facebook\FacebookSDKException;
+    use Facebook\FacebookRequestException;
+    use Facebook\FacebookAuthorizationException;
+    use Facebook\GraphObject;
+    use Facebook\Entities\AccessToken;
+    use Facebook\HttpClients\FacebookCurlHttpClient;
+    use Facebook\HttpClients\FacebookHttpable;
+
+    // init app with app id and secret
+    FacebookSession::setDefaultApplication( '1540719832870090','6f887ba04606412f06c63832d99756fa' );
+    // login helper with redirect_uri
+    $helper = new FacebookRedirectLoginHelper('http://www.bobo-d2c.com/' );
+    try {
+      $session = $helper->getSessionFromRedirect();
+    } catch( FacebookRequestException $ex ) {
+      // When Facebook returns an error
+    } catch( Exception $ex ) {
+      // When validation fails or other local issues
+    }
+    // see if we have a session
+    if ( isset( $session ) ) {
+      // graph api request for user data
+      $request = new FacebookRequest(
+        $session,
+        'GET',
+        '/me/friends'
+      );
+
+      $response = $request->execute();
+      // get response
+      $friends = $response->getGraphObject()->asArray();
+      echo '<pre>';
+      // print_r($friends);
+      echo '</pre>';
+        $_SESSION['access_token'] = $session->getToken();
+        $logoutURL = $helper->getLogoutUrl( $session, 'http://www.bobo-d2c.com/' );
+
+    } else {
+        $facebook_login_url = $helper->getLoginUrl(array('user_friends', 'public_profile','email'));
+        // var_dump($facebook_login_url);
+        $smarty->assign('facebook_login_url',$facebook_login_url);
+        // var_dump($smarty);
+    }
+    // var_dump($_SESSION['access_token']);
+    if(isset($_SESSION['access_token'])){
+        $f = file_get_contents('https://graph.facebook.com/me/friends?access_token='.$_SESSION['access_token']);
+            echo '<pre>';
+
+          print_r(json_decode($f));
+          echo '</pre>';
+    }*/
+    /* facebook End*/
+/*
+$t = file_get_contents($_SESSION['AccessToken']);
+var_dump($t);*/
 if (!defined('INIT_NO_USERS'))
 {
     /* 会员信息 */

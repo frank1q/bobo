@@ -62,13 +62,32 @@ $(function(){
         // $(this).unbind("hover"); //移除click
     })
 
-	// menu
-/*	$(".sub_c").mouseover(function() {
-        $(this).find('ul').show(400);
-    }).mouseleave(function() {
-        $(this).find('ul').hide(400);
-    }); */
-    // *menu
+    $('.imgSub').click(function(){
+        var keywords = $('#keywords').val();
+        keywords = $.trim(keywords);
+        if(keywords ==''){
+            alert('not to empty');
+            return false;
+        }
+        $('#searchForm').submit();
+    })
 
-    
+    $(".model").mouseover(function() {
+        var that = $(this);
+        $(this).hoverDelay({
+            hoverEvent: function(){
+                $('.share').show(400); 
+            },
+            outEvent: function(){
+                $('.share').hide(400);
+            }
+        });
+    });
+    $('.model').hover(function(){
+        $('.share').show(400);
+    })
+    $('.basket-checkout').click(function(){
+        $('.basket-checkout').removeClass('menu_top');
+        $(this).addClass('menu_top');
+    })
 })

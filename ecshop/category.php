@@ -399,7 +399,6 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
             $goodslist[] = array();
         }
     }
-    // dump($goodslist);
 
     $smarty->assign('goods_list',       $goodslist);
     $smarty->assign('category',         $cat_id);
@@ -457,13 +456,14 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
     $where .= " AND g.goods_sex = ".MY_SEX;
     /* 获得商品列表 */
 
-    $sql = 'SELECT g.layer_type,g.z_index,g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
+    $sql = 'SELECT gb.act_type,g.is_groupbuy,g.layer_type,g.z_index,g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ' .
                 // "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, g.promote_price, g.goods_type, " .
                 "shop_price, g.promote_price, g.goods_type, " .
                 'g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_front_cover, g.front_cover_thumb, g.goods_img ' .
             'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
+            'LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb  ON g.goods_id = gb.goods_id ' .
             'LEFT JOIN ' . $GLOBALS['ecs']->table('member_price') . ' AS mp ' .
-                "ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' " .
+            "ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' " .
             "WHERE $where $ext ORDER BY $sort $order";
     $res = $GLOBALS['db']->selectLimit($sql, $size, ($page - 1) * $size);
     $arr = array();
@@ -512,7 +512,7 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         {
             $arr[$row['goods_id']]['goods_name']       = $row['goods_name'];
         }
-
+        $arr[$row['goods_id']]['act_type']       = $row['act_type'];
         $arr[$row['goods_id']]['z_index']          = $row['z_index'];
         $arr[$row['goods_id']]['layer_type']       = $row['layer_type'];
         $arr[$row['goods_id']]['name']             = $row['goods_name'];
@@ -521,6 +521,7 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         $arr[$row['goods_id']]['market_price']     = price_format($row['market_price']);
         $arr[$row['goods_id']]['shop_price']       = price_format($row['shop_price']);
         $arr[$row['goods_id']]['type']             = $row['goods_type'];
+        $arr[$row['goods_id']]['is_groupbuy']             = $row['is_groupbuy'];
         $arr[$row['goods_id']]['promote_price']    = ($promote_price > 0) ? price_format($promote_price) : '';
         $arr[$row['goods_id']]['goods_thumb']      = get_image_path($row['goods_id'], $row['goods_thumb'], true);
         $arr[$row['goods_id']]['goods_front_cover']      = get_image_path($row['goods_id'], $row['goods_front_cover'], true);
@@ -528,6 +529,7 @@ function category_get_goods($children, $brand, $min, $max, $ext, $size, $page, $
         $arr[$row['goods_id']]['goods_img']        = get_image_path($row['goods_id'], $row['goods_img']);
         $arr[$row['goods_id']]['url']              = build_uri('goods', array('gid'=>$row['goods_id']), $row['goods_name']);
     }
+    // var_dump($arr);
     return $arr;
 }
 

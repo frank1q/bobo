@@ -209,12 +209,12 @@
               <!-- {if $profile.user_head_img eq ''} -->   
               <img src="./images/user-portrait.png" alt="" class="img-responsive"/>
               <!-- {else} -->
-              <img src="./headImg/images/{$profile.user_head_img}" alt="" class="img-responsive"/>
+              <img src="./headImg/{$profile.user_head_img}" alt="" width="200" height="200" class="img-responsive"/>
               <!-- {/if} -->
               
               <div class="mask">
                   <div class="editImg">
-                    <a href="headImg/index.php"><button type="button" class="btn editColor" >Edit</button></a>
+                    <a href="user.php?act=edit_headImd"><button type="button" class="btn editColor" >Edit</button></a>
                   </div>
               </div>
             </div>

@@ -22,7 +22,7 @@ $not_login_arr =
 array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','clear_history','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('register','edit_headImd', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'add_booking', 'account_raply',
 'account_deposit', 'account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -427,6 +427,27 @@ elseif ($action == 'act_edit_profile')
         show_message($msg, '', '', 'info');
     }
 }
+/* 修改个人头像*/
+elseif($action == 'edit_headImd'){
+    // $smarty->assign('');
+    $is_upload = 1;
+    if(isset($_POST['sub'])){
+        if(!isset($_FILES['upload'])){
+            die('Error');
+        }
+        $is_upload = 0;
+        require('includes/cls_image.php');
+        $image = new cls_image(); 
+        $data = $image->upload_image($_FILES['upload']);
+        $thumb_img = $image->make_thumb($data,620,438);
+        // var_dump($thumb_img);
+        $smarty->assign('thumb_img',$thumb_img);
+    }
+    // var_dump($_SESSION);
+    $smarty->assign('is_upload',$is_upload);
+    $smarty->display('user_edit_head.dwt');
+}
+
 /* 注册会员的处理 */
 elseif ($action == 'act_register')
 {

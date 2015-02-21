@@ -18,7 +18,7 @@
     <ul class="sliderbox">
       <!--{foreach from=$group_buy_goods item=cat}-->
       <li>
-        <img src="{$cat.goods_front_cover}" alt="test1" class="img-responsive">
+        <img src="{$cat.front_cover}" alt="test1" class="img-responsive">
       </li>
       <!--{/foreach}-->
     </ul>
@@ -40,9 +40,9 @@
                 </div>
                 <div class="picture_c">
                   <div class="picture_cp">
-                    <a href="goods.php?id={$cat.goods_id}">
+                    <a href="goods.php?id={$cat.id}">
                       <h3>
-                          {$cat.goods_name}
+                          {$cat.name}
                       </h3>
                     </a>
                     <div class="picture_cpimg">
@@ -51,13 +51,13 @@
                     <div class="picture_cpr">
                       <p>
                         Boer
-                        {$cat.group_buy.valid_goods}
-                        /{$cat.ext_info.restrict_amount}
+                        {$cat.goods_number}
+                        /{$cat.goods_quantity}
                         <br>
-                        Days to go {$cat.start_time}/{$cat.end_time}
+                        Days to go {$cat.group_now_day}/{$cat.group_total_day}
                         <br>        
                         Future retail price {$cat.market_price}
-                        <br>Pre-order Price {$cat.last_price}</p>
+                        <br>Pre-order Price {$cat.shop_price}</p>
                     </div>
                       <div class="progressa">
                         <div class="progress">
@@ -67,7 +67,7 @@
                       </div>
                   </div>
                 </div>
-                <a href="goods.php?id={$cat.goods_id}">
+                <a href="goods.php?id={$cat.id}">
                   <div class="picture_f">
                     <h3>DISCOVER ALL</h3>
                   </div>
@@ -106,7 +106,7 @@
   <!-- {if $group_buy_hot} -->
     <div class="picture_right">
       <div class="pictureimg">
-        <a href="goods.php?id={$group_buy_hot.0.url}">
+        <a href="{$group_buy_hot.0.url}">
           <img src="{$group_buy_hot.0.goods_img}" alt="" class="img-responsive"/>
         </a>
       </div>
@@ -118,11 +118,11 @@
           <div class="introduction_cp">
             <p>by</p>
             <p class="fz">HStern</p>
-            <p>Price&nbsp;{$group_buy_hot.0.last_price}</p>
-            <p>Remoin&nbsp;{$group_buy_hot.0.group_buy.valid_goods}/{$group_buy_hot.0.ext_info.restrict_amount}</p>
+            <p>Price&nbsp;{$group_buy_hot.0.shop_price}</p>
+            <p>Remoin&nbsp;{$group_buy_hot.0.group_now_day}/{$group_buy_hot.0.group_total_day}</p>
           </div>
         </div>
-        <a href="goods.php?id={$group_buy_hot.0.goods_id}">
+        <a href="{$group_buy_hot.0.url}">
           <div class="introduction_f">
             <h4>DISCOVER ALL</h4>
           </div>
@@ -144,7 +144,7 @@
           <div class="introduction_cp">
             <p>by</p>
             <p class="fz">HStern</p>
-            <p>Price&nbsp;{$group_buy_goods.0.last_price}</p>
+            <p>Price&nbsp;{$group_buy_goods.0.shop_price}</p>
             <p>Remoin&nbsp;{$group_buy_goods.0.group_buy.valid_goods}/{$group_buy_goods.0.ext_info.restrict_amount}</p>
           </div>
         </div>

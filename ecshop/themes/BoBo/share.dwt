@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>Share - bobo</title>
+
+<link rel="stylesheet" href="./themes/BoBo/css/bootstrap.css" />
+<link rel="stylesheet" href="./themes/BoBo/css/share.css" />
+<script type="text/javascript" src="./themes/BoBo/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./themes/BoBo/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fuild bodyheight">
+		  <div class="sharemain">
+		  		<div class="shareleft">
+		  			<div class="sharesjx"></div>
+		  			<div class="youtube">
+
+		  				<iframe width="100%" height="100%" class="youtube_video" src="https://www.youtube.com/embed/FenKVtzRr0I" frameborder="0" allowfullscreen></iframe>
+		  			</div>
+		  			<div class="sharecontent">
+		  				<div class="shareinner">
+		  					<div class="shareleftbtn"></div>
+		  					<div class="sharerightbtn"></div>
+			  				<div class="stitle">
+			  					<h2>SOCIALISE DURING SHOPPING - JUST LIKE WHAT WE DO IN REAL LIFE</h2>
+			  				</div>
+			  				<div class="sarctitle">
+			  					Habeo congue aliquam usu at, per at admodum fastidii gloriatur. Aliquid intellegebat cu sea, ad pro etiam vocent. Et his diam luptatum elaboraret, definitiones concludaturque vim id, ad has modus affert soluta. Te nobis volumus dolores vim. In est reque summo nonummy, probo liber audiam cu eum. Ea nisl propriae lobortis duo, vidit aeque sadipscing ex ius.
+			  				</div>
+		  				</div>
+
+		  			</div>
+		  		</div>
+		  		<div class="shareright">
+		  			<div class="modelshow">
+		  				<div class="sharename">
+		  					<h1>Mandy Chen's</h1>
+		  				</div>
+			  			<div class="sharevirtual">
+			  				<img src="images/virtual.png" alt="" class="img-responsive" />
+			  			</div>
+			  			<div class="sharemodel">
+				          <div class="model">
+				            <div class="modelimg z-index1">
+				                <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+				            </div>
+				            <div class="{$my_sex}top{$my_height} headimg index999 ">
+				                <img src="headImg/{$user_head_img}" class="img-responsive" alt="">
+				            </div>
+				            <div class="trousers z-index50">
+				                <img src="model_img/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+				            </div>
+				            <div class="coat z-index100">
+				                <img src="model_img/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+				            </div>
+				            <div class="underwear z-index10">
+				                <img src="model_img/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+				            </div>
+				          </div>
+			  			</div>
+		  			</div>
+
+		  		</div>
+		  </div>
+	</div>
+</body>
+</html>
