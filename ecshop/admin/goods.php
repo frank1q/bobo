@@ -215,7 +215,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         /* 商品信息 */
         $sql = "SELECT * FROM " . $ecs->table('goods') . " WHERE goods_id = '$_REQUEST[goods_id]'";
         $goods = $db->getRow($sql);
-        // var_dump($_REQUEST['goods_id']);
+        
         $smarty->assign('goods_id',$_REQUEST['goods_id']);
         $imgList = getFile('../model_img/'.$_REQUEST['goods_id'],'png');
         $smarty->assign('imgList',$imgList);
@@ -246,12 +246,14 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
                 'warn_number'   => 1,
                 'promote_start_date' => local_date('Y-m-d'),
                 'promote_end_date'   => local_date('Y-m-d', gmstr2tome('+1 month')),
+                'group_start_date' => local_date('Y-m-d'),
+                'group_end_date' => local_date('Y-m-d',gmstr2tome('+1 month')),
                 'goods_weight'  => 0,
                 'give_integral' => -1,
                 'rank_integral' => -1
             );
         }
-
+        // var_dump($goods);
         /* 获取商品类型存在规格的类型 */
         $specifications = get_goods_type_specifications();
         $goods['specifications_id'] = $specifications[$goods['goods_type']];
@@ -286,6 +288,19 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
             $goods['promote_start_date'] = local_date('Y-m-d', $goods['promote_start_date']);
             $goods['promote_end_date'] = local_date('Y-m-d', $goods['promote_end_date']);
         }
+
+        if (isset($goods['is_groupbuy']) && $goods['is_groupbuy'] == '0')
+        {
+            unset($goods['group_start_date']);
+            unset($goods['group_end_date']);
+        }
+        else
+        {
+            $goods['group_start_date'] = local_date('Y-m-d', $goods['group_start_date']);
+            $goods['group_end_date'] = local_date('Y-m-d', $goods['group_end_date']);
+        }
+
+
 
         /* 如果是复制商品，处理 */
         if ($_REQUEST['act'] == 'copy')
@@ -869,6 +884,18 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     $goods_thumb = (empty($goods_thumb) && !empty($_POST['goods_thumb_url']) && goods_parse_url($_POST['goods_thumb_url'])) ? htmlspecialchars(trim($_POST['goods_thumb_url'])) : $goods_thumb;
     $goods_thumb = (empty($goods_thumb) && isset($_POST['auto_thumb']))? $goods_img : $goods_thumb;
 
+
+    $is_groupbuy = $_POST['groupbuy'] ? 1 : 0;
+
+    if($is_groupbuy){
+        $group_start_date = ($is_groupbuy && !empty($_POST['group_start_date'])) ? local_strtotime($_POST['group_start_date']) : 0;
+        $group_end_date = ($is_groupbuy && !empty($_POST['group_end_date'])) ? local_strtotime($_POST['group_end_date']) : 0;
+        if(!is_numeric($_POST['goods_quantity'])){
+            sys_msg('The purchase quantity must be is number!');
+        }
+        $goods_quantity = intval($_POST['goods_quantity']);
+    }
+
     if (!isset($_POST['layer_type'])) {
         die('非法访问');
     }
@@ -877,7 +904,12 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     if(!is_array($layer_type)){
          die('非法访问');
     }
-
+/*    var_dump($is_groupbuy);
+    var_dump($group_start_date);
+    var_dump($group_end_date);
+    var_dump($goods_quantity);
+    var_dump($_POST);
+    exit;*/
     /* 入库 */
     if ($is_insert)
     {
@@ -887,13 +919,19 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     "cat_id, brand_id, shop_price, market_price, is_promote, promote_price, " .
                     "promote_start_date, promote_end_date, goods_img, goods_thumb, original_img, goods_front_cover, front_cover_thumb, keywords, goods_brief, " .
                     "seller_note, goods_weight, goods_number, warn_number, integral, give_integral, is_best, is_new, is_hot, " .
-                    "is_on_sale, is_alone_sale, is_shipping, goods_desc, add_time, last_update, goods_type, rank_integral, suppliers_id, goods_sex, layer_type, z_index)" .
+                    "is_on_sale, is_alone_sale, is_shipping, goods_desc, add_time, last_update, goods_type, rank_integral, suppliers_id, 
+                    goods_sex, layer_type, z_index,youtube_url,is_groupbuy,group_start_date,group_end_date,goods_quantity
+                    )" .
                 "VALUES ('$_POST[goods_name]', '$goods_name_style', '$goods_sn', '$catgory_id', " .
                     "'$brand_id', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
                     "'$promote_start_date', '$promote_end_date', '$goods_img', '$goods_thumb', '$original_img', '$goods_front_cover', '$front_cover_thumb',".
                     "'$_POST[keywords]', '$_POST[goods_brief]', '$_POST[seller_note]', '$goods_weight', '$goods_number',".
                     " '$warn_number', '$_POST[integral]', '$give_integral', '$is_best', '$is_new', '$is_hot', '$is_on_sale', '$is_alone_sale', $is_shipping, ".
-                    " '$_POST[goods_desc]', '" . gmtime() . "', '". gmtime() ."', '$goods_type', '$rank_integral', '$suppliers_id', '$_POST[goods_sex]', '$layer_type[0]', '$layer_type[1]')";
+                    " '$_POST[goods_desc]', '" . gmtime() . "', '". gmtime() .
+                    "', '$goods_type', '$rank_integral', '$suppliers_id', '$_POST[goods_sex]',
+                     '$layer_type[0]', '$layer_type[1]','$_POST[youtube_url]','$is_groupbuy','$group_start_date','$group_end_date','$goods_quantity'
+
+                     )";
         }
         else
         {
@@ -901,13 +939,19 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     "cat_id, brand_id, shop_price, market_price, is_promote, promote_price, " .
                     "promote_start_date, promote_end_date, goods_img, goods_thumb, original_img, goods_front_cover, front_cover_thumb,keywords, goods_brief, " .
                     "seller_note, goods_weight, goods_number, warn_number, integral, give_integral, is_best, is_new, is_hot, is_real, " .
-                    "is_on_sale, is_alone_sale, is_shipping, goods_desc, add_time, last_update, goods_type, extension_code, rank_integral, goods_sex, layer_type, z_index)" .
+                    "is_on_sale, is_alone_sale, is_shipping, goods_desc, add_time, last_update, goods_type, extension_code, rank_integral,
+                     goods_sex, layer_type, z_index,youtube_url,is_groupbuy,group_start_date,group_end_date,goods_quantity
+                     )" .
                 "VALUES ('$_POST[goods_name]', '$goods_name_style', '$goods_sn', '$catgory_id', " .
                     "'$brand_id', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
                     "'$promote_start_date', '$promote_end_date', '$goods_img', '$goods_thumb', '$original_img', '$goods_front_cover', '$front_cover_thumb', ".
                     "'$_POST[keywords]', '$_POST[goods_brief]', '$_POST[seller_note]', '$goods_weight', '$goods_number',".
                     " '$warn_number', '$_POST[integral]', '$give_integral', '$is_best', '$is_new', '$is_hot', 0, '$is_on_sale', '$is_alone_sale', $is_shipping, ".
-                    " '$_POST[goods_desc]', '" . gmtime() . "', '". gmtime() ."', '$goods_type', '$code', '$rank_integral', '$_POST[goods_sex]', '$layer_type[0]', '$layer_type[1]')";
+                    " '$_POST[goods_desc]', '" . gmtime() . "', '". gmtime() ."', '$goods_type', '$code', '$rank_integral',
+                     '$_POST[goods_sex]', '$layer_type[0]', '$layer_type[1]',
+                     '$_POST[youtube_url]','$is_groupbuy','$group_start_date','$group_end_date','$goods_quantity'
+
+                     )";
         }
     }
     else
@@ -948,6 +992,11 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                 "suppliers_id = '$suppliers_id', " .
                 "layer_type = '$layer_type[0]', " .
                 "z_index = '$layer_type[1]', " .
+                "youtube_url = '$_POST[youtube_url]', " .
+                "is_groupbuy = '$is_groupbuy', " .
+                "group_start_date = '$group_start_date', " .
+                "group_end_date = '$group_end_date', " .
+                "goods_quantity = '$goods_quantity', " .
                 "promote_end_date = '$promote_end_date', ";
 
         /* 如果有上传图片，需要更新数据库 */

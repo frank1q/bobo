@@ -53,7 +53,7 @@ if ((($type == ".gif")
     $ic=new ImageCrop($attachdir_G.$ifilename,$attachdir_T.$ifilename);
     $ic->Crop(150,150,3); 
     $ic->SaveImage();  
-    // $ic->SaveAlpha();//将补白变成透明像素保
+    $ic->SaveAlpha();//将补白变成透明像素保
     $ic->destory();  
 
 

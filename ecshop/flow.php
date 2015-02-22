@@ -351,7 +351,7 @@ elseif ($_REQUEST['step'] == 'consignee')
         if ($_SESSION['user_id'] > 0)
         {
             $consignee_list = get_consignee_list($_SESSION['user_id']);
-
+            
             if (count($consignee_list) < 5)
             {
                 /* 如果用户收货人信息的总数小于 5 则增加一个新的收货人信息 */
@@ -457,7 +457,7 @@ elseif ($_REQUEST['step'] == 'checkout')
 
     /* 取得购物类型 */
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
-
+    
     /* 团购标志 */
     if ($flow_type == CART_GROUP_BUY_GOODS)
     {
@@ -1357,7 +1357,9 @@ elseif ($_REQUEST['step'] == 'done')
     /* 如果使用库存，且下订单时减库存，则减少库存 */
     if ($_CFG['use_storage'] == '1' && $_CFG['stock_dec_time'] == SDT_PLACE)
     {
-        $cart_goods_stock = get_cart_goods();
+        // var_dump(111);
+        $cart_goods_stock = user_cart_goods();
+        // var_dump($cart_goods_stock);
         $_cart_goods_stock = array();
         foreach ($cart_goods_stock['goods_list'] as $value)
         {
@@ -1366,6 +1368,7 @@ elseif ($_REQUEST['step'] == 'done')
         flow_cart_stock($_cart_goods_stock);
         unset($cart_goods_stock, $_cart_goods_stock);
     }
+
 
     /*
      * 检查用户是否已经登录
@@ -1763,7 +1766,7 @@ elseif ($_REQUEST['step'] == 'done')
 
     }
     /* 清空购物车 */
-    clear_cart($flow_type);
+    // clear_cart($flow_type);
     /* 清除缓存，否则买了商品，但是前台页面读取缓存，商品数量不减少 */
     clear_all_files();
 
@@ -2333,7 +2336,7 @@ function flow_cart_stock($arr)
                     $GLOBALS['ecs']->table('cart'). " AS c ".
                 "WHERE g.goods_id = c.goods_id AND c.rec_id = '$key'";
         $row = $GLOBALS['db']->getRow($sql);
-
+        
         //系统启用了库存，检查输入的商品数量是否有效
         if (intval($GLOBALS['_CFG']['use_storage']) > 0 && $goods['extension_code'] != 'package_buy')
         {

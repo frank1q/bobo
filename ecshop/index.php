@@ -13,6 +13,7 @@
  * $Id: index.php 17063 2010-03-25 06:35:46Z liuhui $
 */
 
+
 define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 
@@ -124,9 +125,11 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
 
     $smarty->assign('invoice_list',    index_get_invoice_query());  // 发货查询
     $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
-    $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
-    $smarty->assign('group_buy_hot',   index_get_group_buy($hot));  // 团购商品hot
-
+    $smarty->assign('group_buy_goods', get_recommend_group_goods('best'));      // 团购商品
+    // var_dump(get_recommend_group_goods('best'));
+    // var_dump(index_get_group_buy());
+    $smarty->assign('group_buy_hot',   get_recommend_group_goods('hot'));  // 团购商品hot
+    // var_dump(get_recommend_group_goods('hot'));
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
     /* 首页主广告设置 */
@@ -159,7 +162,9 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     assign_dynamic('index');
 }
 
+// var_dump(index_get_group_buy());
 $smarty->display('index.dwt', $cache_id);
+
 
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTIONS
@@ -236,7 +241,6 @@ function index_get_new_articles()
  */
 function index_get_group_buy($hot = '')
 {
-
     $time = gmtime();
     $limit = get_library_number('group_buy', 'index');
     $group_buy_list = array();
@@ -248,7 +252,7 @@ function index_get_group_buy($hot = '')
     }
     if ($limit > 0)
     {
-        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info,gb.end_time ,gb.start_time,gb.act_id,gb.goods_name, g.goods_thumb, g.goods_img, g.goods_front_cover, g.market_price ' .
+        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info,gb.end_time ,gb.start_time,gb.act_id,gb.goods_name, g.goods_thumb, g.goods_img, g.goods_front_cover, g.market_price,g.shop_price ' .
                 'FROM ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb, ' .
                     $GLOBALS['ecs']->table('goods') . ' AS g ' .
                 "WHERE gb.act_type = '" . GAT_GROUP_BUY . "' " .
@@ -294,6 +298,7 @@ function index_get_group_buy($hot = '')
             $row['short_style_name']   = add_style($row['short_name'],'');
             $row['ext_info']=$ext_info;
             $row['market_price'] = price_format($row['market_price']);
+            $row['shop_price'] = price_format($row['shop_price']);
             $group_buy_list[] = $row;
             // $group_buy_list = array_merge($group_buy_list,$ext_info);
         }
@@ -301,7 +306,6 @@ function index_get_group_buy($hot = '')
     }
     // /* 取得团购活动信息 */
     foreach ($group_buy_list as $key => $value) {
-
        $group_buy_list[$key]['group_buy'] = group_buy_stat($value['group_buy_id'], $value['deposit']);
        $group_buy_list[$key]['customers_progress']= $group_buy_list[$key]['group_buy']['valid_goods']/$group_buy_list[$key]['ext_info']['restrict_amount']*100;
     }

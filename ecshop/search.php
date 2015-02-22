@@ -96,8 +96,7 @@ if ($_REQUEST['act'] == 'advanced_search')
     $smarty->assign('brand_list', get_brand_list());
     $smarty->assign('action',     'form');
     $smarty->assign('use_storage', $_CFG['use_storage']);
-
-    $smarty->display('search.dwt');
+    $smarty->display('category.dwt');
 
     exit;
 }
@@ -373,13 +372,13 @@ else
     }
 
     /* 查询商品 */
-    $sql = "SELECT g.goods_id, g.goods_name, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ".
+    $sql = "SELECT g.goods_id,g.z_index,g.layer_type, g.goods_name, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price AS org_price, ".
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                 "g.promote_price, g.promote_start_date, g.promote_end_date, g.goods_thumb, g.goods_img, g.goods_brief, g.goods_type ".
             "FROM " .$ecs->table('goods'). " AS g ".
             "LEFT JOIN " . $GLOBALS['ecs']->table('member_price') . " AS mp ".
                     "ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' ".
-            "WHERE g.is_delete = 0 AND g.is_on_sale = 1 AND g.is_alone_sale = 1 $attr_in ".
+            "WHERE g.goods_sex = ".MY_SEX." AND g.is_delete = 0 AND g.is_on_sale = 1 AND g.is_alone_sale = 1 $attr_in ".
                 "AND (( 1 " . $categories . $keywords . $brand . $min_price . $max_price . $intro . $outstock . " ) ".$tag_where." ) " .
             "ORDER BY $sort $order";
     $res = $db->SelectLimit($sql, $size, ($page - 1) * $size);
@@ -432,6 +431,8 @@ else
             $arr[$row['goods_id']]['goods_name'] = $row['goods_name'];
         }
         $arr[$row['goods_id']]['type']          = $row['goods_type'];
+        $arr[$row['goods_id']]['z_index']          = $row['z_index'];
+        $arr[$row['goods_id']]['layer_type']          = $row['layer_type'];
         $arr[$row['goods_id']]['market_price']  = price_format($row['market_price']);
         $arr[$row['goods_id']]['shop_price']    = price_format($row['shop_price']);
         $arr[$row['goods_id']]['promote_price'] = ($promote_price > 0) ? price_format($promote_price) : '';
@@ -505,7 +506,7 @@ else
     $smarty->assign('top_goods',  get_top10());           // 销售排行
     $smarty->assign('promotion_info', get_promotion_info());
 
-    $smarty->display('search.dwt');
+    $smarty->display('category.dwt');
 }
 
 /*------------------------------------------------------ */

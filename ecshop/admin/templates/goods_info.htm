@@ -3,11 +3,6 @@
 {insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"}
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
-
-
-
-
-
 {if $warning}
 <ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
   <li style="border: 1px solid #CC0000; background: #FFFFCC; padding: 10px; margin-bottom: 5px;" >{$warning}</li>
@@ -21,14 +16,14 @@
       <p>
         <span class="tab-front" id="general-tab">{$lang.tab_general}</span>
         <span class="tab-back" id="detail-tab">{$lang.tab_detail}</span>
-        <span class="tab-back" id="mix-tab">{$lang.tab_mix}</span>{if $goods_type_list}
-        <span class="tab-back" id="properties-tab">{$lang.tab_properties}</span>{/if}
+        <span class="tab-back" id="mix-tab">{$lang.tab_mix}</span>
+        <!-- {if $goods_type_list}<span class="tab-back" id="properties-tab">{$lang.tab_properties}</span>{/if} -->
         <span class="tab-back" id="gallery-tab">{$lang.tab_gallery}</span>
         <span class="tab-back" id="linkgoods-tab">{$lang.tab_linkgoods}</span>{if $code eq ''}
         <span class="tab-back" id="groupgoods-tab">{$lang.tab_groupgoods}</span>{/if}
         <span class="tab-back" id="article-tab">{$lang.tab_article}</span>
         {if $goods_id }
-        <span class="tab-back" id="model-tab">模特图片</span>
+        <span class="tab-back" id="model-tab">Model Picture</span>
         {/if}
         
       </p>
@@ -50,12 +45,12 @@
             </select>
             {$lang.require_field}</td>
           </tr>
-          <tr>
-            <td class="label">
-            <a href="javascript:showNotice('noticeGoodsSN');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_sn} </td>
-            <td><input type="text" name="goods_sn" value="{$goods.goods_sn|escape}" size="20" onblur="checkGoodsSn(this.value,'{$goods.goods_id}')" /><span id="goods_sn_notice"></span><br />
-            <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeGoodsSN">{$lang.notice_goods_sn}</span></td>
-          </tr>
+<!--           <tr>
+  <td class="label">
+  <a href="javascript:showNotice('noticeGoodsSN');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_sn} </td>
+  <td><input type="text" name="goods_sn" value="{$goods.goods_sn|escape}" size="20" onblur="checkGoodsSn(this.value,'{$goods.goods_id}')" /><span id="goods_sn_notice"></span><br />
+  <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeGoodsSN">{$lang.notice_goods_sn}</span></td>
+</tr> -->
           <tr>
             <td class="label">{$lang.lab_goods_cat}</td>
             <td><select name="cat_id" onchange="hideCatDiv()" ><option value="0">{$lang.select_please}</option>{$cat_list}</select>
@@ -108,34 +103,34 @@
                {/if}
             </td>
           </tr>
-         {if $suppliers_exists eq 1}
-          <tr>
-            <td class="label">{$lang.label_suppliers}</td>
-            <td><select name="suppliers_id" id="suppliers_id">
+<!--          {if $suppliers_exists eq 1}
+ <tr>
+   <td class="label">{$lang.label_suppliers}</td>
+   <td><select name="suppliers_id" id="suppliers_id">
         <option value="0">{$lang.suppliers_no}</option>
         {html_options options=$suppliers_list_name selected=$goods.suppliers_id}
       </select></td>
-          </tr>
-         {/if}
+ </tr>
+{/if} -->
           <tr>
             <td class="label">{$lang.lab_shop_price}</td>
             <td><input type="text" name="shop_price" value="{$goods.shop_price}" size="20" onblur="priceSetted()"/>
             <input type="button" value="{$lang.compute_by_mp}" onclick="marketPriceSetted()" />
             {$lang.require_field}</td>
           </tr>
-          {if $user_rank_list}
-          <tr>
-            <td class="label"><a href="javascript:showNotice('noticeUserPrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_user_price}</td>
-            <td>
-              {foreach from=$user_rank_list item=user_rank}
-              {$user_rank.rank_name}<span id="nrank_{$user_rank.rank_id}"></span><input type="text" id="rank_{$user_rank.rank_id}" name="user_price[]" value="{$member_price_list[$user_rank.rank_id]|default:-1}" onkeyup="if(parseInt(this.value)<-1){this.value='-1';};set_price_note({$user_rank.rank_id})" size="8" />
-              <input type="hidden" name="user_rank[]" value="{$user_rank.rank_id}" />
-              {/foreach}
-              <br />
-              <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeUserPrice">{$lang.notice_user_price}</span>
-            </td>
-          </tr>
-          {/if}
+<!--           {if $user_rank_list}
+<tr>
+  <td class="label"><a href="javascript:showNotice('noticeUserPrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_user_price}</td>
+  <td>
+    {foreach from=$user_rank_list item=user_rank}
+    {$user_rank.rank_name}<span id="nrank_{$user_rank.rank_id}"></span><input type="text" id="rank_{$user_rank.rank_id}" name="user_price[]" value="{$member_price_list[$user_rank.rank_id]|default:-1}" onkeyup="if(parseInt(this.value)<-1){this.value='-1';};set_price_note({$user_rank.rank_id})" size="8" />
+    <input type="hidden" name="user_rank[]" value="{$user_rank.rank_id}" />
+    {/foreach}
+    <br />
+    <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeUserPrice">{$lang.notice_user_price}</span>
+  </td>
+</tr>
+{/if} -->
           <!--商品性别分类-->
           <tr>
             <td class="label">{$lang.category_sex}</td>
@@ -147,27 +142,27 @@
           <!--商品性别分类 end -->
 
           <!--商品优惠价格-->
-          <tr>
-            <td class="label"><a href="javascript:showNotice('volumePrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_volume_price}</td>
-            <td>
-              <table width="100%" id="tbody-volume" align="center">
-                {foreach from=$volume_price_list item=volume_price name="volume_price_tab"}
-                <tr>
-                  <td>
-                     {if $smarty.foreach.volume_price_tab.iteration eq 1}
-                       <a href="javascript:;" onclick="addVolumePrice(this)">[+]</a>
-                     {else}
-                       <a href="javascript:;" onclick="removeVolumePrice(this)">[-]</a>
-                     {/if}
-                     {$lang.volume_number} <input type="text" name="volume_number[]" size="8" value="{$volume_price.number}"/>
-                     {$lang.volume_price} <input type="text" name="volume_price[]" size="8" value="{$volume_price.price}"/>
-                  </td>
-                </tr>
-                {/foreach}
-              </table>
-              <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="volumePrice">{$lang.notice_volume_price}</span>
-            </td>
-          </tr>
+<!--           <tr>
+  <td class="label"><a href="javascript:showNotice('volumePrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_volume_price}</td>
+  <td>
+    <table width="100%" id="tbody-volume" align="center">
+      {foreach from=$volume_price_list item=volume_price name="volume_price_tab"}
+      <tr>
+        <td>
+           {if $smarty.foreach.volume_price_tab.iteration eq 1}
+             <a href="javascript:;" onclick="addVolumePrice(this)">[+]</a>
+           {else}
+             <a href="javascript:;" onclick="removeVolumePrice(this)">[-]</a>
+           {/if}
+           {$lang.volume_number} <input type="text" name="volume_number[]" size="8" value="{$volume_price.number}"/>
+           {$lang.volume_price} <input type="text" name="volume_price[]" size="8" value="{$volume_price.price}"/>
+        </td>
+      </tr>
+      {/foreach}
+    </table>
+    <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="volumePrice">{$lang.notice_volume_price}</span>
+  </td>
+</tr> -->
           <!--商品优惠价格 end -->
 
           <tr>
@@ -176,32 +171,32 @@
               <input type="button" value="{$lang.integral_market_price}" onclick="integral_market_price()" />
             </td>
           </tr>
-          <tr>
-            <td class="label"><a href="javascript:showNotice('giveIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_give_integral}</td>
-            <td><input type="text" name="give_integral" value="{$goods.give_integral}" size="20" />
-            <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="giveIntegral">{$lang.notice_give_integral}</span></td>
-          </tr>
-          <tr>
-            <td class="label"><a href="javascript:showNotice('rankIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_rank_integral}</td>
-            <td><input type="text" name="rank_integral" value="{$goods.rank_integral}" size="20" />
-            <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="rankIntegral">{$lang.notice_rank_integral}</span></td>
-          </tr>
-          <tr>
-            <td class="label"><a href="javascript:showNotice('noticPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_integral}</td>
-            <td><input type="text" name="integral" value="{$goods.integral}" size="20" onblur="parseint_integral()";/>
-              <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticPoints">{$lang.notice_integral}</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="label"><label for="is_promote"><input type="checkbox" id="is_promote" name="is_promote" value="1" {if $goods.is_promote}checked="checked"{/if} onclick="handlePromote(this.checked);" /> {$lang.lab_promote_price}</label></td>
-            <td id="promote_3"><input type="text" id="promote_1" name="promote_price" value="{$goods.promote_price}" size="20" /></td>
-          </tr>
-          <tr id="promote_4">
-            <td class="label" id="promote_5">{$lang.lab_promote_date}</td>
-            <td id="promote_6">
-              <input name="promote_start_date" type="text" id="promote_start_date" size="12" value='{$goods.promote_start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('promote_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/> - <input name="promote_end_date" type="text" id="promote_end_date" size="12" value='{$goods.promote_end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('promote_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>
-            </td>
-          </tr>
+         <!--  <tr>
+           <td class="label"><a href="javascript:showNotice('giveIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_give_integral}</td>
+           <td><input type="text" name="give_integral" value="{$goods.give_integral}" size="20" />
+           <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="giveIntegral">{$lang.notice_give_integral}</span></td>
+         </tr>
+         <tr>
+           <td class="label"><a href="javascript:showNotice('rankIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_rank_integral}</td>
+           <td><input type="text" name="rank_integral" value="{$goods.rank_integral}" size="20" />
+           <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="rankIntegral">{$lang.notice_rank_integral}</span></td>
+         </tr>
+         <tr>
+           <td class="label"><a href="javascript:showNotice('noticPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_integral}</td>
+           <td><input type="text" name="integral" value="{$goods.integral}" size="20" onblur="parseint_integral()";/>
+             <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticPoints">{$lang.notice_integral}</span>
+           </td>
+         </tr> -->
+<!--           <tr>
+  <td class="label"><label for="is_promote"><input type="checkbox" id="is_promote" name="is_promote" value="1" {if $goods.is_promote}checked="checked"{/if} onclick="handlePromote(this.checked);" /> {$lang.lab_promote_price}</label></td>
+  <td id="promote_3"><input type="text" id="promote_1" name="promote_price" value="{$goods.promote_price}" size="20" /></td>
+</tr>
+<tr id="promote_4">
+  <td class="label" id="promote_5">{$lang.lab_promote_date}</td>
+  <td id="promote_6">
+    <input name="promote_start_date" type="text" id="promote_start_date" size="12" value='{$goods.promote_start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('promote_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/> - <input name="promote_end_date" type="text" id="promote_end_date" size="12" value='{$goods.promote_end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('promote_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>
+  </td>
+</tr> -->
           <tr>
             <td class="label">{$lang.lab_front_cover}</td>
             <td>
@@ -241,6 +236,42 @@
               <br /><label for="auto_thumb"><input type="checkbox" id="auto_thumb" name="auto_thumb" checked="true" value="1" onclick="handleAutoThumb(this.checked)" />{$lang.auto_thumb}</label>{/if}
             </td>
           </tr>
+          <tr>
+            <td class="label">Youtube Url</td>
+            <td>
+              <input type="text" size="40" value="{$goods.youtube_url}" name="youtube_url"/>
+            </td>
+          </tr>
+          <!--是否为团购类型-->
+          <tr>
+            <td class="label">Is Group-buying?</td>
+            <td>
+                <select name="groupbuy" id="groupbuy" onchange="">
+                  <option value="0" selected="selected" >No</option>
+                  <option value="1" {if $goods.is_groupbuy eq 1} selected="selected"{/if}>Yes</option>
+                  
+                </select>
+                <!-- <input type="radio" name="groupbuy"  value="1" onclick="groupbuy()" {if $goods.groupbuy eq 1} checked="checked"{/if} /> Yes -->
+                <!-- <input type="radio" name="groupbuy"  value="2" onclick="groupbuy()"  checked="checked" /> No -->
+            </td>
+          </tr>
+          <tr id="Group-buying-Date">
+            <td class="label" id="">Group-buying Date</td>
+            <td id="">
+              <input name="group_start_date" type="text" id="group_start_date" size="12" value='{$goods.group_start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('group_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/> - <input name="group_end_date" type="text" id="group_end_date" size="12" value='{$goods.group_end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('group_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>
+            </td>
+          </tr>
+          <tr>
+            <td class="label"> The purchase quantity</td>
+            <td><input type="text" name="goods_quantity" value="{$goods.goods_quantity}" size="20" />
+            </td>
+          </tr>
+          <!--是否为团购类型 end -->
+          <tr>
+            <td class="label"><a href="javascript:showNotice('noticeStorage');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_number}</td>
+            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /><br />
+            <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeStorage">{$lang.notice_storage}</span></td>
+          </tr>
 
         </table>
         <!-- 详细描述 -->
@@ -259,12 +290,7 @@
           </tr>
           {/if}
           {if $cfg.use_storage}
-          <tr>
-            <td class="label"><a href="javascript:showNotice('noticeStorage');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_number}</td>
-<!--            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" {if $code neq '' || $goods._attribute neq ''}readonly="readonly"{/if} /><br />-->
-            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /><br />
-            <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeStorage">{$lang.notice_storage}</span></td>
-          </tr>
+
           <tr>
             <td class="label">{$lang.lab_warn_number}</td>
             <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
@@ -520,7 +546,6 @@
   var sz3 = new SelectZone(1, elements['source_select3'], elements['target_select3']);
   var marketPriceRate = {$cfg.market_price_rate|default:1};
   var integralPercent = {$cfg.integral_percent|default:0};
-
   {literal}
   onload = function()
   {
@@ -1534,5 +1559,7 @@ function thisMovie(movieName){
  }    
 
 } 
+
+
 
 </script>

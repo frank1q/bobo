@@ -25,6 +25,10 @@
       <!-- {/if} -->
     <!-- {/foreach} -->
   <!-- {/if} -->
+
+
+
+
   <div class="content_middle designer_product">
     <div class="item">
       <div class="item_content">
@@ -67,20 +71,20 @@
           <div class="itm_price">
             <h3>{$goods.shop_price_formated}</h3>
           </div>
-          <div class="itm_color">
-            <img src="./images/color.png" alt="" class="img-responsive"/>  
-          </div>
-          <div class="itm_size">
+<!--           <div class="itm_color">
+  <img src="./images/color.png" alt="" class="img-responsive"/>  
+</div>
+<div class="itm_size">
 
-            <div class="itm_size_coding">L</div>
-            <div class="itm_size_coding">M</div>
-            <div class="itm_size_coding">S</div>
-            <div class="itm_size_coding">XS</div>
-            <div class="itm_size_coding">XXS</div>
-          </div>
+  <div class="itm_size_coding">L</div>
+  <div class="itm_size_coding">M</div>
+  <div class="itm_size_coding">S</div>
+  <div class="itm_size_coding">XS</div>
+  <div class="itm_size_coding">XXS</div>
+</div> -->
         </div>
         <div class="item_introduction"> 
-          <!-- {if $promotion} -->
+          <!-- {if $goods.is_groupbuy} -->
             <div class="item_opinion">*THIS ITEM IS IN <div class="item_red">BOING (PRE-ORDER) STAGE</div></div><!--{else} -->
             <div class="item_opinion">DESIGNER'S COMMENT</div>
           <!-- {/if} -->
@@ -89,7 +93,7 @@
             <a href="javascript:void(0);" online="{$goods.layer_type}" goods_id="{$goods.goods_id}" on_index="{$goods.z_index}" class="info">FiTin & Share</a>
           </div>
           <a href="javascript:addToCart({$goods.goods_id})">
-            <!-- {if $promotion} -->
+            <!-- {if $goods.is_groupbuy} -->
               <div class="chatbutton">Pre-order</div>
             <!--{else} -->
               <div class="chatbutton">Add to basket</div>
@@ -97,7 +101,7 @@
           </a>
         <input name="number" type="hidden" id="number" value="1"/>
         </div>
-        <!-- {if $promotion} -->
+        <!-- {if $goods.is_groupbuy} -->
           <div class="item_sizeguide">
             <img src="./images/progressa.png" class="img-responsive">
             <div class="ranking">
@@ -188,3 +192,4 @@ function changePriceResponse(res)
 }
 <!-- {/literal} -->
 </script>
+

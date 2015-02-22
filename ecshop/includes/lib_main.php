@@ -128,11 +128,18 @@ function select_height(){
 
 function online_wear(){
     if(!isset($_SESSION['user_id']) || !$_SESSION['user_id']){
+        if (!defined('SESS_ID'))
+        {
+            return false;
+        }
         $uid =addslashes(SESS_ID);
     }else{
         $uid = $_SESSION['user_id'];
     }
+
     $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'"';
+
+    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'" and sex = '.MY_SEX;
     $arr =  $GLOBALS['db']->getAll($sql);
     $res = array();
     foreach ($arr as $key => $value) {
@@ -562,6 +569,26 @@ function assign_articles($id, $num)
 
     return $articles;
 }
+
+/**
+ * 获取置顶文章
+ *
+ * @access  public
+ * @return  array
+ */
+function article_type_articles()
+{
+    $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('article') . " WHERE article_type = 1";
+
+    $articles = $GLOBALS['db']->getAll($sql);
+
+
+    return $articles;
+}
+
+
+
+
 
 /**
  * 分配帮助信息
@@ -1780,15 +1807,19 @@ function assign_comment($id, $type, $page = 1)
 function assign_template($ctype = '', $catlist = array())
 {
     global $smarty;
+    // 头像
+    $smarty->assign('user_head_img',  $_SESSION['user_head_img']);
+
     $smarty->assign('my_sex_title',  MY_SEX_TITLE);
     $smarty->assign('my_skin',  MY_SKIN);
     $smarty->assign('my_shape',  MY_SHAPE);
     $smarty->assign('my_height',  MY_HEIGHT);
     $sexArr = array(1=>'m',2=>'f');
-    // var_dump($_SESSION);
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
-
+    // var_dump(user_cart_goods());
     $smarty->assign('user_cart_goods',  user_cart_goods());       // 购物车
+
+
 
     //收货地址
     $address = user_address();
@@ -1807,7 +1838,10 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('consignee_list',    $address['consignee_list'] );
     //End
 
-
+    // var_dump($address['consignee_list']);
+    // var_dump(article_type_articles());
+    // 获取文章列表
+    $smarty->assign('articles',article_type_articles());
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
     $smarty->assign('points_name',   $GLOBALS['_CFG']['integral_name']);
@@ -2245,7 +2279,7 @@ function user_cart_goods()
     );
     
     /* 循环、统计 */
-    $sql = "SELECT c.*, g.shop_price ,  gb.ext_info, gb.act_id, gb.end_time , gb.start_time, IF(c.parent_id, c.parent_id, c.goods_id) AS pid " .
+    $sql = "SELECT c.*, g.shop_price ,g.is_groupbuy,g.goods_quantity,g.goods_number,g.group_start_date,g.group_end_date , gb.ext_info, gb.act_id,gb.act_type, gb.end_time , gb.start_time, IF(c.parent_id, c.parent_id, c.goods_id) AS pid " .
             " FROM " . $GLOBALS['ecs']->table('cart') . " AS c " .
             ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON g.goods_id = c.goods_id ' .
             ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb ON gb.goods_id = c.goods_id ' .
@@ -2263,7 +2297,6 @@ function user_cart_goods()
 
         if (!empty($row['ext_info'])) {
             $time = gmtime();
-
             $start_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($time-$row['start_time'])/60/60/24, 0, '.', ''));
             $end_time= preg_replace('/(.*)(\\.)([0-9]*?)0+$/', '\1\2\3', number_format(($row['end_time']-$row['start_time'])/60/60/24, 0, '.', ''));
             $row['start_time']  = $start_time;
@@ -2324,8 +2357,15 @@ function user_cart_goods()
                 $stat['valid_goods'] = $stat['total_goods'];
             }
                 $row['group_buy']=$stat;
-            $row['customers_progress'] =$row['group_buy']['valid_goods']/$row['ext_info']['restrict_amount']*100;
+            $row['customers_progress'] =(($row['goods_quantity']-$row['goods_number'])/$row['goods_quantity'])*100;
         }
+
+        if($row['is_groupbuy']){
+            $row['customers_progress'] =(($row['goods_quantity']-$row['goods_number'])/$row['goods_quantity'])*100;
+            $row['group_now_day']         = intval(($_SERVER['REQUEST_TIME']-$row['group_start_date'])/3600/24);
+            $row['group_total_day']         = ($row['group_end_date']-$row['group_start_date'])/3600/24;
+        }
+        
         $total['goods_price']  += $row['shop_price'] ;
         $total['market_price'] += $row['market_price'];        
         $row['subtotal']     = price_format($row['shop_price'], false);
@@ -2375,7 +2415,7 @@ function user_cart_goods()
     $total['market_price'] = price_format($total['market_price'], false);
     $total['real_goods_count']    = $real_goods_count;
     $total['virtual_goods_count'] = $virtual_goods_count;
-
+    // var_dump($goods_list);
     return array('goods_list' => $goods_list, 'total' => $total);
 }
 function user_address()

@@ -1,0 +1,150 @@
+body{
+	color: #fff;
+}
+.sharemain{
+	width: 1920px;
+	background: url('../images/background1.png');
+	height: 947px;
+}
+.bodyheight{
+	height: 100%;
+}
+.shareleft{
+	width: 69.375%;
+	float: left;
+	height: 100%;
+	background: #323232;
+	position: relative;
+}
+.shareright{
+	float: left;
+	width: 30.62501%;
+	position: relative;
+	margin-left: -0.0001%;
+	z-index: 101;
+	height: 100%;
+}
+.youtube{
+	position: relative;
+	height: 80.555555%;
+}
+.sharesjx{
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url('../images/share_sjx.png');
+	width: 145px;
+	height: 944px;
+	z-index: 100;
+}
+.sharecontent{
+	width: 93.91%;
+	height: 19.444445%;
+	color: #fff;
+	position: relative;
+}
+.shareleftbtn{
+	position: absolute;
+	top: 63px;
+	left: 15px;
+	background: url('../images/share_left.png');
+	width: 40px;
+	height: 64px;
+}
+.sharerightbtn{
+	background: url('../images/share_right.png');
+	width: 40px;
+	height: 64px;
+	position: absolute;
+	top: 63px;
+	right: 15px;
+}
+.shareinner{
+	padding: 2% 6%;
+	overflow: hidden;
+}
+.shareinner .sarctitle{
+	text-align: justify;
+}
+
+
+
+.modelshow{
+	width: 72.1%;
+	height: 100%;
+	margin: 0 auto;
+}
+.sharename{
+	padding: 5% 0;
+}
+.sharename h1{
+	text-align: center;
+}
+
+/* model */
+.model{
+  position: relative;
+}
+.model>div{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.z-index1{
+  z-index: 1;
+}
+.z-index100{
+  z-index: 100;
+}
+.z-index10{
+  z-index: 10;
+}
+.z-index50{
+  z-index: 50;
+}
+.index999{
+  z-index: 999;
+}
+div.headimg{
+  top: 214px;
+  left: 40px;
+}
+
+div.headimg img{
+  max-width: 110px;
+}
+.model{
+  width: 182px;
+  height: 755px;
+  margin: 0 auto;
+  margin-top: -178px;
+}
+
+.ftop160{
+  top: 255px !important;
+}
+.ftop170{
+  top: 236px !important;
+}
+.ftop180{
+  top: 226px !important;
+}
+.ftop190{
+  top: 214px !important;
+  
+}
+.mtop160{
+  top: 271px !important;
+}
+.mtop170{
+  top: 252px !important;
+}
+.mtop180{
+  top: 235px !important;
+}
+.mtop190{
+  top: 214px !important;
+}
+
+
+/* /model */

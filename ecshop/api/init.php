@@ -113,6 +113,7 @@ $_CFG = load_config();
 /* 初始化用户插件 */
 $user =& init_users();
 
+
 if ((DEBUG_MODE & 1) == 1)
 {
     error_reporting(E_ALL);

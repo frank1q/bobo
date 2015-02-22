@@ -178,6 +178,187 @@ function get_top10($cats = '')
     return $arr;
 }
 
+
+/**
+ * 获得推荐团购商品
+ *
+ * @access  public
+ * @param   string      $type       推荐类型，可以是 best, new, hot
+ * @return  array
+ */
+function get_recommend_group_goods($type = '', $cats = '')
+{
+    if (!in_array($type, array('best', 'new', 'hot')))
+    {
+        return array();
+    }
+
+    //取不同推荐对应的商品
+    static $type_goods = array();
+    if (empty($type_goods[$type]))
+    {
+        //初始化数据
+        $type_goods['best'] = array();
+        $type_goods['new'] = array();
+        $type_goods['hot'] = array();
+        $data = read_static_cache('recommend_group_goods');
+        // var_dump($data);
+        if ($data === false)
+        {
+            $sql = 'SELECT g.goods_id,g.goods_number,g.group_start_date,g.group_end_date,g.goods_quantity, g.is_best, g.is_new, g.is_hot, g.is_promote, b.brand_name,g.sort_order ' .
+               ' FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
+               ' LEFT JOIN ' . $GLOBALS['ecs']->table('brand') . ' AS b ON b.brand_id = g.brand_id ' .
+               ' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND g.is_groupbuy=1 AND (g.is_best = 1 OR g.is_new =1 OR g.is_hot = 1)'.
+               ' ORDER BY g.sort_order, g.last_update DESC';
+            $goods_res = $GLOBALS['db']->getAll($sql);
+
+            //定义推荐,最新，热门，促销商品
+            $goods_data['best'] = array();
+            $goods_data['new'] = array();
+            $goods_data['hot'] = array();
+            $goods_data['brand'] = array();
+            if (!empty($goods_res))
+            {
+                foreach($goods_res as $data)
+                {
+                    if ($data['is_best'] == 1)
+                    {
+                        $goods_data['best'][] = array('goods_id' => $data['goods_id'], 'sort_order' => $data['sort_order']);
+                    }
+                    if ($data['is_new'] == 1)
+                    {
+                        $goods_data['new'][] = array('goods_id' => $data['goods_id'], 'sort_order' => $data['sort_order']);
+                    }
+                    if ($data['is_hot'] == 1)
+                    {
+                        $goods_data['hot'][] = array('goods_id' => $data['goods_id'], 'sort_order' => $data['sort_order']);
+                    }
+                    if ($data['brand_name'] != '')
+                    {
+                        $goods_data['brand'][$data['goods_id']] = $data['brand_name'];
+                    }
+                }
+            }
+            write_static_cache('recommend_group_goods', $goods_data);
+        }
+        else
+        {
+            $goods_data = $data;
+        }
+
+        $time = gmtime();
+        $order_type = $GLOBALS['_CFG']['recommend_order'];
+
+        //按推荐数量及排序取每一项推荐显示的商品 order_type可以根据后台设定进行各种条件显示
+        static $type_array = array();
+        $type2lib = array('best'=>'recommend_best', 'new'=>'recommend_new', 'hot'=>'recommend_hot');
+        if (empty($type_array))
+        {
+            foreach($type2lib as $key => $data)
+            {
+                if (!empty($goods_data[$key]))
+                {
+                    $num = get_library_number($data);
+                    $data_count = count($goods_data[$key]);
+                    $num = $data_count > $num  ? $num : $data_count;
+                    if ($order_type == 0)
+                    {
+                        //usort($goods_data[$key], 'goods_sort');
+                        $rand_key = array_slice($goods_data[$key], 0, $num);
+                        foreach($rand_key as $key_data)
+                        {
+                            $type_array[$key][] = $key_data['goods_id'];
+                        }
+                    }
+                    else
+                    {
+                        $rand_key = array_rand($goods_data[$key], $num);
+                        if ($num == 1)
+                        {
+                            $type_array[$key][] = $goods_data[$key][$rand_key]['goods_id'];
+                        }
+                        else
+                        {
+                            foreach($rand_key as $key_data)
+                            {
+                                $type_array[$key][] = $goods_data[$key][$key_data]['goods_id'];
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    $type_array[$key] = array();
+                }
+            }
+        }
+
+        //取出所有符合条件的商品数据，并将结果存入对应的推荐类型数组中
+        $sql = 'SELECT g.goods_id,g.goods_number,g.group_start_date,g.group_end_date,g.goods_quantity, g.goods_name, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, ' .
+                "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
+                "promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, g.goods_front_cover, RAND() AS rnd " .
+                'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
+                "LEFT JOIN " . $GLOBALS['ecs']->table('member_price') . " AS mp ".
+                "ON mp.goods_id = g.goods_id AND g.is_groupbuy=1 AND mp.user_rank = '$_SESSION[user_rank]' ";
+        $type_merge = array_merge($type_array['new'], $type_array['best'], $type_array['hot']);
+        $type_merge = array_unique($type_merge);
+        $sql .= ' WHERE g.goods_id ' . db_create_in($type_merge);
+        $sql .= ' ORDER BY g.sort_order, g.last_update DESC';
+
+        $result = $GLOBALS['db']->getAll($sql);
+        foreach ($result AS $idx => $row)
+        {
+            if ($row['promote_price'] > 0)
+            {
+                $promote_price = bargain_price($row['promote_price'], $row['promote_start_date'], $row['promote_end_date']);
+                $goods[$idx]['promote_price'] = $promote_price > 0 ? price_format($promote_price) : '';
+            }
+            else
+            {
+                $goods[$idx]['promote_price'] = '';
+            }
+
+            $goods[$idx]['id']           = $row['goods_id'];
+            $goods[$idx]['name']         = $row['goods_name'];
+            $goods[$idx]['goods_number']         = $row['goods_number'];
+            $goods[$idx]['goods_quantity']         = $row['goods_quantity'];
+            $goods[$idx]['customers_progress']         = (($row['goods_quantity']-$row['goods_number'])/$row['goods_quantity'])*100;
+            // var_dump($goods[$idx]['customers_progress']);
+            $goods[$idx]['group_start_date']         = $row['group_start_date'];
+            $goods[$idx]['group_now_day']         = intval(($_SERVER['REQUEST_TIME']-$row['group_start_date'])/3600/24);
+            $goods[$idx]['group_total_day']         = ($row['group_end_date']-$row['group_start_date'])/3600/24;
+            $goods[$idx]['brief']        = $row['goods_brief'];
+            $goods[$idx]['brand_name']   = isset($goods_data['brand'][$row['goods_id']]) ? $goods_data['brand'][$row['goods_id']] : '';
+            $goods[$idx]['goods_style_name']   = add_style($row['goods_name'],$row['goods_name_style']);
+            $goods[$idx]['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
+                                               sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
+            $goods[$idx]['short_style_name']   = add_style($goods[$idx]['short_name'],$row['goods_name_style']);
+            $goods[$idx]['market_price'] = price_format($row['market_price']);
+            $goods[$idx]['shop_price']   = price_format($row['shop_price']);
+            $goods[$idx]['thumb']        = get_image_path($row['goods_id'], $row['goods_thumb'], true);
+            $goods[$idx]['front_cover']        = get_image_path($row['goods_id'], $row['goods_front_cover']);
+            $goods[$idx]['goods_img']    = get_image_path($row['goods_id'], $row['goods_img']);
+            $goods[$idx]['url']          = build_uri('goods', array('gid' => $row['goods_id']), $row['goods_name']);
+            if (in_array($row['goods_id'], $type_array['best']))
+            {
+                $type_goods['best'][] = $goods[$idx];
+            }
+            if (in_array($row['goods_id'], $type_array['new']))
+            {
+                $type_goods['new'][] = $goods[$idx];
+            }
+            if (in_array($row['goods_id'], $type_array['hot']))
+            {
+                $type_goods['hot'][] = $goods[$idx];
+            }
+        }
+    }
+    return $type_goods[$type];
+}
+
+
+
+
 /**
  * 获得推荐商品
  *
@@ -206,7 +387,7 @@ function get_recommend_goods($type = '', $cats = '')
             $sql = 'SELECT g.goods_id, g.is_best, g.is_new, g.is_hot, g.is_promote, b.brand_name,g.sort_order ' .
                ' FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
                ' LEFT JOIN ' . $GLOBALS['ecs']->table('brand') . ' AS b ON b.brand_id = g.brand_id ' .
-               ' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND (g.is_best = 1 OR g.is_new =1 OR g.is_hot = 1)'.
+               ' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND g.is_groupbuy=0 AND (g.is_best = 1 OR g.is_new =1 OR g.is_hot = 1)'.
                ' ORDER BY g.sort_order, g.last_update DESC';
             $goods_res = $GLOBALS['db']->getAll($sql);
 
@@ -297,7 +478,7 @@ function get_recommend_goods($type = '', $cats = '')
                 "promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, g.goods_front_cover, RAND() AS rnd " .
                 'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
                 "LEFT JOIN " . $GLOBALS['ecs']->table('member_price') . " AS mp ".
-                "ON mp.goods_id = g.goods_id AND mp.user_rank = '$_SESSION[user_rank]' ";
+                "ON mp.goods_id = g.goods_id AND g.is_groupbuy=0 AND mp.user_rank = '$_SESSION[user_rank]' ";
         $type_merge = array_merge($type_array['new'], $type_array['best'], $type_array['hot']);
         $type_merge = array_unique($type_merge);
         $sql .= ' WHERE g.goods_id ' . db_create_in($type_merge);

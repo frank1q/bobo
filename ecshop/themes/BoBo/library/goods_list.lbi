@@ -3,7 +3,12 @@
     <!--{foreach from=$goods_list item=goods}-->
       <!-- {if $goods.goods_id} -->
         <div class="view view-first designer_picture">
-            <img src="{$goods.goods_img}" class="img-responsive" />
+          <!-- {if $goods.is_groupbuy eq 1} -->
+              <div class="boing">
+                <img src="images/boing-icon.png" class="img-responsive">
+              </div>
+          <!-- {/if} -->
+          <img src="{$goods.goods_img}" class="img-responsive" />
           <div>
             {$goods.goods_name}
           </div>
@@ -11,12 +16,12 @@
            <div class="mask">
               <h2>StyleIcon</h2>
               <a href="javascript:void(0);" online="{$goods.layer_type}" goods_id="{$goods.goods_id}" on_index="{$goods.z_index}" class="info">FiTin & Share</a>
-              <div class="mystyle">
-                <a href="javascript:void(0);" class="color_style1"></a>
-                <a href="javascript:void(0);" class="color_style2"></a>
-                <a href="javascript:void(0);" class="color_style3"></a>
-                <a href="javascript:void(0);" class="color_style4"></a>
-              </div>
+<!--               <div class="mystyle">
+  <a href="javascript:void(0);" class="color_style1"></a>
+  <a href="javascript:void(0);" class="color_style2"></a>
+  <a href="javascript:void(0);" class="color_style3"></a>
+  <a href="javascript:void(0);" class="color_style4"></a>
+</div> -->
               <a href="{$goods.url}">
               <div class="hovercontent">
                 <div class="goodcontent">

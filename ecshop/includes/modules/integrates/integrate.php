@@ -614,7 +614,7 @@ class integrate
         }
         else
         {
-            $sql = "SELECT user_id, password, email FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_name='$username' LIMIT 1";
+            $sql = "SELECT user_id, password, user_head_img,email FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_name='$username' LIMIT 1";
             $row = $GLOBALS['db']->getRow($sql);
 
             if ($row)
@@ -622,6 +622,7 @@ class integrate
                 $_SESSION['user_id']   = $row['user_id'];
                 $_SESSION['user_name'] = $username;
                 $_SESSION['email']     = $row['email'];
+                $_SESSION['user_head_img']     = $row['user_head_img'];
             }
         }
     }

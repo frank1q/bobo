@@ -1,17 +1,27 @@
 <div class="content_right">
           <div class="model">
             <div class="modelimg z-index1">
-              <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+                <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+            </div>
+            <div class="{$my_sex}top{$my_height} headimg index999 ">
+                <img src="headImg/{$user_head_img}" class="img-responsive" alt="">
             </div>
             <div class="trousers z-index50">
-                  <img src="model_img/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
-
+                <img src="model_img/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="coat z-index100">
-                  <img src="model_img/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+                <img src="model_img/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
             </div>
             <div class="underwear z-index10">
-                  <img src="model_img/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+                <img src="model_img/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+            </div>
+            <div class="share">
+                <div class="submit_form w100">
+                  <a href="share.php?user_id={$smarty.session.user_id}"><button type="button" name="act" value="edit_profile">
+                      Share
+                  </button>
+                  </a>
+                </div>
             </div>
           </div>
         </div>
@@ -44,8 +54,14 @@
           <div class="basket_cart">
             <div class="cart_main">
               <!--{foreach from=$user_cart_goods.goods_list item=user_cart}-->
+
               <div id="cart_{$user_cart.rec_id}">
                 <div class="cart_image">
+                  <!-- {if $user_cart.is_groupbuy eq 1} -->
+                      <div class="boing">
+                        <img src="images/boing-icon.png" class="img-responsive">
+                      </div>
+                  <!-- {/if} -->
                   <img src="{$user_cart.goods_thumb}" class="img-responsive"/>
                 </div>
                 <div class="cart_content">
@@ -58,17 +74,17 @@
                     </div>
                   </div>
                   <div class="cart_color">
-                    <div class="E55"></div><p>XS</p>
+                    <!-- <div class="E55"></div><p>XS</p> -->
                   </div>
                   <div class="cart_progress">
-                    <!-- {if $user_cart.ext_info} -->
+                    <!-- {if $user_cart.is_groupbuy} -->
                       <div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$user_cart.customers_progress}%;">
                         </div>
                       </div>
                       <div class="cart_detail">
                         <div>
-                          <p class='cart_title'>{$user_cart.start_time}/{$user_cart.end_time}</p>
+                          <p class='cart_title'>{$user_cart.group_now_day}/{$user_cart.group_total_day}</p>
                           <p class='cart_footer_detail'>days to go</p>
                         </div>
                         <div>
@@ -94,13 +110,14 @@
               
               <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
                 <tbody>
-                 <!-- {foreach from=$consignee_list item=consignee key=sn} -->
+                
                   <tr>
                     <td class="cart_footer_title">TOTAL:</td>
                     <td class="cart_footer_content">
                         <h3>{$user_cart_goods.total.goods_price}</h3>
                     </td>
                   </tr>
+                   <!-- {foreach from=$consignee_list item=consignee key=sn} -->
                   <tr>
                     <td class="cart_footer_title">Deliver to:</td>
                     <td class="cart_footer_content">
@@ -109,6 +126,7 @@
                       </p>
                     </td>
                   </tr>
+
                   <tr>
                     <td class="cart_footer_title">Contact:</td>
                     <td class="cart_footer_content">
@@ -117,13 +135,14 @@
                       </p>
                     </td>
                   </tr>
+                  <!-- {/foreach} -->
                   <tr>
                     <td class="cart_footer_title">Payment method:<input type="radio" name="paypal" id="paypal" checked="true"> Paypal </td>
                     <td class="cart_footer_content">
                       
                     </td>
                   </tr>
-                <!-- {/foreach} -->
+                
                 </tbody>
               </table>
               <div class="cart_footer_submit">
@@ -159,7 +178,7 @@
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingSeven">
           <a data-toggle="collapse" class="collapeiconv" data-parent="#accordiona" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-            <div class="basket-checkout">
+            <div class="basket-checkout menu_top">
               <div class="sidebar_b">
                 <div class="lcon_04">
                   <img src="./images/lcon_04.png" class="img-responsive"/>              
@@ -336,6 +355,27 @@
 <!-- /Modal -->
 
 
+<script type='text/javascript'>         
+/*var _taw = _taw || [];
+_taw.push(['_color', '#3b5998']);
+(function(d) {var taw = d.createElement('script'),id = 'tawea-extension';
+if (d.getElementById(id)) {return;}
+taw.type = 'text/javascript';taw.id=id;taw.async=true;
+taw.src ='https://tawea.com/extension/js/sdk.min.js';
+(document.head||document.documentElement).appendChild(taw);})(document);*/
+
+
+</script>
+
+
+<script>
+window.onload = function(){
+  var t = $('.Tawea:first').attr('style');
+  t = t+'margin-right:0px !important;';
+  $('.Tawea:first').attr('style',t);
+}
+
+</script>
 
 
 </body>

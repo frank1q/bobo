@@ -13,7 +13,7 @@
 				<div class="input-group">
 					<input class="form-control" type="email" placeholder="SEARCH">
 					<div class="input-group-addon">
-						<img src="./themes/BoBo/images/lcon_02.png" alt="" />
+						<img src="./themes/BoBo/images/search.png" alt="" />
 					</div>
 				</div>
 			</div>

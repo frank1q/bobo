@@ -166,7 +166,7 @@ function get_profile($user_id)
     /* 会员帐号信息 */
     $info  = array();
     $infos = array();
-    $sql  = "SELECT user_name, birthday, sex, question, answer, rank_points, pay_points,user_money, user_rank,".
+    $sql  = "SELECT user_name, birthday, user_head_img,sex, question, answer, rank_points, pay_points,user_money, user_rank,".
             " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, m.* , mh.model_high ".
             "FROM " .$GLOBALS['ecs']->table('users') . " u ".
             " LEFT JOIN ".$GLOBALS['ecs']->table('model_management')." m ON u.model_id = m.model_id ".
@@ -222,6 +222,7 @@ function get_profile($user_id)
     $info['discount']     = $_SESSION['discount'] * 100 . "%";
     $info['email']        = $_SESSION['email'];
     $info['user_name']    = $_SESSION['user_name'];
+    $info['user_head_img']  = $infos['user_head_img'];
     $info['rank_points']  = isset($infos['rank_points']) ? $infos['rank_points'] : '';
     $info['pay_points']   = isset($infos['pay_points'])  ? $infos['pay_points']  : 0;
     $info['user_money']   = isset($infos['user_money'])  ? $infos['user_money']  : 0;
