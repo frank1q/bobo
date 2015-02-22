@@ -19,26 +19,6 @@ if (!defined('IN_ECS'))
 }
 
 /**
- * 登陆邮箱验证
- *
- * @access  public
- * @return  int     0 or 1
- */
-
-function  is_validated_email($username)
-{
-  $sql = "SELECT  is_validated" .
-   " FROM ". $GLOBALS['ecs']->table('users').
-   " WHERE  user_name='" . $username."'";
- 
-   return $GLOBALS['db']->getOne($sql);
-}
-
-
-
-
-
-/**
  * 选择模特性别，取消性别
  *
  * @access  public
@@ -152,7 +132,7 @@ function online_wear(){
     }else{
         $uid = $_SESSION['user_id'];
     }
-    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'" and sex = '.MY_SEX;
+    $sql = 'select * from '.$GLOBALS['ecs']->table('online_wear').' where user_id = "'.$uid.'"';
     $arr =  $GLOBALS['db']->getAll($sql);
     $res = array();
     foreach ($arr as $key => $value) {
@@ -160,7 +140,6 @@ function online_wear(){
         $res[$newKey] = $value;
     }
     return $res;
-    
 }
 
 
@@ -1700,6 +1679,7 @@ function parse_rate_value($str, &$operate)
  */
 function recalculate_price()
 {
+
     /* 取得有可能改变价格的商品：除配件和赠品之外的商品 */
     $sql = 'SELECT c.rec_id, c.goods_id, c.goods_attr_id, g.promote_price, g.promote_start_date, c.goods_number,'.
                 "g.promote_end_date, IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS member_price ".
@@ -1824,15 +1804,9 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('name_of_region',    $address['name_of_region'] );
     $smarty->assign('country_list',      $address['country_list'] );
     $smarty->assign('shop_province_list',$address['shop_province_list'] );
-    foreach ($address['consignee_list'] as $key => $consignee) {
-        if($consignee['address_id']==$address['address']){
-            $consignee_list[0] = $consignee;
-            $smarty->assign('consignee_list',    $consignee_list );
-        }
-    }
-    
+    $smarty->assign('consignee_list',    $address['consignee_list'] );
     //End
-    // var_dump($address['consignee_list']);
+
 
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
     $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
@@ -2277,8 +2251,8 @@ function user_cart_goods()
             ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb ON gb.goods_id = c.goods_id ' .
             " WHERE c.user_id = '" . $_SESSION['user_id'] . "' AND c.rec_type = '" . CART_GENERAL_GOODS . "'" .
             " ORDER BY pid, parent_id";
-
     $res = $GLOBALS['db']->query($sql);
+
     /* 用于统计购物车中实体商品和虚拟商品的个数 */
     $virtual_goods_count = 0;
     $real_goods_count    = 0;
@@ -2450,7 +2424,7 @@ function user_address()
     $address['currency_format']  =  $_CFG['currency_format'];
     $address['integral_scale']   =  $_CFG['integral_scale'];
     $address['name_of_region']   =  array($_CFG['name_of_region_1'], $_CFG['name_of_region_2'], $_CFG['name_of_region_3'], $_CFG['name_of_region_4']);
-    // var_dump($address);
+
     return $address;
 }
 
