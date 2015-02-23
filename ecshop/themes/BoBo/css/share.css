@@ -2,9 +2,9 @@ body{
 	color: #fff;
 }
 .sharemain{
-	width: 1920px;
+	width: 100%;
 	background: url('../images/background1.png');
-	height: 947px;
+	height: 670px;
 }
 .bodyheight{
 	height: 100%;
@@ -32,9 +32,8 @@ body{
 	position: absolute;
 	top: 0;
 	right: 0;
-	background: url('../images/share_sjx.png');
-	width: 145px;
-	height: 944px;
+	/*background: url('../images/share_sjx.png');*/
+	width: 11%;
 	z-index: 100;
 }
 .sharecontent{
