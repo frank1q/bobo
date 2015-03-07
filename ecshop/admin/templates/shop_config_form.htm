@@ -17,7 +17,8 @@
 
           {elseif $var.type eq "select"}
           {foreach from=$var.store_options key=k item=opt}
-          <label for="value_{$var.id}_{$k}"><input type="radio" name="value[{$var.id}]" id="value_{$var.id}_{$k}" value="{$opt}"
+          <label for="value_{$var.id}_{$k}">
+            <input type="radio" name="value[{$var.id}]" id="value_{$var.id}_{$k}" value="{$opt}"
             {if $var.value eq $opt}checked="true"{/if}
             {if $var.code eq 'rewrite'}
               onclick="return ReWriterConfirm(this);"
@@ -31,7 +32,9 @@
             {if $var.code eq 'retain_original_img' and $opt eq 0}
               onclick="return confirm('{$lang.retain_original_confirm}');"
             {/if}
-          />{$var.display_options[$k]}</label>
+            />
+            {$var.display_options.$k}
+          </label>
           {/foreach}
 
           {elseif $var.type eq "options"}

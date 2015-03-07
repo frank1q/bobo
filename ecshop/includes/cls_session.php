@@ -81,6 +81,18 @@ class cls_session
         $this->db  = &$db;
         $this->_ip = real_ip();
 
+
+
+        if(isset($_COOKIE['real_ipd']) && !empty($_COOKIE['real_ipd']))
+        { 
+            $this->_ip = $_COOKIE['real_ipd']; 
+        }
+        else
+        { 
+            $this->_ip = real_ip(); 
+            setcookie("real_ipd", $this->_ip, time()+36000, "/"); 
+        }
+
         if ($session_id == '' && !empty($_COOKIE[$this->session_name]))
         {
             $this->session_id = $_COOKIE[$this->session_name];
@@ -130,10 +142,10 @@ class cls_session
     {
         static $ip = '';
 
-        if ($ip == '')
+        /*if ($ip == '')
         {
             $ip = substr($this->_ip, 0, strrpos($this->_ip, '.'));
-        }
+        }*/
 
         return sprintf('%08x', crc32(!empty($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] . ROOT_PATH . $ip . $session_id : ROOT_PATH . $ip . $session_id));
     }

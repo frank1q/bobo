@@ -17,9 +17,15 @@
 <div class="content_middle getintouch">
             <div class="getintouch_content">
               <div class="getintouch_content_left">
-                <!-- {if $article.content } -->
+                <div class="getintouch_content_title">
+                  - Basic Contact
+                </div>
+                <div class="getintouch-content">
+                  <!-- {if $article.content } -->
                   {$article.content}
                   <!-- {/if} -->
+                </div>
+
                 <div class="getintouch_content_title">
                   - Live Chat
                 </div>

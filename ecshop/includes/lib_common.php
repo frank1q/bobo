@@ -180,6 +180,23 @@ function get_regions($type = 0, $parent = 0)
 }
 
 /**
+ * 获得指定国家的所有省份
+ *
+ * @access      public
+ * @param       int     country    国家的编号
+ * @return      array
+ */
+function get_full_address($country,$province,$city,$district)
+{
+    $sql = 'SELECT region_name FROM ' . $GLOBALS['ecs']->table('region') .
+            " WHERE region_id in ($country,$province,$city,$district) order by region_id desc";
+
+    $res =  $GLOBALS['db']->GetCol($sql);
+    return $res;
+}
+
+
+/**
  * 获得配送区域中指定的配送方式的配送费用的计算参数
  *
  * @access  public

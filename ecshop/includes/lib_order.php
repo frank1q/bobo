@@ -1012,7 +1012,7 @@ function addto_cart($goods_id, $num = 1, $spec = array(), $parent = 0)
     $_parent_id = $parent;
 
     /* 取得商品信息 */
-    $sql = "SELECT g.goods_name, g.goods_sn, g.is_on_sale, g.is_real, ".
+    $sql = "SELECT g.is_groupbuy,g.group_end_date,g.goods_quantity,g.goods_saled,g.goods_name, g.goods_sn, g.is_on_sale, g.is_real, ".
                 "g.market_price, g.shop_price AS org_price, g.promote_price, g.promote_start_date, ".
                 "g.promote_end_date, g.goods_weight, g.integral, g.extension_code, ".
                 "g.goods_number, g.is_alone_sale, g.is_shipping,".
@@ -1040,6 +1040,18 @@ function addto_cart($goods_id, $num = 1, $spec = array(), $parent = 0)
         {
             $GLOBALS['err']->add($GLOBALS['_LANG']['no_basic_goods'], ERR_NO_BASIC_GOODS);
 
+            return false;
+        }
+    }
+
+    /* 如果是pre-order 则检查是否过期，以及数量已经满了 */
+    if($goods['is_groupbuy']==1){
+        if(($goods['group_end_date']+3600*24) < $_SERVER['REQUEST_TIME']){
+            $GLOBALS['err']->add('Sorry! Out Date To Pre-order', ERR_NO_BASIC_GOODS);
+            return false;
+        }
+        if($goods['goods_quantity']<=$goods['goods_saled']){
+            $GLOBALS['err']->add('Sorry! Outnumber', ERR_NO_BASIC_GOODS);
             return false;
         }
     }
@@ -2982,4 +2994,28 @@ function judge_package_stock($package_id, $package_num = 1)
 
     return false;
 }
+function update_group_count($order_id,$operating='+'){
+    
+    $sql = 'select goods_id from '. $GLOBALS['ecs']->table('order_goods') .' where order_id = '.$order_id ;
+    $row = $GLOBALS['db']->getCol($sql);
+    // var_dump($row);
+
+    $uSql = 'update '. $GLOBALS['ecs']->table('goods') .' set goods_saled = goods_saled+1 where goods_id in ('.implode($row, ',').') and is_groupbuy = 1 and goods_saled < goods_quantity';
+    // var_dump($uSql);
+
+    $GLOBALS['db']->query($uSql);
+    // exit;
+}
+function update_group_count_j($order_id){
+    $sql = 'select goods_id from '. $GLOBALS['ecs']->table('order_goods') .' where order_id = '.$order_id ;
+    $row = $GLOBALS['db']->getCol($sql);
+    // var_dump($row);
+
+    $uSql = 'update '. $GLOBALS['ecs']->table('goods') .' set goods_saled = goods_saled-1 where goods_id in ('.implode($row, ',').') and is_groupbuy = 1 and goods_saled < goods_quantity';
+    // var_dump($uSql);
+
+    $GLOBALS['db']->query($uSql);
+}
+
+
 ?>

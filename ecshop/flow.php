@@ -1383,7 +1383,10 @@ elseif ($_REQUEST['step'] == 'done')
     }
 
     $consignee = get_consignee($_SESSION['user_id']);
-
+    $consignee['country'] = 1;
+    $consignee['province'] = 2;
+    $consignee['city'] = 52;
+    $consignee['district'] = 500;
     /* 检查收货人信息是否完整 */
     if (!check_consignee_info($consignee, $flow_type))
     {
@@ -1766,7 +1769,7 @@ elseif ($_REQUEST['step'] == 'done')
 
     }
     /* 清空购物车 */
-    // clear_cart($flow_type);
+    clear_cart($flow_type);
     /* 清除缓存，否则买了商品，但是前台页面读取缓存，商品数量不减少 */
     clear_all_files();
 

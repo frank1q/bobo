@@ -18,7 +18,7 @@ if (!defined('IN_ECS'))
     die('Hacking attempt');
 }
 
-define('APPNAME', 'ECSHOP');
+define('APPNAME', 'BOBO');
 define('VERSION', 'v2.7.2');
 define('RELEASE', '20100505');
 

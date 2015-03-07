@@ -2810,8 +2810,17 @@ elseif ($_REQUEST['act'] == 'operate')
     elseif (isset($_REQUEST['remove_invoice']))
     {
         // 删除发货单
-        $delivery_id = is_array($delivery_id) ? $delivery_id : array($delivery_id);
+        // $delivery_id = intval(trim($_REQUEST['delivery_id']));
+        // $delivery_id = is_array($delivery_id) ? $delivery_id : array($delivery_id);
+        if(is_numeric($_REQUEST['delivery_id'])){
+            $delivery_id[] = $_REQUEST['delivery_id'];
+        }else if (is_array($_REQUEST['delivery_id'])){
+            $delivery_id = $_REQUEST['delivery_id'];
+        }
+        else{
+           die('error');
 
+        }
         foreach($delivery_id as $value_is)
         {
             $value_is = intval(trim($value_is));
@@ -3393,6 +3402,8 @@ elseif ($_REQUEST['act'] == 'operate_post')
         /* 检查权限 */
         admin_priv('order_ps_edit');
 
+
+
         /* 标记订单为已确认、已付款，更新付款时间和已支付金额，如果是货到付款，同时修改订单为“收货确认” */
         if ($order['order_status'] != OS_CONFIRMED)
         {
@@ -3410,6 +3421,9 @@ elseif ($_REQUEST['act'] == 'operate_post')
             $order['shipping_status'] = SS_RECEIVED;
         }
         update_order($order_id, $arr);
+
+        /* 付款成功更新团购预定数量*/
+        update_group_count($order_id);
 
         /* 记录log */
         order_action($order['order_sn'], OS_CONFIRMED, $order['shipping_status'], PS_PAYED, $action_note);
@@ -3433,6 +3447,9 @@ elseif ($_REQUEST['act'] == 'operate_post')
         $refund_type = @$_REQUEST['refund'];
         $refund_note = @$_REQUEST['refund_note'];
         order_refund($order, $refund_type, $refund_note);
+
+        /* 取消付款更新团购预定数量*/
+        update_group_count_j($order_id,'-');
 
         /* 记录log */
         order_action($order['order_sn'], OS_CONFIRMED, SS_UNSHIPPED, PS_UNPAYED, $action_note);

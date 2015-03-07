@@ -441,6 +441,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
     $smarty->assign('goods_name_style', $goods_name_style[1]);
     $smarty->assign('cat_list', cat_list(0, $goods['cat_id']));
     $smarty->assign('brand_list', get_brand_list());
+    // var_dump(get_brand_list());
     $smarty->assign('unit_list', get_unit_list());
     $smarty->assign('user_rank_list', get_user_rank_list());
     $smarty->assign('weight_unit', $is_add ? '1' : ($goods['goods_weight'] >= 1 ? '1' : '0.001'));
@@ -474,6 +475,11 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
     }
     $smarty->assign('volume_price_list', $volume_price_list);
     /* 显示商品信息页面 */
+
+    //获取设计师用户
+    $disigner_list = get_disigner_list();
+    // var_dump($disigner_list);
+    $smarty->assign('disigner_list', $disigner_list);
     assign_query_info();
     $smarty->display('goods_info.htm');
 }
@@ -884,7 +890,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     $goods_thumb = (empty($goods_thumb) && !empty($_POST['goods_thumb_url']) && goods_parse_url($_POST['goods_thumb_url'])) ? htmlspecialchars(trim($_POST['goods_thumb_url'])) : $goods_thumb;
     $goods_thumb = (empty($goods_thumb) && isset($_POST['auto_thumb']))? $goods_img : $goods_thumb;
 
-
+    $user_id = isset($_POST['user_id']) ? intval($_POST['user_id']) : '0';
     $is_groupbuy = $_POST['groupbuy'] ? 1 : 0;
 
     if($is_groupbuy){
@@ -920,7 +926,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     "promote_start_date, promote_end_date, goods_img, goods_thumb, original_img, goods_front_cover, front_cover_thumb, keywords, goods_brief, " .
                     "seller_note, goods_weight, goods_number, warn_number, integral, give_integral, is_best, is_new, is_hot, " .
                     "is_on_sale, is_alone_sale, is_shipping, goods_desc, add_time, last_update, goods_type, rank_integral, suppliers_id, 
-                    goods_sex, layer_type, z_index,youtube_url,is_groupbuy,group_start_date,group_end_date,goods_quantity
+                    goods_sex, layer_type, z_index,youtube_url,is_groupbuy,group_start_date,group_end_date,goods_quantity,user_id
                     )" .
                 "VALUES ('$_POST[goods_name]', '$goods_name_style', '$goods_sn', '$catgory_id', " .
                     "'$brand_id', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
@@ -930,7 +936,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     " '$_POST[goods_desc]', '" . gmtime() . "', '". gmtime() .
                     "', '$goods_type', '$rank_integral', '$suppliers_id', '$_POST[goods_sex]',
                      '$layer_type[0]', '$layer_type[1]','$_POST[youtube_url]','$is_groupbuy','$group_start_date','$group_end_date','$goods_quantity'
-
+                    ,'$user_id'
                      )";
         }
         else
@@ -940,7 +946,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     "promote_start_date, promote_end_date, goods_img, goods_thumb, original_img, goods_front_cover, front_cover_thumb,keywords, goods_brief, " .
                     "seller_note, goods_weight, goods_number, warn_number, integral, give_integral, is_best, is_new, is_hot, is_real, " .
                     "is_on_sale, is_alone_sale, is_shipping, goods_desc, add_time, last_update, goods_type, extension_code, rank_integral,
-                     goods_sex, layer_type, z_index,youtube_url,is_groupbuy,group_start_date,group_end_date,goods_quantity
+                     goods_sex, layer_type, z_index,youtube_url,is_groupbuy,group_start_date,group_end_date,goods_quantity,user_id
                      )" .
                 "VALUES ('$_POST[goods_name]', '$goods_name_style', '$goods_sn', '$catgory_id', " .
                     "'$brand_id', '$shop_price', '$market_price', '$is_promote','$promote_price', ".
@@ -949,7 +955,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     " '$warn_number', '$_POST[integral]', '$give_integral', '$is_best', '$is_new', '$is_hot', 0, '$is_on_sale', '$is_alone_sale', $is_shipping, ".
                     " '$_POST[goods_desc]', '" . gmtime() . "', '". gmtime() ."', '$goods_type', '$code', '$rank_integral',
                      '$_POST[goods_sex]', '$layer_type[0]', '$layer_type[1]',
-                     '$_POST[youtube_url]','$is_groupbuy','$group_start_date','$group_end_date','$goods_quantity'
+                     '$_POST[youtube_url]','$is_groupbuy','$group_start_date','$group_end_date','$goods_quantity','$user_id'
 
                      )";
         }
@@ -997,6 +1003,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                 "group_start_date = '$group_start_date', " .
                 "group_end_date = '$group_end_date', " .
                 "goods_quantity = '$goods_quantity', " .
+                "user_id = '$user_id', " .
                 "promote_end_date = '$promote_end_date', ";
 
         /* 如果有上传图片，需要更新数据库 */

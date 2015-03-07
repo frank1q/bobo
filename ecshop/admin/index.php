@@ -36,7 +36,7 @@ elseif ($_REQUEST['act'] == 'top')
     // 获得管理员设置的菜单
     $lst = array();
     $nav = $db->GetOne('SELECT nav_list FROM ' . $ecs->table('admin_user') . " WHERE user_id = '" . $_SESSION['admin_id'] . "'");
-
+    // var_dump($nav);
     if (!empty($nav))
     {
         $arr = explode(',', $nav);
@@ -47,7 +47,7 @@ elseif ($_REQUEST['act'] == 'top')
             $lst[$tmp[1]] = $tmp[0];
         }
     }
-
+    // var_dump($lst);
     // 获得管理员设置的菜单
 
     // 获得管理员ID
@@ -517,10 +517,10 @@ elseif ($_REQUEST['act'] == 'main_api')
 
         $apiget = "ver= $ecs_version &lang= $ecs_lang &release= $ecs_release &php_ver= $php_ver &mysql_ver= $mysql_ver &ocount= $ocount &oamount= $oamount &gcount= $gcount &charset= $ecs_charset &usecount= $ecs_user &template= $ecs_template &style= $ecs_style &url= $shop_url &patch= $patch_file ";
 
-        $t = new transport;
+        /*$t = new transport;
         $api_comment = $t->request('http://api.ecshop.com/checkver.php', $apiget);
         $api_str = $api_comment["body"];
-        echo $api_str;
+        echo $api_str;*/
         
         $f=ROOT_PATH . 'data/config.php'; 
         file_put_contents($f,str_replace("'API_TIME', '".API_TIME."'","'API_TIME', '".date('Y-m-d H:i:s',time())."'",file_get_contents($f)));

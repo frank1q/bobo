@@ -161,7 +161,10 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                                 " money_paid = order_amount," .
                                 " order_amount = 0 ".
                        "WHERE order_id = '$order_id'";
-                $GLOBALS['db']->query($sql);
+                if($GLOBALS['db']->query($sql)){
+                    // 更新状态成功则修改团购的数量
+                    update_group_count($order_id);
+                }
 
                 /* 记录订单操作记录 */
                 order_action($order_sn, OS_CONFIRMED, SS_UNSHIPPED, $pay_status, $note, $GLOBALS['_LANG']['buyer']);

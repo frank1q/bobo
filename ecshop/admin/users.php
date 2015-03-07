@@ -16,7 +16,8 @@
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
-
+include_once(ROOT_PATH . '/includes/cls_image.php');
+$image = new cls_image($_CFG['bgcolor']);
 /*------------------------------------------------------ */
 //-- 用户帐号列表
 /*------------------------------------------------------ */
@@ -45,7 +46,7 @@ if ($_REQUEST['act'] == 'list')
     $smarty->assign('record_count', $user_list['record_count']);
     $smarty->assign('page_count',   $user_list['page_count']);
     $smarty->assign('full_page',    1);
-    $smarty->assign('sort_user_id', '<img src="images/sort_desc.gif">');
+    $smarty->assign('sort_user_id', '<img src="data:image/gif;base64,R0lGODlhCQAJAJEAAFhthrvd5euKPbm5uSH5BAAHAP8ALAAAAAAJAAkAAAIUjI+JIN1w2DtjMFCpzagOFXxgUgAAOw==">');
 
     assign_query_info();
     $smarty->display('users_list.htm');
@@ -92,7 +93,8 @@ elseif ($_REQUEST['act'] == 'add')
     $smarty->assign('form_action',      'insert');
     $smarty->assign('user',             $user);
     $smarty->assign('special_ranks',    get_rank_list(true));
-
+    $is_validated = array('No','Yes');
+    $smarty->assign('is_validated',     $is_validated);
     assign_query_info();
     $smarty->display('user_info.htm');
 }
@@ -102,16 +104,48 @@ elseif ($_REQUEST['act'] == 'add')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'insert')
 {
+
     /* 检查权限 */
     admin_priv('users_manage');
     $username = empty($_POST['username']) ? '' : trim($_POST['username']);
     $password = empty($_POST['password']) ? '' : trim($_POST['password']);
     $email = empty($_POST['email']) ? '' : trim($_POST['email']);
     $sex = empty($_POST['sex']) ? 0 : intval($_POST['sex']);
+    $is_validated = empty($_POST['is_validated']) ? 0 : intval($_POST['is_validated']);
     $sex = in_array($sex, array(0, 1, 2)) ? $sex : 0;
     $birthday = $_POST['birthdayYear'] . '-' .  $_POST['birthdayMonth'] . '-' . $_POST['birthdayDay'];
     $rank = empty($_POST['user_rank']) ? 0 : intval($_POST['user_rank']);
     $credit_line = empty($_POST['credit_line']) ? 0 : floatval($_POST['credit_line']);
+    $description = empty($_POST['description']) ? '' : trim($_POST['description']);
+    /* (self)检查图片：如果有错误，检查尺寸是否超过最大值；否则，检查文件类型 */
+    if (isset($_FILES['disigner_img']['error'])){ // php 4.2 版本才支持 error
+        // 最大上传文件大小
+        $php_maxsize = ini_get('upload_max_filesize');
+        $htm_maxsize = '2M';
+    
+        // 商品图片
+        if ($_FILES['disigner_img']['error'] == 0)
+        {
+            if (!$image->check_img_type($_FILES['disigner_img']['type']))
+            {
+                sys_msg($_LANG['invalid_goods_img'], 1, array(), false);
+            }
+            $disigner_img = $image->upload_image($_FILES['disigner_img']);
+            if ($disigner_img === false)
+            {
+                sys_msg($image->error_msg(), 1, array(), false);
+            }
+        }
+        elseif ($_FILES['disigner_img']['error'] == 1)
+        {
+            sys_msg(sprintf($_LANG['goods_img_too_big'], $php_maxsize), 1, array(), false);
+        }
+        elseif ($_FILES['disigner_img']['error'] == 2)
+        {
+            sys_msg(sprintf($_LANG['goods_img_too_big'], $htm_maxsize), 1, array(), false);
+        }
+    }
+
 
     $users =& init_users();
 
@@ -184,8 +218,11 @@ elseif ($_REQUEST['act'] == 'insert')
     $other['user_rank']  = $rank;
     $other['sex']        = $sex;
     $other['birthday']   = $birthday;
+    $other['disigner_img']   = $disigner_img;
+    $other['description']   = $description;
+    $other['is_validated']   = $is_validated;
     $other['reg_time'] = local_strtotime(local_date('Y-m-d H:i:s'));
-
+    
     $other['msn'] = isset($_POST['extend_field1']) ? htmlspecialchars(trim($_POST['extend_field1'])) : '';
     $other['qq'] = isset($_POST['extend_field2']) ? htmlspecialchars(trim($_POST['extend_field2'])) : '';
     $other['office_phone'] = isset($_POST['extend_field3']) ? htmlspecialchars(trim($_POST['extend_field3'])) : '';
@@ -193,7 +230,7 @@ elseif ($_REQUEST['act'] == 'insert')
     $other['mobile_phone'] = isset($_POST['extend_field5']) ? htmlspecialchars(trim($_POST['extend_field5'])) : '';
 
     $db->autoExecute($ecs->table('users'), $other, 'UPDATE', "user_name = '$username'");
-
+    
     /* 记录管理员操作 */
     admin_log($_POST['username'], 'add', 'users');
 
@@ -220,15 +257,16 @@ elseif ($_REQUEST['act'] == 'edit')
     $users  =& init_users();
     $user   = $users->get_user_info($row['user_name']);
 
-    $sql = "SELECT u.user_id, u.sex, u.birthday, u.pay_points, u.rank_points, u.user_rank , u.user_money, u.frozen_money, u.credit_line, u.parent_id, u2.user_name as parent_username, u.qq, u.msn,
+    $sql = "SELECT u.user_id,u.disigner_img,u.description,u.is_validated, u.sex, u.birthday, u.pay_points, u.rank_points, u.user_rank , u.user_money, u.frozen_money, u.credit_line, u.parent_id, u2.user_name as parent_username, u.qq, u.msn,
     u.office_phone, u.home_phone, u.mobile_phone".
         " FROM " .$ecs->table('users'). " u LEFT JOIN " . $ecs->table('users') . " u2 ON u.parent_id = u2.user_id WHERE u.user_id='$_GET[id]'";
 
     $row = $db->GetRow($sql);
-
+    // var_dump($row);
     if ($row)
     {
         $user['user_id']        = $row['user_id'];
+        $user['disigner_img']        = $row['disigner_img'];
         $user['sex']            = $row['sex'];
         $user['birthday']       = date($row['birthday']);
         $user['pay_points']     = $row['pay_points'];
@@ -246,6 +284,8 @@ elseif ($_REQUEST['act'] == 'edit')
         $user['office_phone']   = $row['office_phone'];
         $user['home_phone']     = $row['home_phone'];
         $user['mobile_phone']   = $row['mobile_phone'];
+        $user['description']   = $row['description'];
+        $user['is_validated']   = $row['is_validated'];
     }
     else
     {
@@ -323,8 +363,10 @@ elseif ($_REQUEST['act'] == 'edit')
         }
     }
 
-
+    // var_dump($user);
     assign_query_info();
+    $is_validated = array('No','Yes');
+    $smarty->assign('is_validated',     $is_validated);
     $smarty->assign('ur_here',          $_LANG['users_edit']);
     $smarty->assign('action_link',      array('text' => $_LANG['03_users_list'], 'href'=>'users.php?act=list&' . list_link_postfix()));
     $smarty->assign('user',             $user);
@@ -345,11 +387,12 @@ elseif ($_REQUEST['act'] == 'update')
     $password = empty($_POST['password']) ? '' : trim($_POST['password']);
     $email = empty($_POST['email']) ? '' : trim($_POST['email']);
     $sex = empty($_POST['sex']) ? 0 : intval($_POST['sex']);
+    $is_validated = empty($_POST['is_validated']) ? 0 : intval($_POST['is_validated']);
     $sex = in_array($sex, array(0, 1, 2)) ? $sex : 0;
     $birthday = $_POST['birthdayYear'] . '-' .  $_POST['birthdayMonth'] . '-' . $_POST['birthdayDay'];
     $rank = empty($_POST['user_rank']) ? 0 : intval($_POST['user_rank']);
     $credit_line = empty($_POST['credit_line']) ? 0 : floatval($_POST['credit_line']);
-
+    $description = empty($_POST['description']) ? '' : trim($_POST['description']);
     $users  =& init_users();
 
     if (!$users->edit_user(array('username'=>$username, 'password'=>$password, 'email'=>$email, 'gender'=>$sex, 'bday'=>$birthday ), 1))
@@ -402,7 +445,39 @@ elseif ($_REQUEST['act'] == 'update')
     $other['office_phone'] = isset($_POST['extend_field3']) ? htmlspecialchars(trim($_POST['extend_field3'])) : '';
     $other['home_phone'] = isset($_POST['extend_field4']) ? htmlspecialchars(trim($_POST['extend_field4'])) : '';
     $other['mobile_phone'] = isset($_POST['extend_field5']) ? htmlspecialchars(trim($_POST['extend_field5'])) : '';
+    if (isset($_FILES['disigner_img']['error'])){ // php 4.2 版本才支持 error
+        // 最大上传文件大小
+        $php_maxsize = ini_get('upload_max_filesize');
+        $htm_maxsize = '2M';
+    
+        // 商品图片
+        if ($_FILES['disigner_img']['error'] == 0)
+        {
+            if (!$image->check_img_type($_FILES['disigner_img']['type']))
+            {
+                sys_msg($_LANG['invalid_goods_img'], 1, array(), false);
+            }
+            $disigner_img = $image->upload_image($_FILES['disigner_img']);
+            if ($disigner_img === false)
+            {
+                sys_msg($image->error_msg(), 1, array(), false);
+            }
+        }
+        elseif ($_FILES['disigner_img']['error'] == 1)
+        {
+            sys_msg(sprintf($_LANG['goods_img_too_big'], $php_maxsize), 1, array(), false);
+        }
+        elseif ($_FILES['disigner_img']['error'] == 2)
+        {
+            sys_msg(sprintf($_LANG['goods_img_too_big'], $htm_maxsize), 1, array(), false);
+        }
+    }
 
+    if(isset($disigner_img)){
+        $other['disigner_img'] = $disigner_img;
+    }
+    $other['description'] = $description;
+    $other['is_validated'] = $is_validated;
     $db->autoExecute($ecs->table('users'), $other, 'UPDATE', "user_name = '$username'");
 
     /* 记录管理员操作 */
@@ -413,6 +488,8 @@ elseif ($_REQUEST['act'] == 'update')
     $links[0]['href']    = 'users.php?act=list&' . list_link_postfix();
     $links[1]['text']    = $_LANG['go_back'];
     $links[1]['href']    = 'javascript:history.back()';
+
+
 
     sys_msg($_LANG['update_success'], 0, $links);
 

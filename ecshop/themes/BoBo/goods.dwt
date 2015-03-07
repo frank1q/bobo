@@ -58,11 +58,7 @@
 
     <div class="designer_introduction">
       <div class="item_portrait">
-        <p>BY</p> 
-        <h3>
-          STYLELCON
-          <p>T O K Y O</p>
-        </h3>
+        <img src="{$designer_info.disigner_img}" alt="" class="img-responsive" />
       </div>
       <div class="item_review">
         <div class="item_style">
@@ -103,22 +99,25 @@
         </div>
         <!-- {if $goods.is_groupbuy} -->
           <div class="item_sizeguide">
-            <img src="./images/progressa.png" class="img-responsive">
-            <div class="ranking">
-              <p>Average Price</p>
-              <h4>$53</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$goods.customers_progress}%;">
+              </div>
             </div>
             <div class="ranking">
-              <p>Total Sales</p>
-              <h4>648</h4>
+              <p>Boer<br>&nbsp;</p>
+              <h4>{$goods.goods_saled}/{$goods.goods_quantity}</h4>
             </div>
             <div class="ranking">
-              <p>30 Days Sales</p>
-              <h4>92</h4>
+              <p>Days<br> to go</p>
+              <h4>{$goods.group_now_day}/{$goods.group_total_day}</h4>
             </div>
             <div class="ranking">
-              <p>BoBo Ranking</p>
-              <h4>52</h4>
+              <p>Future<br>Price</p>
+              <h4>{$goods.market_price}</h4>
+            </div>
+            <div class="ranking">
+              <p>Pre-order<br>Price</p>
+              <h4>{$goods.shop_price_formated}</h4>
             </div>
           </div>
           <div class="item_size">

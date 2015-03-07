@@ -242,6 +242,16 @@
               <input type="text" size="40" value="{$goods.youtube_url}" name="youtube_url"/>
             </td>
           </tr>
+          <tr>
+            <td class="label">Disigner</td>
+            <td>
+              <select name="user_id" onchange="" >
+              <option value="0">{$lang.select_please}{html_options options=$disigner_list selected=$goods.user_id}</option></select>
+            </td>
+          </tr>
+
+
+
           <!--是否为团购类型-->
           <tr>
             <td class="label">Is Group-buying?</td>

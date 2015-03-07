@@ -23,43 +23,104 @@
               <div class="getintouch_content_title">
                 <h5 class="panel-title">
                   <a data-toggle="collapse" class="collapeiconv"  data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <span class="modified">-</span> Basic Information
+                  <span class="modified">-</span> Personal Information
                   </a>
                 </h5>
               </div>
               <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                  {foreach from=$extend_info_list item=field}
+<!--                   {foreach from=$extend_info_list item=field}
+<div class="panelhalf">
+  <div class="paneltitle">{$field.reg_field_name}</div>
+  <div class="panelinput">
+    <input type="text" name="extend_field{$field.id}" value="{$field.content}" class="form-control"/>
+  </div>
+</div>
+{/foreach}
+<div class="">
+  <div class="paneltitle">Day of Birth</div>
+  <div class="panelinput">
+    {html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=-1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}
+  </div>
+</div> -->
+              <form action="user.php" method="post">
+                <div class="add-address">
                   <div class="panelhalf">
-                    <div class="paneltitle">{$field.reg_field_name}</div>
+                    <div class="paneltitle" >Name</div>
                     <div class="panelinput">
-                      <input type="text" name="extend_field{$field.id}" value="{$field.content}" class="form-control"/>
+                      <input type="text" name="consignee" class="form-control" autocomplete="false" value="{$edit_address.consignee}"   placeholder=""/>
                     </div>
                   </div>
-                  {/foreach}
+                  <div class="panelhalf">
+                    <div class="paneltitle">mobile</div>
+                    <div class="panelinput">
+                      <input type="text" name="mobile" class="form-control" autocomplete="false" value="{$edit_address.mobile}"   placeholder=""/>
+                    </div>
+                  </div> 
                   <div class="">
-                    <div class="paneltitle">Day of Birth</div>
+                    <div class="paneltitle">Address</div>
                     <div class="panelinput">
-                      {html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=-1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}
+                      <input type="text" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
                     </div>
                   </div>
+                  <div class="checkbox">
+                      <label style="font-weight:bold;">
+                        <input type="checkbox"  name="is_default" {if $address eq $edit_address.address_id}checked="checked"{elseif !$edit_address}checked="checked"{/if}> Is Default
+                      </label>
+                  </div>
+                  <div class="">
+                    <div class="panelinput">
+                      <div class="sub-address">
+                        <button type="submit" name="act" value="address" >
+                          <!-- {if $edit_address} -->
+                            Update Consignee
+                            <!-- {else} -->
+                            Add Consignee
+                          <!-- {/if} -->
+                        </button>
+                        <input type="hidden" name="address_id" value="{$edit_address.address_id}" />
+                        <input type="hidden" name="email" value="{$smarty.session.email}" />
+                      </div>
+                    </div>
+                  </div>
+                            
+                </div>
+                </form>
+                <div class="clear"></div>
+                <div class="table-responsive">
+                  <table class="table user-address">
+                    {foreach from=$consignee_list item=consignee}
+                    <tr>
+                      <td>{$consignee.address}<br>{$consignee.consignee} | {$consignee.mobile} <br>
+                        <a href="user.php?address_id={$consignee.address_id}"><button type="button">edit</button></a>
+                        <a href="user.php?act=drop_consignee&id={$consignee.address_id}"><button type="button">delete</button></a>
+                        <!-- {if $address eq $consignee.address_id} -->
+                        <button type="button" class="is-default">Is Default</button>
+                        <!-- {/if} -->
+                        
+                        <!-- (<a href="">edit</a> | <a href="" onclick="if (confirm('Are you sure delete the consignee information?')) location.href='flow.php?step=drop_consignee&id={$consignee.address_id}'" >detele</a> | <a href="">to default</a>) -->
+                      </td>
+                    </tr>
+                    {/foreach}
+                  </table>
+                </div>
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
-              <div class="getintouch_content_title">
-                <h5 class="panel-title">
-                  <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  <span class="modified">+</span> Payment Method
-                  </a>
-                </h5>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  <input type="radio" checked="true" value="paypal" /> Paypal
-                </div>
-              </div>
-            </div>
+<!--             <div class="panel panel-default">
+  <div class="getintouch_content_title">
+    <h5 class="panel-title">
+      <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <span class="modified">+</span> Payment Method
+      </a>
+    </h5>
+  </div>
+  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div class="panel-body">
+      <input type="radio" checked="true" value="paypal" /> Paypal
+    </div>
+  </div>
+</div> -->
             <div class="panel panel-default">
               <div class="getintouch_content_title">
                 <h5 class="panel-title">
@@ -70,24 +131,23 @@
               </div>
               <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                  <table class="table table-bordered">
-                      <tr align="center">
-                        <td>{$lang.order_number}</td>
-                        <td>{$lang.order_addtime}</td>
-                        <td>{$lang.order_money}</td>
-                        <td>{$lang.order_status}</td>
-                        <td>{$lang.handle}</td>
-                      </tr>
+
                     <!--{foreach from=$orders item=item}-->
-                      <tr>
-                        <td align="center"> {$item.order_sn} </td>
-                        <td align="center">{$item.order_time}</td>
-                        <td align="right">{$item.total_fee}</td>
-                        <td align="center">{$item.order_status}</td>
-                        <td align="center">{$item.handler} </td>
-                      </tr>
+                    <div class="orderlist">
+                      <div class="orderleft">
+                        <h2>{$item.order_d}</h2>
+                        <h3>{$item.order_m}</h3>
+                        <h4>{$item.order_y}</h4>
+                      </div>
+                      <div class="orderright">
+                        <p>{$lang.order_number}:{$item.order_sn}</p>
+                        <p>{$lang.order_money}:{$item.total_fee}</p>
+                        <p>Delivered To:{$item.address}</p>
+                        <p>{$lang.order_status}:{$item.order_status}</p>
+                        <p>{$lang.handle}:{$item.handler}</p>
+                      </div>
+                    </div>
                     <!--{/foreach}-->
-                  </table>
                 </div>
               </div>
             </div>
@@ -137,67 +197,7 @@
                 </div>
               </div>
             </div>
-             <div class="panel panel-default">
-              <div class="getintouch_content_title">
-                <h5 class="panel-title">
-                  <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                   <span class="modified">+</span> Delivery address
-                  </a>
-                </h5>
-              </div>
-              <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
-                <div class="panel-body">
-                  <div class="address">
-                    <!-- {foreach from=$consignee_list item=consignee key=sn} -->
-                      <div class="panelhalf">
-                        <div class="paneltitle">{$lang.consignee_name}：</div>
-                        <div class="panelinput">
-                          <input name="consignee" type="text" class="form-control" id="consignee_{$sn}" value="{$consignee.consignee|escape}" />
-                        </div>
-                      </div>
-                      <div class="panelhalf">
-                        <div class="paneltitle">{$lang.email_address}：</div>
-                        <div class="panelinput">
-                          <input name="email" type="text" class="form-control" id="email_{$sn}" value="{$consignee.email|escape}" />
-                        </div>
-                      </div>
-                      <div class="panelhalf">
-                        <div class="paneltitle">{$lang.detailed_address}：</div>
-                        <div class="panelinput">
-                          <input name="address" type="text" class="form-control" id="address_{$sn}" value="{$consignee.address|escape}" />
-                        </div>
-                      </div>
-                      <div class="panelhalf">
-                        <div class="paneltitle">{$lang.postalcode}：</div>
-                        <div class="panelinput">
-                          <input name="zipcode" type="text" class="form-control" id="zipcode_{$sn}" value="{$consignee.zipcode|escape}" />
-                        </div>
-                      </div>
-                      <div class="panelhalf">
-                        <div class="paneltitle">{$lang.phone}：</div>
-                        <div class="panelinput">
-                          <input name="tel" type="text" class="form-control" id="tel_{$sn}" value="{$consignee.tel|escape}" />
-                        </div>
-                      </div>
-                      <div class="panelhalf">
-                        <div class="paneltitle">&nbsp;</div>
-                        <div class="panelinput">
-                          <!-- {if $consignee.consignee && $consignee.email} -->                  
-                            <button type="submit" name="submit"  class="append_parent_log">{$lang.confirm_edit}</button>
-                            <!-- <button name="button" type="button"  onclick="if (confirm('{$lang.confirm_drop_address}'))location.href='user.php?act=drop_consignee&id={$consignee.address_id}'"  class="append_parent_registration" >{$lang.drop}</button>             -->   
-                          <!-- {else} -->                  
-                            <button type="submit" name="submit" class="append_parent_log">{$lang.add_address}</button>                
-                          <!-- {/if} -->                  
-                            <input type="hidden" name="act" value="act_edit_address" />                  
-                            <input name="address_id" type="hidden" value="{$consignee.address_id}" />
-
-                        </div>
-                      </div>
-                    <!-- {/foreach} -->
-                  </div>    
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
         <div class="boxR">
@@ -275,7 +275,7 @@
         </div>
         <div class="boxF">
           <div class="reset left">
-            <button type="reset">Reset</button>
+            <a href="user.php?act=logout"><button type="button">logout</button></a>
           </div>
           <div class="submit_form right">
             <button type="submit" name="act" value="edit_profile">

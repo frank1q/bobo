@@ -185,6 +185,7 @@ class integrate
      */
     function add_user($username, $password, $email, $gender = -1, $bday = 0, $reg_date=0, $md5password='')
     {
+
         /* 将用户添加到整合方 */
         if ($this->check_user($username) > 0)
         {
@@ -432,6 +433,7 @@ class integrate
      */
     function get_profile_by_name($username)
     {
+        
         $post_username = $username;
 
         $sql = "SELECT " . $this->field_id . " AS user_id," . $this->field_name . " AS user_name," .

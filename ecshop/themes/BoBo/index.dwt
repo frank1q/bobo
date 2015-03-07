@@ -51,7 +51,7 @@
                     <div class="picture_cpr">
                       <p>
                         Boer
-                        {$cat.goods_number}
+                        {$cat.goods_saled}
                         /{$cat.goods_quantity}
                         <br>
                         Days to go {$cat.group_now_day}/{$cat.group_total_day}
@@ -109,6 +109,9 @@
         <a href="{$group_buy_hot.0.url}">
           <img src="{$group_buy_hot.0.goods_img}" alt="" class="img-responsive"/>
         </a>
+        <div class="boing">
+            <img src="themes/BoBo/images/boing-icon.png" class="img-responsive">
+        </div>
       </div>
       <div class="introduction">
         <div class="introduction_h">

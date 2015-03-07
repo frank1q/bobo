@@ -1,7 +1,12 @@
 <div class="content_right">
           <div class="model">
             <div class="modelimg z-index1">
-                <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+              <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}-{$my_skin}.png" class="img-responsive" />
+                <!-- {if $smarty.session.user_id gt 0}
+                <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}-{$my_skin}.png" class="img-responsive" />
+                {else}
+                <img src="model_img/m/m-default.png" class="img-responsive" />
+                {/if} -->
             </div>
             <div class="{$my_sex}top{$my_height} headimg index999 ">
                 <img src="headImg/{$user_head_img}" class="img-responsive" alt="">
@@ -17,9 +22,10 @@
             </div>
             <div class="share">
                 <div class="submit_form w100">
-                  <a href="share.php?user_id={$smarty.session.user_id}"><button type="button" name="act" value="edit_profile">
+                  <a id="share-link" href="share.php?sex={$sex}&user_head_img={$user_head_img}&user_id={$smarty.session.user_id}&my_height={$my_height}&my_shape={$my_shape}&my_skin={$my_skin}&my_sex={$my_sex}&trousers={$arrWear.trousers.goods_id}&coat={$arrWear.coat.goods_id}&underwear={$arrWear.underwear.goods_id}">
+                    <button type="button" name="act" value="edit_profile">
                       Share
-                  </button>
+                    </button>
                   </a>
                 </div>
             </div>
@@ -35,9 +41,8 @@
         {if $smarty.session.user_id gt 0}
           <a data-toggle="collapse" data-parent="#accordiona" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           {else}
-
         {/if}
-            <div class="basket-checkout">
+            <div class="basket-checkout basket-checkout1">
               <div class="sidebar_b">
                 <div class="lcon_03">
                   <img src="./images/lcon_03.png" class="img-responsive"/>              
@@ -117,12 +122,13 @@
                         <h3>{$user_cart_goods.total.goods_price}</h3>
                     </td>
                   </tr>
-                   <!-- {foreach from=$consignee_list item=consignee key=sn} -->
+                  <!-- {if $default_address} -->
+                  
                   <tr>
                     <td class="cart_footer_title">Deliver to:</td>
                     <td class="cart_footer_content">
                       <p>
-                        {$consignee.address|escape}
+                        {$default_address.full_address|escape} (<a href="user.php" >edit</a>)
                       </p>
                     </td>
                   </tr>
@@ -131,11 +137,15 @@
                     <td class="cart_footer_title">Contact:</td>
                     <td class="cart_footer_content">
                       <p>
-                        {$consignee.consignee|escape} | {$consignee.tel|escape}
+                        {$default_address.consignee|escape} | {$default_address.tel|escape} (<a href="user.php">edit</a>)
+                        
                       </p>
                     </td>
                   </tr>
-                  <!-- {/foreach} -->
+                  <!-- {else} -->
+                  <p>To Manage Your Address Before Checkout(<a href="user.php" style="color:#fff;" >edit</a>)</p>
+
+                  <!-- {/if} -->
                   <tr>
                     <td class="cart_footer_title">Payment method:<input type="radio" name="paypal" id="paypal" checked="true"> Paypal </td>
                     <td class="cart_footer_content">
@@ -163,12 +173,16 @@
                 <input type="hidden" value="102" name="x" />
                 <input type="hidden" value="19" name="y" />
                 <input type="hidden" value="done" name="step" />
-
-
-
+                  <!-- {if $default_address} -->
                   <button type="submit" class="append_parent_registration">
                     Checkout
                   </button>
+                  <!-- {else} -->
+                  <a href="user.php">
+                    <button type="button" class="append_parent_registration">
+                    Manage Address 
+                  </button></a>
+                  <!-- {/if} -->
                 </form>
               </div>
             </div>
@@ -185,7 +199,7 @@
                 </div>
                 <div class="color">
                   SOCIAL NETWORK &
-                  <br>SHARE TOUR LOOK
+                  <br>SHARE YOUR LOOK
                 </div>
               </div>
             </div>
@@ -242,6 +256,7 @@
 <script type="text/javascript">
   $(function(){
       $('a.info').click(function(){
+        var shareLink = $('#share-link').attr('href');
         var thisclass = $(this).attr('online');
         var goods_id = $(this).attr('goods_id');
         var thissrc = 'model_img/'+goods_id+'/{$my_height}-{$my_shape}.png';
@@ -250,13 +265,18 @@
         if(imgObj.length>0){
           var nowsrc = imgObj.attr('src');
           if(thissrc==nowsrc){
+            var newLink = shareLink+'&'+thisclass+'=';
             imgObj.remove();
           }else{
+            var newLink = shareLink+'&'+thisclass+'='+goods_id;
             imgObj.attr('src',thissrc);
           }
         }else{
+          var newLink = shareLink+'&'+thisclass+'='+goods_id;
           srcObj.append('<img src="'+thissrc+'"  class="img-responsive" />');
+
         }
+        $('#share-link').attr('href',newLink);
         /*ajax*/
         $.ajax({
               type:'GET',
@@ -348,8 +368,15 @@
     });
   })
   $("img").error(function() { 
-  $(this).remove(); 
+    $(this).remove(); 
   });
+  var user_id = {$smarty.session.user_id};
+  $('.basket-checkout').click(function(){
+      if(user_id==0){
+        $('#myModal').modal('show');
+      }
+  });
+
 
 </script>
 <!-- /Modal -->

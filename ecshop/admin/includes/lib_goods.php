@@ -58,6 +58,27 @@ function get_user_rank_list()
 }
 
 /**
+ * 取得所有设计师信息
+ * @return  array   设计师信息列表
+ */
+function get_disigner_list($rank=4)
+{
+    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('users') .
+           " where user_rank = ".$rank." order by user_id asc";
+
+    $res = $GLOBALS['db']->getAll($sql);
+    // var_dump($res);
+    $disigner_list = array();
+    foreach ($res AS $row)
+    {
+        $disigner_list[$row['user_id']] = addslashes($row['user_name']);
+    }
+    // var_dump($disigner_list);
+    return $disigner_list;
+
+}
+
+/**
  * 取得某商品的会员价格列表
  * @param   int     $goods_id   商品编号
  * @return  array   会员价格列表 user_rank => user_price
