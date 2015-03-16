@@ -1,8 +1,8 @@
 (function($){
     $.fn.hoverDelay = function(options){
         var defaults = {
-            hoverDuring: 1000,
-            outDuring: 2000,
+            hoverDuring: 100,
+            outDuring: 100,
             hoverEvent: function(){
                 $.noop();
             },
@@ -30,37 +30,23 @@
 
 $(function(){
 		// menu
-    $(".content_lc").find('ul:first').hide(1000);
 	$(".content_lc").mouseover(function() {
+        // alert(1);
         var that = $(this);
         $(this).hoverDelay({
             hoverEvent: function(){
-                that.find('ul:first').show(400)    
+                that.find('.sontree').show(400)    
             },
             outEvent: function(){
-                that.find('ul:first').hide(400);
+                that.find('.sontree').hide(200);
             }
         });
     });
     $(".content_lc").hover(function() {
-        $(this).find('ul:first').show(400);
+        $(this).find('.sontree').show(400);
         // $(this).unbind("hover"); //移除click
     })
-    $(".sub_c").mouseover(function() {
-        var that_sub_c = $(this);
-        $(this).hoverDelay({
-            hoverEvent: function(){
-                that_sub_c.find('ul:first').show(400)    
-            },
-            outEvent: function(){
-                that_sub_c.find('ul:first').hide(400);
-            }
-        });
-    });
-    $(".sub_c").hover(function() {
-        $(this).find('ul:first').show(400);
-        // $(this).unbind("hover"); //移除click
-    })
+
 
     $('.imgSub').click(function(){
         var keywords = $('#keywords').val();

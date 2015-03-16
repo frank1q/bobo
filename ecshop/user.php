@@ -22,7 +22,7 @@ $not_login_arr =
 array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','clear_history','qpassword_name', 'get_passwd_question', 'check_answer');
 
 /* 显示页面的action列表 */
-$ui_arr = array('register','edit_headImd', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+$ui_arr = array('drop_consignee','address','register','edit_headImd', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
 'message_list', 'tag_list', 'get_password', 'reset_password', 'booking_list', 'add_booking', 'account_raply',
 'account_deposit', 'account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','qpassword_name', 'get_passwd_question', 'check_answer');
 
@@ -170,6 +170,7 @@ if ($action == 'default')
     $pager  = get_pager('user.php', array('act' => $action), $record_count, $page);
 
     $orders = get_user_orders($user_id, $pager['size'], $pager['start']);
+    // var_dump($orders);
     $merge  = get_user_merge($user_id);
     $smarty->assign('country_list',       get_regions());
     // var_dump(get_regions());
@@ -326,7 +327,8 @@ elseif ($action == 'edit_profile'){
             $user_tips = $msg;
         }  
     }
-
+    header('location:user.php?act=default');
+    exit;
     show_message($user_tips, '确认','user.php?act=default','error');
 }
 /* 修改个人资料的处理 */
@@ -796,6 +798,8 @@ elseif ($action == 'logout')
 
     $user->logout();
     $ucdata = empty($user->ucdata)? "" : $user->ucdata;
+    ecs_header('location:index.php');
+    exit;
     show_message($_LANG['logout'] . $ucdata, array($_LANG['back_up_page'], $_LANG['back_home_lnk']), array($back_act, 'index.php'), 'info');
 }
 
@@ -1186,6 +1190,7 @@ elseif ($action == 'address_list')
         $consignee_list[] = array('country' => $_CFG['shop_country'], 'email' => isset($_SESSION['email']) ? $_SESSION['email'] : '');
     }
 
+    // var_dump($consignee_list);
     $smarty->assign('consignee_list', $consignee_list);
 
     //取得国家列表，如果有收货人列表，取得省市区列表
@@ -3011,5 +3016,37 @@ elseif ($action == 'clear_history')
 {
     setcookie('ECS[history]',   '', 1);
 }
+elseif($action == 'address'){
+    $b = false;  //是否修改为默认地址
+    $consignee = array(
+            'address_id'    => empty($_POST['address_id']) ? 0  : intval($_POST['address_id']),
+            'consignee'     => empty($_POST['consignee'])  ? '' : trim($_POST['consignee']),
+            // 'country'       => empty($_POST['country'])    ? '' : $_POST['country'],
+            // 'province'      => empty($_POST['province'])   ? '' : $_POST['province'],
+            // 'city'          => empty($_POST['city'])       ? '' : $_POST['city'],
+            // 'district'      => empty($_POST['district'])   ? '' : $_POST['district'],
+            'email'         => empty($_POST['email'])      ? '' : $_POST['email'],
+            'address'       => empty($_POST['address'])    ? '' : $_POST['address'],
+            // 'zipcode'       => empty($_POST['zipcode'])    ? '' : make_semiangle(trim($_POST['zipcode'])),
+            // 'tel'           => empty($_POST['tel'])        ? '' : make_semiangle(trim($_POST['tel'])),
+            'mobile'        => empty($_POST['mobile'])     ? '' : make_semiangle(trim($_POST['mobile'])),
+            // 'sign_building' => empty($_POST['sign_building']) ? '' : $_POST['sign_building'],
+            // 'best_time'     => empty($_POST['best_time'])  ? '' : $_POST['best_time'],
+        );
+        if ($_SESSION['user_id'] > 0)
+        {
+            include_once(ROOT_PATH . 'includes/lib_transaction.php');
+
+            /* 如果用户已经登录，则保存收货人信息 */
+            $consignee['user_id'] = $_SESSION['user_id'];
+            if(isset($_REQUEST['is_default'])){
+                $b = true;
+            }
+            save_consignee($consignee, $b);
+        }
+        ecs_header("Location: user.php\n");
+        exit;
+}
+
 
 ?>

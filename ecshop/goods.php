@@ -190,6 +190,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         }
 
         $smarty->assign('goods',              $goods);
+        // var_dump($goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
         $smarty->assign('promote_end_time',   $goods['gmt_end_time']);
         $smarty->assign('categories',         get_categories_tree($goods['cat_id']));  // 分类树
@@ -240,8 +241,10 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
         $smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
         $smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
-        $smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
-
+        $smarty->assign('goods_rank',          get_goods_rank($goods_id));
+        // var_dump(get_designer_info($goods_id));  
+        $smarty->assign('designer_info',   get_designer_info($goods_id));                       // 设计师信息
+        
         //获取tag
         $tag_array = get_tags($goods_id);
         $smarty->assign('tags',                $tag_array);                                       // 商品的标记
@@ -626,5 +629,26 @@ function get_package_goods_list($goods_id)
 
     return $res;
 }
+
+/**
+ * 根据商品ID，获取设计师信息
+ *
+ * @param   integer     $goods_id
+ * @param   array       $user_info
+ *
+ * @return  void
+ */
+function get_designer_info($goods_id)
+{
+    $sql = "SELECT u.* FROM " . $GLOBALS['ecs']->table('goods') .
+        " as g left join ".$GLOBALS['ecs']->table('users')." as u on u.user_id = g.user_id WHERE goods_id='$goods_id' ";
+
+    return $GLOBALS['db']->getRow($sql);
+}
+
+
+
+
+
 
 ?>

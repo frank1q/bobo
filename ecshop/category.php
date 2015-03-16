@@ -329,7 +329,7 @@ if (!$smarty->is_cached('category.dwt', $cache_id))
             }
         }
     }
-
+    
     assign_template('c', array($cat_id));
 
     $position = assign_ur_here($cat_id, $brand_name);

@@ -52,7 +52,9 @@ if ($_REQUEST['act'] == 'list_edit')
         }
     }
     @closedir($dir);
-
+    // var_dump();  
+    // $test = get_settings(null, array('5'));
+    // var_dump($test[1]['vars']);
     $smarty->assign('lang_list',    $lang_list);
     $smarty->assign('ur_here',      $_LANG['01_shop_config']);
     $smarty->assign('group_list',   get_settings(null, array('5')));
@@ -400,9 +402,12 @@ function get_settings($groups=null, $excludes=null)
 
                     foreach ($item['store_options'] AS $k => $v)
                     {
+                        // var_dump($_LANG['cfg_range'][$item['code']][$v]);
                         $item['display_options'][$k] = isset($_LANG['cfg_range'][$item['code']][$v]) ?
                                 $_LANG['cfg_range'][$item['code']][$v] : $v;
+
                     }
+                    // var_dump($item['display_options']);
                 }
                 $group_list[$pid]['vars'][] = $item;
             }

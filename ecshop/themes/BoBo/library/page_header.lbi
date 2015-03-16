@@ -43,12 +43,13 @@
           <!--{foreach from=$categories item=cat}-->
             <li class="content_lc">
                 <a href="{$cat.url}">{$cat.name|escape:html}</a>
-                <ul>
+
+                <ul class="sontree">
                 <!--{foreach from=$cat.cat_id item=child}-->
                 <li class="sub_c">
                 <a href="{$child.url}">{$child.name|escape:html}</a>
                 <!-- {if !empty($child.cat_id)} -->
-                    <ul class="subTree">
+                    <ul class="">
                     <!--{foreach from=$child.cat_id item=cchild}-->
                       <li class="sub_d">
                         <a href="{$cchild.url}">{$cchild.name|escape:html}</a>
@@ -61,35 +62,17 @@
               </ul>
             </li>
           <!--{/foreach}-->
-          <li class="content_other">
-                <a href="#">Product Stage</a>
-                <ul>
-                  <li class="sub_c">
-                  <a href="category.php?id=139">Boing (Pre-order)</a>
-                  </li>
-                  <li class="sub_c">
-                  <a href="category.php?id=140">Boed (Buy it now)</a>
-                  </li>
-                  <li class="sub_c">
-                  <a href="category.php?id=141">Last Chance to Buy</a>
-                  </li>
-                </ul>
-                            
-            </li>
 
 
 
           <li class="content_other">
-            <a href="#">Designer List</a>
+            <a href="designer.php">Designer List</a>
             <ul>
               <!--{foreach from=$articles item=art}-->
                 <li class="sub_c">
                 <a href="article.php?id={$art.article_id}">{$art.title}</a>
                 </li>
               <!--{/foreach}-->
-<!--               <li class="sub_c">
-  <a href="article.php?id=4">Get in Touch</a>
-</li> -->
             </ul>
           </li>
         </ul>

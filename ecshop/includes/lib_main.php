@@ -49,7 +49,9 @@ function select_sex(){
             $sex = $_COOKIE['my_sex'];
         }
     }
-    // dump($sex);
+    if(empty($sex)){
+        $sex = 1;
+    }
     return $sex;
 }
 
@@ -127,6 +129,9 @@ function select_height(){
  */
 
 function online_wear(){
+/*    if(!MY_SEX){
+        die('sex error');
+    }*/
     if(!isset($_SESSION['user_id']) || !$_SESSION['user_id']){
         if (!defined('SESS_ID'))
         {
@@ -1809,20 +1814,18 @@ function assign_template($ctype = '', $catlist = array())
     global $smarty;
     // 头像
     $smarty->assign('user_head_img',  $_SESSION['user_head_img']);
-
+    $smarty->assign('sex',  MY_SEX);
     $smarty->assign('my_sex_title',  MY_SEX_TITLE);
-    $smarty->assign('my_skin',  MY_SKIN);
+    $skinArr = array(1=>'bl',2=>'br',3=>'ye',4=>'wh');
+    $smarty->assign('my_skin',  $skinArr[MY_SKIN]);   
     $smarty->assign('my_shape',  MY_SHAPE);
     $smarty->assign('my_height',  MY_HEIGHT);
     $sexArr = array(1=>'m',2=>'f');
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
-    // var_dump(user_cart_goods());
     $smarty->assign('user_cart_goods',  user_cart_goods());       // 购物车
-
-
-
     //收货地址
     $address = user_address();
+<<<<<<< HEAD
     $smarty->assign('real_goods_count',  $address['real_goods_count'] );
     $smarty->assign('shop_country',      $address['shop_country'] );
     $smarty->assign('shop_province',     $address['shop_province'] );    
@@ -1838,8 +1841,44 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('consignee_list',    $address['consignee_list'] );
     //End
 
+=======
+    if(!empty($address)){
+        $smarty->assign('real_goods_count',  $address['real_goods_count'] );
+        $smarty->assign('shop_country',      $address['shop_country'] );
+        $smarty->assign('shop_province',     $address['shop_province'] );    
+        $smarty->assign('province_list',     $address['province_list'] );
+        $smarty->assign('address',           $address['address'] );
+        $smarty->assign('city_list',         $address['city_list'] );    
+        $smarty->assign('district_list',     $address['district_list'] );
+        $smarty->assign('currency_format',   $address['currency_format'] );
+        $smarty->assign('integral_scale',    $address['integral_scale'] );
+        $smarty->assign('name_of_region',    $address['name_of_region'] );
+        $smarty->assign('country_list',      $address['country_list'] );
+        $smarty->assign('shop_province_list',$address['shop_province_list'] );
+        $smarty->assign('consignee_list',$address['consignee_list']);
+        // var_dump($_SESSION);
+        foreach ($address['consignee_list'] as $key => $c) {
+            if($c['address_id']==$address['address']){
+                $address['default_address'] = $c;
+                // break;
+            }
+            if(isset($_REQUEST['address_id'])){
+                if($c['address_id']==$_REQUEST['address_id']){
+                    $address['edit_address'] = $c;
+                }
+            }
+        }
+        // var_dump($_REQUEST['address_id']);
+        // var_dump($address['default_address']);
+        $smarty->assign('default_address',$address['default_address']);
+        if(isset($address['edit_address'])){
+            $smarty->assign('edit_address',$address['edit_address']);
+        }
+
+    }
+>>>>>>> 9351308d8ed9bd0e7a592baa3d75cb26232a3eee
     // var_dump($address['consignee_list']);
-    // var_dump(article_type_articles());
+    //End
     // 获取文章列表
     $smarty->assign('articles',article_type_articles());
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
@@ -2279,7 +2318,7 @@ function user_cart_goods()
     );
     
     /* 循环、统计 */
-    $sql = "SELECT c.*, g.shop_price ,g.is_groupbuy,g.goods_quantity,g.goods_number,g.group_start_date,g.group_end_date , gb.ext_info, gb.act_id,gb.act_type, gb.end_time , gb.start_time, IF(c.parent_id, c.parent_id, c.goods_id) AS pid " .
+    $sql = "SELECT c.*, g.shop_price ,g.is_groupbuy,g.goods_quantity,g.goods_saled,g.group_start_date,g.group_end_date , gb.ext_info, gb.act_id,gb.act_type, gb.end_time , gb.start_time, IF(c.parent_id, c.parent_id, c.goods_id) AS pid " .
             " FROM " . $GLOBALS['ecs']->table('cart') . " AS c " .
             ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON g.goods_id = c.goods_id ' .
             ' LEFT JOIN ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb ON gb.goods_id = c.goods_id ' .
@@ -2356,14 +2395,13 @@ function user_cart_goods()
                 $stat['valid_order'] = $stat['total_order'];
                 $stat['valid_goods'] = $stat['total_goods'];
             }
-                $row['group_buy']=$stat;
-            $row['customers_progress'] =(($row['goods_quantity']-$row['goods_number'])/$row['goods_quantity'])*100;
+            $row['group_buy']=$stat;
         }
 
         if($row['is_groupbuy']){
-            $row['customers_progress'] =(($row['goods_quantity']-$row['goods_number'])/$row['goods_quantity'])*100;
+            $row['customers_progress'] =($row['goods_saled']/$row['goods_quantity'])*100;
             $row['group_now_day']         = intval(($_SERVER['REQUEST_TIME']-$row['group_start_date'])/3600/24);
-            $row['group_total_day']         = ($row['group_end_date']-$row['group_start_date'])/3600/24;
+            $row['group_total_day']         = ($row['group_end_date']-$row['group_start_date'])/3600/24+1;
         }
         
         $total['goods_price']  += $row['shop_price'] ;
@@ -2415,7 +2453,7 @@ function user_cart_goods()
     $total['market_price'] = price_format($total['market_price'], false);
     $total['real_goods_count']    = $real_goods_count;
     $total['virtual_goods_count'] = $virtual_goods_count;
-    // var_dump($goods_list);
+    // var_dump($total);
     return array('goods_list' => $goods_list, 'total' => $total);
 }
 function user_address()
@@ -2430,15 +2468,17 @@ function user_address()
     $user_id = $_SESSION['user_id'];
     /* 获得用户所有的收货人信息 */
     $consignee_list = get_consignee_list($_SESSION['user_id']);
-
-    if (count($consignee_list) < 1 && $_SESSION['user_id'] > 0)
+    
+    if (count($consignee_list) < 5 && $_SESSION['user_id'] > 0)
     {
         /* 如果用户收货人信息的总数小于5 则增加一个新的收货人信息 */
-        $consignee_list[] = array('country' => $_CFG['shop_country'], 'email' => isset($_SESSION['email']) ? $_SESSION['email'] : '');
+        // $consignee_list[] = array('country' => $_CFG['shop_country'], 'email' => isset($_SESSION['email']) ? $_SESSION['email'] : '');
     }
 
-    $address['consignee_list']   = $consignee_list;
 
+    // $address['consignee_list']   = $consignee_list;
+
+    // var_dump($consignee_list);
     //取得国家列表，如果有收货人列表，取得省市区列表
     foreach ($consignee_list AS $region_id => $consignee)
     {
@@ -2446,11 +2486,22 @@ function user_address()
         $consignee['province'] = isset($consignee['province']) ? intval($consignee['province']) : 0;
         $consignee['city']     = isset($consignee['city'])     ? intval($consignee['city'])     : 0;
 
+
         $province_list[$region_id] = get_regions(1, $consignee['country']);
         $city_list[$region_id]     = get_regions(2, $consignee['province']);
         $district_list[$region_id] = get_regions(3, $consignee['city']);
+        $full_address = get_full_address($consignee['country'],$consignee['province'],$consignee['city'],$consignee['district']);
+        // var_dump($full_address);
+        
+        // $a = implode($full_address, ',');
+
+        // $consignee_list[$region_id]['full_address'] =$consignee['address'].','.implode($full_address,',');
+        $consignee_list[$region_id]['full_address'] =$consignee['address'];
     }
 
+
+    $address['consignee_list']   = $consignee_list;
+    // var_dump($consignee_list);
     /* 获取默认收货ID */
     $address_id  = $GLOBALS['db']->getOne("SELECT address_id FROM " .$GLOBALS['ecs']->table('users'). " WHERE user_id='$user_id'");
 
@@ -2464,7 +2515,11 @@ function user_address()
     $address['currency_format']  =  $_CFG['currency_format'];
     $address['integral_scale']   =  $_CFG['integral_scale'];
     $address['name_of_region']   =  array($_CFG['name_of_region_1'], $_CFG['name_of_region_2'], $_CFG['name_of_region_3'], $_CFG['name_of_region_4']);
+<<<<<<< HEAD
 
+=======
+    // var_dump($address['address']);
+>>>>>>> 9351308d8ed9bd0e7a592baa3d75cb26232a3eee
     return $address;
 }
 

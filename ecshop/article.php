@@ -91,8 +91,10 @@ if (!$smarty->is_cached('article.dwt', $cache_id))
     assign_template('a', $catlist);
 
     $position = assign_ur_here($article['cat_id'], $article['title']);
+    // var_dump($position);
     $smarty->assign('page_title',   $position['title']);    // 页面标题
     $smarty->assign('ur_here',      $position['ur_here']);  // 当前位置
+    $smarty->assign('ur_here_base',      $position['ur_here_base']);  // 当前位置
     $smarty->assign('comment_type', 1);
 
     /* 相关商品 */
@@ -120,15 +122,18 @@ if (!$smarty->is_cached('article.dwt', $cache_id))
 
     assign_dynamic('article');
 }
-$smarty->display('article.dwt', $cache_id);
-/*if(isset($article) && $article['cat_id'] > 2)
+// $smarty->display('article.dwt', $cache_id);
+// var_dump($article);
+if($article['article_id'] ==40)
 {
-    $smarty->display('article.dwt', $cache_id);
+    // var_dump(111);
+    $smarty->display('article_pro.dwt', $cache_id);
 }
 else
 {
-    $smarty->display('article_pro.dwt', $cache_id);
-}*/
+    $smarty->display('article.dwt', $cache_id);
+    
+}
 
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTION

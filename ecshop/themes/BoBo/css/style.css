@@ -181,7 +181,8 @@ html{
   height: 691px;
   float: left;
   margin-left: 2.5137952176578784%;
-  overflow: hidden;
+  position: relative;
+  z-index: 20;
 }
 .content_c{
   opacity: 0.8;
@@ -189,11 +190,32 @@ html{
   background: #e4e4e4;
   width: 100%;
   height: 640px;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  position: relative;
+}
+.sontree{
+  position: absolute;
+  top:0;
+  left: 140px;
+  z-index: 9999999999;
+  display: none;
+  padding: 10px 40px;
+  background: #fff;
+
+}
+.sontree a{
+  /*font-weight: bold;*/
+}
+.sub_d a{
+  margin-left: 10px;
 }
 .content_lc{
   margin-left: 8%;
   margin-top: 9px;
+  position: relative;
+}
+.content_lc:hover{
+  background: #fff;
 }
 .content_c>li>a{
   color: #323232;
@@ -202,6 +224,7 @@ html{
 }
 .sub_c{
   overflow: hidden;
+  white-space: nowrap;
 }
 .sub_c a{
   line-height: 17px;
@@ -267,6 +290,7 @@ html{
   float: left;
   height: 100%;
   width: 60.3%;
+  position: relative;
 }
 .pictureimg img{
   width: 100%;
@@ -525,7 +549,12 @@ h2{
   float: right;
 }
 .boing{
-  float: left;
+  /*float: left;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
 }
 .designersa{
   width: 1046px;
@@ -639,6 +668,10 @@ h2{
   height:12.471655328798185%;
   border-bottom: solid #fff 1px;
 }
+.designre_name h3{
+  overflow: hidden;
+}
+
 .designre_description{
   font-size: 12px;
   text-align: justify;
@@ -698,6 +731,9 @@ h2{
   padding-top: 10px;
   color: #fff;
 }
+.ranking h4{
+  font-size: 16px;
+}
 .ranking:hover{
   color: #323232;
   background: #bbb;
@@ -711,6 +747,10 @@ h2{
   height: 92%;
   width: 97.99235181644359%;
   margin: 0 auto;
+}
+.getintouch-content{
+  height: 58%;
+  overflow: auto;
 }
 .getintouch_footer{
   bottom: 0;
@@ -840,11 +880,11 @@ h2{
   height: 78px
 }
 .item_portrait{
-  height: 10.892909%;
+  height: 24.892909%;
   background: #fff;
   margin: 0 auto ;
-  padding-left: 4%;
-  padding-top: 1%;
+  /*padding-left: 4%;*/
+  /*padding-top: 1%;*/
   width: 100%;
   float: right;
 }
@@ -860,7 +900,7 @@ h2{
 }
 .item_style{
   margin-top:5%;
-  height: 28.579832%;
+  height: 14.579832%;
   width: 100%;
   float: right;
   color: #fff;
@@ -938,6 +978,9 @@ h2{
   width: 105.4%;
   float: left;
 }
+.item_sizeguide .progress{
+  border-radius:0px;
+}
 .item_size{
   width: 100%;
   float: right;
@@ -948,7 +991,6 @@ h2{
 }
 .designer_picture img{
   width: 100%;
-  /*height: 400px;*/
 }
 .designer_picture h3{
   text-align: center;
@@ -979,6 +1021,11 @@ h2{
     float: right;
     text-align: right;
     text-decoration:none;
+}
+.boing{
+  width: 90px;
+  height: 20px;
+  overflow: hidden;
 }
 .picture_cp a h3{
     float: right;
@@ -1602,11 +1649,12 @@ fieldset[disabled] .sex_choose.active {
   width: 100%;
   height: 67px;
   float: left;
+  cursor: pointer;
 }
 .menu_top{
-  background-image: url(../images/menu_top.png);
+  /*background-image: url(../images/menu_top.png);*/
 }
-.basket-checkout:hover{
+.basket-checkout1{
   background-image: url(../images/menu_top.png);
 }
 #text{
@@ -1726,7 +1774,12 @@ fieldset[disabled] .sex_choose.active {
 .cart_image{
   width: 29.5%;
   float: left;
+  position: relative;
   height: 100%;
+}
+.cart_image .boing{
+  width: 100% !important;
+  float: right !important;
 }
 .cart_image img{
   float: right;
@@ -1776,9 +1829,9 @@ fieldset[disabled] .sex_choose.active {
 .cart_footer_content p {
   width: 88%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  white-space: nowrap;
+/*   text-overflow: ellipsis;
+-o-text-overflow: ellipsis;
+white-space: nowrap; */
   float: left;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body{
@@ -1823,7 +1876,7 @@ div.headimg{
   left: 40px;
 }
 div.headimg img{
-  max-width: 110px;
+  width: 110px;
 }
 .input-group-addon{
   cursor:pointer;
@@ -1949,4 +2002,138 @@ div.share{
   height: 691px;
   background: #E8E8E8;
 
+}
+img.goodsimg{
+  height:400px !important; 
+}
+.orderleft{
+  float: left;
+  background: #323232;
+  color: #fff;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+.orderleft h2{
+  text-align: center;
+}
+.orderleft h4{
+  margin: 0px;
+}
+.orderright{
+  float: left;
+
+}
+.orderright p{
+  font-size: 12px ;
+}
+.orderright a{
+  font-weight: bold;
+}
+.orderlist{
+  clear: both;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.cart_footer_content a{
+  color: #fff;
+  text-decoration: underline;
+}
+div.h300{
+  height: 295px ;
+}
+div.h300 h3{
+  text-align: left;
+  margin-top: 5px;
+}
+div.h300 .des{
+  text-align: left;
+  max-height: 50px;
+  overflow: hidden;
+  font-size: 12px;
+}
+.desimg{
+  height: 219px !important;
+}
+.descontent h3{
+  margin-bottom: 5px;
+}
+.descontent{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #C9C9C9;
+  width: 93%;
+  color: #000;
+  padding: 5px 0;
+  font-size: 12px;
+  height: 82px;
+  overflow: hidden;
+}
+.descontent p{
+  padding: 0px !important;
+  text-align: left !important;
+  color: #000 !important;
+  line-height: 14px !important;
+}
+.desright{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #323232;
+  height: 82px;
+  overflow: hidden;
+  width: 7%;
+}
+.desright .writeIcon{
+  border-color: transparent transparent transparent #323232;
+  bottom: 40%;
+  right: -2px;
+}
+.desright .leftIcon{
+  bottom: 40%;
+  right: -4px;
+}
+.mask button{
+  width: 60%;
+  height: 25px;
+  background: #323232;
+  border: 1px solid #fff;
+  margin-top: 40%;
+  /*margin-left: 20%;*/
+  font-size: 13px;
+  color: #fff;
+  font-weight: bold;
+}
+.mask h2{
+  font-size: 24px;
+}
+.user-address{
+  font-size: 12px;
+}
+.clear{
+  clear: both;
+}
+.sub-address button{
+  width: 50%;
+  height: 25px;
+  background: #323232;
+  border: 1px solid #fff;
+  margin-bottom: 6%;
+  font-size: 13px;
+  color: #fff;
+  font-weight: bold;
+}
+.user-address button{
+  width: 30%;
+  height: 25px;
+  background: #323232;
+  border: 1px solid #fff;
+  margin-bottom: 2%;
+  font-size: 13px;
+  color: #fff;
+  font-weight: bold;
+}
+button.is-default {
+  width: 35%;
+  background: #DA7F7F;
 }

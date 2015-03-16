@@ -170,6 +170,8 @@
 		}
 	}
 }*/
+
+/*responsive*/
 @media screen and (max-width: 1720px){
 	body{
 		background:transparent url(../images/background.png) no-repeat scroll 0px -248px !important; 
@@ -177,7 +179,39 @@
 	.boxR_portrait{
 		min-height: 140px !important;
 	}
+	.desimg{
+		height: 146px !important;
+	}
+	.mask h2{
+	  font-size: 18px;
+	}
+	div.h300{
+		height: 202px !important;
+	}
+	.descontent{
+		height: 60px !important;
+	}
+	.desright{
+		height: 60px !important;
+	}
+	div.h300 .des{
+		max-height: 30px !important;
+	}
+	.desright .writeIcon{
+		bottom: 30% !important;
+		right: -6px !important;
+	}
+	.desright .leftIcon {
+		bottom: 30% !important;
+		right: -8px !important;
+	}
 
+	div.headimg img {
+		width: 65px !important;
+	}
+	.model{
+		margin-top: -40px !important;
+	}
 	.sidebar{
 		height: 100% !important;
 	}
@@ -357,11 +391,15 @@
 	.sidebar_b{
 		height: 44px !important;
 	}
-	.basket-checkout{
+	.basket-checkout1{
 		height: 44px !important;
+		/*background-image: url(../images/1280/menu_top.png);*/
+	}
+	.basket-checkout1{
+		background-image: url(../images/1280/menu_top.png);
 	}
 	.basket-checkout:hover{
-	  background-image: url(../images/1280/menu_top.png);
+	  /*background-image: url(../images/1280/menu_top.png);*/
 	}
 	.designersa{
 		width: 700px !important;
@@ -399,11 +437,11 @@
 		width: 200px !important;
 		height: 300px !important;
 	}
-	.designer_picture img{
+	img.goodsimg{
 		height: 267px !important;
 	}
 	.designer_picture p{
-		line-height: 10px !important;
+		/*line-height: 10px !important;*/
 	}
 	.designer_picture h3{
 		font-size: 18px !important;
@@ -458,8 +496,9 @@
 		height: 30px !important;
 	}
 	.ranking h4{
-		margin-top: 0px !important;
-		font-size: 15px !important;
+		margin-top: 5px !important;
+		margin-bottom: 5px !important;
+		font-size: 12px !important;
 	}
 	.getintouch{
 		width: 698px !important;
@@ -751,32 +790,58 @@
 		margin-top: 1.5%;
 	}
 	div.headimg {
-		left: 8px !important;
+		left: 30px !important;
 	}
+	/*男*/
 	.mtop160{
-		top: 148px !important;
+		top: 192px !important;
 	}
 	.mtop170{
-		top: 135px !important;
+		top: 176px !important;
 	}
 	.mtop180{
-		top: 124px !important;
+		top: 164px !important;
 	}
 	.mtop190{
-		top: 110px !important;
+		top: 151px !important;
 	}
+	/*女*/
 	.ftop160{
-		top: 148px !important;
+		top: 173px !important;
 	}
 	.ftop170{
-		top: 136px !important;
+		top: 164px !important;
 	}
 	.ftop180{
-		top: 125px !important;
+		top: 150px !important;
 	}
 	.ftop190{
+		top: 142px !important;
+	}
+	
+	/*分享*/
+	.stop160{
+		top: 148px !important;
+	}
+	.stop170{
+		top: 135px !important;
+	}
+	.stop180{
+		top: 124px !important;
+	}
+	.stop190{
 		top: 110px !important;
 	}
+
+
+	.w100{
+		margin-top: 25px !important;
+	}
+	div.share{
+		top: 40% !important;
+	}
+
+
 
 
 @media screen and (max-width: 1670px){

@@ -205,11 +205,12 @@ function get_recommend_group_goods($type = '', $cats = '')
         // var_dump($data);
         if ($data === false)
         {
-            $sql = 'SELECT g.goods_id,g.goods_number,g.group_start_date,g.group_end_date,g.goods_quantity, g.is_best, g.is_new, g.is_hot, g.is_promote, b.brand_name,g.sort_order ' .
+            $sql = 'SELECT g.goods_id,g.goods_saled,g.goods_number,g.group_start_date,g.group_end_date,g.goods_quantity, g.is_best, g.is_new, g.is_hot, g.is_promote, b.brand_name,g.sort_order ' .
                ' FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
                ' LEFT JOIN ' . $GLOBALS['ecs']->table('brand') . ' AS b ON b.brand_id = g.brand_id ' .
-               ' WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND g.is_groupbuy=1 AND (g.is_best = 1 OR g.is_new =1 OR g.is_hot = 1)'.
+               ' WHERE  g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 AND g.is_groupbuy=1 AND (g.is_best = 1 OR g.is_new =1 OR g.is_hot = 1)'.
                ' ORDER BY g.sort_order, g.last_update DESC';
+               // g.goods_saled < g.goods_quantity AND g.group_end_date >= '.($_SERVER['REQUEST_TIME']-24*3600).' AND
             $goods_res = $GLOBALS['db']->getAll($sql);
 
             //定义推荐,最新，热门，促销商品
@@ -294,7 +295,7 @@ function get_recommend_group_goods($type = '', $cats = '')
         }
 
         //取出所有符合条件的商品数据，并将结果存入对应的推荐类型数组中
-        $sql = 'SELECT g.goods_id,g.goods_number,g.group_start_date,g.group_end_date,g.goods_quantity, g.goods_name, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, ' .
+        $sql = 'SELECT g.goods_id,g.goods_saled,g.goods_number,g.group_start_date,g.group_end_date,g.goods_quantity, g.goods_name, g.goods_name_style, g.market_price, g.shop_price AS org_price, g.promote_price, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS shop_price, ".
                 "promote_start_date, promote_end_date, g.goods_brief, g.goods_thumb, g.goods_img, g.goods_front_cover, RAND() AS rnd " .
                 'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
@@ -302,7 +303,7 @@ function get_recommend_group_goods($type = '', $cats = '')
                 "ON mp.goods_id = g.goods_id AND g.is_groupbuy=1 AND mp.user_rank = '$_SESSION[user_rank]' ";
         $type_merge = array_merge($type_array['new'], $type_array['best'], $type_array['hot']);
         $type_merge = array_unique($type_merge);
-        $sql .= ' WHERE g.goods_id ' . db_create_in($type_merge);
+        $sql .= ' WHERE  g.goods_id ' . db_create_in($type_merge);
         $sql .= ' ORDER BY g.sort_order, g.last_update DESC';
 
         $result = $GLOBALS['db']->getAll($sql);
@@ -321,12 +322,13 @@ function get_recommend_group_goods($type = '', $cats = '')
             $goods[$idx]['id']           = $row['goods_id'];
             $goods[$idx]['name']         = $row['goods_name'];
             $goods[$idx]['goods_number']         = $row['goods_number'];
+            $goods[$idx]['goods_saled']         = $row['goods_saled'];
             $goods[$idx]['goods_quantity']         = $row['goods_quantity'];
-            $goods[$idx]['customers_progress']         = (($row['goods_quantity']-$row['goods_number'])/$row['goods_quantity'])*100;
+            $goods[$idx]['customers_progress']         = ($row['goods_saled']/$row['goods_quantity'])*100;
             // var_dump($goods[$idx]['customers_progress']);
             $goods[$idx]['group_start_date']         = $row['group_start_date'];
             $goods[$idx]['group_now_day']         = intval(($_SERVER['REQUEST_TIME']-$row['group_start_date'])/3600/24);
-            $goods[$idx]['group_total_day']         = ($row['group_end_date']-$row['group_start_date'])/3600/24;
+            $goods[$idx]['group_total_day']         = (($row['group_end_date']-$row['group_start_date'])/3600/24)+1;
             $goods[$idx]['brief']        = $row['goods_brief'];
             $goods[$idx]['brand_name']   = isset($goods_data['brand'][$row['goods_id']]) ? $goods_data['brand'][$row['goods_id']] : '';
             $goods[$idx]['goods_style_name']   = add_style($row['goods_name'],$row['goods_name_style']);
@@ -779,6 +781,15 @@ function get_goods_info($goods_id)
         /* 修正商品图片 */
         $row['goods_img']   = get_image_path($goods_id, $row['goods_img']);
         $row['goods_thumb'] = get_image_path($goods_id, $row['goods_thumb'], true);
+
+        if($row['is_groupbuy']==1){
+            $row['group_start_date']         = $row['group_start_date'];
+            $row['group_now_day']         = intval(($_SERVER['REQUEST_TIME']-$row['group_start_date'])/3600/24);
+            $row['group_total_day']         = (($row['group_end_date']-$row['group_start_date'])/3600/24)+1;
+            $row['customers_progress'] = ($row['goods_saled']/$row['goods_quantity'])*100;
+        }
+
+
 
         return $row;
     }
