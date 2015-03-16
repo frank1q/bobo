@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+
+</head>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+{* 包含脚本文件 *}
+{insert_scripts files='jquery.json-2.4.js,common.js,index.js'}
+<form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+
+
+
+  <!-- {if $promotion} -->
+    <!-- {foreach from=$promotion item=item key=key} 优惠活动-->
+      <!-- {if $item.type eq "group_buy"} -->
+         <!-- <a href="group_buy.php" title="{$lang.group_buy}">[{$lang.group_buy}]</a> -->
+      <!-- {/if} -->
+    <!-- {/foreach} -->
+  <!-- {/if} -->
+
+
+
+
+  <div class="content_middle designer_product">
+    <div class="item">
+      <div class="item_content">
+          <!--相册 START-->
+            <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+          <!--相册 END-->
+
+      </div>
+      <div class="item_footer">
+        <div class="item_complete">COMPLETE OUTFIT</div>
+        <div class="item_complete_con">
+          <!-- {if $fittings} -->  
+            <!--{foreach from=$fittings item=goods}-->  
+              <div class="item_fc">
+                <a href="{$goods.url}">
+                  <img src="{$goods.goods_thumb}" alt="" class="img-responsive"/>
+                </a>
+                <a href="{$goods.url}">{$goods.fittings_price}</a>
+              </div>
+            <!--{/foreach}-->  
+          <!-- {/if} --> 
+        </div>
+        <div class="item_complete">RECENT VIEWED</div>
+        <div class="item_complete_con">{insert name='history'}</div>
+      </div>
+    </div>
+
+    <div class="designer_introduction">
+      <div class="item_portrait">
+        <img src="{$designer_info.disigner_img}" alt="" class="img-responsive" />
+      </div>
+      <div class="item_review">
+        <div class="item_style">
+          <h5>{$goods.goods_name}</h5>
+          <p>Ref: {$goods.goods_sn}</p>
+          <div class="itm_price">
+            <h3>{$goods.shop_price_formated}</h3>
+          </div>
+<!--           <div class="itm_color">
+  <img src="./images/color.png" alt="" class="img-responsive"/>  
+</div>
+<div class="itm_size">
+
+  <div class="itm_size_coding">L</div>
+  <div class="itm_size_coding">M</div>
+  <div class="itm_size_coding">S</div>
+  <div class="itm_size_coding">XS</div>
+  <div class="itm_size_coding">XXS</div>
+</div> -->
+        </div>
+        <div class="item_introduction"> 
+          <!-- {if $goods.is_groupbuy} -->
+            <div class="item_opinion">*THIS ITEM IS IN <div class="item_red">BOING (PRE-ORDER) STAGE</div></div><!--{else} -->
+            <div class="item_opinion">DESIGNER'S COMMENT</div>
+          <!-- {/if} -->
+          <div class="item_comment">{$goods.goods_desc}</div>
+          <div class="visitbutton">
+            <a href="javascript:void(0);" online="{$goods.layer_type}" goods_id="{$goods.goods_id}" on_index="{$goods.z_index}" class="info">FiTin & Share</a>
+          </div>
+          <a href="javascript:addToCart({$goods.goods_id})">
+            <!-- {if $goods.is_groupbuy} -->
+              <div class="chatbutton">Pre-order</div>
+            <!--{else} -->
+              <div class="chatbutton">Add to basket</div>
+            <!-- {/if} --> 
+          </a>
+        <input name="number" type="hidden" id="number" value="1"/>
+        </div>
+        <!-- {if $goods.is_groupbuy} -->
+          <div class="item_sizeguide">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$goods.customers_progress}%;">
+              </div>
+            </div>
+            <div class="ranking">
+              <p>Boer<br>&nbsp;</p>
+              <h4>{$goods.goods_saled}/{$goods.goods_quantity}</h4>
+            </div>
+            <div class="ranking">
+              <p>Days<br> to go</p>
+              <h4>{$goods.group_now_day}/{$goods.group_total_day}</h4>
+            </div>
+            <div class="ranking">
+              <p>Future<br>Price</p>
+              <h4>{$goods.market_price}</h4>
+            </div>
+            <div class="ranking">
+              <p>Pre-order<br>Price</p>
+              <h4>{$goods.shop_price_formated}</h4>
+            </div>
+          </div>
+          <div class="item_size">
+            <p>+ Size Guide</p>
+          </div>
+        <!--{else} -->
+          <div class="item_guide">
+            <div class="item_size">+ Size Guide</div>
+            <p>Free Standard Shipping</p>
+            <p>for orders over number$30</p>
+          </div>
+        <!-- {/if} --> 
+      </div>
+    </div>
+  </div>
+
+</form>
+
+
+{insert_scripts files='transport.js'}
+<script type="text/javascript">
+// var process_request = "{$lang.process_request}";
+var process_request = '';
+
+</script>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->  
+<script type="text/javascript">
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+
+<!-- {literal} -->
+onload = function(){
+  changePrice();
+  fixpng();
+  try { onload_leftTime(); }
+  catch (e) {}
+}
+
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice()
+{
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res)
+{
+  if (res.err_msg.length > 0)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+    if (document.getElementById('ECS_GOODS_AMOUNT'))
+      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+  }
+}
+<!-- {/literal} -->
+</script>
+

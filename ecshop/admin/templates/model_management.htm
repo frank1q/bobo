@@ -1,0 +1,99 @@
+<!-- $Id: model_management.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<style>
+  .action-span{
+    display: none;
+  }
+</style>
+<form method="post" action="" name="listForm" enctype="">
+<!-- start goods type list -->
+  <div class="list-div" id="listDiv">
+    {/if}
+      <table width="100%" cellpadding="3" cellspacing="1" id="listTable">
+        <tr>
+          <th style="width: 16%;">{$lang.model_management}</th>
+          <th style="width: 16%;">{$lang.model_complexion}</th>
+          <th style="width: 16%;">{$lang.model_sex}</th>
+          <th style="width: 16%;">{$lang.model_high}</th>
+          <th style="width: 16%;">{$lang.model_figure}</th>
+          <th style="width: 20%;">{$lang.model_images}</th>
+        </tr>
+        {foreach from=$model_management_arr item=model_management}
+          <tr>
+            <td align="center">{$model_management.model_id}</td>
+            <td align="center">
+              {if $model_management.model_complexion eq 1}
+                {$lang.model_color1}
+              {elseif $model_management.model_complexion eq 2}
+                {$lang.model_color2}
+              {elseif $model_management.model_complexion eq 3}
+                {$lang.model_color3}
+              {else}
+                {$lang.model_color4}
+              {/if}
+            </td>
+            <td align="center">
+              {if $model_management.model_sex eq 1}
+                {$lang.model_male}
+              {else}
+                {$lang.model_female}
+              {/if}
+            </td>
+            <td align="center">
+              {$model_management.model_high_id}
+            </td>
+            <td align="center">
+              {$model_management.model_figure}
+            </td>
+            <td align="center">
+              <input type="file" name="model_images">
+              <img src="images/{if $model_management.model_images}yes{else}no{/if}.gif" />
+              <input type="submit">
+            </td>
+          </tr>
+        {foreachelse}
+        <tr>
+          <td class="no-records" colspan="10">
+            {$lang.no_records}
+          </td>
+        </tr>
+        {/foreach}
+        <tr>
+          <td align="right" nowrap="true" colspan="6">
+          {include file="page.htm"}
+          </td>
+        </tr>
+
+      </table>
+
+    {if $full_page}
+  </div>
+<!-- end goods type list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+<!--
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+ 
+  {literal}
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+
+//-->
+
+</script>
+{/literal}
+
+{include file="pagefooter.htm"}
+{/if}

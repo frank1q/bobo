@@ -1,0 +1,83 @@
+<!-- $Id: model_management_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,validator.js"}
+
+<div class="main-div">
+  <form action="" method="post" name="theForm" onsubmit="return validate();">
+    <table cellspacing="1" cellpadding="3" width="100%">
+      <tr>
+        <td class="label">{$lang.mode_sex}:</td>
+        <td>
+          <select name="mode_sex" id="">
+            <option value="1">{$lang.mode_male}</option>
+            <option value="2">{$lang.mode_female}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.model_high}:</td>
+        <td>
+          <select name="model_high" id="">
+            {foreach from=$model_high item=high}
+              <option value="{$high.model_id}">{$high.model_high}</option>
+            {/foreach}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.mode_complexion}:</td>
+        <td>
+          <select name="mode_complexion" id="">
+            <option value="1">{$lang.mode_color1}</option>
+            <option value="2">{$lang.mode_color2}</option>
+            <option value="3">{$lang.mode_color3}</option>
+            <option value="4">{$lang.mode_color4}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.mode_images}:</td>
+        <td>
+          
+        </td>
+      </tr>
+<!--       
+      <tr>
+        <td class="label"><a href="javascript:showNotice('noticeAttrGroups');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.attr_groups}:</td>
+        <td>
+          <textarea name="attr_group" rows="5" cols="40">{$model_management.attr_group|escape}</textarea><br />
+          <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeAttrGroups">{$lang.notice_attr_groups}</span>
+        </td>
+      </tr> -->
+      <tr align="center">
+        <td colspan="2">
+          <input type="hidden" name="cat_id" value="{$model_management.cat_id}" />
+          <input type="submit" value="{$lang.button_submit}" class="button" />
+          <input type="reset" value="{$lang.button_reset}" class="button" />
+          <input type="hidden" name="act" value="{$form_act}" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script type="text/javascript">
+<!--
+{literal}
+onload = function() {
+  document.forms['theForm'].elements['cat_name'].focus();
+  startCheckOrder();
+}
+
+function validate()
+{
+  var validator = new Validator('theForm');
+  validator.required('cat_name', type_name_empty);
+
+  return validator.passed();
+}
+{/literal}  
+//-->
+</script>
+
+{include file="pagefooter.htm"}

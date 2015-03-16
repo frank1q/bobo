@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+  <!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+</head>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="content_middle getintouch">
+            <div class="getintouch_content">
+              <div class="getintouch_content_left">
+                <div class="getintouch_content_title">
+                  - Basic Contact
+                </div>
+                <div class="getintouch-content">
+                  <!-- {if $article.content } -->
+                  {$article.content}
+                  <!-- {/if} -->
+                </div>
+
+                <div class="getintouch_content_title">
+                  - Live Chat
+                </div>
+                <div class="getintouch_social_media">
+                  <div class="getintouch_introduction_title">
+                    Click here to start
+                  </div>
+                  <div class="getintouch_live_chat">
+                    Live Chat
+                  </div>
+                  <div class="getintouch_introduction_title">
+                    By using FaceBook contact
+                  </div>
+                </div>
+                  <div class="getintouch_content_title">
+                  - Subscribtion
+                    </div>
+                    <div class="getintouch_subscribtion">
+                      <div class="getintouch_introduction_title">
+                        Receive our newsletter or promotional campaign by typing your email address
+                      </div>
+                      <div class="getintouch_introduction_content">
+                        <div class="input-group">
+                          <input class="form-control" type="email" placeholder="Enter your e-mail address">
+                          <div class="input-group-addon">
+                            Subscribe
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <div class="getintouch_content_right">
+                <img src="./images/get-in-touch_03.png"  class="img-responsive"/>
+              </div>
+            </div>
+            <div class="getintouch_footer">
+              <div class="getintouch_footer_content">
+                <div class="getintouch_footer_left">
+                  <p>@ 2014 BoBo d2c Ltd. All rights reserved</p>
+                </div>
+                <div class="getintouch_footer_right">
+                  <p>Press Releases  | Privacy | Terms</p>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

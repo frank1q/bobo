@@ -1,0 +1,34 @@
+body {
+	margin: 0px;
+}
+h1{
+	margin: 0 ;
+}
+h3{
+	margin: 0;
+}
+p{
+	margin: 0 ;
+}
+ul{
+	padding: 0;
+	margin: 0;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.BC5C5449{
+  background-color: #5C5449;
+}
+.BCB6A48D{
+  background-color: #B6A48D;
+}
+.BCEFE3CB{
+  background-color: #EFE3CB;
+}
+.BCFAEFE1{
+  background-color: #FAEFE1;
+}

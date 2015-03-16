@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+  <!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+</head>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="content_middle">
+  <form action="user.php" method="post">
+    <div class="AreaR">
+        <div class="boxL">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="getintouch_content_title">
+                <h5 class="panel-title">
+                  <a data-toggle="collapse" class="collapeiconv"  data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <span class="modified">-</span> Personal Information
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+<!--                   {foreach from=$extend_info_list item=field}
+<div class="panelhalf">
+  <div class="paneltitle">{$field.reg_field_name}</div>
+  <div class="panelinput">
+    <input type="text" name="extend_field{$field.id}" value="{$field.content}" class="form-control"/>
+  </div>
+</div>
+{/foreach}
+<div class="">
+  <div class="paneltitle">Day of Birth</div>
+  <div class="panelinput">
+    {html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=-1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}
+  </div>
+</div> -->
+              <form action="user.php" method="post">
+                <div class="add-address">
+                  <div class="panelhalf">
+                    <div class="paneltitle" >Name</div>
+                    <div class="panelinput">
+                      <input type="text" name="consignee" class="form-control" autocomplete="false" value="{$edit_address.consignee}"   placeholder=""/>
+                    </div>
+                  </div>
+                  <div class="panelhalf">
+                    <div class="paneltitle">mobile</div>
+                    <div class="panelinput">
+                      <input type="text" name="mobile" class="form-control" autocomplete="false" value="{$edit_address.mobile}"   placeholder=""/>
+                    </div>
+                  </div> 
+                  <div class="">
+                    <div class="paneltitle">Address</div>
+                    <div class="panelinput">
+                      <input type="text" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
+                    </div>
+                  </div>
+                  <div class="checkbox">
+                      <label style="font-weight:bold;">
+                        <input type="checkbox"  name="is_default" {if $address eq $edit_address.address_id}checked="checked"{elseif !$edit_address}checked="checked"{/if}> Is Default
+                      </label>
+                  </div>
+                  <div class="">
+                    <div class="panelinput">
+                      <div class="sub-address">
+                        <button type="submit" name="act" value="address" >
+                          <!-- {if $edit_address} -->
+                            Update Consignee
+                            <!-- {else} -->
+                            Add Consignee
+                          <!-- {/if} -->
+                        </button>
+                        <input type="hidden" name="address_id" value="{$edit_address.address_id}" />
+                        <input type="hidden" name="email" value="{$smarty.session.email}" />
+                      </div>
+                    </div>
+                  </div>
+                            
+                </div>
+                </form>
+                <div class="clear"></div>
+                <div class="table-responsive">
+                  <table class="table user-address">
+                    {foreach from=$consignee_list item=consignee}
+                    <tr>
+                      <td>{$consignee.address}<br>{$consignee.consignee} | {$consignee.mobile} <br>
+                        <a href="user.php?address_id={$consignee.address_id}"><button type="button">edit</button></a>
+                        <a href="user.php?act=drop_consignee&id={$consignee.address_id}"><button type="button">delete</button></a>
+                        <!-- {if $address eq $consignee.address_id} -->
+                        <button type="button" class="is-default">Is Default</button>
+                        <!-- {/if} -->
+                        
+                        <!-- (<a href="">edit</a> | <a href="" onclick="if (confirm('Are you sure delete the consignee information?')) location.href='flow.php?step=drop_consignee&id={$consignee.address_id}'" >detele</a> | <a href="">to default</a>) -->
+                      </td>
+                    </tr>
+                    {/foreach}
+                  </table>
+                </div>
+                </div>
+              </div>
+            </div>
+<!--             <div class="panel panel-default">
+  <div class="getintouch_content_title">
+    <h5 class="panel-title">
+      <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <span class="modified">+</span> Payment Method
+      </a>
+    </h5>
+  </div>
+  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div class="panel-body">
+      <input type="radio" checked="true" value="paypal" /> Paypal
+    </div>
+  </div>
+</div> -->
+            <div class="panel panel-default">
+              <div class="getintouch_content_title">
+                <h5 class="panel-title">
+                  <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                   <span class="modified">+</span> Order History
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+
+                    <!--{foreach from=$orders item=item}-->
+                    <div class="orderlist">
+                      <div class="orderleft">
+                        <h2>{$item.order_d}</h2>
+                        <h3>{$item.order_m}</h3>
+                        <h4>{$item.order_y}</h4>
+                      </div>
+                      <div class="orderright">
+                        <p>{$lang.order_number}:{$item.order_sn}</p>
+                        <p>{$lang.order_money}:{$item.total_fee}</p>
+                        <p>Delivered To:{$item.address}</p>
+                        <p>{$lang.order_status}:{$item.order_status}</p>
+                        <p>{$lang.handle}:{$item.handler}</p>
+                      </div>
+                    </div>
+                    <!--{/foreach}-->
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="getintouch_content_title">
+                <h5 class="panel-title">
+                  
+                  <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                   <span class="modified">+</span> Facebook Conection
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                  facebook
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="getintouch_content_title">
+                <h5 class="panel-title">
+                  <a class="collapsed collapeiconv" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                   <span class="modified">+</span> Security
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                <div class="panel-body">
+                  <div class="panelhalf">
+                    <div class="paneltitle">New Password</div>
+                    <div class="panelinput">
+                      <input type="password" name="new_password" class="form-control"  placeholder="*******" />
+                    </div>
+                  </div>
+                  <div class="panelhalf">
+                    <div class="paneltitle" >Old Password</div>
+                    <div class="panelinput">
+                      <input type="password" name="old_password" class="form-control" autocomplete="false" value=""   placeholder="*******"/>
+                    </div>
+                  </div>
+                  <div class="panelhalf">
+                    <div class="paneltitle">Confirm Password</div>
+                    <div class="panelinput">
+                      <input type="password" name="confirm_password" class="form-control" autocomplete="false" value=""   placeholder="*******"/>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="boxR">
+          <div class="boxR_img">
+            <img src="./images/picture-right_6.png" alt="" class="img-responsive"/>
+          </div>
+          <div class="boxR_editor">
+            <div class="boxR_portrait view view-first ">
+              <!-- {if $profile.user_head_img eq ''} -->   
+              <img src="./images/user-portrait.png" alt="" class="img-responsive"/>
+              <!-- {else} -->
+              <img src="./headImg/{$profile.user_head_img}" alt="" width="200" height="200" class="img-responsive"/>
+              <!-- {/if} -->
+              
+              <div class="mask">
+                  <div class="editImg">
+                    <a href="user.php?act=edit_headImd"><button type="button" class="btn editColor" >Edit</button></a>
+                  </div>
+              </div>
+            </div>
+            <div class="figure">
+              <div class="figure_content">
+                Gender
+                <div class="btn-group gender" data-toggle="buttons">
+                  <label class="btn sex_choose {$profile.male}">
+                    <input type="radio" name="sex"  value="1" id="option2" autocomplete="off"> Male
+                  </label>
+                  <label class="btn sex_choose {$profile.female}">
+                    <input type="radio" name="sex"  value="2" id="option3" autocomplete="off">  Female
+                  </label>
+                </div>
+              </div>
+              <div class="figure_content">
+                Skin color
+                  <div class="btn-group gender" data-toggle="buttons">
+                    <label class="btn complexion BC5C5449 {$profile.cpl_1}">
+                      <input type="radio" name="complexion"  value="1" id="complexion1" autocomplete="off">
+                    </label>
+                    <label class="btn complexion BCB6A48D {$profile.cpl_2}">
+                      <input type="radio" name="complexion"  value="2" id="complexion2" autocomplete="off">
+                    </label>
+                    <label class="btn complexion BCEFE3CB {$profile.cpl_3}">
+                      <input type="radio" name="complexion"  value="3" id="complexion3" autocomplete="off">
+                    </label>
+                    <label class="btn complexion BCFAEFE1 {$profile.cpl_4}">
+                      <input type="radio" name="complexion"  value="4" id="complexion4" autocomplete="off">
+                    </label>
+                  </div>
+              </div>
+              <div class="figure_content">
+                Height
+                <select class="figure_height" name="height">
+                  
+                  {foreach from=$model_height item=height}
+                  <option value="{$height.model_id}" <!-- {if $height.model_id eq $profile.high_id} --> selected="selected"<!-- {/if} --> >{$height.model_high}</option>  
+                  {/foreach}
+                </select>
+              </div>
+              <div class="figure_content">
+                Body Shape
+                <div class="btn-group gender" data-toggle="buttons">
+                  <label class="btn model_figure  {$profile.fig_1}">
+                    <input type="radio" name="figure"  value="1" id="figure1" autocomplete="off"> - Size
+                  </label>
+                  <label class="btn model_figure  {$profile.fig_2}">
+                    <input type="radio" name="figure"  value="2" id="figure2" autocomplete="off"> Medium
+                  </label>
+                  <label class="btn model_figure {$profile.fig_3}">
+                    <input type="radio" name="figure"  value="3" id="figure3" autocomplete="off"> + Size
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="boxF">
+          <div class="reset left">
+            <a href="user.php?act=logout"><button type="button">logout</button></a>
+          </div>
+          <div class="submit_form right">
+            <button type="submit" name="act" value="edit_profile">
+                Update Changes
+            </button>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
+<div class="content_mr">
+  <div class="picture_guide">
+    <div class="pictureimg">
+      <div class="picturecont">
+        <div class="getintouch_content_title">
+            <h5 class="panel-title">
+              - Welcome Tour
+            </h5>
+        </div>
+        <div class="picturecontent buy_01">
+          <p>
+            Don't know where to start?<br>
+            Here are some of the essential tour.<br>
+            <br>
+            How does Boing (Pre-order) item work?
+            <br>
+            <br>
+            How does Boed (buy it now) item work?
+            <br>
+            <br>
+            How does FitIn & Share work?
+            <br>
+            <br>
+            How does delivery & return work?
+          </p>
+        </div>
+        <div class="getintouch_content_title">
+            <h5 class="panel-title">
+              - Need Assistance?
+            </h5>
+        </div>
+        <div class="picturecontent">
+          <p>
+            BoBo is always here to help, there are lots of different ways to get in touch with us. The easiest ways is Live Chat with us, but you can also try Other ways to get in touch with us.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="introduction">
+      <div class="picture_guide_h">
+        <img src="./images/picture-right_7.png" alt=""  class="img-responsive"/>
+      </div>
+      <div class="picture_guide_c">
+        <div class="picture_guide_con">
+          <img src="./images/lcon_13.png" class="img-responsive" alt="">
+          <div class="picture_guide_f">
+            <h4>MORE TOUR</h4>
+          </div>
+        </div>
+        <div class="picture_guide_con">
+          <img src="./images/lcon_14.png" class="img-responsive" alt="">
+          <div class="picture_guide_f">
+            <h4>GET IN TOUCH</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="picture_right">
+    <div class="pictureimg">
+      <div class="picturecont">
+        <div class="picturecontent">
+          <p>
+            Are you a fashion designer? We are always looking for different fashion designers to join BoBo.<br><br>
+            Now with BoBo,you can sell your own designs in your own brand in national scale.What you need to do is just send us the design pro-totype to us, we will help you to exhibit, mass-manufacture, on the coolest fashion retail network.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="introduction">
+      <div class="introduction_h">
+        <img src="./images/picture-right_8.png" alt=""  class="img-responsive"/>
+      </div>
+      <div class="introduction_c background32">
+      </div>
+      <div class="introduction_f" >
+        <h4>JOIN NOW</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<script>
+  $(function(){
+    $('.collapeiconv').click(function(event) { 
+      var ifadd = $(this).find('span').text();
+      $('.collapeiconv span').text('+');
+      if(ifadd=='+'){
+        $(this).find('span').text('-');
+      }
+    });
+    var ut = '{$user_tips}';
+    var us = '{$user_success}';
+    if (ut) {
+      alert(ut);
+      if (ps) {
+        window.location.href="index.php"; 
+      }else{
+        window.location.href="user.php"; 
+      };
+    };
+  })
+</script>

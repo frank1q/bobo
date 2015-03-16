@@ -1,0 +1,409 @@
+<div class="content_right">
+          <div class="model">
+            <div class="modelimg z-index1">
+              <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}-{$my_skin}.png" class="img-responsive" />
+                <!-- {if $smarty.session.user_id gt 0}
+                <img src="model_img/{$my_sex}/{$my_height}-{$my_shape}-{$my_skin}.png" class="img-responsive" />
+                {else}
+                <img src="model_img/m/m-default.png" class="img-responsive" />
+                {/if} -->
+            </div>
+            <div class="{$my_sex}top{$my_height} headimg index999 ">
+                <img src="headImg/{$user_head_img}" class="img-responsive" alt="">
+            </div>
+            <div class="trousers z-index50">
+                <img src="model_img/{$arrWear.trousers.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+            </div>
+            <div class="coat z-index100">
+                <img src="model_img/{$arrWear.coat.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+            </div>
+            <div class="underwear z-index10">
+                <img src="model_img/{$arrWear.underwear.goods_id}/{$my_height}-{$my_shape}.png" class="img-responsive" />
+            </div>
+            <div class="share">
+                <div class="submit_form w100">
+                  <a id="share-link" href="share.php?sex={$sex}&user_head_img={$user_head_img}&user_id={$smarty.session.user_id}&my_height={$my_height}&my_shape={$my_shape}&my_skin={$my_skin}&my_sex={$my_sex}&trousers={$arrWear.trousers.goods_id}&coat={$arrWear.coat.goods_id}&underwear={$arrWear.underwear.goods_id}">
+                    <button type="button" name="act" value="edit_profile">
+                      Share
+                    </button>
+                  </a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="panel-group" id="accordiona" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSix">
+        {if $smarty.session.user_id gt 0}
+          <a data-toggle="collapse" data-parent="#accordiona" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+          {else}
+        {/if}
+            <div class="basket-checkout basket-checkout1">
+              <div class="sidebar_b">
+                <div class="lcon_03">
+                  <img src="./images/lcon_03.png" class="img-responsive"/>              
+                </div>
+                <div class="color">
+                  BASKET &
+                  <br>CHECKOUT
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse {if $cartShow} in {/if} " role="tabpanel" aria-labelledby="headingSix">
+          <div class="basket_cart">
+            <div class="cart_main">
+              <!--{foreach from=$user_cart_goods.goods_list item=user_cart}-->
+
+              <div id="cart_{$user_cart.rec_id}">
+                <div class="cart_image">
+                  <!-- {if $user_cart.is_groupbuy eq 1} -->
+                      <div class="boing">
+                        <img src="images/boing-icon.png" class="img-responsive">
+                      </div>
+                  <!-- {/if} -->
+                  <img src="{$user_cart.goods_thumb}" class="img-responsive"/>
+                </div>
+                <div class="cart_content">
+                  <div class="cart_top">
+                    <p>{$user_cart.goods_name}</p>
+                     <div class="cart_right">
+                      <button type="button" class="close cart_delete" value="{$user_cart.rec_id}">
+                        <img src="./images/lcon_17.png" class="img-responsive"/>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="cart_color">
+                    <!-- <div class="E55"></div><p>XS</p> -->
+                  </div>
+                  <div class="cart_progress">
+                    <!-- {if $user_cart.is_groupbuy} -->
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {$user_cart.customers_progress}%;">
+                        </div>
+                      </div>
+                      <div class="cart_detail">
+                        <div>
+                          <p class='cart_title'>{$user_cart.group_now_day}/{$user_cart.group_total_day}</p>
+                          <p class='cart_footer_detail'>days to go</p>
+                        </div>
+                        <div>
+                          <p class='cart_title'>{$user_cart.customers_progress}%</p>
+                          <p class='cart_footer_detail'>ready</p>
+                        </div>
+                        <div>
+                          <p class='cart_title'>{$user_cart.market_price}</p>
+                          <p class='cart_footer_detail'>Future Price</p>
+                        </div>
+                      </div>
+                    <!-- {/if} -->
+                  </div>
+                  <div class="cart_footer_price">
+                    <p>{$user_cart.goods_price}</p>
+                  </div>
+                </div>
+              </div>
+              <!--{/foreach}-->
+            </div>
+            <div class="cart_footer">
+
+              
+              <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+                <tbody>
+                
+                  <tr>
+                    <td class="cart_footer_title">TOTAL:</td>
+                    <td class="cart_footer_content">
+                        <h3>{$user_cart_goods.total.goods_price}</h3>
+                    </td>
+                  </tr>
+                  <!-- {if $default_address} -->
+                  
+                  <tr>
+                    <td class="cart_footer_title">Deliver to:</td>
+                    <td class="cart_footer_content">
+                      <p>
+                        {$default_address.full_address|escape} (<a href="user.php" >edit</a>)
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="cart_footer_title">Contact:</td>
+                    <td class="cart_footer_content">
+                      <p>
+                        {$default_address.consignee|escape} | {$default_address.tel|escape} (<a href="user.php">edit</a>)
+                        
+                      </p>
+                    </td>
+                  </tr>
+                  <!-- {else} -->
+                  <p>To Manage Your Address Before Checkout(<a href="user.php" style="color:#fff;" >edit</a>)</p>
+
+                  <!-- {/if} -->
+                  <tr>
+                    <td class="cart_footer_title">Payment method:<input type="radio" name="paypal" id="paypal" checked="true"> Paypal </td>
+                    <td class="cart_footer_content">
+                      
+                    </td>
+                  </tr>
+                
+                </tbody>
+              </table>
+              <div class="cart_footer_submit">
+                <button type="button" class="append_parent_log">
+                  Help
+                </button>
+                <form action="flow.php?step=done" method="post">
+                <input type="hidden" value="8" name="shipping" />
+                <input type="hidden" value="1" name="need_insure" />
+                <input type="hidden" value="4" name="payment" />
+                <input type="hidden" value="0" name="pack" />
+                <input type="hidden" value="0" name="card" />
+                <input type="hidden" value="" name="card_message" />
+                <input type="hidden" value="0" name="bonus" />
+                <input type="hidden" value="" name="bonus_sn" />
+                <input type="hidden" value="" name="postscript" />
+                <input type="hidden" value="0" name="how_oos" />
+                <input type="hidden" value="102" name="x" />
+                <input type="hidden" value="19" name="y" />
+                <input type="hidden" value="done" name="step" />
+                  <!-- {if $default_address} -->
+                  <button type="submit" class="append_parent_registration">
+                    Checkout
+                  </button>
+                  <!-- {else} -->
+                  <a href="user.php">
+                    <button type="button" class="append_parent_registration">
+                    Manage Address 
+                  </button></a>
+                  <!-- {/if} -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSeven">
+          <a data-toggle="collapse" class="collapeiconv" data-parent="#accordiona" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+            <div class="basket-checkout menu_top">
+              <div class="sidebar_b">
+                <div class="lcon_04">
+                  <img src="./images/lcon_04.png" class="img-responsive"/>              
+                </div>
+                <div class="color">
+                  SOCIAL NETWORK &
+                  <br>SHARE YOUR LOOK
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div id="collapseSeven" class="panel-collapse collapse {if !$cartShow} in {/if}" role="tabpanel" aria-labelledby="headingSeven" aria-expanded="true">
+          <div class="panel-body">
+               {insert name='member_info'}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal_color">
+          <form role="form">
+            <div class="modal_login left">
+              <h3>Login to BoBo</h3>
+              <div class="modal_input">
+                <input type="text"  name="username" id="username"  class="form-control mb13" placeholder="Your Account"/>
+                <input type="password"  name="password" id="password" class="form-control"  placeholder="******"/>
+                <div class="modal_blank">
+                  <a href=""><p>Forgotten your password?</p></a>
+                </div>
+                <img src="./images/login_07.png" alt="" class="img-responsive"/>
+                <button type="button" name="button" id="submit_login" class="append_parent_log">Single Login</button>
+                <button type="submit" class="append_parent_registration" id="login_remember" >Keep Me Login</button>
+              </div>
+            </div>
+          </form>
+          <div class="modal_line"></div>
+          <form role="form" id="formLogin" name="formLogin" action="" method="post" onSubmit="return userLogin()" >
+            <div class="modal_login left">
+              <h3>Sign Up to BoBo</h3>
+              <div class="modal_input">
+                <input type="email"  name="email" id="email" class="form-control mb13" value="" placeholder="Email Address"/>
+                <input type="password" class="form-control mb13" value="" id="password1" placeholder="Password"/>
+                <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Password"/>
+                <div class="modal_blank"></div>
+                <button type="reset" class="append_parent_log">Reset</button>
+                <button type="button" name="button" id="register"class="append_parent_registration">Sign Up</button>
+                <input type="hidden" value="1" name="remember" id="remember" />
+              </div>
+            </div>
+          </form>
+          <button type="button" class="close timesx" data-dismiss="modal" ><img src="./images/login_03.png" alt="" class="img-responsive"/></button>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+  $(function(){
+      $('a.info').click(function(){
+        var shareLink = $('#share-link').attr('href');
+        var thisclass = $(this).attr('online');
+        var goods_id = $(this).attr('goods_id');
+        var thissrc = 'model_img/'+goods_id+'/{$my_height}-{$my_shape}.png';
+        var imgObj = $('.'+thisclass+' img');
+        var srcObj = $('.'+thisclass);
+        if(imgObj.length>0){
+          var nowsrc = imgObj.attr('src');
+          if(thissrc==nowsrc){
+            var newLink = shareLink+'&'+thisclass+'=';
+            imgObj.remove();
+          }else{
+            var newLink = shareLink+'&'+thisclass+'='+goods_id;
+            imgObj.attr('src',thissrc);
+          }
+        }else{
+          var newLink = shareLink+'&'+thisclass+'='+goods_id;
+          srcObj.append('<img src="'+thissrc+'"  class="img-responsive" />');
+
+        }
+        $('#share-link').attr('href',newLink);
+        /*ajax*/
+        $.ajax({
+              type:'GET',
+              url:"online_wear.php",
+              data:{goods_id:goods_id,part_class:thisclass},
+              success:function(data){
+              // alert(data);
+                if(data==0){
+                  alert('Wear Failed');
+                }
+            }
+          });
+        /*End ajax*/
+      })
+    
+    $('#submit_login').click(function(){
+      var $username = $('#username').val();
+      var $password = $('#password').val();
+      /*ajax*/
+      $.ajax({
+            type:'POST',
+            url:"user.php",
+            data:{username:$username,password:$password,act:'act_login'},
+            success:function(data){         
+            if(data=="info"){
+              $('#myModal').modal('hide');
+              window.location= "user.php";
+            }else{
+              alert(data);
+            }
+          }
+        });
+      /*End ajax*/
+    });
+    $('#login_remember').click(function(){
+      var $username = $('#username').val();
+      var $password = $('#password').val();
+      /*ajax*/
+      $.ajax({
+            type:'POST',
+            url:"user.php",
+            data:{username:$username,password:$password,act:'act_login',remember:1},
+            success:function(data){         
+            if(data=="info"){
+              $('#myModal').modal('hide');
+              window.location= "user.php";
+            }else{
+              alert(data);
+            }
+          }
+        });
+      /*End ajax*/
+    });
+    $('#register').click(function(){
+      var $email = $('#email').val();
+      var $password1 = $('#password1').val();
+      var $confirm_password = $('#confirm_password').val();
+      /*ajax*/
+      $.ajax({
+            type:'POST',
+            url:"user.php",
+            data:{email:$email,password:$password1,confirm_password:$confirm_password,act:'act_register'},
+            success:function(data){
+            if(data=="info"){
+              $('#myModal').modal('hide');
+              alert('Register Successfully.');
+              location=location;
+            }else{
+              alert(data);
+            }
+          }
+        });
+      /*End ajax*/
+    });
+    $('.cart_delete').click(function(){
+      if(confirm('{$lang.user_cart_delete}')){
+        var rec_id = $(this).val();
+        /*ajax*/
+        $.ajax({
+            type:'GET',
+            url:"flow.php?step=drop_goods",
+            data:{id:rec_id},
+            success:function(data){
+              $('#cart_'+rec_id).hide();
+            }
+          });
+        /*End ajax*/
+      }
+    });
+  })
+  $("img").error(function() { 
+    $(this).remove(); 
+  });
+  var user_id = {$smarty.session.user_id};
+  $('.basket-checkout').click(function(){
+      if(user_id==0){
+        $('#myModal').modal('show');
+      }
+  });
+
+
+</script>
+<!-- /Modal -->
+
+
+<script type='text/javascript'>         
+/*var _taw = _taw || [];
+_taw.push(['_color', '#3b5998']);
+(function(d) {var taw = d.createElement('script'),id = 'tawea-extension';
+if (d.getElementById(id)) {return;}
+taw.type = 'text/javascript';taw.id=id;taw.async=true;
+taw.src ='https://tawea.com/extension/js/sdk.min.js';
+(document.head||document.documentElement).appendChild(taw);})(document);*/
+
+
+</script>
+
+
+<script>
+window.onload = function(){
+  var t = $('.Tawea:first').attr('style');
+  t = t+'margin-right:0px !important;';
+  $('.Tawea:first').attr('style',t);
+}
+
+</script>
+
+
+</body>
+</html>
