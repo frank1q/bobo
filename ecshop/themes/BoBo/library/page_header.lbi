@@ -39,32 +39,28 @@
     </div>
     <div class="content">
       <div class="content_left">
-        <ul class="content_c">
+         <ul class="content_c">
           <!--{foreach from=$categories item=cat}-->
             <li class="content_lc">
                 <a href="{$cat.url}">{$cat.name|escape:html}</a>
-
-                <ul class="sontree">
-                <!--{foreach from=$cat.cat_id item=child}-->
-                <li class="sub_c">
-                <a href="{$child.url}">{$child.name|escape:html}</a>
-                <!-- {if !empty($child.cat_id)} -->
-                    <ul class="">
-                    <!--{foreach from=$child.cat_id item=cchild}-->
-                      <li class="sub_d">
-                        <a href="{$cchild.url}">{$cchild.name|escape:html}</a>
-                      </li>
-                    <!--{/foreach}-->
-                    </ul>
-                <!-- {/if} -->
-                </li>
-              <!--{/foreach}-->
+                <ul>
+                  <!--{foreach from=$cat.cat_id item=child}-->
+                  <li class="sub_c">
+                    <a href="{$child.url}">{$child.name|escape:html}</a>
+                    <!-- {if !empty($child.cat_id)} -->
+                        <ul class="">
+                        <!--{foreach from=$child.cat_id item=cchild}-->
+                          <li class="sub_d">
+                            <a href="{$cchild.url}">{$cchild.name|escape:html}</a>
+                          </li>
+                        <!--{/foreach}-->
+                        </ul>
+                    <!-- {/if} -->
+                    </li>
+                  <!--{/foreach}-->
               </ul>
             </li>
           <!--{/foreach}-->
-
-
-
           <li class="content_other">
             <a href="designer.php">Designer List</a>
             <ul>

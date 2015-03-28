@@ -43,7 +43,9 @@
 						</div>
 						<div class="designer_introduction">
 							<div class="portrait">
-								<img src="{$user_info.disigner_img}" class="img-responsive" />
+								<a href="designer_good.php?user_id={$user_id}">
+									<img src="{$user_info.disigner_img}" class="img-responsive" />
+								</a>
 							</div>
 							<div class="designre_introduction">
 								<div class="designre_name">

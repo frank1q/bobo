@@ -37,7 +37,6 @@ $goods_id = isset($_REQUEST['id'])  ? intval($_REQUEST['id']) : 0;
 /*------------------------------------------------------ */
 //-- 改变属性、数量时重新计算商品价格
 /*------------------------------------------------------ */
-
 if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'price')
 {
     include('includes/cls_json.php');
@@ -140,6 +139,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
 
 $cache_id = $goods_id . '-' . $_SESSION['user_rank'].'-'.$_CFG['lang'];
 $cache_id = sprintf('%X', crc32($cache_id));
+
 if (!$smarty->is_cached('goods.dwt', $cache_id))
 {
     $smarty->assign('image_width',  $_CFG['image_width']);
@@ -190,11 +190,9 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         }
 
         $smarty->assign('goods',              $goods);
-        // var_dump($goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
         $smarty->assign('promote_end_time',   $goods['gmt_end_time']);
         $smarty->assign('categories',         get_categories_tree($goods['cat_id']));  // 分类树
-
         /* meta */
         $smarty->assign('keywords',           htmlspecialchars($goods['keywords']));
         $smarty->assign('description',        htmlspecialchars($goods['goods_brief']));
@@ -231,7 +229,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
          $smarty->assign('ur_here_base',       $position['ur_here_base']);                  // 当前位置
 
         $properties = get_goods_properties($goods_id);  // 获得商品的规格和属性
-        
+
         $smarty->assign('properties',          $properties['pro']);                              // 商品属性
         $smarty->assign('specification',       $properties['spe']);                              // 商品规格
         $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
@@ -239,10 +237,15 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
         $smarty->assign('fittings',            get_goods_fittings(array($goods_id)));            // 配件
         $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
+
         $smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
+
         $smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
+        
         $smarty->assign('goods_rank',          get_goods_rank($goods_id));
+        
         // var_dump(get_designer_info($goods_id));  
+
         $smarty->assign('designer_info',   get_designer_info($goods_id));                       // 设计师信息
         
         //获取tag
@@ -642,8 +645,8 @@ function get_designer_info($goods_id)
 {
     $sql = "SELECT u.* FROM " . $GLOBALS['ecs']->table('goods') .
         " as g left join ".$GLOBALS['ecs']->table('users')." as u on u.user_id = g.user_id WHERE goods_id='$goods_id' ";
-
-    return $GLOBALS['db']->getRow($sql);
+// var_dump($sql);  
+    // return $GLOBALS['db']->getRow($sql);
 }
 
 

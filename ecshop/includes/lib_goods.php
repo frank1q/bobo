@@ -43,16 +43,17 @@ function get_model()
  */
 function get_categories_tree($cat_id = 0)
 {
-    if ($cat_id > 0)
-    {
-        $sql = 'SELECT parent_id FROM ' . $GLOBALS['ecs']->table('category') . " WHERE cat_id = '$cat_id'";
-        $parent_id = $GLOBALS['db']->getOne($sql);
-    }
-    else
-    {
-        $parent_id = 0;
-    }
 
+    // if ($cat_id > 0)
+    // {
+    //     $sql = 'SELECT parent_id FROM ' . $GLOBALS['ecs']->table('category') . " WHERE cat_id = '$cat_id'";
+    //     $parent_id = $GLOBALS['db']->getOne($sql);
+    // }
+    // else
+    // {
+    //     $parent_id = 0;
+    // }
+    $parent_id = 0;
     /*
      判断当前分类中全是是否是底级分类，
      如果是取出底级分类上级分类，

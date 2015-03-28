@@ -17,12 +17,12 @@
 当前为价格升序排列，<a href='brands.php?b_id={$smarty.get.b_id}&order_price=1{if $smarty.get.page}&page={$smarty.get.page}{/if}'>转换成价格降序排列</a>
 {/if}<br/><br/>
 {foreach from=$goods_data item=goods}
-    {$goods.i}.<a href='goods.php?id={$goods.id}'>{$goods.name}</a>[{$goods.price}]<br/>
+	{$goods.i}.<a href='goods.php?id={$goods.id}'>{$goods.name}</a>[{$goods.price}]<br/>
 {foreachelse}
-    暂无此类商品<br/>
+	暂无此类商品<br/>
 {/foreach}<br/>
 {if $pagebar}
-    {$pagebar}<br/>
+	{$pagebar}<br/>
 {/if}
 --------------<br/>
 {/if}
@@ -33,9 +33,9 @@
 {/if}
 --------------<br/>
 {foreach from=$other_brands item=other_data}
-    {if $other_data.brand_id neq $brand_id}
-        <a href='brands.php?b_id={$other_data.brand_id}'>{$other_data.brand_name}</a><br/>
-    {/if}
+	{if $other_data.brand_id neq $brand_id}
+		<a href='brands.php?b_id={$other_data.brand_id}'>{$other_data.brand_name}</a><br/>
+	{/if}
 {/foreach}
 --------------<br/>
 {/if}

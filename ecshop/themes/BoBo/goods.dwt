@@ -57,9 +57,11 @@
     </div>
 
     <div class="designer_introduction">
-      <div class="item_portrait">
-        <img src="{$designer_info.disigner_img}" alt="" class="img-responsive" />
-      </div>
+      <a href="designer_good.php?user_id={$goods.user_id}">
+        <div class="item_portrait">
+          <img src="{$designer_info.disigner_img}" alt="" class="img-responsive" />
+        </div>
+      </a>
       <div class="item_review">
         <div class="item_style">
           <h5>{$goods.goods_name}</h5>
@@ -67,17 +69,6 @@
           <div class="itm_price">
             <h3>{$goods.shop_price_formated}</h3>
           </div>
-<!--           <div class="itm_color">
-  <img src="./images/color.png" alt="" class="img-responsive"/>  
-</div>
-<div class="itm_size">
-
-  <div class="itm_size_coding">L</div>
-  <div class="itm_size_coding">M</div>
-  <div class="itm_size_coding">S</div>
-  <div class="itm_size_coding">XS</div>
-  <div class="itm_size_coding">XXS</div>
-</div> -->
         </div>
         <div class="item_introduction"> 
           <!-- {if $goods.is_groupbuy} -->
@@ -119,9 +110,6 @@
               <p>Pre-order<br>Price</p>
               <h4>{$goods.shop_price_formated}</h4>
             </div>
-          </div>
-          <div class="item_size">
-            <p>+ Size Guide</p>
           </div>
         <!--{else} -->
           <div class="item_guide">

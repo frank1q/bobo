@@ -332,13 +332,13 @@
         <div class="picture_guide_con">
           <img src="./images/lcon_13.png" class="img-responsive" alt="">
           <div class="picture_guide_f">
-            <h4>MORE TOUR</h4>
+            <a href="article.php?id=41"><h4>MORE TOUR</h4></a>
           </div>
         </div>
         <div class="picture_guide_con">
           <img src="./images/lcon_14.png" class="img-responsive" alt="">
           <div class="picture_guide_f">
-            <h4>GET IN TOUCH</h4>
+            <a href="article.php?id=42"><h4>GET IN TOUCH</h4></a>
           </div>
         </div>
       </div>
@@ -362,7 +362,7 @@
       <div class="introduction_c background32">
       </div>
       <div class="introduction_f" >
-        <h4>JOIN NOW</h4>
+        <a href="article.php?id=43"><h4>JOIN NOW</h4></a>
       </div>
     </div>
   </div>
