@@ -800,10 +800,12 @@
 
 	.basket-checkout1{
 
-		background-image: url(../images/1280/menu_top.png);
+		/*background-image: url(../images/1280/menu_top.png);*/
 
 	}
-
+	.menu_top{
+		background-image: url(../images/1280/menu_top.png)!important;
+	}
 	.basket-checkout:hover{
 
 	  /*background-image: url(../images/1280/menu_top.png);*/
