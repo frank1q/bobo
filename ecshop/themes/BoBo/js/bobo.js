@@ -72,8 +72,18 @@ $(function(){
     $('.model').hover(function(){
         $('.share').show(400);
     })
+    $('.basket-checkout').addClass('menu_top');
     $('.basket-checkout').click(function(){
-        $('.basket-checkout').removeClass('menu_top');
-        $(this).addClass('menu_top');
+        var b = $(this).attr('is_back');
+        if(b==1){
+            $('.basket-checkout').removeClass('menu_top');
+            $(this).attr('is_back',0);
+        }
+        else{
+            $('.basket-checkout').addClass('menu_top');
+            $(this).attr('is_back',1);
+        }
+        
+        // $(this).addClass('menu_top');
     })
 })

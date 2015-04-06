@@ -43,7 +43,11 @@
           <!--{foreach from=$categories item=cat}-->
             <li class="content_lc">
                 <a href="{$cat.url}">{$cat.name|escape:html}</a>
-                <ul>
+                {if $cid eq $cat.id}
+                  <ul class="show">
+                {else}
+                  <ul class="hide">
+                  {/if}
                   <!--{foreach from=$cat.cat_id item=child}-->
                   <li class="sub_c">
                     <a href="{$child.url}">{$child.name|escape:html}</a>

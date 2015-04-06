@@ -52,15 +52,35 @@
                     </div>
                   </div>
                   <div class="panelhalf">
-                    <div class="paneltitle">mobile</div>
+                    <div class="paneltitle">Mobile</div>
                     <div class="panelinput">
                       <input type="text" name="mobile" class="form-control" autocomplete="false" value="{$edit_address.mobile}"   placeholder=""/>
                     </div>
-                  </div> 
-                  <div class="">
-                    <div class="paneltitle">Address</div>
+                  </div>
+
+                  <div class="panelhalf">
+                    <div class="paneltitle" >Email Address</div>
                     <div class="panelinput">
-                      <input type="text" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
+                      <input type="text" name="consignee" class="form-control" autocomplete="false" value="{$edit_address.consignee}"   placeholder=""/>
+                    </div>
+                  </div>
+                  <div class="panelhalf">
+                    <div class="paneltitle">Postcode</div>
+                    <div class="panelinput">
+                      <input type="text" name="mobile" class="form-control" autocomplete="false" value="{$edit_address.mobile}"   placeholder=""/>
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <div class="paneltitle">Address line 1</div>
+                    <div class="panelinput">
+                      <input type="text" style="width:95%;" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="paneltitle">Address line 2 (optional)</div>
+                    <div class="panelinput">
+                      <input type="text" style="width:95%;" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
                     </div>
                   </div>
                   <div class="checkbox">
@@ -73,9 +93,9 @@
                       <div class="sub-address">
                         <button type="submit" name="act" value="address" >
                           <!-- {if $edit_address} -->
-                            Update Consignee
+                            Update Address
                             <!-- {else} -->
-                            Add Consignee
+                            Add Address
                           <!-- {/if} -->
                         </button>
                         <input type="hidden" name="address_id" value="{$edit_address.address_id}" />

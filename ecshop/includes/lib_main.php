@@ -1841,6 +1841,8 @@ function assign_template($ctype = '', $catlist = array())
     $sexArr = array(1=>'m',2=>'f');
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
     $smarty->assign('user_cart_goods',  user_cart_goods());       // 购物车
+    $cid = isset($_GET['id'])?$_GET['id']:75;
+    $smarty->assign('cid',  $cid);
     //收货地址
     $address = user_address();
     if(!empty($address)){
