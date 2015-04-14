@@ -13,7 +13,8 @@
 </head>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 {* 包含脚本文件 *}
-{insert_scripts files='jquery.json-2.4.js,common.js,index.js'}
+{insert_scripts files='jquery.json-2.4.js,common.js,index.js,tinybox.js'}
+<link rel="stylesheet" type="text/css" href="./themes/BoBo/css/tinybox.css" />
 <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 
 
@@ -113,9 +114,12 @@
           </div>
         <!--{else} -->
           <div class="item_guide">
-            <div class="item_size">+ Size Guide</div>
+
+            <div class="item_size">
+        
+              + Size Guide</div>
             <p>Free Standard Shipping</p>
-            <p>for orders over number$30</p>
+            <p>for orders over number £30</p>
           </div>
         <!-- {/if} --> 
       </div>

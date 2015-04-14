@@ -1866,9 +1866,10 @@ function assign_template($ctype = '', $catlist = array())
         $smarty->assign('name_of_region',    $address['name_of_region'] );
         $smarty->assign('country_list',      $address['country_list'] );
         $smarty->assign('shop_province_list',$address['shop_province_list'] );
-        $smarty->assign('consignee_list',$address['consignee_list']);
+        $smarty->assign('consignee_list',$address['consignee_list'][0]);
+        // var_dump($address['consignee_list'][0]);
         // var_dump($_SESSION);
-        foreach ($address['consignee_list'] as $key => $c) {
+/*        foreach ($address['consignee_list'] as $key => $c) {
             if($c['address_id']==$address['address']){
                 $address['default_address'] = $c;
                 // break;
@@ -1878,13 +1879,15 @@ function assign_template($ctype = '', $catlist = array())
                     $address['edit_address'] = $c;
                 }
             }
-        }
+        }*/
+
         // var_dump($_REQUEST['address_id']);
         // var_dump($address['default_address']);
-        $smarty->assign('default_address',$address['default_address']);
-        if(isset($address['edit_address'])){
+        $smarty->assign('default_address',$address['consignee_list'][0]);
+        $smarty->assign('edit_address',$address['consignee_list'][0]);
+/*        if(isset($address['edit_address'])){
             $smarty->assign('edit_address',$address['edit_address']);
-        }
+        }*/
 
     }
     // var_dump($address['consignee_list']);

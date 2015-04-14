@@ -166,7 +166,7 @@ function get_profile($user_id)
     /* 会员帐号信息 */
     $info  = array();
     $infos = array();
-    $sql  = "SELECT user_name, disigner_img,birthday, description,user_head_img,sex, question, answer, rank_points, pay_points,user_money, user_rank,".
+    $sql  = "SELECT user_name, facebook,twitter,disigner_img,birthday, description,user_head_img,sex, question, answer, rank_points, pay_points,user_money, user_rank,".
             " msn, qq, office_phone, home_phone, mobile_phone, passwd_question, passwd_answer, m.* , mh.model_high ".
             "FROM " .$GLOBALS['ecs']->table('users') . " u ".
             " LEFT JOIN ".$GLOBALS['ecs']->table('model_management')." m ON u.model_id = m.model_id ".
@@ -249,6 +249,8 @@ function get_profile($user_id)
     $info['figure']          = $infos['model_figure'];
     $info['images']          = $infos['model_images'];
     $info['high']            = $infos['model_high'];
+    $info['facebook']            = $infos['facebook'];
+    $info['twitter']            = $infos['twitter'];
 
     return $info;
 }

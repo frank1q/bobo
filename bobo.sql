@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 2015-02-22 00:45:37
--- 服务器版本： 5.6.17
--- PHP Version: 5.5.12
+-- 主机: localhost
+-- 生成日期: 2015 年 04 月 14 日 15:11
+-- 服务器版本: 5.5.24-log
+-- PHP 版本: 5.4.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `bobo`
+-- 数据库: `bobo`
 --
 
 -- --------------------------------------------------------
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `mb_account_log` (
   `change_type` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`log_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- 转存表中的数据 `mb_account_log`
@@ -84,8 +84,7 @@ INSERT INTO `mb_account_log` (`log_id`, `user_id`, `user_money`, `frozen_money`,
 (37, 8, '99999999.99', '0.00', 0, 0, 1419777152, '充值', 2),
 (38, 8, '-540.00', '0.00', 0, 0, 1419777158, '支付订单 2014122820746', 99),
 (39, 8, '0.00', '0.00', 540, 540, 1419777245, '订单 2014122820746 赠送的积分', 99),
-(40, 8, '-1.00', '0.00', 0, 0, 1419777651, '支付订单 2014122838042', 99),
-(41, 23, '0.00', '0.00', 1687, 1687, 1424280159, '订单 2015021838191 赠送的积分', 99);
+(40, 8, '-1.00', '0.00', 0, 0, 1419777651, '支付订单 2014122838042', 99);
 
 -- --------------------------------------------------------
 
@@ -263,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `mb_admin_log` (
   PRIMARY KEY (`log_id`),
   KEY `log_time` (`log_time`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1364 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1346 ;
 
 --
 -- 转存表中的数据 `mb_admin_log`
@@ -1540,100 +1539,82 @@ INSERT INTO `mb_admin_log` (`log_id`, `log_time`, `user_id`, `log_info`, `ip_add
 (1267, 1423645063, 1, '编辑商品: test', '127.0.0.1'),
 (1268, 1423645075, 1, '回收商品: test', '127.0.0.1'),
 (1269, 1423645873, 1, '编辑商品: youtube.png', '127.0.0.1'),
-(1270, 1424213618, 1, '编辑团购商品: m-160-l-legging.png[16]', '127.0.0.1'),
-(1271, 1424213706, 1, '编辑团购商品: m-160-l-legging.png[16]', '127.0.0.1'),
-(1272, 1424213914, 1, '编辑团购商品: m-160-l-legging.png[16]', '127.0.0.1'),
-(1273, 1424279998, 1, '编辑团购商品: m-160-l-legging.png[16]', '127.0.0.1'),
-(1274, 1424280294, 1, '删除订单: 2015020610906', '127.0.0.1'),
-(1275, 1424282479, 1, '添加团购商品: m-160-l-legging.png', '127.0.0.1'),
-(1276, 1424282550, 1, '编辑商品: m-160-l-legging.png', '127.0.0.1'),
-(1277, 1424282751, 1, '编辑团购商品: m-160-l-legging.png[1]', '127.0.0.1'),
-(1278, 1424282993, 1, '编辑团购商品: m-160-l-legging.png[1]', '127.0.0.1'),
-(1279, 1424348410, 1, '编辑商品分类: Fashion Type', '127.0.0.1'),
-(1280, 1424539811, 1, '删除优惠活动: 5.1诺基亚优惠活动', '127.0.0.1'),
-(1281, 1424539828, 1, '删除商品包装: 精品包装', '127.0.0.1'),
-(1282, 1424539832, 1, '删除商品贺卡: 祝福贺卡', '127.0.0.1'),
-(1283, 1424539893, 1, '编辑团购商品: m-160-l-legging.png[1]', '127.0.0.1'),
-(1284, 1424547084, 1, '添加商品: test', '127.0.0.1'),
-(1285, 1424548376, 1, '添加商品: ', '127.0.0.1'),
-(1286, 1424548397, 1, '回收商品: ', '127.0.0.1'),
-(1287, 1424548415, 1, '批量删除商品: ', '127.0.0.1'),
-(1288, 1424548422, 1, '批量删除商品: ', '127.0.0.1'),
-(1289, 1424550878, 1, '添加商品: ', '127.0.0.1'),
-(1290, 1424550919, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1291, 1424551009, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1292, 1424551187, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1293, 1424551366, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1294, 1424551386, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1295, 1424551478, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1296, 1424551499, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1297, 1424551774, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1298, 1424551795, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1299, 1424553108, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1300, 1424553124, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1301, 1424553964, 1, '添加商品: ', '127.0.0.1'),
-(1302, 1424553996, 1, '编辑商品: 258963', '127.0.0.1'),
-(1303, 1424554085, 1, '编辑商品: 258963', '127.0.0.1'),
-(1304, 1424554609, 1, '编辑商品: 258963', '127.0.0.1'),
-(1305, 1424554631, 1, '编辑商品: 1123123', '127.0.0.1'),
-(1306, 1424555087, 1, '编辑商品: 258963', '127.0.0.1'),
-(1307, 1424555630, 1, '编辑商品: 258963', '127.0.0.1'),
-(1308, 1424555997, 1, '编辑商品: 258963', '127.0.0.1'),
-(1309, 1424558009, 1, '编辑商店设置: ', '127.0.0.1'),
-(1310, 1424558031, 1, '编辑商店设置: ', '127.0.0.1'),
-(1311, 1424558461, 1, '编辑商店设置: ', '127.0.0.1'),
-(1312, 1424559234, 1, '编辑商店设置: ', '127.0.0.1'),
-(1313, 1424559268, 1, 'Edit Shop config: ', '127.0.0.1'),
-(1314, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1315, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1316, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1317, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1318, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1319, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1320, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1321, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1322, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1323, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1324, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1325, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1326, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1327, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1328, 1424559471, 1, '删除文章: ', '127.0.0.1'),
-(1329, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1330, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1331, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1332, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1333, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1334, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1335, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1336, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1337, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1338, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1339, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1340, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1341, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1342, 1424559477, 1, '删除文章: ', '127.0.0.1'),
-(1343, 1424559483, 1, '删除文章: ', '127.0.0.1'),
-(1344, 1424559483, 1, '删除文章: ', '127.0.0.1'),
-(1345, 1424559514, 1, '删除商品分类: ', '127.0.0.1'),
-(1346, 1424559516, 1, '删除商品分类: ', '127.0.0.1'),
-(1347, 1424559517, 1, '删除商品分类: ', '127.0.0.1'),
-(1348, 1424559518, 1, '删除商品分类: ', '127.0.0.1'),
-(1349, 1424559519, 1, '删除商品分类: ', '127.0.0.1'),
-(1350, 1424559519, 1, '删除商品分类: ', '127.0.0.1'),
-(1351, 1424559520, 1, '删除商品分类: ', '127.0.0.1'),
-(1352, 1424559521, 1, '删除商品分类: ', '127.0.0.1'),
-(1353, 1424559522, 1, '删除商品分类: ', '127.0.0.1'),
-(1354, 1424559579, 1, '编辑文章: 用户协议', '127.0.0.1'),
-(1355, 1424559635, 1, '添加文章分类: index', '127.0.0.1'),
-(1356, 1424559674, 1, '添加文章: Be a Designer', '127.0.0.1'),
-(1357, 1424559687, 1, '编辑文章: Be a Designer', '127.0.0.1'),
-(1358, 1424559699, 1, '添加文章: Be a Moel', '127.0.0.1'),
-(1359, 1424559710, 1, '添加文章: Campaign & Voucher', '127.0.0.1'),
-(1360, 1424559717, 1, '编辑文章: Be a Moel', '127.0.0.1'),
-(1361, 1424559731, 1, '编辑文章: Campaign & Voucher', '127.0.0.1'),
-(1362, 1424559945, 1, '编辑文章: Campaign & Voucher', '127.0.0.1'),
-(1363, 1424561592, 1, '添加文章: Get in Touch', '127.0.0.1');
+(1270, 1424561898, 1, '编辑商品: 190 l short skirt.png', '223.73.18.45'),
+(1271, 1424562018, 1, '编辑商品: 190 l short skirt.png', '223.73.18.45'),
+(1272, 1424562185, 1, '编辑商品: 190 l short skirt.png', '223.73.18.45'),
+(1273, 1424562198, 1, '编辑商品: 190 l short skirt.png', '223.73.18.45'),
+(1274, 1424562203, 1, '编辑商品: 190 l short skirt.png', '223.73.18.45'),
+(1275, 1424562242, 1, '编辑商品: 190 l short skirt.png', '223.73.18.45'),
+(1276, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1277, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1278, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1279, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1280, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1281, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1282, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1283, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1284, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1285, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1286, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1287, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1288, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1289, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1290, 1424797480, 1, '删除文章: ', '223.73.18.18'),
+(1291, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1292, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1293, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1294, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1295, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1296, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1297, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1298, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1299, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1300, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1301, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1302, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1303, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1304, 1424797488, 1, '删除文章: ', '223.73.18.18'),
+(1305, 1424797495, 1, '删除文章: ', '223.73.18.18'),
+(1306, 1424797495, 1, '删除文章: ', '223.73.18.18'),
+(1307, 1424797566, 1, '添加文章分类: menu', '223.73.18.18'),
+(1308, 1424797606, 1, '添加文章: Be a Designer', '223.73.18.18'),
+(1309, 1424797616, 1, '编辑文章: Be a Designer', '223.73.18.18'),
+(1310, 1424797638, 1, '添加文章: Be a Model', '223.73.18.18'),
+(1311, 1424797676, 1, '添加文章: Compaign & Vocher', '223.73.18.18'),
+(1312, 1425054416, 1, '编辑商店设置: ', '223.74.29.87'),
+(1313, 1425054417, 1, 'Edit Shop config: ', '92.237.84.249'),
+(1314, 1425055500, 1, 'AddProduct: tuangou', '92.237.84.249'),
+(1315, 1425055808, 1, 'EditProduct: tuangou', '92.237.84.249'),
+(1316, 1425056153, 1, 'EditProduct: tuangou', '92.237.84.249'),
+(1317, 1425058631, 1, 'EditArticle: Be a Model', '92.237.84.249'),
+(1318, 1425058734, 1, 'EditArticle: Be a Model', '92.237.84.249'),
+(1319, 1425058787, 1, 'EditArticle: Be a Model', '92.237.84.249'),
+(1320, 1425224030, 1, 'AddArticle: Get in Touch', '223.74.29.87'),
+(1321, 1425224153, 1, 'EditArticle: Get in Touch./', '223.74.29.87'),
+(1322, 1425232532, 1, 'EditProduct: tuangou', '223.74.29.87'),
+(1323, 1425232774, 1, 'Edit Shop config: ', '223.74.29.87'),
+(1324, 1425233083, 1, '删除订单: 2015020617880', '223.74.29.87'),
+(1325, 1425233098, 1, '删除订单: 2015020647828', '223.74.29.87'),
+(1326, 1425233986, 1, '编辑商品: 190 l short skirt.png', '223.74.29.87'),
+(1327, 1425236048, 1, '编辑商店设置: ', '223.74.29.87'),
+(1328, 1425236417, 1, 'EditProduct: tuangou', '223.74.29.87'),
+(1329, 1425236433, 1, 'EditProduct: tuangou', '92.237.84.249'),
+(1330, 1425236479, 1, 'EditProduct: tuangou', '92.237.84.249'),
+(1331, 1425692464, 1, 'EditUser account number: 4657331@qq.com', '223.73.17.212'),
+(1332, 1425692480, 1, 'EditProduct: 190 l short skirt.png', '223.73.17.212'),
+(1333, 1425692487, 1, 'EditProduct: tuangou', '223.73.17.212'),
+(1334, 1425692499, 1, 'EditProduct: 190 l short dress.png', '223.73.17.212'),
+(1335, 1426768483, 1, 'AddArticle: MORE TOUR', '123.88.157.158'),
+(1336, 1426768573, 1, 'AddArticle: GET IN TOUCH', '123.88.157.158'),
+(1337, 1426768619, 1, 'AddArticle: JOIN NOW', '123.88.157.158'),
+(1338, 1427184761, 1, 'Edit Shop config: ', '123.89.74.174'),
+(1339, 1429038869, 1, 'Edit Shop config: ', '127.0.0.1'),
+(1340, 1429039421, 1, '添加会员账号: test', '127.0.0.1'),
+(1341, 1429039477, 1, '编辑会员账号: test', '127.0.0.1'),
+(1342, 1429039503, 1, '编辑会员账号: test', '127.0.0.1'),
+(1343, 1429039600, 1, '编辑会员账号: test', '127.0.0.1'),
+(1344, 1429039734, 1, '添加会员账号: admin123', '127.0.0.1'),
+(1345, 1429040081, 1, '编辑会员账号: 4657331@qq.com', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -1687,7 +1668,7 @@ CREATE TABLE IF NOT EXISTS `mb_admin_user` (
 --
 
 INSERT INTO `mb_admin_user` (`user_id`, `user_name`, `email`, `password`, `add_time`, `last_login`, `last_ip`, `action_list`, `nav_list`, `lang_type`, `agency_id`, `suppliers_id`, `todolist`, `role_id`) VALUES
-(1, 'admin', 'belladndy82@126.com', '0e2a9d81c02d965b96b80dce20f73246', 1252464116, 1424539555, '127.0.0.1', 'all', '商品列表|goods.php?act=list,订单列表|order.php?act=list,用户评论|comment_manage.php?act=list,会员列表|users.php?act=list,商店设置|shop_config.php?act=list_edit', '', 0, 0, NULL, NULL),
+(1, 'admin', 'belladndy82@126.com', '0e2a9d81c02d965b96b80dce20f73246', 1252464116, 1429038840, '127.0.0.1', 'all', '商品列表|goods.php?act=list,订单列表|order.php?act=list,用户评论|comment_manage.php?act=list,会员列表|users.php?act=list,商店设置|shop_config.php?act=list_edit', '', 0, 0, NULL, NULL),
 (2, 'bjgonghuo1', 'bj@163.com', 'd0c015b6eb9a280f318a4c0510581e7e', 1245044099, 0, '', '', '商品列表|goods.php?act=list,订单列表|order.php?act=list,用户评论|comment_manage.php?act=list,会员列表|users.php?act=list,商店设置|shop_config.php?act=list_edit', '', 0, 1, '', NULL),
 (3, 'shhaigonghuo1', 'shanghai@163.com', '4146fecce77907d264f6bd873f4ea27b', 1245044202, 0, '', '', '商品列表|goods.php?act=list,订单列表|order.php?act=list,用户评论|comment_manage.php?act=list,会员列表|users.php?act=list,商店设置|shop_config.php?act=list_edit', '', 0, 2, '', NULL);
 
@@ -1826,17 +1807,21 @@ CREATE TABLE IF NOT EXISTS `mb_article` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`article_id`),
   KEY `cat_id` (`cat_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 --
 -- 转存表中的数据 `mb_article`
 --
 
 INSERT INTO `mb_article` (`article_id`, `cat_id`, `title`, `content`, `author`, `author_email`, `keywords`, `article_type`, `is_open`, `add_time`, `file_url`, `open_type`, `link`, `description`) VALUES
-(4, 13, 'Be a Designer', '<p>&nbsp;</p>\r\n<ul style="box-sizing: border-box; margin: 0px; padding: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Designer</a></li>\r\n</ul>', '', '', '', 1, 1, 1424559674, '', 0, 'http://', ''),
-(38, 13, 'Be a Moel', '<p>&nbsp;</p>\r\n<ul style="box-sizing: border-box; margin: 0px; padding: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Moel</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Moel</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Moel</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Moel</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Moel</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Be a Moel</a></li>\r\n</ul>', '', '', '', 1, 1, 1424559699, '', 0, 'http://', ''),
-(39, 13, 'Campaign & Voucher', '<p>&nbsp;</p>\r\n<ul style="box-sizing: border-box; margin: 0px; padding: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Campaign &amp; Voucher</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Campaign &amp; Voucher</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Campaign &amp; Voucher</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Campaign &amp; Voucher</a></li>\r\n    <li class="sub_c" style="box-sizing: border-box; list-style: none; overflow: hidden;"><a href="http://localhost/bobo/ecshop/#" style="box-sizing: border-box; color: rgb(50, 50, 50); text-decoration: none; line-height: 17px; font-size: 12px; background-color: transparent;">Campaign &amp; Voucher</a></li>\r\n</ul>', '', '', '', 1, 1, 1424559710, '', 0, 'http://', ''),
-(40, 13, 'Get in Touch', '<p>&nbsp;Get in TouchGet in TouchGet in TouchGet in Touch</p>', '', '', '', 1, 1, 1424561592, '', 0, 'http://', '');
+(37, 13, 'Be a Designer', '<p>&nbsp;Be a Designer</p>\r\n<p>Be a Designer</p>\r\n<p>Be a Designer</p>\r\n<p>Be a Designer</p>\r\n<p>Be a Designer</p>\r\n<p>Be a Designer</p>', '', '', '', 1, 1, 1424797606, '', 0, 'http://', ''),
+(38, 13, 'Be a Model', '<p>&nbsp;Be a ModelBe a ModelBe a ModelBe a Mod</p>\r\n<div>\r\n<p>Be a Mel<img src="/images/upload/Image/QQ截图20150227163554.png" width="330" height="312" alt="" /></p>\r\n</div>\r\n<div>\r\n<p>&nbsp;</p>\r\n</div>', '', '', '', 1, 1, 1424797638, '', 0, 'http://', ''),
+(39, 13, 'Compaign & Vocher', '<p>&nbsp;Compaign &amp; VocherCompaign &amp; VocherCompaign &amp; VocherCompaign &amp; Vocher</p>\r\n<p>Compaign &amp; Vocher</p>\r\n<p>Compaign &amp; VocherCompaign &amp; VocherCompaign &amp; Vocher</p>\r\n<p>Compaign &amp; Vocher Compaign &amp; VocherCompaign &amp; VocherCompaign &amp; VocherCompaign &amp; Vocher</p>\r\n<p>Compaign &amp; Vocher</p>\r\n<p>Compaign &amp; VocherCompaign &amp; VocherCompaign &amp; Vocher</p>\r\n<p>Compaign &amp; Vocher Compaign &amp; VocherCompaign &amp; VocherCompaign &amp; VocherCompaign &amp; Vocher</p>\r\n<p>Compaign &amp; Vocher</p>\r\n<p>Compaign &amp; VocherCompaign &amp; VocherCompaign &amp; Vocher</p>\r\n<p>Compaign &amp; Vocher</p>', '', '', '', 1, 1, 1424797676, '', 0, 'http://', ''),
+(40, 13, 'Get in Touch./', '<p>&nbsp;Tel: 01162 222 222</p>\r\n<div>Monday to Friday from 7:30 am to 6:30 pm</div>\r\n<div>Saturday from 9:00 am to 3:00 pm</div>\r\n<div>&nbsp;</div>\r\n<div>Email: help@bo-bo.me</div>\r\n<div>We will try to get back to you within 36 hours</div>\r\n<div>&nbsp;</div>\r\n<div>FAQ</div>\r\n<div>Find the anwser in the old fashion way</div>\r\n<div>&nbsp;</div>\r\n<div>Invest in BoBo</div>\r\n<div>We are always looking for investment to make BoBo a better place for customers and designers.</div>\r\n<div>You can drop us an email and tell us who you are and how you wanna collaborate with us</div>\r\n<div>&nbsp;</div>', '', '', '', 1, 1, 1425224030, '', 0, 'http://', ''),
+(41, 13, 'MORE TOUR', '<p>&nbsp;&nbsp;</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">&nbsp;MORE TOURMORE TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE&nbsp;TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE&nbsp;TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE TOURMORE TOURMORE</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">TOURMORE TOURMORE TOURMORE</p>', 'MORE TOUR', 'test@qq.com', 'MORE TOUR', 0, 1, 1426768483, '', 0, 'http://', 'MORE TOUR'),
+(6, -1, '用户协议', '', '', '', '', 0, 0, 1252464116, '', 0, '', NULL),
+(42, 13, 'GET IN TOUCH', '<p>&nbsp;<span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH GET IN TOUCH GET IN TOUCH</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p style="box-sizing: border-box; margin: 0px; color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(228, 228, 228);">GET IN TOUCH GET IN TOUCH&nbsp;GET IN TOUCH GET IN TOUCH GET IN TOUCH</p>\r\n<p>&nbsp;</p>', 'GET IN TOUCH', 'test@qq.com', 'GET IN TOUCH', 0, 1, 1426768573, '', 0, 'http://', 'GET IN TOUCH'),
+(43, 13, 'JOIN NOW', '<p>&nbsp;</p>\r\n<div>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n<p style="box-sizing: border-box; margin: 0px; background-color: rgb(228, 228, 228);"><font color="#333333" face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span></font><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW&nbsp;</span><span style="color: rgb(51, 51, 51); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">JOIN NOW</span></p>\r\n</div>', 'JOIN NOW', 'test@qq.com', 'JOIN NOW', 0, 1, 1426768619, '', 0, 'http://', 'JOIN NOW');
 
 -- --------------------------------------------------------
 
@@ -1864,7 +1849,19 @@ CREATE TABLE IF NOT EXISTS `mb_article_cat` (
 --
 
 INSERT INTO `mb_article_cat` (`cat_id`, `cat_name`, `cat_type`, `keywords`, `cat_desc`, `sort_order`, `show_in_nav`, `parent_id`) VALUES
-(13, 'index', 1, '', '', 50, 0, 0);
+(1, '系统分类', 2, '', '系统保留分类', 50, 1, 0),
+(2, '网店信息', 3, '', '网店信息分类', 50, 1, 1),
+(3, '网店帮助分类', 4, '', '网店帮助分类', 50, 1, 1),
+(4, '3G资讯', 1, '', '', 50, 1, 0),
+(5, '新手上路 ', 5, '', '', 50, 1, 3),
+(6, '手机常识 ', 5, '', '手机常识 ', 50, 1, 3),
+(7, '配送与支付 ', 5, '', '配送与支付 ', 50, 1, 3),
+(8, '服务保证 ', 5, '', '', 50, 1, 3),
+(9, '联系我们 ', 5, '联系我们', '', 50, 1, 3),
+(10, '会员中心', 5, '', '', 50, 1, 3),
+(11, '手机促销', 1, '', '', 50, 1, 0),
+(12, '站内快讯', 1, '', '', 50, 1, 0),
+(13, 'menu', 1, '', '', 50, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1931,13 +1928,6 @@ CREATE TABLE IF NOT EXISTS `mb_auto_manage` (
   `endtime` int(10) NOT NULL,
   PRIMARY KEY (`item_id`,`type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `mb_auto_manage`
---
-
-INSERT INTO `mb_auto_manage` (`item_id`, `type`, `starttime`, `endtime`) VALUES
-(6, 'article', 0, 1422806400);
 
 -- --------------------------------------------------------
 
@@ -2113,6 +2103,13 @@ CREATE TABLE IF NOT EXISTS `mb_card` (
   PRIMARY KEY (`card_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
+--
+-- 转存表中的数据 `mb_card`
+--
+
+INSERT INTO `mb_card` (`card_id`, `card_name`, `card_img`, `card_fee`, `free_money`, `card_desc`) VALUES
+(1, '祝福贺卡', '1242108754847457261.jpg', '5.00', '1000.00', '把您的祝福带给您身边的人');
+
 -- --------------------------------------------------------
 
 --
@@ -2141,16 +2138,7 @@ CREATE TABLE IF NOT EXISTS `mb_cart` (
   `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`rec_id`),
   KEY `session_id` (`session_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=141 ;
-
---
--- 转存表中的数据 `mb_cart`
---
-
-INSERT INTO `mb_cart` (`rec_id`, `user_id`, `session_id`, `goods_id`, `goods_sn`, `goods_name`, `market_price`, `goods_price`, `goods_number`, `goods_attr`, `is_real`, `extension_code`, `parent_id`, `rec_type`, `is_gift`, `can_handsel`, `goods_attr_id`, `is_shipping`, `product_id`) VALUES
-(138, 24, '5c81ea9fa3539bf64e2c22270351fc22', 84, 'cs000084', '258963', '240.00', '200.00', 2, '', 1, '', 0, 0, 0, 0, '', 0, 0),
-(139, 24, '5c81ea9fa3539bf64e2c22270351fc22', 76, 'cs000076', 'm-160-l-wear', '189.60', '158.00', 1, '', 1, '', 0, 0, 0, 0, '', 0, 0),
-(140, 24, '5c81ea9fa3539bf64e2c22270351fc22', 83, 'cs000083', '1123123', '300.00', '250.00', 3, '', 1, '', 0, 0, 0, 0, '', 0, 0);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -2192,7 +2180,7 @@ INSERT INTO `mb_category` (`cat_id`, `cat_name`, `keywords`, `cat_desc`, `parent
 (135, 'Preppy', '', '', 125, 8, '', '', 0, '', 1, 0, ''),
 (134, 'Vintage', '', '', 125, 7, '', '', 0, '', 1, 0, ''),
 (132, 'Night Out', '', '', 125, 4, '', '', 0, '', 1, 0, ''),
-(72, 'Product Stage', '', '', 0, 3, '', '', 1, '', 0, 0, ''),
+(72, 'Product Stage', '', '', 0, 3, '', '', 1, '', 1, 0, ''),
 (131, 'Rocker with gun', '', '', 125, 3, '', '', 0, '', 1, 0, ''),
 (75, 'Fashion Type', '', '', 0, 1, '', '', 1, '', 1, 0, ''),
 (128, 'Accessories', '', '', 75, 8, '', '', 0, '', 1, 0, ''),
@@ -2274,6 +2262,8 @@ CREATE TABLE IF NOT EXISTS `mb_collect_goods` (
 --
 
 INSERT INTO `mb_collect_goods` (`rec_id`, `user_id`, `goods_id`, `add_time`, `is_attention`) VALUES
+(1, 3, 61, 1418804466, 0),
+(2, 3, 60, 1418804479, 0),
 (3, 8, 76, 1423104925, 0);
 
 -- --------------------------------------------------------
@@ -2360,7 +2350,7 @@ CREATE TABLE IF NOT EXISTS `mb_delivery_goods` (
   PRIMARY KEY (`rec_id`),
   KEY `delivery_id` (`delivery_id`,`goods_id`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- 转存表中的数据 `mb_delivery_goods`
@@ -2387,12 +2377,7 @@ INSERT INTO `mb_delivery_goods` (`rec_id`, `delivery_id`, `goods_id`, `goods_nam
 (18, 7, 60, '模板堂测试商品', '索尼', 'ECS000060', 1, NULL, 0, 1, '', 0, ''),
 (19, 7, 57, '模板堂测试商品', '索尼', 'ECS000057', 1, NULL, 0, 1, '', 0, ''),
 (20, 8, 71, 'JACQUARD  FLARED SHIRT', '索尼', '000071', 1, NULL, 0, 1, '', 0, ''),
-(21, 9, 71, 'JACQUARD  FLARED SHIRT', '索尼', '000071', 1, NULL, 0, 2, '', 0, ''),
-(22, 10, 72, 'youtube.png', '', 'cs000071', 1, NULL, 0, 1, '', 0, ''),
-(23, 10, 75, 'm-160-l-legging.png', '', 'cs000075', 1, NULL, 0, 1, '', 0, ''),
-(24, 11, 84, '258963', '', 'cs000084', 1, NULL, 0, 2, '', 0, ''),
-(25, 11, 76, 'm-160-l-wear', '', 'cs000076', 1, NULL, 0, 1, '', 0, ''),
-(26, 11, 83, '1123123', '', 'cs000083', 1, NULL, 0, 3, '', 0, '');
+(21, 9, 71, 'JACQUARD  FLARED SHIRT', '索尼', '000071', 1, NULL, 0, 2, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -2434,24 +2419,7 @@ CREATE TABLE IF NOT EXISTS `mb_delivery_order` (
   PRIMARY KEY (`delivery_id`),
   KEY `user_id` (`user_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
-
---
--- 转存表中的数据 `mb_delivery_order`
---
-
-INSERT INTO `mb_delivery_order` (`delivery_id`, `delivery_sn`, `order_sn`, `order_id`, `invoice_no`, `add_time`, `shipping_id`, `shipping_name`, `user_id`, `action_user`, `consignee`, `address`, `country`, `province`, `city`, `district`, `sign_building`, `email`, `zipcode`, `tel`, `mobile`, `best_time`, `postscript`, `how_oos`, `insure_fee`, `shipping_fee`, `update_time`, `suppliers_id`, `status`, `agency_id`) VALUES
-(1, '20090615054961769', '2009061585887', 15, '2009061585884', 1245044533, 3, '城际快递', 1, 'admin', '刘先生', '海兴大厦', 1, 2, 52, 502, '', 'ecshop@ecshop.com', '', '010-25851234', '13986765412', '', '', '等待所有商品备齐后再发', '0.00', '10.00', 1245044964, 2, 1, 0),
-(2, '20090615055104671', '2009061585887', 15, '20090615', 1245044533, 3, '城际快递', 1, 'admin', '刘先生', '海兴大厦', 1, 2, 52, 502, '', 'ecshop@ecshop.com', '', '010-25851234', '13986765412', '', '', '等待所有商品备齐后再发', '0.00', '10.00', 1245045061, 1, 1, 0),
-(3, '20090615055780744', '2009061585887', 15, '123232', 1245044533, 3, '城际快递', 1, 'admin', '刘先生', '海兴大厦', 1, 2, 52, 502, '', 'ecshop@ecshop.com', '', '010-25851234', '13986765412', '', '', '等待所有商品备齐后再发', '0.00', '10.00', 1245045443, 0, 1, 0),
-(4, '20090615060281017', '2009061525429', 16, '2009061525121', 1245045672, 3, '城际快递', 1, 'admin', '刘先生', '海兴大厦', 1, 2, 52, 502, '', 'ecshop@ecshop.com', '', '010-25851234', '13986765412', '', '', '等待所有商品备齐后再发', '0.00', '10.00', 1245045723, 2, 0, 0),
-(5, '20090615064331475', '2009061503335', 17, '00906150333512', 1245047978, 3, '城际快递', 1, 'admin', '刘先生', '海兴大厦', 1, 2, 52, 502, '', 'ecshop@ecshop.com', '', '010-25851234', '13986765412', '', '', '等待所有商品备齐后再发', '0.00', '10.00', 1245048189, 0, 1, 0),
-(6, '20100619035565670', '2010061926526', 22, '11', 1276919698, 5, '申通快递', 0, 'admin', '111111', '1111111', 1, 3, 37, 410, '1111111111', '11@126.com', '', '11111111', '', '', '', '等待所有商品备齐后再发', '0.00', '15.00', 1276919722, 0, 0, 0),
-(7, '20100808103743911', '2010080844969', 23, '', 1281263661, 3, '城际快递', 0, 'admin', '1111111', '1111111', 1, 3, 37, 410, '', '11111@12226.com', '', '1111111111111111', '', '', '', '等待所有商品备齐后再发', '0.00', '10.00', 1281263846, 0, 0, 0),
-(8, '20141228123580373', '2014122803214', 25, '123456', 1419770006, 5, '申通快递', 8, 'admin', 'asddddd', 'sssssss', 1, 3, 37, 409, '', 'asd@asd.com', '5513', '123456789', '', '', '', '等待所有商品备齐后再发', '0.00', '15.00', 1419770157, 0, 0, 0),
-(9, '20141228143366764', '2014122820746', 26, '', 1419777158, 7, '运费到付', 8, 'admin', 'asddddd', 'sssssss', 1, 3, 37, 409, '', 'asd@asd.com', '5513', '123456789', '', '', '', '等待所有商品备齐后再发', '0.00', '0.00', 1419777236, 0, 0, 0),
-(10, '20150218172227313', '2015021838191', 67, '', 1424280056, 8, '', 23, 'admin', '123123', '123123123', 1, 2, 52, 501, '', 'test@qq.com', '', '123123123123123', '', '', '', '等待所有商品备齐后再发', '0.00', '0.00', 1424280125, 0, 0, 0),
-(11, '20150221224661270', '2015022121870', 71, NULL, 1424558743, 8, '', 24, 'admin', 'asdfasdf', 'sdfasdfasdf', 1, 2, 52, 501, '', '562233243@qq.com', '', '123123123123', '', '', '', '等待所有商品备齐后再发', '0.00', '0.00', 1424558783, 0, 2, 0);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -2545,6 +2513,13 @@ CREATE TABLE IF NOT EXISTS `mb_favourable_activity` (
   PRIMARY KEY (`act_id`),
   KEY `act_name` (`act_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `mb_favourable_activity`
+--
+
+INSERT INTO `mb_favourable_activity` (`act_id`, `act_name`, `start_time`, `end_time`, `user_rank`, `act_range`, `act_range_ext`, `min_amount`, `max_amount`, `act_type`, `act_type_ext`, `gift`, `sort_order`) VALUES
+(1, '5.1诺基亚优惠活动', 1241107200, 1253030400, '1,2', 2, '1', '500.00', '5000.00', 2, '95.00', 'a:0:{}', 50);
 
 -- --------------------------------------------------------
 
@@ -2649,10 +2624,12 @@ CREATE TABLE IF NOT EXISTS `mb_goods` (
   `layer_type` varchar(50) NOT NULL,
   `z_index` int(11) NOT NULL DEFAULT '0',
   `youtube_url` varchar(100) NOT NULL DEFAULT '',
-  `is_groupbuy` int(11) NOT NULL DEFAULT '0',
+  `is_groupbuy` tinyint(4) NOT NULL DEFAULT '0',
   `group_start_date` int(11) NOT NULL DEFAULT '0',
   `group_end_date` int(11) NOT NULL DEFAULT '0',
   `goods_quantity` int(11) NOT NULL DEFAULT '0',
+  `goods_saled` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`goods_id`),
   KEY `goods_sn` (`goods_sn`),
   KEY `cat_id` (`cat_id`),
@@ -2663,24 +2640,39 @@ CREATE TABLE IF NOT EXISTS `mb_goods` (
   KEY `promote_start_date` (`promote_start_date`),
   KEY `goods_number` (`goods_number`),
   KEY `sort_order` (`sort_order`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 --
 -- 转存表中的数据 `mb_goods`
 --
 
-INSERT INTO `mb_goods` (`goods_id`, `cat_id`, `goods_sn`, `goods_name`, `goods_name_style`, `click_count`, `brand_id`, `provider_name`, `goods_number`, `goods_weight`, `market_price`, `shop_price`, `promote_price`, `promote_start_date`, `promote_end_date`, `warn_number`, `keywords`, `goods_brief`, `goods_desc`, `goods_thumb`, `goods_front_cover`, `front_cover_thumb`, `goods_img`, `original_img`, `goods_sex`, `is_real`, `extension_code`, `is_on_sale`, `is_alone_sale`, `integral`, `add_time`, `sort_order`, `is_delete`, `is_best`, `is_new`, `is_hot`, `is_promote`, `bonus_type_id`, `last_update`, `goods_type`, `seller_note`, `give_integral`, `rank_integral`, `suppliers_id`, `is_check`, `is_shipping`, `layer_type`, `z_index`, `youtube_url`, `is_groupbuy`, `group_start_date`, `group_end_date`, `goods_quantity`) VALUES
-(72, 75, 'cs000071', 'youtube.png', '+', 195, 0, '', 100, '0.000', '1905.60', '1588.00', '0.00', 0, 0, 1, '', '', '<p>&nbsp;test coat</p>', 'images/201501/thumb_img/72_thumb_G_1420917559989.jpg', 'images/201501/goods_front_cover/72_thumb_F_1420917819618.png', 'images/201501/front_cover_thumb/72_thumb_T_1420917819730.png', 'images/201501/goods_img/72_G_1420917559968.jpg', 'images/201501/source_img/72_G_1420917559262.png', 1, 1, '', 1, 1, 15, 1420903027, 100, 0, 1, 0, 0, 0, 0, 1424559154, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, 'https://www.youtube.com/embed/FenKVtzRr0I', 0, 0, 0, 0),
-(74, 75, 'cs000074', 'm-160-l-tshirt', '+', 25, 0, '', 100, '0.000', '1022.40', '852.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/74_thumb_G_1420923879821.jpg', 'images/201501/goods_front_cover/74_thumb_F_1420924403039.png', 'images/201501/front_cover_thumb/74_thumb_T_1420924403968.png', 'images/201501/goods_img/74_G_1420923879208.jpg', 'images/201501/source_img/74_G_1420923879120.png', 1, 1, '', 1, 1, 8, 1420923879, 100, 0, 0, 0, 0, 0, 0, 1424559151, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0),
-(73, 75, 'cs000073', 'jacket-160-l.png', '+', 30, 0, '', 100, '0.000', '0.12', '0.10', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/73_thumb_G_1420912203606.jpg', 'images/201501/goods_front_cover/73_thumb_F_1420917806530.png', 'images/201501/front_cover_thumb/73_thumb_T_1420917806150.png', 'images/201501/goods_img/73_G_1420912203063.jpg', 'images/201501/source_img/73_G_1420912203055.png', 1, 1, '', 1, 1, 8, 1420912203, 100, 0, 1, 1, 0, 0, 0, 1424559153, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, '', 0, 0, 0, 0),
-(75, 75, 'cs000075', 'm-160-l-legging.png', '+', 102, 0, '', 100, '0.000', '200.00', '99.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/75_thumb_G_1420923941778.jpg', 'images/201501/goods_front_cover/75_thumb_F_1420924389042.png', 'images/201501/front_cover_thumb/75_thumb_T_1420924389564.png', 'images/201501/goods_img/75_G_1420923941894.jpg', 'images/201501/source_img/75_G_1420923941389.png', 1, 1, '', 1, 1, 0, 1420923941, 200, 0, 0, 0, 0, 0, 0, 1424559150, 0, '', -1, -1, 0, NULL, 0, 'trousers', 50, '', 0, 0, 0, 0),
-(76, 72, 'cs000076', 'm-160-l-wear', '+', 161, 0, '', 100, '0.000', '189.60', '158.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/76_thumb_G_1420924139452.jpg', 'images/201501/goods_front_cover/76_thumb_F_1420924374137.png', 'images/201501/front_cover_thumb/76_thumb_T_1420924374117.png', 'images/201501/goods_img/76_G_1420924139365.jpg', 'images/201501/source_img/76_G_1420924139046.png', 1, 1, '', 1, 1, 1, 1420924139, 100, 0, 0, 0, 0, 0, 0, 1424559148, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0),
-(77, 75, 'cs000077', '190 l long dress.png', '+', 1, 0, '', 100, '0.000', '1054.80', '879.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/77_thumb_G_1422115196674.jpg', 'images/201501/goods_front_cover/77_thumb_F_1422115196624.png', 'images/201501/front_cover_thumb/77_thumb_T_1422115196130.png', 'images/201501/goods_img/77_G_1422115196967.jpg', 'images/201501/source_img/77_G_1422115196971.png', 2, 1, '', 1, 1, 0, 1422115196, 100, 0, 0, 0, 0, 0, 0, 1424559147, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0),
-(78, 75, 'cs000078', '190 l short dress.png', '+', 0, 0, '', 100, '0.000', '942.00', '785.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/78_thumb_G_1422115237756.jpg', 'images/201501/goods_front_cover/78_thumb_F_1422115237428.png', 'images/201501/front_cover_thumb/78_thumb_T_1422115237550.png', 'images/201501/goods_img/78_G_1422115237520.jpg', 'images/201501/source_img/78_G_1422115237505.png', 2, 1, '', 1, 1, 0, 1422115237, 100, 0, 0, 0, 0, 0, 0, 1424559145, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, '', 0, 0, 0, 0),
-(79, 75, 'cs000079', '190 l short skirt.png', '+', 0, 0, '', 100, '0.000', '189.60', '158.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/79_thumb_G_1422115254814.jpg', 'images/201501/goods_front_cover/79_thumb_F_1422115254039.png', 'images/201501/front_cover_thumb/79_thumb_T_1422115254567.png', 'images/201501/goods_img/79_G_1422115254201.jpg', 'images/201501/source_img/79_G_1422115254036.png', 2, 1, '', 1, 1, 0, 1422115254, 100, 0, 0, 0, 0, 0, 0, 1424545678, 0, '', -1, -1, 0, NULL, 0, 'trousers', 50, '', 0, 0, 0, 0),
-(81, 75, 'cs000081', 'test', '+', 3, 0, '', 200, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '', '', '', '', '', '', 1, 1, '', 1, 1, 0, 1424547084, 100, 0, 0, 0, 0, 0, 0, 1424547084, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0),
-(83, 75, 'cs000083', '1123123', '+', 9, 0, '', 100, '0.000', '300.00', '250.00', '0.00', 0, 0, 1, '', '', '', 'images/201502/thumb_img/83_thumb_G_1424553124607.jpg', 'images/201502/goods_front_cover/83_thumb_F_1424553108632.png', 'images/201502/front_cover_thumb/83_thumb_T_1424553108574.png', 'images/201502/goods_img/83_G_1424553124635.jpg', 'images/201502/source_img/83_G_1424553124544.jpg', 2, 1, '', 1, 1, 0, 1424550878, 100, 0, 1, 0, 0, 0, 0, 1424554631, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 1, 1424534400, 1424620800, 100),
-(84, 75, 'cs000084', '258963', '+', 26, 0, '', 80, '0.000', '240.00', '200.00', '0.00', 0, 0, 1, '', '', '', 'images/201502/thumb_img/84_thumb_G_1424555087810.jpg', 'images/201502/goods_front_cover/84_thumb_F_1424555087776.png', 'images/201502/front_cover_thumb/84_thumb_T_1424555087662.png', 'images/201502/goods_img/84_G_1424555087374.jpg', 'images/201502/source_img/84_G_1424555087002.png', 1, 1, '', 1, 1, 0, 1424553964, 100, 0, 1, 0, 1, 0, 0, 1424555997, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 1, 1424448000, 1424880000, 100);
+INSERT INTO `mb_goods` (`goods_id`, `cat_id`, `goods_sn`, `goods_name`, `goods_name_style`, `click_count`, `brand_id`, `provider_name`, `goods_number`, `goods_weight`, `market_price`, `shop_price`, `promote_price`, `promote_start_date`, `promote_end_date`, `warn_number`, `keywords`, `goods_brief`, `goods_desc`, `goods_thumb`, `goods_front_cover`, `front_cover_thumb`, `goods_img`, `original_img`, `goods_sex`, `is_real`, `extension_code`, `is_on_sale`, `is_alone_sale`, `integral`, `add_time`, `sort_order`, `is_delete`, `is_best`, `is_new`, `is_hot`, `is_promote`, `bonus_type_id`, `last_update`, `goods_type`, `seller_note`, `give_integral`, `rank_integral`, `suppliers_id`, `is_check`, `is_shipping`, `layer_type`, `z_index`, `youtube_url`, `is_groupbuy`, `group_start_date`, `group_end_date`, `goods_quantity`, `goods_saled`, `user_id`) VALUES
+(57, 75, 'ECS000057', '模板堂测试商品', '+', 119, 1, '', 11110, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201412/thumb_img/57_thumb_G_1419598394023.jpg', 'images/201412/goods_front_cover/57_thumb_F_1419596682817.png', 'images/201412/front_cover_thumb/57_thumb_T_1419596682947.png', 'images/201412/goods_img/57_G_1419598394381.jpg', 'images/201412/source_img/57_G_1419598394356.png', 1, 1, '', 1, 1, 1, 1281251746, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(58, 75, 'ECS000058', '模板堂测试商品', '+', 93, 1, '', 11111, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42</p>', 'images/201103/thumb_img/58_thumb_G_1298969351752.jpg', 'images/201412/goods_front_cover/58_thumb_F_1419611668068.png', 'images/201412/front_cover_thumb/58_thumb_T_1419611668885.png', 'images/201103/goods_img/58_G_1298968990395.jpg', 'images/201103/source_img/58_G_1298968990672.jpg', 1, 1, '', 1, 1, 1, 1281251781, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(56, 75, 'ECS000056', '模板堂测试商品', '+', 2, 1, '', 65535, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center"><font size="2"><span sizcache="2" sizset="51" style="font-size: small"><span lang="EN-US" sizcache="2" sizset="53"><span style="font-family: Times New Roman"><img height="600" alt="" width="400" src="./images/upload/Image/a.jpg" /></span></span></span></font></p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center">&nbsp;</p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center"><font size="2"><span sizcache="2" sizset="51" style="font-size: small"><span lang="EN-US" sizcache="2" sizset="53"><span style="font-family: Times New Roman"><img height="600" alt="" width="400" src="./images/upload/Image/b.jpg" /></span></span></span></font></p>', 'images/201008/thumb_img/56_thumb_G_1281251636623.jpg', '', '', 'images/201008/goods_img/56_G_1281251636358.jpg', 'images/201008/source_img/56_G_1281251636290.jpg', 1, 1, '', 1, 1, 1, 1281251636, 100, 1, 1, 0, 0, 0, 0, 1281263810, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(59, 75, 'ECS000059', '模板堂测试商品', '+', 46, 1, '', 11111, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201103/thumb_img/59_thumb_G_1298969382880.jpg', 'images/201412/goods_front_cover/59_thumb_F_1419611634004.png', 'images/201412/front_cover_thumb/59_thumb_T_1419611634043.png', 'images/201103/goods_img/59_G_1298968979213.jpg', 'images/201103/source_img/59_G_1298968979750.jpg', 1, 1, '', 1, 1, 1, 1281251800, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(60, 72, 'ECS000060', '模板堂测试商品', '+', 22, 1, '', 11110, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201103/thumb_img/60_thumb_G_1298969443686.jpg', 'images/201412/goods_front_cover/60_thumb_F_1419614980529.png', 'images/201412/front_cover_thumb/60_thumb_T_1419614980535.png', 'images/201103/goods_img/60_G_1298968961229.jpg', 'images/201103/source_img/60_G_1298968961285.jpg', 1, 1, '', 1, 1, 1, 1281252048, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(61, 72, 'ECS000061', '模板堂测试商品', '+', 286, 1, '', 1109, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p><span style="color: rgb(255, 255, 255); font-family: ''Helvetica Neue'', Helvetica, Arial, sans-serif; line-height: 14px; text-align: justify; background-color: rgb(50, 50, 50);">You can effortlessly cover both those bases thanks to this gen-pattern sweater dress. Its bodycon sillhouette and 3/4 length sleeves will hug your body in all the right places while keeping you warm and cozy.</span></p>', 'images/201412/1419171738539220669.png', '', '', 'images/201412/1419171738539220669.png', 'images/201412/source_img/61_G_1419171738169.png', 1, 1, '', 1, 1, 1, 1281252076, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(62, 72, 'ECS000062', '模板堂测试商品', '+', 116, 1, '', 1110, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>\r\n<p>&nbsp;</p>', 'images/201103/thumb_img/62_thumb_G_1298969468240.jpg', 'images/201412/goods_front_cover/62_thumb_F_1419611973013.png', 'images/201412/front_cover_thumb/62_thumb_T_1419611973240.png', 'images/201103/goods_img/62_G_1298968933497.jpg', 'images/201103/source_img/62_G_1298968933207.jpg', 1, 1, '', 1, 1, 1, 1281252102, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(63, 72, 'ECS000063', 'MINIMALISM', '+', 112, 1, '', 1110, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', 'Try resizing your browser window to see how the design responds to the various sizes. This theme is packed with features that make it easy for anyone.', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201412/thumb_img/63_thumb_G_1419006279782.jpg', 'images/201412/goods_front_cover/63_thumb_F_1419611517846.png', 'images/201412/front_cover_thumb/63_thumb_T_1419611517183.png', 'images/201412/goods_img/63_G_1419006279035.jpg', 'images/201412/source_img/63_G_1419006279620.png', 1, 1, '', 1, 1, 1, 1281252122, 1, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(68, 72, '000068', 'a', '+', 0, 1, '', 1, '0.000', '0.00', '0.00', '0.00', 0, 0, 1, '', '', '', '', '', '', '', '', 1, 1, '', 1, 1, 0, 1419063740, 100, 1, 0, 0, 0, 0, 0, 1419063740, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(64, 72, 'ECS000064', '模板堂测试商品', '+', 22, 1, '', 110, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201412/1419171652515517735.png', 'images/201412/goods_front_cover/64_thumb_F_1419413303302.png', 'images/201412/front_cover_thumb/64_thumb_T_1419413303453.png', 'images/201412/1419171652515517735.png', 'images/201412/source_img/64_G_1419171652851.png', 1, 1, '', 1, 1, 1, 1281256630, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(65, 72, 'ECS000065', '模板堂测试商品', '+', 0, 1, '', 1, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center"><font size="2"><span sizcache="2" sizset="51" style="font-size: small"><span lang="EN-US" sizcache="2" sizset="53"><span style="font-family: Times New Roman"><img height="600" alt="" width="400" src="../images/upload/Image/a.jpg" /></span></span></span></font></p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center">&nbsp;</p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center"><font size="2"><span sizcache="2" sizset="51" style="font-size: small"><span lang="EN-US" sizcache="2" sizset="53"><span style="font-family: Times New Roman"><img height="600" alt="" width="400" src="../images/upload/Image/b.jpg" /></span></span></span></font></p>', 'images/201008/thumb_img/65_thumb_G_1281256710848.jpg', '', '', 'images/201008/goods_img/65_G_1281256710360.jpg', 'images/201008/source_img/65_G_1281256710535.jpg', 1, 1, '', 1, 1, 1, 1281256710, 100, 1, 1, 0, 0, 0, 0, 1281256710, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(66, 72, 'ECS000066', '模板堂测试商品', '+', 109, 1, '', 109, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201103/thumb_img/66_thumb_G_1298969508495.jpg', 'images/201412/goods_front_cover/66_thumb_F_1419615073721.png', 'images/201412/front_cover_thumb/66_thumb_T_1419615073758.png', 'images/201103/goods_img/66_G_1298968897991.jpg', 'images/201103/source_img/66_G_1298968897921.jpg', 1, 1, '', 1, 1, 1, 1281256736, 100, 1, 1, 0, 0, 0, 0, 1420901399, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(67, 72, 'ECS000067', '模板堂测试商品', '+', 93, 1, '', 111, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '的 啊', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>', 'images/201412/thumb_img/67_thumb_G_1419942848218.jpg', 'images/201501/goods_front_cover/67_thumb_F_1420114120475.png', 'images/201501/front_cover_thumb/67_thumb_T_1420114120320.png', 'images/201412/goods_img/67_G_1419942848143.jpg', 'images/201412/source_img/67_G_1419942848524.png', 1, 1, '', 1, 1, 1, 1281256767, 100, 1, 1, 0, 0, 0, 0, 1420901399, 12, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(55, 75, 'ECS000000', '模板堂测试商品', '+', 5, 1, '', 11111, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '<p>韩版原创牛仔裙</p>\r\n<p>衣长78 肩 35 胸42 腰42 下摆64</p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center"><font size="2"><span sizcache="2" sizset="51" style="font-size: small"><span lang="EN-US" sizcache="2" sizset="53"><span style="font-family: Times New Roman"><img height="600" alt="" width="400" src="./images/upload/Image/a.jpg" /></span></span></span></font></p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center">&nbsp;</p>\r\n<p class="MsoNormal" sizcache="2" sizset="34" style="margin: 0cm 0cm 0pt; text-align: center"><font size="2"><span sizcache="2" sizset="51" style="font-size: small"><span lang="EN-US" sizcache="2" sizset="53"><span style="font-family: Times New Roman"><img height="600" alt="" width="400" src="./images/upload/Image/b.jpg" /></span></span></span></font></p>', 'images/201008/thumb_img/55_thumb_G_1281251392381.jpg', '', '', 'images/201008/goods_img/55_G_1281251392295.jpg', 'images/201008/source_img/55_G_1281251392937.jpg', 1, 1, '', 1, 1, 1, 1281251392, 100, 1, 1, 0, 0, 0, 0, 1281263820, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(69, 72, '商品货号001', '商品名称', '+', 5, 1, '', 1, '0.000', '120.00', '100.00', '0.00', 0, 0, 1, '', '', '', 'images/201412/thumb_img/69_thumb_G_1419077540601.jpg', '', '', 'images/201412/goods_img/69_G_1419077540673.jpg', 'images/201412/source_img/69_G_1419077540322.jpg', 1, 1, '', 1, 1, 1, 1419077540, 100, 1, 0, 0, 0, 0, 0, 1419087476, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(70, 72, '货号', '名称', '+', 1, 1, '', 1, '0.000', '0.00', '0.00', '0.00', 0, 0, 1, '', '', '', 'images/201412/thumb_img/70_thumb_G_1419077591543.jpg', '', '', 'images/201412/goods_img/70_G_1419077591321.jpg', 'images/201412/source_img/70_G_1419077591194.jpg', 1, 1, '', 1, 1, 0, 1419077591, 100, 1, 0, 0, 0, 0, 0, 1419087476, 0, '', -1, -1, 0, NULL, 0, '', 0, '', 0, 0, 0, 0, 0, 0),
+(72, 75, 'cs000071', 'youtube.png', '+', 187, 0, '', 1, '0.000', '1905.60', '1588.00', '0.00', 0, 0, 1, '', '', '<p>&nbsp;test coat</p>', 'images/201501/thumb_img/72_thumb_G_1420917559989.jpg', 'images/201501/goods_front_cover/72_thumb_F_1420917819618.png', 'images/201501/front_cover_thumb/72_thumb_T_1420917819730.png', 'images/201501/goods_img/72_G_1420917559968.jpg', 'images/201501/source_img/72_G_1420917559262.png', 1, 1, '', 1, 1, 15, 1420903027, 100, 0, 1, 0, 0, 0, 0, 1423645873, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, 'https://www.youtube.com/embed/FenKVtzRr0I', 0, 0, 0, 0, 0, 0),
+(74, 75, 'cs000074', 'm-160-l-tshirt', '+', 27, 0, '', 1, '0.000', '1022.40', '852.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/74_thumb_G_1420923879821.jpg', 'images/201501/goods_front_cover/74_thumb_F_1420924403039.png', 'images/201501/front_cover_thumb/74_thumb_T_1420924403968.png', 'images/201501/goods_img/74_G_1420923879208.jpg', 'images/201501/source_img/74_G_1420923879120.png', 1, 1, '', 1, 1, 8, 1420923879, 100, 0, 1, 0, 0, 0, 0, 1420924403, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0, 0, 0),
+(73, 75, 'cs000073', 'jacket-160-l.png', '+', 60, 0, '', 1, '0.000', '0.12', '0.10', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/73_thumb_G_1420912203606.jpg', 'images/201501/goods_front_cover/73_thumb_F_1420917806530.png', 'images/201501/front_cover_thumb/73_thumb_T_1420917806150.png', 'images/201501/goods_img/73_G_1420912203063.jpg', 'images/201501/source_img/73_G_1420912203055.png', 1, 1, '', 1, 1, 8, 1420912203, 100, 0, 1, 1, 0, 0, 0, 1423254865, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, '', 0, 0, 0, 0, 0, 0),
+(75, 75, 'cs000075', 'm-160-l-legging.png', '+', 82, 0, '', 1, '0.000', '0.00', '99.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/75_thumb_G_1420923941778.jpg', 'images/201501/goods_front_cover/75_thumb_F_1420924389042.png', 'images/201501/front_cover_thumb/75_thumb_T_1420924389564.png', 'images/201501/goods_img/75_G_1420923941894.jpg', 'images/201501/source_img/75_G_1420923941389.png', 1, 1, '', 1, 1, 0, 1420923941, 200, 0, 1, 0, 0, 0, 0, 1420924635, 0, '', -1, -1, 0, NULL, 0, 'trousers', 50, '', 0, 0, 0, 0, 0, 0),
+(76, 72, 'cs000076', 'm-160-l-wear', '+', 169, 0, '', 1, '0.000', '189.60', '158.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/76_thumb_G_1420924139452.jpg', 'images/201501/goods_front_cover/76_thumb_F_1420924374137.png', 'images/201501/front_cover_thumb/76_thumb_T_1420924374117.png', 'images/201501/goods_img/76_G_1420924139365.jpg', 'images/201501/source_img/76_G_1420924139046.png', 1, 1, '', 1, 1, 1, 1420924139, 100, 0, 1, 0, 0, 0, 0, 1420924374, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0, 0, 0),
+(77, 75, 'cs000077', '190 l long dress.png', '+', 7, 0, '', 1, '0.000', '1054.80', '879.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/77_thumb_G_1422115196674.jpg', 'images/201501/goods_front_cover/77_thumb_F_1422115196624.png', 'images/201501/front_cover_thumb/77_thumb_T_1422115196130.png', 'images/201501/goods_img/77_G_1422115196967.jpg', 'images/201501/source_img/77_G_1422115196971.png', 2, 1, '', 1, 1, 0, 1422115196, 100, 0, 0, 0, 0, 0, 0, 1422116871, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, '', 0, 0, 0, 0, 0, 0),
+(78, 75, 'cs000078', '190 l short dress.png', '+', 6, 0, '', 1, '0.000', '942.00', '785.00', '0.00', 0, 0, 1, '', '', '', 'images/201501/thumb_img/78_thumb_G_1422115237756.jpg', 'images/201501/goods_front_cover/78_thumb_F_1422115237428.png', 'images/201501/front_cover_thumb/78_thumb_T_1422115237550.png', 'images/201501/goods_img/78_G_1422115237520.jpg', 'images/201501/source_img/78_G_1422115237505.png', 2, 1, '', 1, 1, 0, 1422115237, 100, 0, 0, 0, 0, 0, 0, 1425692499, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, '', 0, 0, 0, 0, 0, 25),
+(79, 75, 'cs000079', '190 l short skirt.png', '+', 48, 0, '', 50, '0.000', '189.60', '158.00', '0.00', 0, 0, 1, '', '', '', 'images/201502/thumb_img/79_thumb_G_1424562185854.jpg', 'images/201502/goods_front_cover/79_thumb_F_1424562203435.png', 'images/201502/front_cover_thumb/79_thumb_T_1424562203793.png', 'images/201502/goods_img/79_G_1424562185102.jpg', 'images/201502/source_img/79_G_1424562185194.jpg', 2, 1, '', 1, 1, 0, 1422115254, 100, 0, 1, 0, 1, 0, 0, 1425692480, 0, '', -1, -1, 0, NULL, 0, 'trousers', 50, '', 1, 1424534400, 1425312000, 100, 2, 25),
+(80, 75, 'cs000080', 'test', '+', 0, 0, '', 1, '0.000', '0.00', '0.00', '0.00', 0, 0, 1, '', '', '', '', '', '', '', '', 0, 1, '', 1, 1, 0, 1423645044, 100, 1, 0, 0, 0, 0, 0, 1423645063, 0, '', -1, -1, 0, NULL, 0, 'underwear', 10, 'abcde', 0, 0, 0, 0, 0, 0),
+(81, 139, 'cs000081', 'tuangou', '+', 114, 0, '', 10, '0.000', '14.39', '12.00', '0.00', 0, 0, 1, '', '', '<p>&nbsp;12312312312312323123123</p>', 'images/201502/thumb_img/81_thumb_G_1425055500213.jpg', 'images/201502/goods_front_cover/81_thumb_F_1425055500176.png', 'images/201502/front_cover_thumb/81_thumb_T_1425055500002.png', 'images/201502/goods_img/81_G_1425055500389.jpg', 'images/201502/source_img/81_G_1425055500315.png', 1, 1, '', 1, 1, 0, 1425055500, 100, 0, 1, 0, 0, 0, 0, 1425692487, 0, '', -1, -1, 0, NULL, 0, 'coat', 100, 'https://www.youtube.com/embed/FenKVtzRr0I', 1, 1424966400, 1425312000, 10, 10, 25);
 
 -- --------------------------------------------------------
 
@@ -2702,14 +2694,22 @@ CREATE TABLE IF NOT EXISTS `mb_goods_activity` (
   `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`act_id`),
   KEY `act_name` (`act_name`,`act_type`,`goods_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- 转存表中的数据 `mb_goods_activity`
 --
 
 INSERT INTO `mb_goods_activity` (`act_id`, `act_name`, `act_desc`, `act_type`, `goods_id`, `goods_name`, `start_time`, `end_time`, `is_finished`, `ext_info`, `product_id`) VALUES
-(1, 'm-160-l-legging.png', '', 1, 75, 'm-160-l-legging.png', 1424188800, 1425052800, 3, 'a:4:{s:12:"price_ladder";a:1:{i:0;a:2:{s:6:"amount";i:100;s:5:"price";d:80;}}s:15:"restrict_amount";i:100;s:13:"gift_integral";i:0;s:7:"deposit";d:0;}', 0);
+(1, '夺宝奇兵之诺基亚N96', '新一轮的夺宝开始了\n本期是 诺基亚n96', 0, 23, '诺基亚N96', 1242107580, 1242193980, 0, 'a:4:{s:11:"start_price";s:4:"1.00";s:9:"end_price";s:6:"800.00";s:9:"max_price";i:0;s:11:"cost_points";s:1:"1";}', 0),
+(2, '夺宝奇兵之夏新N7', '本期的夺宝奖品是 夏新N7', 0, 17, '夏新N7', 1242107820, 1250661420, 0, 'a:4:{s:11:"start_price";s:4:"1.00";s:9:"end_price";s:6:"800.00";s:9:"max_price";i:0;s:11:"cost_points";s:1:"1";}', 0),
+(15, 'coat-160-l.png', '54564454162164', 1, 72, 'coat-160-l.png', 1420905600, 1431532800, 0, 'a:4:{s:12:"price_ladder";a:1:{i:0;a:2:{s:6:"amount";i:12;s:5:"price";d:10;}}s:15:"restrict_amount";i:50;s:13:"gift_integral";i:0;s:7:"deposit";d:100;}', 0),
+(16, 'm-160-l-legging.png', '', 1, 75, 'm-160-l-legging.png', 1420905600, 1672848000, 0, 'a:4:{s:12:"price_ladder";a:1:{i:0;a:2:{s:6:"amount";i:20;s:5:"price";d:50;}}s:15:"restrict_amount";i:60;s:13:"gift_integral";i:0;s:7:"deposit";d:500;}', 0),
+(4, '拍卖活动——索爱C702c', '', 2, 10, '索爱C702c', 1242144000, 1242403200, 0, 'a:5:{s:7:"deposit";d:0;s:11:"start_price";d:0;s:9:"end_price";i:0;s:9:"amplitude";d:20;s:6:"no_top";i:1;}', 0),
+(5, '摩托罗拉E8 大礼包', '礼包大优惠', 4, 31, '摩托罗拉E8 ', 1242110400, 1252046400, 0, 'a:1:{s:13:"package_price";s:4:"1430";}', 0),
+(6, '诺基亚N85大礼包', '诺基亚N85超值大礼包', 4, 32, '诺基亚N85', 1242110760, 1248936360, 0, 'a:1:{s:13:"package_price";s:4:"3150";}', 0),
+(7, '拍卖活动——索爱C702c(第2期)', '拍卖活动————索爱C702c （第2期）', 2, 10, '索爱C702c', 1241712000, 1274803200, 0, 'a:5:{s:7:"deposit";d:50;s:11:"start_price";d:0;s:9:"end_price";i:0;s:9:"amplitude";d:50;s:6:"no_top";i:1;}', 0),
+(13, '模板堂测试商品', '', 1, 57, '模板堂测试商品', 1388073600, 1451404800, 0, 'a:4:{s:12:"price_ladder";a:1:{i:0;a:2:{s:6:"amount";i:1;s:5:"price";d:1;}}s:15:"restrict_amount";i:9999;s:13:"gift_integral";i:0;s:7:"deposit";d:0;}', 0);
 
 -- --------------------------------------------------------
 
@@ -2741,6 +2741,14 @@ CREATE TABLE IF NOT EXISTS `mb_goods_attr` (
   KEY `attr_id` (`attr_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=241 ;
 
+--
+-- 转存表中的数据 `mb_goods_attr`
+--
+
+INSERT INTO `mb_goods_attr` (`goods_attr_id`, `goods_id`, `attr_id`, `attr_value`, `attr_price`) VALUES
+(239, 67, 212, '的', '0'),
+(240, 67, 213, '啊', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -2770,10 +2778,12 @@ INSERT INTO `mb_goods_cat` (`goods_id`, `cat_id`) VALUES
 (74, 113),
 (74, 116),
 (74, 117),
+(75, 113),
 (75, 115),
 (75, 116),
 (75, 118),
-(76, 116);
+(76, 116),
+(81, 139);
 
 -- --------------------------------------------------------
 
@@ -2790,15 +2800,50 @@ CREATE TABLE IF NOT EXISTS `mb_goods_gallery` (
   `img_original` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`img_id`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=163 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=165 ;
 
 --
 -- 转存表中的数据 `mb_goods_gallery`
 --
 
 INSERT INTO `mb_goods_gallery` (`img_id`, `goods_id`, `img_url`, `img_desc`, `thumb_url`, `img_original`) VALUES
-(162, 84, 'images/201502/goods_img/84_P_1424555087949.png', '', 'images/201502/thumb_img/84_thumb_P_1424555087085.jpg', 'images/201502/source_img/84_P_1424555087639.png'),
-(161, 83, 'images/201502/goods_img/83_P_1424553125819.jpg', '', 'images/201502/thumb_img/83_thumb_P_1424553125363.jpg', 'images/201502/source_img/83_P_1424553125397.jpg'),
+(103, 67, 'images/201412/goods_img/67_P_1419153767400.png', '', '', 'images/201412/source_img/67_P_1419153767153.png'),
+(104, 67, 'images/201412/goods_img/67_P_1419154764450.png', '', '', 'images/201412/source_img/67_P_1419154764442.png'),
+(80, 66, 'images/201103/goods_img/66_P_1298968897131.jpg', '', 'images/201103/thumb_img/66_thumb_P_1298968897725.jpg', 'images/201103/source_img/66_P_1298968897195.jpg'),
+(76, 65, 'images/201008/goods_img/65_P_1281256710058.jpg', '', 'images/201008/thumb_img/65_thumb_P_1281256710436.jpg', 'images/201008/source_img/65_P_1281256710735.jpg'),
+(81, 64, 'images/201103/goods_img/64_P_1298968908142.jpg', '', 'images/201103/thumb_img/64_thumb_P_1298968908351.jpg', 'images/201103/source_img/64_P_1298968908657.jpg'),
+(85, 60, 'images/201103/goods_img/60_P_1298968961609.jpg', '', 'images/201103/thumb_img/60_thumb_P_1298968961653.jpg', 'images/201103/source_img/60_P_1298968961911.jpg'),
+(66, 55, 'images/201008/goods_img/55_P_1281251392635.jpg', '', 'images/201008/thumb_img/55_thumb_P_1281251392645.jpg', 'images/201008/source_img/55_P_1281251392130.jpg'),
+(67, 56, 'images/201008/goods_img/56_P_1281251636233.jpg', '', 'images/201008/thumb_img/56_thumb_P_1281251636046.jpg', 'images/201008/source_img/56_P_1281251636235.jpg'),
+(88, 57, 'images/201103/goods_img/57_P_1298969001897.jpg', '', 'images/201103/thumb_img/57_thumb_P_1298969001353.jpg', 'images/201103/source_img/57_P_1298969001738.jpg'),
+(87, 58, 'images/201103/goods_img/58_P_1298968990047.jpg', '', 'images/201103/thumb_img/58_thumb_P_1298968990535.jpg', 'images/201103/source_img/58_P_1298968990365.jpg'),
+(86, 59, 'images/201103/goods_img/59_P_1298968979812.jpg', '', 'images/201103/thumb_img/59_thumb_P_1298968979719.jpg', 'images/201103/source_img/59_P_1298968979524.jpg'),
+(84, 61, 'images/201103/goods_img/61_P_1298968947552.jpg', '', 'images/201103/thumb_img/61_thumb_P_1298968947130.jpg', 'images/201103/source_img/61_P_1298968947538.jpg'),
+(83, 62, 'images/201103/goods_img/62_P_1298968933302.jpg', '', 'images/201103/thumb_img/62_thumb_P_1298968933238.jpg', 'images/201103/source_img/62_P_1298968933807.jpg'),
+(82, 63, 'images/201103/goods_img/63_P_1298968918102.jpg', '', 'images/201103/thumb_img/63_thumb_P_1298968918221.jpg', 'images/201103/source_img/63_P_1298968918244.jpg'),
+(89, 63, 'images/201412/goods_img/63_P_1418650398857.jpg', '', 'images/201412/thumb_img/63_thumb_P_1418650398968.jpg', 'images/201412/source_img/63_P_1418650398341.jpg'),
+(90, 61, 'images/201412/goods_img/61_P_1418728147254.jpg', '', 'images/201412/thumb_img/61_thumb_P_1418728147170.jpg', 'images/201412/source_img/61_P_1418728147265.jpg'),
+(91, 61, 'images/201412/goods_img/61_P_1418749041128.jpg', '', 'images/201412/thumb_img/61_thumb_P_1418749041541.jpg', 'images/201412/source_img/61_P_1418749041837.jpg'),
+(143, 67, 'images/201412/goods_img/67_P_1419942848123.png', '', 'images/201412/thumb_img/67_thumb_P_1419942848545.jpg', 'images/201412/source_img/67_P_1419942848354.png'),
+(142, 67, 'images/201412/goods_img/67_P_1419942826752.png', '', 'images/201412/thumb_img/67_thumb_P_1419942826962.jpg', 'images/201412/source_img/67_P_1419942826577.png'),
+(94, 63, 'images/201412/goods_img/63_P_1419000938138.png', '', 'images/201412/thumb_img/63_thumb_P_1419000938631.jpg', 'images/201412/source_img/63_P_1419000938451.png'),
+(95, 61, 'images/201412/goods_img/61_P_1419006127387.png', '', 'images/201412/thumb_img/61_thumb_P_1419006127141.jpg', 'images/201412/source_img/61_P_1419006127003.png'),
+(96, 61, 'images/201412/goods_img/61_P_1419006248476.png', '', 'images/201412/thumb_img/61_thumb_P_1419006248303.jpg', 'images/201412/source_img/61_P_1419006248172.png'),
+(97, 63, 'images/201412/goods_img/63_P_1419006279476.png', '', 'images/201412/thumb_img/63_thumb_P_1419006279477.jpg', 'images/201412/source_img/63_P_1419006279091.png'),
+(98, 69, 'images/201412/goods_img/69_P_1419077540470.jpg', '', 'images/201412/thumb_img/69_thumb_P_1419077540952.jpg', 'images/201412/source_img/69_P_1419077540208.jpg'),
+(99, 70, 'images/201412/goods_img/70_P_1419077591104.jpg', '', 'images/201412/thumb_img/70_thumb_P_1419077591049.jpg', 'images/201412/source_img/70_P_1419077591669.jpg'),
+(100, 63, 'images/201412/goods_img/63_P_1419093311444.png', '', 'images/201412/thumb_img/63_thumb_P_1419093311036.jpg', 'images/201412/source_img/63_P_1419093311044.png'),
+(105, 67, 'images/201412/goods_img/67_P_1419154809626.png', '', '', 'images/201412/source_img/67_P_1419154809440.png'),
+(106, 67, 'images/201412/goods_img/67_P_1419155134136.png', '', '', 'images/201412/source_img/67_P_1419155134311.png'),
+(107, 67, 'images/201412/goods_img/67_P_1419155637527.png', '', '', 'images/201412/source_img/67_P_1419155637382.png'),
+(108, 67, 'images/201412/goods_img/67_P_1419156209931.png', '', '', 'images/201412/source_img/67_P_1419156209084.png'),
+(109, 67, 'images/201412/goods_img/67_P_1419156221698.png', '', '', 'images/201412/source_img/67_P_1419156221664.png'),
+(110, 67, 'images/201412/goods_img/67_P_1419156246583.png', '', '', 'images/201412/source_img/67_P_1419156246849.png'),
+(111, 67, 'images/201412/goods_img/67_P_1419156343778.png', '', '', 'images/201412/source_img/67_P_1419156343496.png'),
+(120, 64, 'images/201412/goods_img/64_P_1419171652329.png', '', '', 'images/201412/source_img/64_P_1419171652843.png'),
+(121, 61, 'images/201412/goods_img/61_P_1419171738104.png', '', '', 'images/201412/source_img/61_P_1419171738073.png'),
+(140, 57, 'images/201412/goods_img/57_P_1419598394926.png', '', 'images/201412/thumb_img/57_thumb_P_1419598394366.jpg', 'images/201412/source_img/57_P_1419598394845.png'),
+(139, 57, 'images/201412/goods_img/57_P_1419598346545.png', '', 'images/201412/thumb_img/57_thumb_P_1419598346854.jpg', 'images/201412/source_img/57_P_1419598346068.png'),
 (145, 72, 'images/201501/goods_img/72_P_1420903071773.jpg', '', 'images/201501/thumb_img/72_thumb_P_1420903071168.jpg', 'images/201501/source_img/72_P_1420903071360.jpg'),
 (144, 72, 'images/201501/goods_img/72_P_1420903028561.jpg', '', 'images/201501/thumb_img/72_thumb_P_1420903028176.jpg', 'images/201501/source_img/72_P_1420903028088.jpg'),
 (146, 72, 'images/201501/goods_img/72_P_1420903081237.jpg', '', 'images/201501/thumb_img/72_thumb_P_1420903081244.jpg', 'images/201501/source_img/72_P_1420903081909.jpg'),
@@ -2815,7 +2860,10 @@ INSERT INTO `mb_goods_gallery` (`img_id`, `goods_id`, `img_url`, `img_desc`, `th
 (157, 76, 'images/201501/goods_img/76_P_1420924139262.png', '', 'images/201501/thumb_img/76_thumb_P_1420924139703.jpg', 'images/201501/source_img/76_P_1420924139008.png'),
 (158, 77, 'images/201501/goods_img/77_P_1422115196219.png', '', 'images/201501/thumb_img/77_thumb_P_1422115196292.jpg', 'images/201501/source_img/77_P_1422115196879.png'),
 (159, 78, 'images/201501/goods_img/78_P_1422115237730.png', '', 'images/201501/thumb_img/78_thumb_P_1422115237931.jpg', 'images/201501/source_img/78_P_1422115237907.png'),
-(160, 79, 'images/201501/goods_img/79_P_1422115254672.png', '', 'images/201501/thumb_img/79_thumb_P_1422115254385.jpg', 'images/201501/source_img/79_P_1422115254521.png');
+(160, 79, 'images/201501/goods_img/79_P_1422115254672.png', '', 'images/201501/thumb_img/79_thumb_P_1422115254385.jpg', 'images/201501/source_img/79_P_1422115254521.png'),
+(163, 81, 'images/201502/goods_img/81_P_1425055500729.png', '', 'images/201502/thumb_img/81_thumb_P_1425055500866.jpg', 'images/201502/source_img/81_P_1425055500246.png'),
+(162, 79, 'images/201502/goods_img/79_P_1424562185631.jpg', '', 'images/201502/thumb_img/79_thumb_P_1424562185756.jpg', 'images/201502/source_img/79_P_1424562185545.jpg'),
+(164, 81, 'images/201502/goods_img/81_P_1425055500847.png', '', 'images/201502/thumb_img/81_thumb_P_1425055500021.jpg', 'images/201502/source_img/81_P_1425055500193.png');
 
 -- --------------------------------------------------------
 
@@ -2851,6 +2899,16 @@ CREATE TABLE IF NOT EXISTS `mb_group_goods` (
   `admin_id` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`parent_id`,`goods_id`,`admin_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `mb_group_goods`
+--
+
+INSERT INTO `mb_group_goods` (`parent_id`, `goods_id`, `goods_price`, `admin_id`) VALUES
+(61, 60, '900.00', 1),
+(61, 64, '9000.00', 1),
+(67, 62, '100.00', 1),
+(61, 63, '900.00', 1);
 
 -- --------------------------------------------------------
 
@@ -3158,9 +3216,18 @@ INSERT INTO `mb_nav` (`id`, `ctype`, `cid`, `name`, `ifshow`, `vieworder`, `open
 (28, 'c', 75, 'Fashion Type', 1, 1, 0, 'category.php?id=75', 'middle'),
 (29, 'c', 72, 'Product Stage', 1, 2, 0, 'category.php?id=72', 'middle'),
 (33, NULL, NULL, '配送方式', 1, 100, 0, 'myship.php', 'middle'),
-(41, 'a', 3, '网店帮助分类', 0, 116, 0, 'article_cat.php?id=3', 'middle'),
-(42, 'a', 1, '系统分类', 0, 118, 0, 'article_cat.php?id=1', 'middle'),
-(45, 'a', 2, '网店信息', 0, 124, 0, 'article_cat.php?id=2', 'middle');
+(36, 'a', 9, '联系我们 ', 1, 106, 0, 'article_cat.php?id=9', 'middle'),
+(37, 'a', 8, '服务保证 ', 1, 108, 0, 'article_cat.php?id=8', 'middle'),
+(38, 'a', 7, '配送与支付 ', 1, 110, 0, 'article_cat.php?id=7', 'middle'),
+(39, 'a', 6, '手机常识 ', 1, 112, 0, 'article_cat.php?id=6', 'middle'),
+(40, 'a', 5, '新手上路 ', 1, 114, 0, 'article_cat.php?id=5', 'middle'),
+(41, 'a', 3, '网店帮助分类', 1, 116, 0, 'article_cat.php?id=3', 'middle'),
+(42, 'a', 1, '系统分类', 1, 118, 0, 'article_cat.php?id=1', 'middle'),
+(43, 'a', 11, '手机促销', 1, 120, 0, 'article_cat.php?id=11', 'middle'),
+(44, 'a', 10, '会员中心', 1, 122, 0, 'article_cat.php?id=10', 'middle'),
+(45, 'a', 2, '网店信息', 1, 124, 0, 'article_cat.php?id=2', 'middle'),
+(46, 'a', 12, '站内快讯', 1, 126, 0, 'article_cat.php?id=12', 'middle'),
+(47, 'a', 4, '3G资讯', 1, 127, 0, 'article_cat.php?id=4', 'middle');
 
 -- --------------------------------------------------------
 
@@ -3175,7 +3242,7 @@ CREATE TABLE IF NOT EXISTS `mb_online_wear` (
   `goods_id` int(11) NOT NULL DEFAULT '0',
   `sex` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`oid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=159 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=231 ;
 
 --
 -- 转存表中的数据 `mb_online_wear`
@@ -3185,9 +3252,8 @@ INSERT INTO `mb_online_wear` (`oid`, `user_id`, `part_class`, `goods_id`, `sex`)
 (65, '8', 'coat', 78, 2),
 (66, '8', 'trousers', 75, 1),
 (68, '8', 'underwear', 76, 1),
-(87, '23', 'underwear', 76, 1),
 (81, '23', 'trousers', 75, 1),
-(149, '23', 'coat', 73, 1),
+(173, '23', 'coat', 73, 1),
 (83, '8b613e64c87f9c0b9f997d82f84b918a', 'underwear', 74, 1),
 (85, '606213db7fe7dc4636c2cd72d50377b3', 'coat', 72, 1),
 (86, 'bbbedb349ec5ed40039d3a44425cc5f4', 'coat', 78, 1),
@@ -3196,15 +3262,22 @@ INSERT INTO `mb_online_wear` (`oid`, `user_id`, `part_class`, `goods_id`, `sex`)
 (117, 'e030322730c0e25cdc67362a68a9cde2', 'coat', 78, 1),
 (115, 'e120cf9a04ea78d2851fcdad10e2d689', 'coat', 78, 1),
 (118, 'e120cf9a04ea78d2851fcdad10e2d689', 'underwear', 77, 1),
-(125, '25', 'trousers', 75, 1),
-(130, '25', 'coat', 73, 1),
-(143, '8f951aadb1d608157ffd23d9bbc69038', 'coat', 73, 1),
-(144, '8f951aadb1d608157ffd23d9bbc69038', 'underwear', 76, 1),
-(145, '8f951aadb1d608157ffd23d9bbc69038', 'trousers', 75, 1),
-(146, '24', 'underwear', 76, 1),
-(157, '24', 'trousers', 75, 1),
-(148, '24', 'coat', 73, 1),
-(158, '5c81ea9fa3539bf64e2c22270351fc22', 'underwear', 81, 1);
+(149, 'b89b0e8a82a264f82701d58ccb008615', 'underwear', 77, 1),
+(131, 'e7950048a370d89666ccd0ec10346fce', 'underwear', 76, 1),
+(180, 'e6583f452597b7017dcecd2e10694f45', 'underwear', 76, 1),
+(138, '7aa6cea4e64ba9a43e21dc358abb8c64', 'trousers', 75, 1),
+(221, '25', 'trousers', 75, 1),
+(176, '8907bd5cbcd9a644f08ea0426c5ac11a', 'coat', 73, 1),
+(179, 'e6583f452597b7017dcecd2e10694f45', 'trousers', 75, 1),
+(181, 'e6583f452597b7017dcecd2e10694f45', 'coat', 73, 1),
+(219, '25', 'underwear', 76, 1),
+(186, '6522f695cfe954170bbb6009d555c794', 'coat', 73, 1),
+(187, '6522f695cfe954170bbb6009d555c794', 'underwear', 76, 1),
+(188, '6522f695cfe954170bbb6009d555c794', 'trousers', 75, 1),
+(223, '25', 'coat', 81, 1),
+(224, '147b97458d893bf91fefb12a1724be9d', 'trousers', 79, 1),
+(226, '89c82e678aa6e32c79003b77114cf262', 'underwear', 76, 1),
+(230, '9d925a214ae5c545cd5355c323a4fb72', 'coat', 73, 1);
 
 -- --------------------------------------------------------
 
@@ -3224,18 +3297,88 @@ CREATE TABLE IF NOT EXISTS `mb_order_action` (
   `log_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`action_id`),
   KEY `order_id` (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=79 ;
 
 --
 -- 转存表中的数据 `mb_order_action`
 --
 
 INSERT INTO `mb_order_action` (`action_id`, `order_id`, `action_user`, `order_status`, `shipping_status`, `pay_status`, `action_place`, `action_note`, `log_time`) VALUES
-(1, 69, 'admin', 1, 0, 2, 0, '已付', 1424284509),
-(2, 71, 'admin', 1, 0, 0, 0, '', 1424558761),
-(3, 71, 'admin', 1, 0, 2, 0, '12123', 1424558769),
-(4, 71, 'admin', 1, 3, 2, 0, '', 1424558775),
-(5, 71, 'admin', 5, 5, 2, 0, '123123', 1424558783);
+(1, 2, 'admin', 1, 0, 2, 0, '[售后] 1132', 1242142350),
+(2, 2, 'admin', 1, 1, 2, 0, '已经发货，注意接收', 1242142389),
+(3, 1, 'admin', 1, 1, 2, 0, '已经发货，注意接收', 1242142432),
+(4, 2, '买家', 1, 2, 2, 0, '', 1242142449),
+(5, 1, '买家', 1, 2, 2, 0, '', 1242142451),
+(6, 3, 'admin', 1, 1, 2, 0, '已经发货了，注意接收', 1242142589),
+(7, 3, '买家', 1, 2, 2, 0, '', 1242142634),
+(8, 5, 'admin', 1, 3, 2, 0, '', 1242142869),
+(9, 6, 'admin', 3, 0, 0, 0, '暂时缺货', 1242143337),
+(10, 7, 'admin', 1, 0, 0, 0, '', 1242143454),
+(11, 1, 'admin', 1, 2, 2, 0, '[售后] 售后', 1242143773),
+(12, 2, 'admin', 4, 0, 0, 0, '质量问题', 1242144185),
+(13, 12, 'buyer', 2, 0, 0, 0, '用户取消', 1242576313),
+(14, 13, 'admin', 1, 1, 0, 0, '11', 1242576445),
+(15, 14, 'admin', 1, 3, 2, 0, '', 1242976715),
+(16, 14, 'admin', 1, 1, 2, 0, '已经发货，请接收', 1242976740),
+(17, 15, 'admin', 1, 0, 0, 0, '', 1245044587),
+(18, 15, 'admin', 1, 0, 2, 0, '已经付款', 1245044644),
+(19, 15, 'admin', 1, 4, 2, 0, '', 1245044964),
+(20, 15, 'admin', 1, 4, 2, 0, '北京供货商', 1245045061),
+(21, 3, 'admin', 4, 0, 0, 0, '不喜欢这个颜色', 1245045334),
+(22, 15, 'admin', 1, 1, 2, 0, '', 1245045443),
+(23, 15, 'admin', 4, 0, 0, 0, '退货', 1245045515),
+(24, 16, 'admin', 1, 4, 2, 0, '上海供货', 1245045723),
+(25, 17, 'admin', 1, 1, 2, 0, '', 1245048189),
+(26, 17, 'admin', 4, 0, 0, 0, '退货', 1245048212),
+(27, 19, 'admin', 1, 1, 2, 0, '', 1245384050),
+(28, 22, 'admin', 1, 0, 0, 0, '111', 1276919712),
+(29, 22, 'admin', 1, 0, 2, 0, '111', 1276919715),
+(30, 22, 'admin', 1, 3, 2, 0, '1111', 1276919718),
+(31, 22, 'admin', 5, 5, 2, 0, '111', 1276919722),
+(32, 22, 'admin', 1, 1, 2, 1, '11', 1276919731),
+(33, 22, 'admin', 5, 2, 2, 0, '1111', 1276919743),
+(34, 22, 'admin', 5, 2, 2, 0, '[售后] 1', 1276919747),
+(35, 23, 'admin', 1, 0, 2, 0, '11', 1281263837),
+(36, 23, 'admin', 1, 3, 2, 0, '111111111', 1281263840),
+(37, 23, 'admin', 5, 5, 2, 0, '111111111', 1281263846),
+(38, 23, 'admin', 1, 1, 2, 1, '11', 1281263864),
+(39, 23, 'admin', 5, 2, 2, 0, '1', 1281263874),
+(40, 23, 'admin', 5, 2, 2, 0, '[售后] 1', 1281263877),
+(41, 25, 'admin', 1, 0, 2, 0, '123', 1419770108),
+(42, 25, 'admin', 1, 3, 2, 0, '', 1419770147),
+(43, 25, 'admin', 5, 5, 2, 0, '132', 1419770157),
+(44, 25, 'admin', 1, 1, 2, 1, '8', 1419770175),
+(45, 25, '买家', 5, 2, 2, 0, '', 1419777180),
+(46, 26, 'admin', 1, 3, 2, 0, '', 1419777224),
+(47, 26, 'admin', 5, 5, 2, 0, '', 1419777236),
+(48, 26, 'admin', 1, 1, 2, 1, '', 1419777245),
+(49, 26, '买家', 5, 2, 2, 0, '', 1419777261),
+(50, 64, 'admin', 1, 0, 2, 0, 'sdfsdf', 1425232683),
+(51, 65, 'admin', 1, 0, 0, 0, '', 1425233059),
+(52, 63, 'admin', 1, 0, 0, 0, '', 1425233059),
+(53, 62, 'admin', 1, 0, 0, 0, '', 1425233059),
+(54, 61, 'admin', 1, 0, 0, 0, '', 1425233059),
+(55, 60, 'admin', 1, 0, 0, 0, '', 1425233059),
+(56, 59, 'admin', 1, 0, 0, 0, '', 1425233059),
+(57, 58, 'admin', 1, 0, 0, 0, '', 1425233059),
+(58, 57, 'admin', 1, 0, 0, 0, '', 1425233059),
+(59, 56, 'admin', 1, 0, 0, 0, '', 1425233059),
+(60, 55, 'admin', 1, 0, 0, 0, '', 1425233059),
+(61, 54, 'admin', 1, 0, 0, 0, '', 1425233059),
+(62, 53, 'admin', 1, 0, 0, 0, '', 1425233059),
+(63, 52, 'admin', 1, 0, 0, 0, '', 1425233059),
+(67, 65, 'admin', 1, 0, 2, 0, '123123', 1425233110),
+(68, 65, 'admin', 1, 0, 0, 0, '123123', 1425233145),
+(69, 1, 'admin', 1, 0, 0, 0, '12312', 1425233537),
+(70, 1, 'admin', 1, 0, 2, 0, 'asdfasdf', 1425233548),
+(71, 1, 'admin', 1, 0, 2, 0, '123123', 1425233876),
+(72, 1, 'admin', 1, 0, 0, 0, '123123', 1425233888),
+(73, 1, 'admin', 1, 0, 2, 0, '123123', 1425233895),
+(74, 3, 'admin', 1, 0, 2, 0, '1123213', 1425234023),
+(75, 4, 'admin', 1, 0, 2, 0, '123123', 1425234470),
+(76, 5, 'admin', 1, 0, 2, 0, '123', 1425236193),
+(77, 6, 'admin', 1, 0, 2, 0, '123', 1425236713),
+(78, 7, 'admin', 1, 0, 2, 0, '123', 1425236767);
 
 -- --------------------------------------------------------
 
@@ -3263,19 +3406,24 @@ CREATE TABLE IF NOT EXISTS `mb_order_goods` (
   PRIMARY KEY (`rec_id`),
   KEY `order_id` (`order_id`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `mb_order_goods`
 --
 
 INSERT INTO `mb_order_goods` (`rec_id`, `order_id`, `goods_id`, `goods_name`, `goods_sn`, `goods_number`, `market_price`, `goods_price`, `goods_attr`, `send_number`, `is_real`, `extension_code`, `parent_id`, `is_gift`, `goods_attr_id`, `product_id`) VALUES
-(1, 68, 75, 'm-160-l-legging.png', 'cs000075', 1, '200.00', '99.00', '', 0, 1, '', 0, 0, '', 0),
-(2, 69, 75, 'm-160-l-legging.png', 'cs000075', 1, '200.00', '99.00', '', 0, 1, '', 0, 0, '', 0),
-(3, 70, 84, '258963', 'cs000084', 1, '240.00', '200.00', '', 0, 1, '', 0, 0, '', 0),
-(4, 71, 84, '258963', 'cs000084', 2, '240.00', '200.00', '', 2, 1, '', 0, 0, '', 0),
-(5, 71, 76, 'm-160-l-wear', 'cs000076', 1, '189.60', '158.00', '', 1, 1, '', 0, 0, '', 0),
-(6, 71, 83, '1123123', 'cs000083', 3, '300.00', '250.00', '', 3, 1, '', 0, 0, '', 0);
+(1, 1, 81, 'tuangou', 'cs000081', 1, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(2, 2, 81, 'tuangou', 'cs000081', 2, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(3, 3, 81, 'tuangou', 'cs000081', 1, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(4, 3, 79, '190 l short skirt.png', 'cs000079', 1, '189.60', '158.00', '', 0, 1, '', 0, 0, '', 0),
+(5, 4, 79, '190 l short skirt.png', 'cs000079', 1, '189.60', '158.00', '', 0, 1, '', 0, 0, '', 0),
+(6, 4, 81, 'tuangou', 'cs000081', 1, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(7, 5, 81, 'tuangou', 'cs000081', 1, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(8, 6, 81, 'tuangou', 'cs000081', 3, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(9, 7, 81, 'tuangou', 'cs000081', 1, '14.39', '12.00', '', 0, 1, '', 0, 0, '', 0),
+(10, 11, 77, '190 l long dress.png', 'cs000077', 1, '1054.80', '879.00', '', 0, 1, '', 0, 0, '', 0),
+(11, 12, 76, 'm-160-l-wear', 'cs000076', 1, '189.60', '158.00', '', 0, 1, '', 0, 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -3356,17 +3504,25 @@ CREATE TABLE IF NOT EXISTS `mb_order_info` (
   KEY `pay_id` (`pay_id`),
   KEY `extension_code` (`extension_code`,`extension_id`),
   KEY `agency_id` (`agency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=72 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- 转存表中的数据 `mb_order_info`
 --
 
 INSERT INTO `mb_order_info` (`order_id`, `order_sn`, `user_id`, `order_status`, `shipping_status`, `pay_status`, `consignee`, `country`, `province`, `city`, `district`, `address`, `zipcode`, `tel`, `mobile`, `email`, `best_time`, `sign_building`, `postscript`, `shipping_id`, `shipping_name`, `pay_id`, `pay_name`, `how_oos`, `how_surplus`, `pack_name`, `card_name`, `card_message`, `inv_payee`, `inv_content`, `goods_amount`, `shipping_fee`, `insure_fee`, `pay_fee`, `pack_fee`, `card_fee`, `money_paid`, `surplus`, `integral`, `integral_money`, `bonus`, `order_amount`, `from_ad`, `referer`, `add_time`, `confirm_time`, `pay_time`, `shipping_time`, `pack_id`, `card_id`, `bonus_id`, `invoice_no`, `extension_code`, `extension_id`, `to_buyer`, `pay_note`, `agency_id`, `inv_type`, `tax`, `is_separate`, `parent_id`, `discount`) VALUES
-(68, '2015021803008', 24, 0, 0, 0, 'asdfasdf', 1, 2, 52, 501, 'sdfasdfasdf', '', '123123123123', '', '562233243@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '99.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '99.00', 0, '本站', 1424283321, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
-(69, '2015021862134', 26, 1, 0, 2, '123123123', 1, 2, 52, 500, '123,Aybicy Road, Loughborough,LE11 1AA23', '', '1231231', '', 'test@bb.com', '', '1312312', '', 0, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '99.00', '0.00', '0.00', '0.00', '0.00', '0.00', '99.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '本站', 1424284412, 1424284509, 1424284509, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
-(70, '2015022105437', 24, 0, 0, 0, 'asdfasdf', 1, 2, 52, 501, 'sdfasdfasdf', '', '123123123123', '', '562233243@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '200.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '200.00', 0, '本站', 1424556073, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
-(71, '2015022121870', 24, 5, 5, 2, 'asdfasdf', 1, 2, 52, 501, 'sdfasdfasdf', '', '123123123123', '', '562233243@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '1308.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1308.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '本站', 1424558743, 1424558761, 1424558769, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00');
+(1, '2015030140416', 23, 1, 0, 2, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '12.00', '0.00', '0.00', '0.00', '0.00', '0.00', '12.00', '0.00', 0, '0.00', '0.00', '0.00', 0, 'Home', 1425233284, 1425233401, 1425233895, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(2, '2015030186837', 23, 0, 0, 0, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '24.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '24.00', 0, 'Home', 1425233935, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(3, '2015030117191', 23, 1, 0, 2, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '170.00', '0.00', '0.00', '0.00', '0.00', '0.00', '170.00', '0.00', 0, '0.00', '0.00', '0.00', 0, 'Home', 1425234000, 1425234023, 1425234023, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(4, '2015030100916', 23, 1, 0, 2, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '170.00', '0.00', '0.00', '0.00', '0.00', '0.00', '170.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '本站', 1425234450, 1425234470, 1425234470, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(5, '2015030181492', 25, 1, 0, 2, '123', 1, 2, 52, 500, '123', '123', '123', '123', '4657331@qq.com', '123', '123', '', 0, '', 4, 'paypal', '等待所有商品备齐后再发', '', '', '', '', '', '', '12.00', '0.00', '0.00', '0.00', '0.00', '0.00', '12.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '', 1425236009, 1425236193, 1425236193, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(6, '2015030136810', 25, 1, 0, 2, '123', 1, 2, 52, 500, '123', '123', '123', '123', '4657331@qq.com', '123', '123', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '36.00', '0.00', '0.00', '0.00', '0.00', '0.00', '36.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '', 1425236694, 1425236713, 1425236713, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(7, '2015030158863', 25, 1, 0, 2, '123', 1, 2, 52, 500, '123', '123', '123', '123', '4657331@qq.com', '123', '123', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '12.00', '0.00', '0.00', '0.00', '0.00', '0.00', '12.00', '0.00', 0, '0.00', '0.00', '0.00', 0, '', 1425236750, 1425236767, 1425236767, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(8, '2015030697444', 23, 0, 0, 0, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '158.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '158.00', 0, '', 1425685548, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(9, '2015030621098', 23, 0, 0, 0, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '158.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '158.00', 0, '', 1425685631, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(10, '2015030605299', 23, 0, 0, 0, '123123', 1, 2, 52, 500, '123123123', '', '123123123123123', '', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '158.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '158.00', 0, '', 1425685639, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(11, '2015030798400', 23, 0, 0, 0, 'frank', 1, 2, 52, 500, 'ouch with us. The easiest ways is Live Chat with us, but you can als', '', '123123123123123', '18318433012', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '879.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '879.00', 0, 'Home', 1425692225, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00'),
+(12, '2015040212733', 23, 0, 0, 0, 'test', 1, 2, 52, 500, 'test', '', '12345678', 'test', 'test@qq.com', '', '', '', 8, '', 4, 'paypal', 'Don''t shipping until all products on deck.', '', '', '', '', '', '', '158.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 0, '0.00', '0.00', '158.00', 0, '', 1427939995, 0, 0, 0, 0, 0, 0, '', '', 0, '', '', 0, '', '0.00', 0, 0, '0.00');
 
 -- --------------------------------------------------------
 
@@ -3383,6 +3539,13 @@ CREATE TABLE IF NOT EXISTS `mb_pack` (
   `pack_desc` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`pack_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `mb_pack`
+--
+
+INSERT INTO `mb_pack` (`pack_id`, `pack_name`, `pack_img`, `pack_fee`, `free_money`, `pack_desc`) VALUES
+(1, '精品包装', '1242108360911825791.jpg', '5.00', 800, '精品包装，尽心为您设计一份不一样的礼物');
 
 -- --------------------------------------------------------
 
@@ -3455,7 +3618,7 @@ CREATE TABLE IF NOT EXISTS `mb_pay_log` (
   `order_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `is_paid` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
 
 --
 -- 转存表中的数据 `mb_pay_log`
@@ -3524,14 +3687,20 @@ INSERT INTO `mb_pay_log` (`log_id`, `order_id`, `order_amount`, `order_type`, `i
 (60, 61, '99.00', 0, 0),
 (61, 62, '99.00', 0, 0),
 (62, 63, '99.00', 0, 0),
-(63, 64, '1010.00', 0, 0),
-(64, 65, '257.00', 0, 0),
-(65, 66, '99.00', 0, 0),
-(66, 67, '1687.00', 0, 0),
-(67, 68, '99.00', 0, 0),
-(68, 69, '99.00', 0, 0),
-(69, 70, '200.00', 0, 0),
-(70, 71, '1308.00', 0, 0);
+(63, 64, '12.00', 0, 0),
+(64, 65, '12.00', 0, 0),
+(65, 1, '12.00', 0, 0),
+(66, 2, '24.00', 0, 0),
+(67, 3, '170.00', 0, 0),
+(68, 4, '170.00', 0, 0),
+(69, 5, '12.00', 0, 0),
+(70, 6, '36.00', 0, 0),
+(71, 7, '12.00', 0, 0),
+(72, 8, '158.00', 0, 0),
+(73, 9, '158.00', 0, 0),
+(74, 10, '158.00', 0, 0),
+(75, 11, '879.00', 0, 0),
+(76, 12, '158.00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -7008,7 +7177,7 @@ CREATE TABLE IF NOT EXISTS `mb_reg_extend_info` (
   `reg_field_id` int(10) unsigned NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- 转存表中的数据 `mb_reg_extend_info`
@@ -7026,9 +7195,7 @@ INSERT INTO `mb_reg_extend_info` (`Id`, `user_id`, `reg_field_id`, `content`) VA
 (9, 24, 7, ''),
 (10, 24, 8, ''),
 (11, 25, 7, ''),
-(12, 25, 8, ''),
-(13, 26, 7, ''),
-(14, 26, 8, '');
+(12, 25, 8, '');
 
 -- --------------------------------------------------------
 
@@ -7093,7 +7260,56 @@ CREATE TABLE IF NOT EXISTS `mb_searchengine` (
 --
 
 INSERT INTO `mb_searchengine` (`date`, `searchengine`, `count`) VALUES
-('2015-02-13', 'GOOGLE', 4);
+('2015-02-13', 'GOOGLE', 4),
+('2015-02-14', 'GOOGLE', 18),
+('2015-02-15', 'GOOGLE', 42),
+('2015-02-16', 'GOOGLE', 43),
+('2015-02-17', 'GOOGLE', 70),
+('2015-02-18', 'GOOGLE', 21),
+('2015-02-19', 'GOOGLE', 41),
+('2015-02-20', 'GOOGLE', 2),
+('2015-02-21', 'GOOGLE', 1),
+('2015-02-22', 'GOOGLE', 3),
+('2015-02-24', 'GOOGLE', 11),
+('2015-02-25', 'GOOGLE', 2),
+('2015-02-26', 'GOOGLE', 3),
+('2015-02-27', 'GOOGLE', 6),
+('2015-02-28', 'GOOGLE', 11),
+('2015-03-01', 'GOOGLE', 11),
+('2015-03-02', 'GOOGLE', 13),
+('2015-03-03', 'GOOGLE', 3),
+('2015-03-04', 'GOOGLE', 10),
+('2015-03-05', 'GOOGLE', 70),
+('2015-03-06', 'GOOGLE', 25),
+('2015-03-07', 'GOOGLE', 25),
+('2015-03-08', 'GOOGLE', 5),
+('2015-03-09', 'GOOGLE', 19),
+('2015-03-10', 'GOOGLE', 18),
+('2015-03-11', 'GOOGLE', 1),
+('2015-03-12', 'GOOGLE', 3),
+('2015-03-12', 'BAIDU', 1),
+('2015-03-13', 'GOOGLE', 5),
+('2015-03-14', 'GOOGLE', 6),
+('2015-03-15', 'GOOGLE', 16),
+('2015-03-16', 'GOOGLE', 20),
+('2015-03-17', 'GOOGLE', 9),
+('2015-03-18', 'GOOGLE', 3),
+('2015-03-19', 'GOOGLE', 4),
+('2015-03-20', 'BAIDU', 1),
+('2015-03-20', 'GOOGLE', 2),
+('2015-03-21', 'GOOGLE', 1),
+('2015-03-22', 'GOOGLE', 1),
+('2015-03-23', 'GOOGLE', 1),
+('2015-03-24', 'GOOGLE', 12),
+('2015-03-25', 'GOOGLE', 2),
+('2015-03-26', 'GOOGLE', 3),
+('2015-03-26', 'BAIDU', 1),
+('2015-04-02', 'GOOGLE', 10),
+('2015-04-03', 'GOOGLE', 10),
+('2015-04-04', 'GOOGLE', 8),
+('2015-04-05', 'GOOGLE', 5),
+('2015-04-07', 'GOOGLE', 1),
+('2015-04-08', 'GOOGLE', 1);
 
 -- --------------------------------------------------------
 
@@ -7121,8 +7337,8 @@ CREATE TABLE IF NOT EXISTS `mb_sessions` (
 --
 
 INSERT INTO `mb_sessions` (`sesskey`, `expiry`, `userid`, `adminid`, `ip`, `user_name`, `user_rank`, `discount`, `email`, `data`) VALUES
-('5c81ea9fa3539bf64e2c22270351fc22', 1424562232, 0, 0, '127.0.0.1', '0', 0, '1.00', '0', 'a:4:{s:7:"from_ad";i:0;s:7:"referer";s:6:"本站";s:10:"login_fail";i:0;s:12:"captcha_word";s:16:"MmE0MzVhMzA4NQ==";}'),
-('224e1c282551f81df4af2bd3bb04dd7f', 1424562316, 0, 1, '127.0.0.1', '0', 0, '0.00', '0', 'a:3:{s:10:"admin_name";s:5:"admin";s:11:"action_list";s:3:"all";s:10:"last_check";i:1424562316;}');
+('f337906b4d2a065f220e9eaff2608688', 1429023667, 23, 0, '127.0.0.1', 'test@qq.com', 1, '1.00', 'test@qq.com', ''),
+('fbb5584fda76fdf52f62ab9c519f9c61', 1429024245, 0, 1, '127.0.0.1', '0', 0, '0.00', '0', 'a:7:{s:10:"admin_name";s:5:"admin";s:11:"action_list";s:3:"all";s:10:"last_check";i:1429042245;s:6:"Gender";N;s:10:"Body_Shape";N;s:6:"Height";N;s:10:"Skin_color";N;}');
 
 -- --------------------------------------------------------
 
@@ -7137,6 +7353,13 @@ CREATE TABLE IF NOT EXISTS `mb_sessions_data` (
   PRIMARY KEY (`sesskey`),
   KEY `expiry` (`expiry`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `mb_sessions_data`
+--
+
+INSERT INTO `mb_sessions_data` (`sesskey`, `expiry`, `data`) VALUES
+('f337906b4d2a065f220e9eaff2608688', 1429023294, 'a:10:{s:7:"from_ad";i:0;s:7:"referer";s:6:"本站";s:10:"login_fail";i:0;s:13:"user_head_img";s:20:"23_54e0b88e700c4.png";s:9:"last_time";s:10:"1429040999";s:7:"last_ip";s:9:"127.0.0.1";s:6:"Gender";s:1:"1";s:10:"Body_Shape";s:1:"3";s:6:"Height";s:3:"190";s:10:"Skin_color";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -7240,11 +7463,11 @@ INSERT INTO `mb_shop_config` (`id`, `parent_id`, `code`, `type`, `store_range`, 
 (106, 1, 'shop_province', 'manual', '', '', '2', 1),
 (107, 1, 'shop_city', 'manual', '', '', '52', 1),
 (108, 1, 'shop_address', 'text', '', '', '', 1),
-(109, 1, 'qq', 'text', '', '', '264944615', 1),
+(109, 1, 'qq', 'text', '', '', '', 1),
 (110, 1, 'ww', 'text', '', '', '', 1),
 (111, 1, 'skype', 'text', '', '', '', 1),
 (112, 1, 'ym', 'text', '', '', '', 1),
-(113, 1, 'msn', 'text', '', '', 'oioishop@live.cn', 1),
+(113, 1, 'msn', 'text', '', '', '', 1),
 (114, 1, 'service_email', 'text', '', '', '', 1),
 (115, 1, 'service_phone', 'text', '', '', '', 1),
 (116, 1, 'shop_closed', 'select', '0,1', '', '0', 1),
@@ -7322,7 +7545,7 @@ INSERT INTO `mb_shop_config` (`id`, `parent_id`, `code`, `type`, `store_range`, 
 (335, 3, 'page_style', 'select', '0,1', '', '1', 1),
 (336, 3, 'recommend_order', 'select', '0,1', '', '0', 1),
 (337, 3, 'index_ad', 'hidden', '', '', 'sys', 1),
-(401, 4, 'can_invoice', 'select', '1,0', '', '0', 1),
+(401, 4, 'can_invoice', 'select', '1,0', '', '1', 1),
 (402, 4, 'use_integral', 'select', '1,0', '', '1', 1),
 (403, 4, 'use_bonus', 'select', '1,0', '', '1', 1),
 (404, 4, 'use_surplus', 'select', '1,0', '', '1', 1),
@@ -7390,7 +7613,7 @@ INSERT INTO `mb_shop_config` (`id`, `parent_id`, `code`, `type`, `store_range`, 
 (802, 8, 'sms_order_placed', 'select', '1,0', '', '0', 1),
 (803, 8, 'sms_order_payed', 'select', '1,0', '', '0', 1),
 (804, 8, 'sms_order_shipped', 'select', '1,0', '', '0', 1),
-(901, 9, 'wap_config', 'select', '1,0', '', '0', 1),
+(901, 9, 'wap_config', 'select', '1,0', '', '1', 1),
 (902, 9, 'wap_logo', 'file', '', '../images/', '', 1),
 (903, 2, 'message_check', 'select', '1,0', '', '1', 1);
 
@@ -7551,44 +7774,408 @@ INSERT INTO `mb_stats` (`access_time`, `ip_address`, `visit_times`, `browser`, `
 (1423766422, '94.174.197.201', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://mail.qq.com', '/cgi-bin/readtemplate?t=safety&check=false&gourl=http%3A%2F%2F103.254.150.17%2Fuser.php%3Fact%3Dvalidate_email%26hash%3DMjUsYjE4Nw%3D%3D&subtemplate=gray&evil=0', '/user.php'),
 (1423773061, '2.30.7.5', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://103.254.150.17', '/index.php?sex=2', '/index.php'),
 (1423844020, '128.199.97.197', 21, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
-(1423848702, '127.0.0.1', 49, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', '', '', '/bobo/ecshop/index.php'),
-(1423851836, '127.0.0.1', 50, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/admin/index.php?act=top', '/bobo/ecshop/index.php'),
-(1423864210, '127.0.0.1', 51, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864379, '127.0.0.1', 52, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864405, '127.0.0.1', 53, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864429, '127.0.0.1', 53, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864479, '127.0.0.1', 54, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864557, '127.0.0.1', 55, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864628, '127.0.0.1', 56, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864662, '127.0.0.1', 57, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423864671, '127.0.0.1', 58, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php?sex=1', '/bobo/ecshop/index.php'),
-(1423864691, '127.0.0.1', 59, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php?sex=1', '/bobo/ecshop/index.php'),
-(1423864728, '127.0.0.1', 60, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php?sex=1', '/bobo/ecshop/index.php'),
-(1423917978, '127.0.0.1', 61, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
-(1423989745, '127.0.0.1', 62, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/user.php'),
-(1423991572, '127.0.0.1', 63, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/user.php'),
-(1423993436, '127.0.0.1', 64, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/user.php'),
-(1423993443, '127.0.0.1', 65, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php', '/bobo/ecshop/user.php'),
-(1424002319, '127.0.0.1', 66, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/user.php'),
-(1424004149, '127.0.0.1', 67, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php?act=edit_headImd', '/bobo/ecshop/up.php'),
-(1424004172, '127.0.0.1', 68, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php', '/bobo/ecshop/user.php'),
-(1424004176, '127.0.0.1', 69, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php', '/bobo/ecshop/user.php'),
-(1424006038, '127.0.0.1', 70, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/user.php'),
-(1424007866, '127.0.0.1', 71, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php?act=edit_headImd', '/bobo/ecshop/user.php'),
-(1424010214, '127.0.0.1', 72, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php?act=edit_headImd', '/bobo/ecshop/user.php'),
-(1424010223, '127.0.0.1', 73, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php', '/bobo/ecshop/user.php'),
-(1424012110, '127.0.0.1', 74, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php?act=default', '/bobo/ecshop/user.php'),
-(1424013923, '127.0.0.1', 75, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php?act=default', '/bobo/ecshop/user.php'),
-(1424209020, '127.0.0.1', 76, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', '', '', '/bobo/ecshop/share.php'),
-(1424211210, '127.0.0.1', 77, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/category.php?id=75', '/bobo/ecshop/user.php'),
-(1424213712, '127.0.0.1', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/category.php'),
-(1424281025, '127.0.0.1', 78, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/category.php?id=75', '/bobo/ecshop/index.php'),
-(1424284350, '127.0.0.1', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php?sex=1', '/bobo/ecshop/user.php'),
-(1424543537, '127.0.0.1', 79, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/index.php?sex=1', '/bobo/ecshop/article.php'),
-(1424547117, '127.0.0.1', 80, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/category.php?id=75', '/bobo/ecshop/category.php'),
-(1424551930, '127.0.0.1', 81, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/goods.php?id=81', '/bobo/ecshop/category.php'),
-(1424558039, '127.0.0.1', 82, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/category.php?id=75', '/bobo/ecshop/flow.php'),
-(1424560166, '127.0.0.1', 83, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/category.php?id=75', '/bobo/ecshop/index.php');
+(1423858059, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423860113, '223.73.17.237', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1423860151, '223.73.17.237', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1423860346, '66.249.84.137', 1, 'FireFox 6.0', 'Windows NT', '', '美国', '', '', '/index.php'),
+(1423860412, '2.30.1.20', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/headImg/index.php'),
+(1423860609, '66.249.93.211', 1, 'FireFox 6.0', 'Windows NT', '', '美国', '', '', '/index.php'),
+(1423862274, '94.174.197.201', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1423864931, '45.56.123.187', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', '', '', '/index.php'),
+(1423864985, '45.56.123.187', 3, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', '', '', '/index.php'),
+(1423865305, '45.56.123.187', 4, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', '', '', '/index.php'),
+(1423865378, '45.56.123.187', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', '', '', '/index.php'),
+(1423865396, '223.73.17.237', 6, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1423865473, '45.56.123.187', 7, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', 'http://www.bobo-d2c.com', '/?code=AQD8E4CINJ8D_HE5iEZ6vTj2FFYNryLTwNVQCKB9DzD0MRxsh2VTwytF7TlgmwvujvXN-U4n54SHOKIhaw18ZfrJ5eRSLQcCAW7Bd3Uajp2qaah52FTzQvVJJrhrZLsIMeQpQTcK-eXT3Xdxt3bGT5EPbTPmQia5zzEh6OyB1u6Am3pgNSk5hIDOy5CY_Vu6G', '/index.php'),
+(1423865498, '45.56.123.187', 7, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', 'http://www.bobo-d2c.com', '/?code=AQD8E4CINJ8D_HE5iEZ6vTj2FFYNryLTwNVQCKB9DzD0MRxsh2VTwytF7TlgmwvujvXN-U4n54SHOKIhaw18ZfrJ5eRSLQcCAW7Bd3Uajp2qaah52FTzQvVJJrhrZLsIMeQpQTcK-eXT3Xdxt3bGT5EPbTPmQia5zzEh6OyB1u6Am3pgNSk5hIDOy5CY_Vu6G', '/index.php'),
+(1423865681, '45.56.123.187', 8, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', 'http://www.bobo-d2c.com', '/?code=AQD8E4CINJ8D_HE5iEZ6vTj2FFYNryLTwNVQCKB9DzD0MRxsh2VTwytF7TlgmwvujvXN-U4n54SHOKIhaw18ZfrJ5eRSLQcCAW7Bd3Uajp2qaah52FTzQvVJJrhrZLsIMeQpQTcK-eXT3Xdxt3bGT5EPbTPmQia5zzEh6OyB1u6Am3pgNSk5hIDOy5CY_Vu6G', '/index.php'),
+(1423865720, '223.73.17.237', 1, 'Safari 534.30', 'Linux', 'zh-CN', 'IANA', 'http://bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423865761, '223.73.17.237', 2, 'Safari 534.30', 'Linux', 'zh-CN', 'IANA', '', '', '/index.php'),
+(1423865788, '223.73.17.237', 2, 'Safari 534.30', 'Linux', 'zh-CN', 'IANA', '', '', '/index.php'),
+(1423865794, '223.73.17.237', 2, 'Safari 534.30', 'Linux', 'zh-CN', 'IANA', '', '', '/index.php'),
+(1423865822, '223.73.17.237', 2, 'Safari 534.30', 'Linux', 'zh-CN', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQB2KMK68Z90hoyuSCt7jUP9IxB1_WagL2cfu3BeAnGQ6zOH6hUpPr_MQGzVchffLKMCnnXIY_3r2_rnqt9aSMboHISicKIfdR6UvFdDRUw-CreGlxSZMyrUtJF9E8rKaI5jhKhh2rjIwZRfu3GZdTHkSqvissfNqK4OYsylXlILV8HOXkvcEWWlG4BzZLb4L', '/category.php'),
+(1423865827, '223.73.17.237', 2, 'Safari 534.30', 'Linux', 'zh-CN', 'IANA', '', '', '/index.php'),
+(1423868060, '88.208.221.49', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423868073, '88.208.221.49', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423868286, '88.208.221.49', 3, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423868357, '88.208.221.49', 4, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQChxxRZsITMYNiZT6toFpB-k02WnmeQjoyPfrza0UEZ894-EQNimQD1FB8nBYFJZNWvFOgMoTmx8e36ru3tW3DQ1rRVG-wQUUfgE9jqd2hXgQqwubWWtysf_C_yTN0lNvvCy-TFvRsm32SzipuE6Qb6Wiwo9ZeOR_H9ASXUfwDyVpPx91qEfygrdA3bRcHAG', '/index.php'),
+(1423868417, '94.174.197.201', 2, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1423868424, '128.199.246.231', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423868424, '128.199.246.231', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423868424, '128.199.246.231', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQChxxRZsITMYNiZT6toFpB-k02WnmeQjoyPfrza0UEZ894-EQNimQD1FB8nBYFJZNWvFOgMoTmx8e36ru3tW3DQ1rRVG-wQUUfgE9jqd2hXgQqwubWWtysf_C_yTN0lNvvCy-TFvRsm32SzipuE6Qb6Wiwo9ZeOR_H9ASXUfwDyVpPx91qEfygrdA3bRcHAG', '/index.php'),
+(1423868426, '128.199.246.231', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423868432, '128.199.246.231', 6, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423868438, '94.174.197.201', 3, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/', '/category.php'),
+(1423868469, '128.199.246.231', 7, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423868475, '128.199.246.231', 8, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868549, '128.199.246.231', 9, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868550, '128.199.246.231', 9, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868558, '128.199.246.231', 10, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868560, '128.199.246.231', 11, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423868565, '128.199.246.231', 12, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868588, '223.73.18.174', 13, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868589, '223.73.18.174', 14, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868590, '223.73.18.174', 15, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868618, '223.73.18.174', 16, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868637, '128.199.246.231', 17, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQApKGc3nbzd4slNi40A-aowTUCd-GH9XnPN1J28zoKKI-8c_Co4TLYF1maOYuYmXp6XMEcrJnN6ZpqBUFouKNjeQ_BH5IOn3qYhoEkZZimd5qauw96RJw2peg_WOhHYa_Z4MoziGYcL42-PLka6s6PGeeInJ8XXVaOnxRP-jasLNOH8gCCw0iSv5F61JkNPj', '/index.php'),
+(1423868645, '128.199.246.231', 18, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423868649, '128.199.246.231', 19, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423868659, '223.73.18.174', 20, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423868661, '223.73.18.174', 21, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423868723, '223.73.18.174', 22, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423868734, '223.73.18.174', 23, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423868913, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423869043, '94.174.197.201', 4, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/', '/category.php'),
+(1423869052, '94.174.197.201', 5, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/', '/category.php'),
+(1423869059, '94.174.197.201', 6, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=75', '/category.php'),
+(1423869634, '94.174.197.201', 7, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=75', '/category.php'),
+(1423869941, '94.174.197.201', 8, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=75', '/category.php'),
+(1423871025, '223.73.18.174', 24, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/?code=AQAxjo2O6yjBYiEQi_OY9Bsz4H_7ZKg52nuucqDsbMNTNaGG7-LN2esfcOwElTwjLPzv1ZW9DoAstTH_68zFfFYFym8szS1QdXBYEPRkIZf5yXYVusHnUne4YDrUOhjMT_17Yk6TdpDG6j17gWLRIS2ezZdOcmHJSEvB8J5Nt8N21eMnCm2XblTZTScrDLO5Y', '/index.php'),
+(1423871274, '88.208.221.49', 25, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423871290, '88.208.221.49', 26, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423871850, '128.199.140.151', 27, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423871856, '128.199.140.151', 28, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423871902, '128.199.140.151', 29, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423871906, '128.199.140.151', 30, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423871928, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423871970, '128.199.140.151', 31, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423871972, '128.199.140.151', 31, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423871973, '128.199.140.151', 31, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423871976, '128.199.140.151', 32, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423871982, '128.199.140.151', 33, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/?code=AQAtVq-vtBELLYJcL8ezBiO139-fndqGH_PGQ6GcfK_nME1MWdM51Mz8jMnTiOtA3HGVgzbZ4v68Ts8Cvxvo76lq-jkvfK_4_j8pjQwGEP2aVd8avJ2bdeOAl4sMAhGwxUQSiN45EbItbqbiwkFNWPFW8iEn14vx6ebY8KmqMxGqKch6gnnSe_vL1wF5ZrExv', '/index.php'),
+(1423872031, '128.199.140.151', 34, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872050, '128.199.140.151', 35, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872065, '128.199.140.151', 36, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872070, '128.199.140.151', 37, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423872093, '128.199.140.151', 38, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872106, '128.199.140.151', 39, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872117, '128.199.140.151', 40, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872119, '128.199.140.151', 41, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872139, '128.199.140.151', 42, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872140, '128.199.140.151', 42, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872145, '128.199.140.151', 43, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423872151, '128.199.140.151', 44, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423872634, '178.62.95.185', 9, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423872741, '178.62.95.185', 45, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423872750, '178.62.95.185', 46, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423872898, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423872915, '178.62.95.185', 10, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423876978, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423879094, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423880513, '221.176.4.134', 1, '', 'Unknown', '', '中国', '', '', '/index.php'),
+(1423917276, '94.174.197.201', 9, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423917647, '94.174.197.201', 10, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/index.php?sex=2', '/category.php'),
+(1423918144, '178.62.95.185', 11, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423921180, '178.62.95.185', 12, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', 'http://www.bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423922899, '178.62.95.185', 13, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423922911, '178.62.95.185', 14, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', 'http://www.bobo-d2c.com', '/', '/index.php'),
+(1423923056, '2.30.1.20', 1, 'Safari 537.36', 'Linux', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423923057, '2.30.1.20', 1, 'Safari 537.36', 'Linux', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423923083, '2.30.1.20', 2, 'Safari 537.36', 'Linux', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/index.php?sex=1', '/category.php'),
+(1423923090, '2.30.1.20', 3, 'Safari 537.36', 'Linux', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/goods.php'),
+(1423923095, '2.30.1.20', 4, 'Safari 537.36', 'Linux', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/goods.php?id=75', '/goods.php'),
+(1423925309, '178.62.95.185', 15, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423926011, '178.62.95.185', 16, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423926144, '178.62.95.185', 17, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423926163, '178.62.95.185', 18, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423926319, '94.174.197.201', 11, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423926529, '94.174.197.201', 12, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1423928304, '178.62.95.185', 19, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423928340, '223.73.18.174', 20, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1423928394, '178.62.95.185', 21, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1423929330, '94.174.197.201', 13, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1423930540, '222.73.77.55', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', '上海市', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423932075, '222.73.77.55', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', '上海市', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423932793, '2.30.1.20', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/category.php?id=75', '/index.php'),
+(1423932970, '223.73.18.174', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1423932998, '128.199.140.151', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423933033, '128.199.140.151', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1423933070, '128.199.140.151', 22, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', '', '', '/index.php'),
+(1423933453, '66.249.84.234', 1, 'FireFox 6.0', 'Windows NT', '', '美国', '', '', '/index.php'),
+(1423934529, '223.73.18.174', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423934599, '128.199.140.151', 3, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '英国', 'http://bobo-d2c.com', '/index.php?sex=1', '/index.php'),
+(1423934987, '180.153.114.199', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', '[未知IP0801]', '', '', '/index.php'),
+(1423934987, '183.62.115.226', 1, 'Internet Explorer 9.0', 'Windows NT', 'zh-cn', '[未知IP0801]', '', '', '/index.php'),
+(1423934987, '163.177.69.38', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', '美国', '', '', '/index.php'),
+(1423934989, '122.192.32.87', 1, 'Safari 537.36', 'Windows XP', 'en,*', '江苏省', '', '', '/index.php'),
+(1423935064, '94.174.197.201', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1423935082, '119.147.146.189', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'APNIC', '', '', '/index.php'),
+(1423935425, '94.174.197.201', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1423937901, '94.174.197.201', 2, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://bobo-d2c.com', '/index.php?sex=1', '/category.php'),
+(1423948280, '66.249.84.130', 1, 'FireFox 6.0', 'Windows NT', '', '美国', '', '', '/index.php'),
+(1423952637, '95.145.50.20', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', '', '', '/index.php'),
+(1424039702, '95.149.147.168', 3, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', '', '', '/index.php'),
+(1424046138, '95.149.147.168', 4, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=75', '/user.php'),
+(1424110287, '95.149.147.216', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', '', '', '/index.php'),
+(1424113180, '66.249.81.159', 1, 'FireFox 6.0', 'Windows NT', '', '美国', '', '', '/index.php'),
+(1424220150, '95.145.50.56', 6, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', '', '', '/index.php'),
+(1424250527, '123.125.71.77', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1424276218, '95.145.50.56', 7, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', '', '', '/index.php'),
+(1424379424, '95.145.50.1', 8, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', '', '', '/index.php'),
+(1424381624, '92.237.84.249', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1424381661, '95.145.50.1', 9, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=75', '/goods.php'),
+(1424381673, '95.145.50.1', 10, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/goods.php?id=76', '/goods.php'),
+(1424381920, '95.145.50.1', 11, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/goods.php?id=76', '/online_wear.php'),
+(1424412477, '69.58.178.58', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1424412480, '69.58.178.58', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1424499798, '69.58.178.56', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1424499801, '69.58.178.56', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1424505596, '123.125.71.86', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1424561837, '223.73.18.45', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1424703025, '2.30.1.112', 12, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1424758849, '123.125.71.77', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1424870504, '220.181.108.112', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1424878452, '2.30.3.194', 13, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1424887139, '2.30.3.194', 14, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1424891213, '2.30.3.194', 15, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/article.php?id=37', '/index.php'),
+(1424894812, '2.30.3.194', 16, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/goods.php?id=79', '/goods.php'),
+(1424897046, '2.30.3.194', 17, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1424897432, '86.6.21.155', 1, 'Safari 9537.53', 'Unknown', 'zh-cn', '英国', 'http://www.bobo-d2c.com', '/category.php?id=129', '/category.php'),
+(1424979615, '123.125.71.23', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1425056026, '223.74.29.87', 23, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1425056156, '92.237.84.249', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=139', '/category.php'),
+(1425057369, '2.30.3.204', 18, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1425058014, '92.237.84.249', 2, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/article.php?id=37', '/article.php'),
+(1425059208, '2.30.3.204', 19, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/goods.php?id=79', '/category.php'),
+(1425059222, '2.30.3.204', 20, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/category.php?id=75', '/goods.php'),
+(1425061045, '223.74.29.87', 24, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/article.php'),
+(1425061704, '92.237.84.249', 3, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/goods.php?id=81&cartShow=1', '/category.php'),
+(1425064308, '92.237.84.249', 4, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/user.php', '/user.php'),
+(1425065598, '223.74.29.87', 25, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/article.php?id=38', '/category.php'),
+(1425066181, '92.237.84.249', 5, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/category.php?id=75', '/goods.php'),
+(1425067525, '220.181.108.102', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1425146284, '223.74.29.87', 26, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/user.php?act=logout', '/index.php'),
+(1425149292, '223.74.29.87', 27, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/user.php', '/user.php'),
+(1425149359, '223.74.29.87', 28, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/user.php?act=logout', '/index.php'),
+(1425149658, '223.74.29.87', 29, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/user.php?act=logout', '/index.php'),
+(1425154677, '92.237.84.249', 6, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/user.php?act=logout', '/index.php'),
+(1425229304, '223.74.29.87', 30, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/category.php?id=75', '/index.php'),
+(1425232486, '223.74.29.87', 31, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1425234426, '223.74.29.87', 32, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/', '/goods.php'),
+(1425236306, '223.74.29.87', 33, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/', '/user.php'),
+(1425237464, '183.60.52.123', 1, 'Internet Explorer 9.0', 'Windows NT', 'zh-cn', '[未知IP0801]', '', '', '/share.php'),
+(1425237464, '183.60.35.94', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', '[未知IP0801]', '', '', '/share.php'),
+(1425237465, '101.226.66.172', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', 'IANA', '', '', '/share.php'),
+(1425237530, '14.17.18.147', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', '美国', '', '', '/share.php'),
+(1425237530, '112.64.235.89', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', 'IANA', '', '', '/share.php'),
+(1425237530, '183.62.115.226', 1, 'Internet Explorer 9.0', 'Windows NT', 'zh-cn', '[未知IP0801]', '', '', '/share.php'),
+(1425237592, '92.237.84.249', 7, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/user.php?act=default', '/user.php'),
+(1425237641, '92.237.84.249', 8, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/user.php?act=logout', '/index.php'),
+(1425237647, '113.105.95.122', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', 'IANA', '', '', '/share.php'),
+(1425237647, '183.62.115.226', 1, 'Internet Explorer 9.0', 'Windows NT', 'zh-cn', '[未知IP0801]', '', '', '/share.php'),
+(1425239944, '112.64.235.89', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', 'IANA', '', '', '/share.php'),
+(1425240952, '112.64.235.89', 1, 'Unknow browser', 'Unknown', 'zh-cn, zh', 'IANA', '', '', '/share.php'),
+(1425263652, '173.70.141.168', 1, 'Unknow browser', 'Unknown', 'en', '[未知IP0801]', '', '', '/index.php'),
+(1425271766, '123.125.71.111', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1425348199, '95.149.147.200', 21, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/goods.php?id=79&cartShow=1', '/index.php'),
+(1425350095, '95.149.147.200', 22, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/user.php', '/index.php'),
+(1425350100, '95.149.147.200', 23, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/index.php', '/user.php'),
+(1425374854, '123.125.71.34', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1425439584, '220.181.108.96', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1425460685, '204.236.235.245', 1, 'Unknow browser', 'Unknown', '', '美国', '', '', '/index.php'),
+(1425506560, '2.30.3.239', 24, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1425509392, '82.30.144.154', 1, 'Safari 600.1.4', 'Unknown', 'en-gb', '英国', 'http://www.bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1425600857, '92.237.84.249', 9, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/user.php', '/category.php'),
+(1425610692, '2.30.1.39', 25, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://www.bobo-d2c.com', '/goods.php?id=79', '/category.php'),
+(1425688025, '157.55.39.235', 1, 'Unknow browser', 'Unknown', '', '美国', '', '', '/index.php'),
+(1425688919, '223.73.17.212', 34, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1425692049, '223.73.17.212', 35, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1425698389, '95.145.50.74', 26, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'RIPE', 'http://www.bobo-d2c.com', '/user.php', '/user.php'),
+(1425801843, '5.9.102.12', 1, 'Unknow browser', 'Unknown', '', 'IANA', '', '', '/index.php'),
+(1425801845, '5.9.102.12', 1, 'Unknow browser', 'Unknown', '', 'IANA', '', '', '/index.php'),
+(1425801900, '5.9.102.12', 1, 'Unknow browser', 'Unknown', '', 'IANA', '', '', '/share.php'),
+(1425801902, '5.9.102.12', 1, 'Unknow browser', 'Unknown', '', 'IANA', '', '', '/share.php'),
+(1425825132, '123.125.71.116', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1425829706, '183.16.142.202', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '[未知IP0801]', '', '', '/index.php'),
+(1425876612, '5.255.253.195', 1, 'Unknow browser', 'Unknown', 'ru, uk', 'IANA', '', '', '/index.php'),
+(1425890817, '5.255.253.195', 1, 'Unknow browser', 'Unknown', 'ru, uk', 'IANA', '', '', '/index.php'),
+(1426000915, '113.118.227.73', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/designer.php'),
+(1426002327, '113.118.227.73', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/user.php'),
+(1426002452, '113.118.227.73', 3, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/index.php'),
+(1426002620, '113.118.227.73', 4, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/index.php', '/designer.php'),
+(1426011745, '113.118.227.73', 5, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/designer_good.php?user_id=25', '/goods.php'),
+(1426042017, '113.118.227.73', 6, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/designer_good.php?user_id=25', '/goods.php'),
+(1426047668, '220.181.108.149', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1426079241, '220.181.108.175', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1426229738, '113.118.160.126', 7, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/goods.php?id=81', '/index.php'),
+(1426230380, '220.181.108.147', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1426397537, '220.181.108.180', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1426408805, '113.118.167.87', 8, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/designer.php'),
+(1426545001, '5.255.253.195', 1, 'Unknow browser', 'Unknown', 'ru, uk', 'IANA', '', '', '/share.php'),
+(1426551420, '5.255.253.195', 1, 'Unknow browser', 'Unknown', 'ru, uk', 'IANA', '', '', '/share.php');
+INSERT INTO `mb_stats` (`access_time`, `ip_address`, `visit_times`, `browser`, `system`, `language`, `area`, `referer_domain`, `referer_path`, `access_url`) VALUES
+(1426564721, '113.118.157.99', 9, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/user.php?act=default', '/category.php'),
+(1426564724, '113.118.157.99', 10, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/user.php'),
+(1426646782, '180.153.212.13', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', '[未知IP0801]', 'http://bobo-d2c.com', '/sex_determination.php', '/index.php'),
+(1426686930, '14.20.22.37', 2, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '美国', 'http://dn0663.com', '/user.php', '/category.php'),
+(1426688344, '222.50.93.137', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '广东省梅州市', 'http://103.254.150.17', '/sex_determination.php', '/index.php'),
+(1426688777, '180.153.205.254', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', '[未知IP0801]', 'http://103.254.150.17', '/sex_determination.php', '/index.php'),
+(1426716971, '92.237.84.249', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1426726588, '101.226.33.217', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', 'IANA', 'http://dn0663.com', '/sex_determination.php', '/index.php'),
+(1426759906, '148.251.124.173', 1, 'Unknow browser', 'Unknown', 'en', '[未知IP0801]', '', '', '/index.php'),
+(1426759918, '148.251.124.173', 1, 'Unknow browser', 'Unknown', 'en', '[未知IP0801]', '', '', '/index.php'),
+(1426769090, '180.153.206.22', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', '[未知IP0801]', 'http://103.254.150.17', '/sex_determination.php', '/index.php'),
+(1426772430, '125.94.80.86', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '广东省', 'http://dn0663.com', '/category.php?id=75', '/user.php'),
+(1426804654, '69.58.178.57', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1426804657, '69.58.178.57', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1426804722, '69.58.178.57', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/share.php'),
+(1426807928, '220.181.108.179', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1426819277, '113.118.163.84', 11, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/designer.php'),
+(1426861009, '113.118.161.54', 12, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/designer.php'),
+(1426863981, '113.118.161.54', 13, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/user.php', '/user.php'),
+(1426863985, '113.118.161.54', 14, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/user.php', '/index.php'),
+(1426916564, '69.58.178.56', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1426916599, '69.58.178.56', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/index.php'),
+(1426918184, '69.58.178.56', 1, 'FireFox 14.0.1', 'Linux', '', 'ARIN', '', '', '/share.php'),
+(1426920103, '123.125.71.78', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1427028906, '113.118.159.215', 15, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/user.php'),
+(1427031639, '113.118.159.215', 16, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=75', '/goods.php'),
+(1427088164, '220.181.108.147', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1427089590, '113.118.159.215', 17, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1427115937, '123.89.74.174', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '中国', 'http://103.254.150.17', '/sex_determination.php', '/index.php'),
+(1427115938, '101.226.65.108', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', 'IANA', 'http://103.254.150.17', '/sex_determination.php', '/index.php'),
+(1427117543, '112.64.235.87', 1, 'Safari 537.36', 'Linux', 'zh-cn, zh', 'IANA', 'http://dn0663.com', '/sex_determination.php', '/index.php'),
+(1427118068, '123.89.74.174', 1, 'Unknow browser', 'Windows 32', '', '中国', 'http://dn0663.com', '/sex_determination.php', '/index.php'),
+(1427120055, '123.89.74.174', 1, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', '中国', '', '', '/goods.php'),
+(1427173163, '157.55.39.100', 1, 'Unknow browser', 'Unknown', '', '美国', '', '', '/index.php'),
+(1427192127, '157.55.39.20', 1, 'Unknow browser', 'Unknown', '', '美国', '', '', '/index.php'),
+(1427201998, '5.255.253.21', 1, 'Unknow browser', 'Unknown', 'ru, uk', 'IANA', '', '', '/index.php'),
+(1427206298, '92.237.84.249', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', '', '', '/index.php'),
+(1427206481, '92.237.84.249', 2, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'RIPE', 'http://www.bobo-d2c.com', '/', '/user.php'),
+(1427258681, '113.118.159.215', 18, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/user.php', '/user.php'),
+(1427287065, '113.87.159.69', 19, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/category.php?id=117', '/goods.php'),
+(1427291222, '113.87.159.69', 20, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/designer_good.php?user_id=25', '/goods.php'),
+(1427291303, '113.87.159.69', 21, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', 'http://bobo-d2c.com', '/goods.php?id=81', '/user.php'),
+(1427347495, '113.87.159.69', 22, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'IANA', '', '', '/index.php'),
+(1427544584, '5.255.253.21', 1, 'Unknow browser', 'Unknown', 'ru, uk', 'IANA', '', '', '/index.php'),
+(1427896242, '157.55.39.120', 1, 'Unknow browser', 'Unknown', '', '美国', '', '', '/index.php'),
+(1428116073, '111.206.20.21', 1, 'Safari 537.36', 'Windows NT', 'en-GB,en', 'IANA', '', '', '/index.php'),
+(1428180174, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180179, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180179, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180180, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180181, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180181, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180182, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180207, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180208, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180209, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180210, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180210, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180211, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180227, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180228, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180228, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180229, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180230, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180262, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180263, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180269, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180285, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180300, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180316, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180326, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180328, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180333, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180333, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180334, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180336, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180337, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180337, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180339, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180339, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180340, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180341, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180342, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180343, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180343, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180344, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180344, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180345, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180346, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180347, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180347, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180348, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180348, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180351, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180355, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180355, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180356, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180356, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180358, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180358, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180359, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180359, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180359, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428180360, '210.56.51.204', 1, 'Internet Explorer 8.0', 'Windows NT', 'en-us,en', '香港特别行政区', '', '', '/index.php'),
+(1428199828, '123.125.71.75', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1428328676, '188.40.114.215', 1, 'Unknow browser', 'Unknown', 'zh', '[未知IP0801]', '', '', '/index.php'),
+(1428328685, '188.40.114.215', 1, 'Unknow browser', 'Unknown', 'zh', '[未知IP0801]', '', '', '/index.php'),
+(1428360538, '123.125.71.74', 1, 'Unknow browser', 'Unknown', 'zh-cn,zh-tw', '北京市', '', '', '/index.php'),
+(1428486342, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486352, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486353, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486353, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486353, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486354, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486355, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486356, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486357, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486357, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486357, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486357, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486358, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486358, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486359, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486359, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486360, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486360, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486361, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486362, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486362, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486362, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486364, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486371, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486375, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486375, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486377, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486377, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486378, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486378, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486378, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486378, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486379, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486379, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486379, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486383, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486635, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486635, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486635, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486636, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486636, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486636, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486636, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486637, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486637, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486637, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486660, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486660, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486665, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486666, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486669, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486669, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486670, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486670, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486670, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486670, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486670, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486671, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486687, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486784, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486796, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428486856, '202.105.118.130', 1, 'Unknow browser', 'Unknown', 'en-us,en', '广东省深圳市', '', '', '/index.php'),
+(1428690076, '127.0.0.1', 28, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/sex_determination.php', '/bobo/ecshop/index.php'),
+(1429041283, '127.0.0.1', 29, 'Safari 537.36', 'Windows NT', 'zh-CN,zh', 'LAN', 'http://localhost', '/bobo/ecshop/user.php', '/bobo/ecshop/index.php');
 
 -- --------------------------------------------------------
 
@@ -7654,6 +8241,21 @@ CREATE TABLE IF NOT EXISTS `mb_template` (
 --
 
 INSERT INTO `mb_template` (`filename`, `region`, `library`, `sort_order`, `id`, `number`, `type`, `theme`, `remarks`) VALUES
+('category', '', '/library/brands.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('category', '', '/library/recommend_promotion.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('category', '右边区域', '/library/pages.lbi', 2, 0, 0, 0, 'ecmoban', ''),
+('category', '右边区域', '/library/goods_list.lbi', 1, 0, 0, 0, 'ecmoban', ''),
+('category', '', '/library/recommend_hot.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('category', '右边区域', '/library/recommend_best.lbi', 0, 0, 4, 0, 'ecmoban', ''),
+('category', '左边区域', '/library/category_tree.lbi', 0, 0, 0, 0, 'ecmoban', ''),
+('category', '左边区域', '/library/history.lbi', 1, 0, 0, 0, 'ecmoban', ''),
+('index', '', '/library/brands.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('index', '', '/library/auction.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('index', '', '/library/group_buy.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('index', '', '/library/recommend_promotion.lbi', 0, 0, 3, 0, 'ecmoban', ''),
+('index', '主区域', '/library/recommend_hot.lbi', 1, 0, 10, 0, 'ecmoban', ''),
+('index', '', '/library/recommend_new.lbi', 0, 0, 5, 0, 'ecmoban', ''),
+('index', '主区域', '/library/recommend_best.lbi', 0, 0, 10, 0, 'ecmoban', ''),
 ('index', '', '/library/recommend_promotion.lbi', 0, 0, 4, 0, 'BoBo', ''),
 ('index', '', '/library/recommend_hot.lbi', 0, 0, 3, 0, 'BoBo', ''),
 ('index', '', '/library/recommend_new.lbi', 0, 0, 3, 0, 'BoBo', ''),
@@ -7661,44 +8263,6 @@ INSERT INTO `mb_template` (`filename`, `region`, `library`, `sort_order`, `id`, 
 ('index', '', '/library/group_buy.lbi', 0, 0, 3, 0, 'BoBo', ''),
 ('index', '', '/library/auction.lbi', 0, 0, 3, 0, 'BoBo', ''),
 ('index', '', '/library/brands.lbi', 0, 0, 3, 0, 'BoBo', '');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `mb_test`
---
-
-CREATE TABLE IF NOT EXISTS `mb_test` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT '0',
-  `path` int(11) NOT NULL DEFAULT '0',
-  `sort` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
-
---
--- 转存表中的数据 `mb_test`
---
-
-INSERT INTO `mb_test` (`id`, `name`, `pid`, `path`, `sort`) VALUES
-(1, '广东省', 0, 0, 17),
-(2, '江苏省', 0, 0, 16),
-(3, '福建省', 0, 0, 15),
-(4, '北京市', 0, 0, 14),
-(5, '揭阳市', 1, 1, 13),
-(6, '深圳市', 1, 1, 12),
-(7, '江苏省二级', 2, 1, 11),
-(8, '江苏省二级2', 2, 1, 10),
-(9, '北京市NN区', 4, 1, 9),
-(10, '北京市YY区', 4, 1, 8),
-(11, '月城镇', 5, 2, 7),
-(12, '东山区', 5, 2, 6),
-(13, '罗湖区', 6, 2, 5),
-(14, '龙岗区', 6, 2, 4),
-(15, '棉洋乡', 11, 3, 3),
-(16, '江苏3级', 7, 2, 2),
-(17, '2江苏3级', 8, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -7743,6 +8307,7 @@ CREATE TABLE IF NOT EXISTS `mb_users` (
   `user_name` varchar(60) NOT NULL DEFAULT '',
   `password` varchar(32) NOT NULL DEFAULT '',
   `user_head_img` varchar(100) NOT NULL DEFAULT '',
+  `disigner_img` varchar(100) NOT NULL DEFAULT '',
   `question` varchar(255) NOT NULL DEFAULT '',
   `answer` varchar(255) NOT NULL DEFAULT '',
   `sex` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -7773,37 +8338,42 @@ CREATE TABLE IF NOT EXISTS `mb_users` (
   `credit_line` decimal(10,2) unsigned NOT NULL,
   `passwd_question` varchar(50) DEFAULT NULL,
   `passwd_answer` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `facebook` text NOT NULL,
+  `twitter` text NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   KEY `email` (`email`),
   KEY `parent_id` (`parent_id`),
   KEY `flag` (`flag`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- 转存表中的数据 `mb_users`
 --
 
-INSERT INTO `mb_users` (`user_id`, `email`, `user_name`, `password`, `user_head_img`, `question`, `answer`, `sex`, `model_id`, `birthday`, `user_money`, `frozen_money`, `pay_points`, `rank_points`, `address_id`, `reg_time`, `last_login`, `last_time`, `last_ip`, `visit_count`, `user_rank`, `is_special`, `salt`, `parent_id`, `flag`, `alias`, `msn`, `qq`, `office_phone`, `home_phone`, `mobile_phone`, `is_validated`, `credit_line`, `passwd_question`, `passwd_answer`) VALUES
-(1, 'ecshop@ecshop.com', 'ecshop', '554fcae493e564ee0dc75bdf2ebf94ca', '', '', '', 0, 1, '1960-03-03', '0.00', '0.00', 98388, 15390, 1, 0, 1245048540, '0000-00-00 00:00:00', '0.0.0.0', 11, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(2, 'vip@ecshop.com', 'vip', '232059cb5361a9336ccf1b8c2ba7657a', '', '', '', 0, 1, '1949-01-01', '0.00', '0.00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '', 0, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(3, 'text@ecshop.com', 'text', 'f66387b091ec3c03714ba11636fcf828', '', '', '', 0, 1, '1954-01-01', '0.00', '0.00', 0, 0, 2, 0, 1418888714, '0000-00-00 00:00:00', '127.0.0.1', 6, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(5, 'zuanshi@ecshop.com', 'zuanshi', '815a71fb334412e7ba4595741c5a111d', '', '', '', 0, 1, '1949-01-01', '0.00', '10000.00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '', 0, 3, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(6, 'bb@124.com', '123456', 'e10adc3949ba59abbe56e057f20f883e', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1252510112, 1277908217, '0000-00-00 00:00:00', '127.0.0.1', 8, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(8, 'asd@asd.com', 'asd', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', 1, 34, '1955-01-01', '99999458.99', '0.00', 810, 810, 3, 1419600044, 1423142023, '0000-00-00 00:00:00', '127.0.0.1', 1720, 3, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(17, 'a@q.co', 'a@q.co', '0cc175b9c0f1b6a831c399e269772661', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420384027, 1420384027, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(15, 'asd@asad.com', 'asd@asad.com', '0cc175b9c0f1b6a831c399e269772661', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420383916, 1420383946, '0000-00-00 00:00:00', '127.0.0.1', 2, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(16, 'a@q.com', 'a@q.com', '0cc175b9c0f1b6a831c399e269772661', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420384023, 1420384023, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(12, 'zuanshaai@qq.com', 'zuanshaai@qq.com', '0cc175b9c0f1b6a831c399e269772661', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420383410, 1420383410, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(18, 'a@q.cn', 'a@q.cn', '0cc175b9c0f1b6a831c399e269772661', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420384153, 1420384153, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(19, 'asd@q.cc', 'asd@q.cc', '92eb5ffee6ae2fec3ad71c777531578f', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420389258, 1420389258, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(20, '5622332413@qq.com', '5622332431@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', 1, 17, '1955-01-01', '0.00', '0.00', 0, 0, 0, 1423212860, 1423212860, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL),
-(21, '5622332423@qq.com', '5622332432@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1423213148, 1423213448, '0000-00-00 00:00:00', '127.0.0.1', 2, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL),
-(22, '56223324323@qq.com', '56223324333@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', 1, 17, '1955-01-01', '0.00', '0.00', 0, 0, 7, 1423213564, 1423254880, '0000-00-00 00:00:00', '127.0.0.1', 13, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL),
-(23, 'test@qq.com', 'test@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '23_54e0b4f58f872.png', '', '', 1, 33, '1955-01-01', '0.00', '0.00', 1687, 1687, 14, 1423385353, 1424278823, '0000-00-00 00:00:00', '127.0.0.1', 54, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL),
-(24, '562233243@qq.com', '562233243@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '24_54e3aca4be7f1.png', '', '', 1, 1, '1955-01-01', '0.00', '0.00', 0, 0, 16, 1423763369, 1424558049, '0000-00-00 00:00:00', '127.0.0.1', 8, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL),
-(25, '4657331@qq.com', '4657331@qq.com', '0f615965dc9d23846e7548aab1ef0364', '25_54de252769ef5.png', '', '', 1, 7, '1955-01-01', '0.00', '0.00', 0, 0, 0, 1423766354, 1423847816, '0000-00-00 00:00:00', '94.174.197.201', 46, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL),
-(26, 'test@bb.com', 'test@bb.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', 1, 1, '1955-01-01', '0.00', '0.00', 0, 0, 17, 1424284262, 1424284350, '0000-00-00 00:00:00', '127.0.0.1', 2, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL);
+INSERT INTO `mb_users` (`user_id`, `email`, `user_name`, `password`, `user_head_img`, `disigner_img`, `question`, `answer`, `sex`, `model_id`, `birthday`, `user_money`, `frozen_money`, `pay_points`, `rank_points`, `address_id`, `reg_time`, `last_login`, `last_time`, `last_ip`, `visit_count`, `user_rank`, `is_special`, `salt`, `parent_id`, `flag`, `alias`, `msn`, `qq`, `office_phone`, `home_phone`, `mobile_phone`, `is_validated`, `credit_line`, `passwd_question`, `passwd_answer`, `description`, `facebook`, `twitter`) VALUES
+(1, 'ecshop@ecshop.com', 'ecshop', '554fcae493e564ee0dc75bdf2ebf94ca', '', '', '', '', 0, 1, '1960-03-03', '0.00', '0.00', 98388, 15390, 1, 0, 1245048540, '0000-00-00 00:00:00', '0.0.0.0', 11, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(2, 'vip@ecshop.com', 'vip', '232059cb5361a9336ccf1b8c2ba7657a', '', '', '', '', 0, 1, '1949-01-01', '0.00', '0.00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '', 0, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(3, 'text@ecshop.com', 'text', 'f66387b091ec3c03714ba11636fcf828', '', '', '', '', 0, 1, '1954-01-01', '0.00', '0.00', 0, 0, 2, 0, 1418888714, '0000-00-00 00:00:00', '127.0.0.1', 6, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(5, 'zuanshi@ecshop.com', 'zuanshi', '815a71fb334412e7ba4595741c5a111d', '', '', '', '', 0, 1, '1949-01-01', '0.00', '10000.00', 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '', 0, 3, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(6, 'bb@124.com', '123456', 'e10adc3949ba59abbe56e057f20f883e', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1252510112, 1277908217, '0000-00-00 00:00:00', '127.0.0.1', 8, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(8, 'asd@asd.com', 'asd', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', '', 1, 34, '1955-01-01', '99999458.99', '0.00', 810, 810, 3, 1419600044, 1423142023, '0000-00-00 00:00:00', '127.0.0.1', 1720, 3, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(17, 'a@q.co', 'a@q.co', '0cc175b9c0f1b6a831c399e269772661', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420384027, 1420384027, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(15, 'asd@asad.com', 'asd@asad.com', '0cc175b9c0f1b6a831c399e269772661', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420383916, 1420383946, '0000-00-00 00:00:00', '127.0.0.1', 2, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(16, 'a@q.com', 'a@q.com', '0cc175b9c0f1b6a831c399e269772661', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420384023, 1420384023, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(12, 'zuanshaai@qq.com', 'zuanshaai@qq.com', '0cc175b9c0f1b6a831c399e269772661', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420383410, 1420383410, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(18, 'a@q.cn', 'a@q.cn', '0cc175b9c0f1b6a831c399e269772661', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420384153, 1420384153, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(19, 'asd@q.cc', 'asd@q.cc', '92eb5ffee6ae2fec3ad71c777531578f', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1420389258, 1420389258, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(20, '5622332413@qq.com', '5622332431@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', '', 1, 17, '1955-01-01', '0.00', '0.00', 0, 0, 0, 1423212860, 1423212860, '0000-00-00 00:00:00', '127.0.0.1', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(21, '5622332423@qq.com', '5622332432@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1423213148, 1423213448, '0000-00-00 00:00:00', '127.0.0.1', 2, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL, '', '', ''),
+(22, '56223324323@qq.com', '56223324333@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', '', 1, 17, '1955-01-01', '0.00', '0.00', 0, 0, 7, 1423213564, 1423254880, '0000-00-00 00:00:00', '127.0.0.1', 13, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL, '', '', ''),
+(23, 'test@qq.com', 'test@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '23_54e0b88e700c4.png', '', '', '', 1, 33, '0000-00-00', '0.00', '0.00', 0, 0, 19, 1423385353, 1429041294, '0000-00-00 00:00:00', '127.0.0.1', 161, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL, '', '', ''),
+(24, '562233243@qq.com', '562233243@qq.com', '0e2a9d81c02d965b96b80dce20f73246', '24_54dce80ea20ca.png', '', '', '', 2, 49, '1955-01-01', '0.00', '0.00', 0, 0, 0, 1423763369, 1423763439, '0000-00-00 00:00:00', '223.73.18.83', 2, 0, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL, '', '', ''),
+(25, '4657331@qq.com', '4657331@qq.com', '0f615965dc9d23846e7548aab1ef0364', '25_5512a3615749d.png', 'images/201503/1425692464937345954.png', '', '', 1, 4, '0000-00-00', '0.00', '0.00', 0, 0, 18, 1423766354, 1428385040, '0000-00-00 00:00:00', '113.118.166.42', 348, 4, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, 'I am a designer.', 'http://facebook.com', ''),
+(26, 'leofromchina@msn.cn', 'leofromchina@msn.cn', 'e99a18c428cb38d5f260853678922e03', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1426002319, 1426002319, '0000-00-00 00:00:00', '113.118.227.73', 1, 0, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '', '', ''),
+(27, 'tes1t@qq.com', 'test', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1429039421, 0, '0000-00-00 00:00:00', '', 0, 3, 0, '0', 0, 0, '', '', '', '', '', '', 1, '0.00', NULL, NULL, 'test', 'test1', 'test2'),
+(28, 'test2@qq.com', 'admin123', '0e2a9d81c02d965b96b80dce20f73246', '', '', '', '', 0, 1, '0000-00-00', '0.00', '0.00', 0, 0, 0, 1429039734, 0, '0000-00-00 00:00:00', '', 0, 3, 0, '0', 0, 0, '', '', '', '', '', '', 0, '0.00', NULL, NULL, '2w2', 'http://facebook.com', 'http://twitter.com');
 
 -- --------------------------------------------------------
 
@@ -7857,23 +8427,23 @@ CREATE TABLE IF NOT EXISTS `mb_user_address` (
   `mobile` varchar(60) NOT NULL DEFAULT '',
   `sign_building` varchar(120) NOT NULL DEFAULT '',
   `best_time` varchar(120) NOT NULL DEFAULT '',
+  `address2` text NOT NULL,
   PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- 转存表中的数据 `mb_user_address`
 --
 
-INSERT INTO `mb_user_address` (`address_id`, `address_name`, `user_id`, `consignee`, `email`, `country`, `province`, `city`, `district`, `address`, `zipcode`, `tel`, `mobile`, `sign_building`, `best_time`) VALUES
-(1, '', 1, '刘先生', 'ecshop@ecshop.com', 1, 2, 52, 502, '海兴大厦', '', '010-25851234', '13986765412', '', ''),
-(2, '', 3, '叶先生', 'text@ecshop.com', 1, 2, 52, 510, '通州区旗舰凯旋小区', '', '13588104710', '', '', ''),
-(3, '', 8, 'asddddd', 'asd@asd.com', 1, 3, 39, 421, 'sssssss', '5513', '123456789', '', '', ''),
-(6, '', 8, '123123', 'asd@asd.com', 0, 0, 0, 0, '123123', '123123', '13318495388', '', '', ''),
-(7, '', 22, 'a 要要要s', '562233243@qq.com', 1, 2, 52, 500, 'a 要要要s', '', '123123123123123', '', '', ''),
-(14, '', 23, '123123', 'test@qq.com', 1, 2, 52, 501, '123123123', '', '123123123123123', '', '', ''),
-(16, '', 24, 'asdfasdf', '562233243@qq.com', 1, 2, 52, 501, 'sdfasdfasdf', '', '123123123123', '', '', ''),
-(17, '', 26, '123123123', 'test@bb.com', 1, 2, 52, 500, '123,Aybicy Road, Loughborough,LE11 1AA23', '', '1231231', '', '1312312', '');
+INSERT INTO `mb_user_address` (`address_id`, `address_name`, `user_id`, `consignee`, `email`, `country`, `province`, `city`, `district`, `address`, `zipcode`, `tel`, `mobile`, `sign_building`, `best_time`, `address2`) VALUES
+(1, '', 1, '刘先生', 'ecshop@ecshop.com', 1, 2, 52, 502, '海兴大厦', '', '010-25851234', '13986765412', '', '', ''),
+(2, '', 3, '叶先生', 'text@ecshop.com', 1, 2, 52, 510, '通州区旗舰凯旋小区', '', '13588104710', '', '', '', ''),
+(3, '', 8, 'asddddd', 'asd@asd.com', 1, 3, 39, 421, 'sssssss', '5513', '123456789', '', '', '', ''),
+(6, '', 8, '123123', 'asd@asd.com', 0, 0, 0, 0, '123123', '123123', '13318495388', '', '', '', ''),
+(7, '', 22, 'a 要要要s', '562233243@qq.com', 1, 2, 52, 500, 'a 要要要s', '', '123123123123123', '', '', '', ''),
+(19, '', 23, 'frank', 'test@qq.com', 1, 2, 52, 500, '1qqa2ww', '1475', '12345678', '12qw12', '', '', '123123567567'),
+(16, '', 23, 'frkkwi', 'test@qq.com', 0, 0, 0, 0, 'ys here to help, there are lots of dif', '', '', '17748544852', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -7957,9 +8527,9 @@ CREATE TABLE IF NOT EXISTS `mb_user_rank` (
 
 INSERT INTO `mb_user_rank` (`rank_id`, `rank_name`, `min_points`, `max_points`, `discount`, `show_price`, `special_rank`) VALUES
 (1, '注册用户', 0, 10000, 100, 1, 0),
-(2, 'vip', 10000, 10000000, 95, 1, 1),
-(3, '代销用户', 0, 0, 90, 0, 1),
-(4, '设计师', 0, 0, 0, 0, 1);
+(2, 'vip', 10000, 10000000, 95, 1, 0),
+(3, 'normal', 0, 0, 0, 0, 1),
+(4, 'Designer', 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 

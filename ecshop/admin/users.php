@@ -117,6 +117,8 @@ elseif ($_REQUEST['act'] == 'insert')
     $rank = empty($_POST['user_rank']) ? 0 : intval($_POST['user_rank']);
     $credit_line = empty($_POST['credit_line']) ? 0 : floatval($_POST['credit_line']);
     $description = empty($_POST['description']) ? '' : trim($_POST['description']);
+    $facebook = empty($_POST['facebook']) ? '' : trim($_POST['facebook']);
+    $twitter = empty($_POST['twitter']) ? '' : trim($_POST['twitter']);
     /* (self)检查图片：如果有错误，检查尺寸是否超过最大值；否则，检查文件类型 */
     if (isset($_FILES['disigner_img']['error'])){ // php 4.2 版本才支持 error
         // 最大上传文件大小
@@ -222,7 +224,12 @@ elseif ($_REQUEST['act'] == 'insert')
     $other['description']   = $description;
     $other['is_validated']   = $is_validated;
     $other['reg_time'] = local_strtotime(local_date('Y-m-d H:i:s'));
-    
+
+
+    $other['facebook']   = $facebook;
+    $other['twitter']   = $twitter;
+
+
     $other['msn'] = isset($_POST['extend_field1']) ? htmlspecialchars(trim($_POST['extend_field1'])) : '';
     $other['qq'] = isset($_POST['extend_field2']) ? htmlspecialchars(trim($_POST['extend_field2'])) : '';
     $other['office_phone'] = isset($_POST['extend_field3']) ? htmlspecialchars(trim($_POST['extend_field3'])) : '';
@@ -257,7 +264,7 @@ elseif ($_REQUEST['act'] == 'edit')
     $users  =& init_users();
     $user   = $users->get_user_info($row['user_name']);
 
-    $sql = "SELECT u.user_id,u.disigner_img,u.description,u.is_validated, u.sex, u.birthday, u.pay_points, u.rank_points, u.user_rank , u.user_money, u.frozen_money, u.credit_line, u.parent_id, u2.user_name as parent_username, u.qq, u.msn,
+    $sql = "SELECT u.user_id,u.disigner_img,u.description,u.is_validated,u.facebook,u.twitter, u.sex, u.birthday, u.pay_points, u.rank_points, u.user_rank , u.user_money, u.frozen_money, u.credit_line, u.parent_id, u2.user_name as parent_username, u.qq, u.msn,
     u.office_phone, u.home_phone, u.mobile_phone".
         " FROM " .$ecs->table('users'). " u LEFT JOIN " . $ecs->table('users') . " u2 ON u.parent_id = u2.user_id WHERE u.user_id='$_GET[id]'";
 
@@ -285,7 +292,8 @@ elseif ($_REQUEST['act'] == 'edit')
         $user['home_phone']     = $row['home_phone'];
         $user['mobile_phone']   = $row['mobile_phone'];
         $user['description']   = $row['description'];
-        $user['is_validated']   = $row['is_validated'];
+        $user['facebook']   = $row['facebook'];
+        $user['twitter']   = $row['twitter'];
     }
     else
     {
@@ -393,6 +401,11 @@ elseif ($_REQUEST['act'] == 'update')
     $rank = empty($_POST['user_rank']) ? 0 : intval($_POST['user_rank']);
     $credit_line = empty($_POST['credit_line']) ? 0 : floatval($_POST['credit_line']);
     $description = empty($_POST['description']) ? '' : trim($_POST['description']);
+
+    $facebook = empty($_POST['facebook']) ? '' : trim($_POST['facebook']);
+    $twitter = empty($_POST['twitter']) ? '' : trim($_POST['twitter']);
+
+
     $users  =& init_users();
 
     if (!$users->edit_user(array('username'=>$username, 'password'=>$password, 'email'=>$email, 'gender'=>$sex, 'bday'=>$birthday ), 1))
@@ -478,6 +491,9 @@ elseif ($_REQUEST['act'] == 'update')
     }
     $other['description'] = $description;
     $other['is_validated'] = $is_validated;
+
+    $other['facebook']   = $facebook;
+    $other['twitter']   = $twitter;
     $db->autoExecute($ecs->table('users'), $other, 'UPDATE', "user_name = '$username'");
 
     /* 记录管理员操作 */
