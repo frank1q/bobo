@@ -62,11 +62,28 @@
 										</p>
 									</div>
 								</div>
-								<div class="visitbutton">Visit my F</div>
+								<div class="visitbutton">
+									<!-- {if $user_info.facebook neq ""} -->
+									<a href="{$user_info.facebook}">Visit my F</a>
+									<!-- {else} -->
+									Visit my F
+									<!-- {/if} -->
+								</div>
 								<div class="chatbutton">Chant with me F</div>
 								<div class="facebook_icon">
+
+									<!-- {if $user_info.facebook neq ""} -->
+									<a href="{$user_info.facebook }"><img src="./images/lcon_07.png" class="img-responsive" /></a>
+									<!-- {else} -->
 									<img src="./images/lcon_07.png" class="img-responsive" />
+									<!-- {/if} -->
+
+									<!-- {if $user_info.twitter neq ""} -->
+									<a href="{$user_info.twitter }"><img src="./images/lcon_08.png" class="img-responsive" /></a>
+									<!-- {else} -->
 									<img src="./images/lcon_08.png" class="img-responsive" />
+									<!-- {/if} -->
+
 									<img src="./images/lcon_09.png" class="img-responsive" />
 									<img src="./images/lcon_10.png" class="img-responsive" />
 									<img src="./images/lcon_11.png" class="img-responsive" />
@@ -74,7 +91,7 @@
 								</div>
 							</div>
 							<div class="bottom_navigation">
-								<img src="./images/progressa.png" class="img-responsive" />
+								
 								<div class="ranking">
 									<p>Average Price</p>
 									<h4>$53</h4>

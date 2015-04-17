@@ -45,7 +45,7 @@
           <!-- {if $is_upload eq 1} -->
           <form action="user.php?act=edit_headImd" method="post" enctype="multipart/form-data" id="upload_head">
                 <input type="file" name="upload" id="file" >
-                <div class="submit_form w100">
+                <div class="submit_form w100 submit_form2">
                     <button type="submit" name="sub"  id="sub">
                         Upload Image
                     </button>
@@ -84,10 +84,10 @@
           <img src="{$thumb_img}" alt="" hidden id="zm">
           <img src="images/face_chopping.png" alt="" hidden id="head_headle">
           <div class="editcontent">
-            <p>Finish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EditFinish EdittFinish Et</p>
+            <p>For the better result, we recommandedBoBoers to use high quality photo with plain background colour (eg. passport) We will manully re-process your photo within 36 hours, so your bobo online fitting result will looks even better and more  realistic afterward. We will drop you an email with an image of your pretty face when the photo re-processing is done :)</p>
           </div>
           <div class="reset left">
-            <button type="reset">Reset</button>
+            <a href="">Reset</a>
           </div>
           <!-- {if $is_upload eq 0 } -->
           <div class="submit_form right">
@@ -147,13 +147,13 @@
         <div class="picture_guide_con">
           <img src="./images/lcon_13.png" class="img-responsive" alt="">
           <div class="picture_guide_f">
-            <h4>MORE TOUR</h4>
+            <a href="article.php?id=41"><h4>MORE TOUR</h4></a>
           </div>
         </div>
         <div class="picture_guide_con">
           <img src="./images/lcon_14.png" class="img-responsive" alt="">
           <div class="picture_guide_f">
-            <h4>GET IN TOUCH</h4>
+            <a href="article.php?id=42"><h4>GET IN TOUCH</h4></a>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@
       <div class="introduction_c background32">
       </div>
       <div class="introduction_f" >
-        <h4>JOIN NOW</h4>
+        <a href="article.php?id=43"><h4>JOIN NOW</h4></a>
       </div>
     </div>
   </div>

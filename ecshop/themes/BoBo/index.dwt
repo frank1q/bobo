@@ -67,7 +67,7 @@
                       </div>
                   </div>
                 </div>
-                <a href="goods.php?id={$cat.id}">
+                <a href="category.php?id=72">
                   <div class="picture_f">
                     <h3>DISCOVER ALL</h3>
                   </div>
@@ -97,9 +97,11 @@
           <p>(Hao Liu)</p>
         </div>
       </div>
+      <a href="designer_good.php?user_id=25">
       <div class="introduction_f">
         <h4>DISCOVER ALL</h4>
       </div>
+      </a>
     </div>
   </div>
   <!-- #BeginLibraryItem "/library/recommend_new.lbi" --><!-- #EndLibraryItem -->

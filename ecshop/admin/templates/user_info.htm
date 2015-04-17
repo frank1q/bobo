@@ -61,6 +61,15 @@
     <td>{html_radios name="is_validated" options=$is_validated checked=$user.is_validated }</td>
   </tr>
   <tr>
+    <td class="label">Facebook:</td>
+    <td><input type="text" name="facebook"  size="40" value="{$user.facebook}" /></td>
+  </tr>
+  <tr>
+    <td class="label">Twitter:</td>
+    <td><input type="text" name="twitter"  size="40" value="{$user.twitter}" /></td>
+  </tr>
+
+  <tr>
     <td class="label">{$lang.gender}:</td>
     <td>{html_radios name="sex" options=$lang.sex checked=$user.sex }</td>
   </tr>

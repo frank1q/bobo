@@ -13,10 +13,27 @@
 </head>
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 {* 包含脚本文件 *}
-{insert_scripts files='jquery.json-2.4.js,common.js,index.js'}
+{insert_scripts files='jquery.json-2.4.js,common.js,index.js,tinybox.js'}
+<link rel="stylesheet" type="text/css" href="./themes/BoBo/css/tinybox.css" />
+<link rel="stylesheet" href="./themes/BoBo/css/lrtk.css" />
+<script type="text/javascript" src="./themes/BoBo/js/jquery.min.js"></script>
+
+<script type="text/javascript" src="./themes/BoBo/js/jquery.imgbox.pack.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("#example").imgbox({
+            'speedIn'   : 0,
+            'speedOut'    : 0,
+            'alignment'   : 'center',
+            'overlayShow' : true,
+            'allowMultiple' : false
+      });
+ });
+</script>
 <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 
-
+  
 
   <!-- {if $promotion} -->
     <!-- {foreach from=$promotion item=item key=key} 优惠活动-->
@@ -113,9 +130,15 @@
           </div>
         <!--{else} -->
           <div class="item_guide">
-            <div class="item_size">+ Size Guide</div>
+              <div id="images">
+                 <a id="example" href="images/Desktop/3793633099_3e1e53e4ac_o.jpg">
+                   <div class="item_size">
+                  + Size Guide
+                  </div>
+                </a>
+              </div>
             <p>Free Standard Shipping</p>
-            <p>for orders over number$30</p>
+            <p>for orders over number £30</p>
           </div>
         <!-- {/if} --> 
       </div>
@@ -132,6 +155,8 @@ var process_request = '';
 
 </script>
 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->  
+
+
 <script type="text/javascript">
 var goods_id = {$goods_id};
 var goodsattr_style = {$cfg.goodsattr_style|default:1};

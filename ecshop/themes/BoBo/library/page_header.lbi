@@ -11,6 +11,7 @@
 <script type="text/javascript" src="./themes/BoBo/js/bobo.js"></script>
 <script type="text/javascript" src="./js/user.js"></script>
 <script type="text/javascript" src="./js/jquery.json-2.4.js"></script>
+
 <div class="container-fluid bodyheight">
   <div class="main">
     <div class="header">
@@ -43,12 +44,20 @@
           <!--{foreach from=$categories item=cat}-->
             <li class="content_lc">
                 <a href="{$cat.url}">{$cat.name|escape:html}</a>
-                <ul>
+                {if $cid eq $cat.id}
+                  <ul class="show">
+                {else}
+                  <ul class="hide">
+                  {/if}
                   <!--{foreach from=$cat.cat_id item=child}-->
                   <li class="sub_c">
                     <a href="{$child.url}">{$child.name|escape:html}</a>
-                    <!-- {if !empty($child.cat_id)} -->
-                        <ul class="">
+                          <!-- {if !empty($child.cat_id)} -->
+                      {if $csid eq $child.id}
+                        <ul class="show">
+                      {else}
+                        <ul class="hide">
+                        {/if}
                         <!--{foreach from=$child.cat_id item=cchild}-->
                           <li class="sub_d">
                             <a href="{$cchild.url}">{$cchild.name|escape:html}</a>
@@ -70,6 +79,18 @@
                 </li>
               <!--{/foreach}-->
             </ul>
+          </li>
+          <li class="content_lc select-sex">
+            {if $my_sex eq 'm'}
+              <a href="{$rUrl}&sex=2">
+                Female
+              </a>
+            {else}
+              <a href="{$rUrl}&sex=1">
+                Male 
+              </a>
+            {/if}
+            
           </li>
         </ul>
           {if $smarty.session.user_id gt 0}

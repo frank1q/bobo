@@ -375,7 +375,6 @@
           <!-- {/if} -->
           <!-- {if $goods.is_shipping} -->(<span style="color:#FF0000">{$lang.free_goods}</span>)<!-- {/if} -->
               </td>
-
               <td bgcolor="#ffffff">{$goods.goods_attr|nl2br}</td>
               <!-- {if $show_marketprice} -->
               <td align="right" bgcolor="#ffffff">{$goods.formated_market_price}</td>

@@ -1841,6 +1841,16 @@ function assign_template($ctype = '', $catlist = array())
     $sexArr = array(1=>'m',2=>'f');
     $smarty->assign('my_sex',  $sexArr[MY_SEX]);
     $smarty->assign('user_cart_goods',  user_cart_goods());       // 购物车
+
+    $gcid = isset($_GET['id'])?$_GET['id']:75;
+    $cids = get_g_c_id($gcid);
+    $cid = $cids[0];
+    $csid = $cids[1];
+
+    $smarty->assign('cid',  $cid);
+    $smarty->assign('csid',  $csid);
+    $rUrl =  'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]; 
+    $smarty->assign('rUrl',  $rUrl);
     //收货地址
     $address = user_address();
     if(!empty($address)){
@@ -1856,9 +1866,10 @@ function assign_template($ctype = '', $catlist = array())
         $smarty->assign('name_of_region',    $address['name_of_region'] );
         $smarty->assign('country_list',      $address['country_list'] );
         $smarty->assign('shop_province_list',$address['shop_province_list'] );
-        $smarty->assign('consignee_list',$address['consignee_list']);
+        $smarty->assign('consignee_list',$address['consignee_list'][0]);
+        // var_dump($address['consignee_list'][0]);
         // var_dump($_SESSION);
-        foreach ($address['consignee_list'] as $key => $c) {
+/*        foreach ($address['consignee_list'] as $key => $c) {
             if($c['address_id']==$address['address']){
                 $address['default_address'] = $c;
                 // break;
@@ -1868,13 +1879,15 @@ function assign_template($ctype = '', $catlist = array())
                     $address['edit_address'] = $c;
                 }
             }
-        }
+        }*/
+
         // var_dump($_REQUEST['address_id']);
         // var_dump($address['default_address']);
-        $smarty->assign('default_address',$address['default_address']);
-        if(isset($address['edit_address'])){
+        $smarty->assign('default_address',$address['consignee_list'][0]);
+        $smarty->assign('edit_address',$address['consignee_list'][0]);
+/*        if(isset($address['edit_address'])){
             $smarty->assign('edit_address',$address['edit_address']);
-        }
+        }*/
 
     }
     // var_dump($address['consignee_list']);
@@ -2517,6 +2530,41 @@ function user_address()
     $address['name_of_region']   =  array($_CFG['name_of_region_1'], $_CFG['name_of_region_2'], $_CFG['name_of_region_3'], $_CFG['name_of_region_4']);
     // var_dump($address['address']);
     return $address;
+}
+
+function get_parents_tree($pid = 0){
+    $sql = 'SELECT cat_id FROM ' . $GLOBALS['ecs']->table('category') . " WHERE parent_id = ".$pid." AND is_show = 1 ";
+    return $GLOBALS['db']->getCol($sql);
+    
+}
+
+
+function get_p_id($cid){
+    if(!is_numeric($cid)) return false;
+    $sql = 'SELECT parent_id FROM ' . $GLOBALS['ecs']->table('category') . " WHERE cat_id = ".$cid." AND is_show = 1 ";
+    return $GLOBALS['db']->getOne($sql);
+}
+
+function get_g_c_id($gcid){
+    $pTree = get_parents_tree();
+    if(in_array($gcid, $pTree)){
+        $cids[] = $gcid;
+        $cids[] = 0;
+    }
+    else{
+        $pid = get_p_id($gcid);
+        if(in_array($pid, $pTree)){
+            $cids[] = $pid;
+            $cids[] = $gcid;
+        }
+        else{
+            $ppid = get_p_id($pid);
+            $cids[] = $ppid;
+            $cids[] = $pid;
+        }
+    }
+    // var_dump($cids);
+    return $cids;
 }
 
 ?>

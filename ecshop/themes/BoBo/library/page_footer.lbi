@@ -42,7 +42,7 @@
           <a data-toggle="collapse" data-parent="#accordiona" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           {else}
         {/if}
-            <div class="basket-checkout basket-checkout1">
+            <div class="basket-checkout basket-checkout1" is_back="1">
               <div class="sidebar_b">
                 <div class="lcon_03">
                   <img src="./images/lcon_03.png" class="img-responsive"/>              
@@ -111,8 +111,6 @@
               <!--{/foreach}-->
             </div>
             <div class="cart_footer">
-
-              
               <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
                 <tbody>
                 
@@ -192,16 +190,15 @@
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingSeven">
           <a data-toggle="collapse" class="collapeiconv" data-parent="#accordiona" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-            <div class="basket-checkout menu_top">
+            <div class="">
               <div class="sidebar_b">
                 <div class="lcon_04">
                   <img src="./images/lcon_04.png" class="img-responsive"/>              
                 </div>
                 <div class="color">
                   SOCIAL NETWORK &
-                  <br>SHARE YOUR LOOK
-                </div>
-              </div>
+                  <br>SHARE YOUR LOOK</div>
+              </div> 
             </div>
           </a>
         </div>
@@ -383,13 +380,13 @@
 
 
 <script type='text/javascript'>         
-var _taw = _taw || [];
+/*var _taw = _taw || [];
 _taw.push(['_color', '#3b5998']);
 (function(d) {var taw = d.createElement('script'),id = 'tawea-extension';
 if (d.getElementById(id)) {return;}
 taw.type = 'text/javascript';taw.id=id;taw.async=true;
 taw.src ='https://tawea.com/extension/js/sdk.min.js';
-(document.head||document.documentElement).appendChild(taw);})(document);
+(document.head||document.documentElement).appendChild(taw);})(document);*/
 
 
 </script>

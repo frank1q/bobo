@@ -52,30 +52,45 @@
                     </div>
                   </div>
                   <div class="panelhalf">
-                    <div class="paneltitle">mobile</div>
+                    <div class="paneltitle">Mobile</div>
                     <div class="panelinput">
                       <input type="text" name="mobile" class="form-control" autocomplete="false" value="{$edit_address.mobile}"   placeholder=""/>
                     </div>
-                  </div> 
-                  <div class="">
-                    <div class="paneltitle">Address</div>
+                  </div>
+
+                  <div class="panelhalf">
+                    <div class="paneltitle" >Email Address</div>
                     <div class="panelinput">
-                      <input type="text" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
+                      <input type="text" name="email" class="form-control" autocomplete="false" value="{$edit_address.email}"   placeholder=""/>
                     </div>
                   </div>
-                  <div class="checkbox">
-                      <label style="font-weight:bold;">
-                        <input type="checkbox"  name="is_default" {if $address eq $edit_address.address_id}checked="checked"{elseif !$edit_address}checked="checked"{/if}> Is Default
-                      </label>
+                  <div class="panelhalf">
+                    <div class="paneltitle">Postcode</div>
+                    <div class="panelinput">
+                      <input type="text" name="zipcode" class="form-control" autocomplete="false" value="{$edit_address.zipcode}"   placeholder=""/>
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <div class="paneltitle">Address line 1</div>
+                    <div class="panelinput">
+                      <input type="text" style="width:95%;" name="address" class="form-control" value="{$edit_address.address}"  placeholder="" />
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="paneltitle">Address line 2 (optional)</div>
+                    <div class="panelinput">
+                      <input type="text" style="width:95%;" name="address2" class="form-control" value="{$edit_address.address2}"  placeholder="" />
+                    </div>
                   </div>
                   <div class="">
                     <div class="panelinput">
                       <div class="sub-address">
                         <button type="submit" name="act" value="address" >
                           <!-- {if $edit_address} -->
-                            Update Consignee
+                            Update Address
                             <!-- {else} -->
-                            Add Consignee
+                            Add Address
                           <!-- {/if} -->
                         </button>
                         <input type="hidden" name="address_id" value="{$edit_address.address_id}" />
@@ -87,23 +102,6 @@
                 </div>
                 </form>
                 <div class="clear"></div>
-                <div class="table-responsive">
-                  <table class="table user-address">
-                    {foreach from=$consignee_list item=consignee}
-                    <tr>
-                      <td>{$consignee.address}<br>{$consignee.consignee} | {$consignee.mobile} <br>
-                        <a href="user.php?address_id={$consignee.address_id}"><button type="button">edit</button></a>
-                        <a href="user.php?act=drop_consignee&id={$consignee.address_id}"><button type="button">delete</button></a>
-                        <!-- {if $address eq $consignee.address_id} -->
-                        <button type="button" class="is-default">Is Default</button>
-                        <!-- {/if} -->
-                        
-                        <!-- (<a href="">edit</a> | <a href="" onclick="if (confirm('Are you sure delete the consignee information?')) location.href='flow.php?step=drop_consignee&id={$consignee.address_id}'" >detele</a> | <a href="">to default</a>) -->
-                      </td>
-                    </tr>
-                    {/foreach}
-                  </table>
-                </div>
                 </div>
               </div>
             </div>

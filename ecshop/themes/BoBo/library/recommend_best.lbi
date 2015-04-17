@@ -36,7 +36,7 @@
                   </div>
                 </div>
               </div>
-              <a href="{$goods.url}">
+              <a href="designer.php">
                 <div class="picture_f">
                   <h3>DISCOVER ALL</h3>
                 </div>
