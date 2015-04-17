@@ -17,8 +17,8 @@
 <link rel="stylesheet" type="text/css" href="./themes/BoBo/css/tinybox.css" />
 <link rel="stylesheet" href="./themes/BoBo/css/lrtk.css" />
 <script type="text/javascript" src="./themes/BoBo/js/jquery.min.js"></script>
-
 <script type="text/javascript" src="./themes/BoBo/js/jquery.imgbox.pack.js"></script>
+<form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 
 <script type="text/javascript">
     $(document).ready(function() {
